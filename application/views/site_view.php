@@ -1,19 +1,19 @@
 
 <style>
 label
-		{
-					  
-			display: inline-block;
-			alignment-baseline: central; 
-			width: 100px;
-			color: black;
-		}	
+{
+			  
+	display: inline-block;
+	alignment-baseline: central; 
+	width: 100px;
+	color: black;
+}	
 
 #pagination strong{
-			background-color: #e3e3e3;
-			padding: 4px, 7px;
-			text-decoration: none;
-		}
+	background-color: #e3e3e3;
+	padding: 4px, 7px;
+	text-decoration: none;
+}
 #pagination a:hover
 {
 	color: RED;
