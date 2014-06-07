@@ -80,10 +80,6 @@
   padding-left: 20px;
 }
 
-.nav-sidebar > .sub-link > a {
-  padding-left: 50px;
-}
-
 .nav-sidebar > li > a:hover {
   transition-duration: 0.3s;
   background-color: #333;
