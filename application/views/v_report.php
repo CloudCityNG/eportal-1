@@ -23,27 +23,21 @@
 </div>
 <div class="col-md-10 col-md-offset-2">
 	<div class="row">
-		<div class="col-md-3">
-		<h5 class="text-center"> Normal Users Joined Today Report</h5>
-		<a href="<?php echo base_url().'reportico-3.2/run.php?execute_mode=EXECUTE& project=Reporting&xmlin=DailyNormalUsers.xml& target_format=HTML
-		'?>">		
-				<h6 class="text-center">View</h4>		
-		</a>
-		<a href="<?php echo base_url().'reportico-3.2/run.php?execute_mode=EXECUTE& project=Reporting&xmlin=DailyNormalUsers.xml& target_format=PDF
-		'?>">		
-				<h6 class="text-center">Download</h4>		
+		<div class="col-md-4">
+		<a href="<?php echo base_url().'report/daily_reports'?>">		
+				<h4 class="text-center">Daily Reports</h4>		
 		</a>
 		</div>
 		
-		<div class="col-md-3">
-		<h5 class="text-center"> Business Users Joined Today Report</h5>
-		<a href="<?php echo base_url().'reportico-3.2/run.php?execute_mode=EXECUTE& project=Reporting&xmlin=DailyBusinessUsers.xml& target_format=HTML
-		'?>">		
-				<h6 class="text-center">View</h4>		
+		<div class="col-md-4">
+		<a href="<?php echo base_url().'report/monthly_reports'?>">		
+				<h4 class="text-center">Monthly Reports</h4>		
 		</a>
-		<a href="<?php echo base_url().'reportico-3.2/run.php?execute_mode=EXECUTE& project=Reporting&xmlin=DailyBusinessUsers.xml& target_format=PDF
-		'?>">		
-				<h6 class="text-center">Download</h4>		
+		</div>
+		
+		<div class="col-md-4">
+		<a href="<?php echo base_url().'report/annually_reports'?>">		
+				<h4 class="text-center">Annual Reports</h4>		
 		</a>
 		</div>
 		

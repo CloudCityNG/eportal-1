@@ -28,7 +28,7 @@ function addCheck($title, $body, $add, $tel, $img) {
 	{
 		$answer=array();
 		
-		$sql1='SELECT id,title,price From new_advertisement';
+		$sql1='SELECT id,title,price From new_advertisement union (SELECT id,title,price From edit_advertisement)';
 		$result=$this->db->query($sql1);
 		$answer1= $result->result();
 		foreach ($answer1 as $key) {

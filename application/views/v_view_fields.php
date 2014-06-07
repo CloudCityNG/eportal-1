@@ -325,6 +325,11 @@
       				$acceptbtnattributes = array('class' => 'btn btn-primary','name'=>'advertisment_accept','value'=>'Accept');
 					echo form_submit($acceptbtnattributes);
       			?>
+      			&nbsp;
+      			<?php
+      				$denybtnattributes = array('class' => 'btn btn-danger','name'=>'advertisment_deny','value'=>'Deny');
+					echo form_submit($denybtnattributes);
+      			?>
     		</div>
   		</div>
 
@@ -373,16 +378,21 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-6 col-sm-5">
-			      			<?php
+      			<?php
       				$backbtnattributes = array('class' => 'btn btn-default','name'=>'back','value'=>'Back','type'=>'submit', 'content'=>'Back');
       				echo form_button($backbtnattributes);
       			?>
       			&nbsp;
       			<?php
-      				$registerbtnattributes = array('class' => 'btn btn-primary','name'=>'Finish_submit','value'=>'Finish');
-					echo form_submit($registerbtnattributes);
+      				$acceptbtnattributes = array('class' => 'btn btn-primary','name'=>'advertisment_accept','value'=>'Accept');
+					echo form_submit($acceptbtnattributes);
       			?>
-		</div>
+      			&nbsp;
+      			<?php
+      				$denybtnattributes = array('class' => 'btn btn-danger','name'=>'advertisment_deny','value'=>'Deny');
+					echo form_submit($denybtnattributes);
+      			?>
+    		</div>
 	</div>
 	
 

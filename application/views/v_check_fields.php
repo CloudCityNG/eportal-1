@@ -57,14 +57,12 @@
 				
 				
 			echo '</div>';
-			echo '<div class="pull-right">';
-					$acceptbtnattributes = array('class' => 'btn btn-primary','name'=>'continue','value'=>'Accept');
-					echo form_submit($acceptbtnattributes);
+						
 					
-					
-					$acceptbtnattributes = array('class' => 'btn btn-danger','name'=>'continue','value'=>'Deny');
-					echo form_submit($acceptbtnattributes).'</div>';
+					echo '<a href="'.base_url().'rules/deny_ad/'.$info['id'].'" class="text-primary btn btn-danger"><u><b> Deny </b></u></a>';
 			
+			//echo '</br>';
+					echo '<a href="'.base_url().'rules/accept_ad/'.$info['id'].'" class="text-primary btn btn-success"><u><b> Accept </b></u></a>';
 			
 		echo '</div>';
 	}

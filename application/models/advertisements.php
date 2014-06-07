@@ -359,10 +359,10 @@ class Advertisements extends CI_Model{
 		$answer=array();
 		if((!isset($uname))||($uname==null))
 		{
-			$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement';
+			$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement order by duration desc';
 		}
 		else{
-		$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement where username=\''.$uname.'\'';
+		$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement where username=\''.$uname.'\' order by duration desc';
 		}
 		$result=$this->db->query($sql1);
 		$answer1= $result->result();
@@ -423,6 +423,14 @@ class Advertisements extends CI_Model{
 	{
 		$this->db->where('id',$ad_id);
 		$this->db->delete('advertisement');
+		$this->db->where('id',$ad_id);
+		$this->db->delete('edit_advertisement');
+		$this->db->where('adid',$ad_id);
+		$this->db->delete('comments');
+		$this->db->where('adId',$ad_id);
+		$this->db->delete('featured');
+		$this->db->where('id',$ad_id);
+		$this->db->delete('new_advertisement');
 	}
 	public function extendAd($ad_id,$duration)
 	{
@@ -461,7 +469,7 @@ class Advertisements extends CI_Model{
 	{
 				$answer=array();
 
-			$sql1='SELECT id,adId,duration from extend';
+			$sql1='SELECT id,adId,duration from extend order by duration desc';
 		
 
 		$result=$this->db->query($sql1);
@@ -530,7 +538,7 @@ class Advertisements extends CI_Model{
 	{
 				$answer=array();
 
-			$sql1='SELECT id,adId,duration from featured where approved=0';
+			$sql1='SELECT id,adId,duration from featured where approved=0 order by duration desc';
 		
 
 		$result=$this->db->query($sql1);
@@ -566,12 +574,11 @@ class Advertisements extends CI_Model{
 			if($result->num_rows()>0)
 			{
 				
-				$result=$this->db->get('featured');
+				
 				$answer2= $result->row_array();
 				
 				$this->db->where('id',$answer2['adId']);
-				$result=$this->db->get('advertisement');
-				$answer3= $result->row_array();
+				
 				$this->db->where('id',$answer2['adId']);
 				$this->db->update('advertisement',array('featured'=>1));
 				$this->db->where('adId',$answer2['adId']);

@@ -1,3 +1,60 @@
+<style>
+.bubble img {/*
+  float:left;
+  width:70px;
+  height:70px;
+  border:3px solid #ffffff;
+  border-radius:10px*/
+                  }
+.bubble-content {
+position:relative;
+float:left;
+margin-left:0px;
+width:500px;
+padding:1px 10px;
+border-radius:10px;
+background-color:#FFFFFF;
+box-shadow:1px 1px 5px rgba(0,0,0,.2);
+}
+.bubble {
+    margin-top:20px;
+    }
+.point {
+  border-top:10px solid transparent;
+  border-bottom:10px solid transparent;
+  border-right: 12px solid #FFF;
+  position:absolute;
+  left:-10px;
+  top:12px;
+  }
+a:link
+		{
+			color: red;
+		}
+		a:hover
+		{
+			color: red;
+			cursor: pointer; cursor: hand;
+			text-decoration: underline;
+		}
+/*
+.clearfix:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content: ".";
+    clear:both;
+    height:0;
+    line-height:
+    }
+.clearfix {
+     display: inline-block;
+     }
+* html .clearfix {
+       height: 1%;
+  }*/
+
+</style>
 <div class="container">
 	<script type="text/javascript">
 		function back()
@@ -138,7 +195,14 @@
     			echo '<p><b><span class="glyphicon glyphicon-star-empty"></span> ';
     			echo 'Featured</b></p>';
     		}
-    		 ?>
+    		 ?><?php if($countryid!=0||$categoryid!=0){?>
+    		 <span class="glyphicon glyphicon-tags"></span> 
+    		 <a href="<?php echo base_url();?>site/search02/category/<?php echo $categoryid;?>"><span class="label label-info"><?php echo $category;?></span></a>
+    		 <?php if($subcategoryid!=0){?>
+    		 	<a href="<?php echo base_url();?>site/search02/sub_category/<?php echo $subcategoryid;?>"><span class="label label-info"><?php echo $subcategory;?></span></a>
+    		 	<?php }?>
+    		 <?php }?>
+    		
     		 </div>
     		 <!--<div class="pull-left"><a href="<?php echo base_url();?>site/search02/category/1">cat01</a></div>-->
     		<div class="pull-right">
@@ -194,47 +258,42 @@
     		</div>
     		</div>
     		</div>
-	
-	<div class="col-md-8 col-md-offset-2 breadcrumb img-thumbnail">
-		<div class="col-md-11">
-				<?php
-				
-				if($comments==null){
-					echo '<br/><div class="col-md-offset-4 h4">Be the first to comment this advertisement&nbsp;<sup><span class="glyphicon glyphicon-comment"></span></sup></div><br/><br/>';
-				}
-				 foreach ($comments as $comment): ?>
-					<!--
-						profilepicture
-					-->
-					<div class="panel panel-default col-md-offset-2">
-		    			<div class="panel-body">
-		    				<?php if($this->session->userdata('username'))
-							 	{
-							 		 echo '</span><a class="btn btn-link pull-right" title="delete" onclick="DelCom(<?php echo $comment->cmid;?>)">x</a>';
-								} 
-								?>
-		    				<div class="row" style="padding-left: 10px">
-		    					
-		    					<b style="margin-top: 0px"><?php echo $comment->fullname; ?></b>
-		    					<br />
-		    					<div class="h4" style="margin-top: 0px"><small><?php echo $comment->cDATE ?></small></div>
-		    					<br />
-		    					<?php echo $comment->comment; ?>
-		    				</div>	
-		    			</div>
-		    		</div>
-		    		
-				<?php endforeach; ?>
-					<div>
+
+	<div class="col-md-8 col-md-offset-2 img-thumbnail breadcrumb">
+		<div>
+			
+                    <?php foreach ($comments as $comment): ?>
+                    	
+                    <div class="bubble-list">
+      					<div class="bubble clearfix">
+                        <div class="col-xs-2">
+                            <img src="<?php echo base_url().'images/prifilepictures/'.$comment->image;?>" alt="" class="img-responsive img-circle" width="75px" height="75px">
+                        </div>
+                        <div class="bubble-content">
+        				<div class="point"></div>
+        				<div><a href="<?php echo base_url().'profile/'.$comment->username;?>"><b><?php echo $comment->fullname; ?></b></a></div>
+						<p><?php echo $comment->comment; ?></p>
+						<div class="col-md-4 col-md-4"><font color="#C0C0C0"> <?php echo $comment->cDATE ?> </font></div>
+						<div class="col-md-4 col-lg-offset-4 pull-right"><font color="RED"> <a title="delete" onclick="DelCom(<?php echo $comment->cmid;?>)">x</a></font></div>
+       					</div>
+       					<div class="clearfix"></div>
+       					</div>
+       						</div>
+                     
+                     <?php endforeach; ?>
+                     
+        </div>
+	<div>
 						<div class="col-md-offset-2">
 							<?php if($this->session->userdata('username'))
 							{
 								echo form_open("ad_control/add_comment/".$this->uri->segment(3));
 								//echo '<div><span class="glyphicon glyphicon-comment"></span>';
 								//echo form_label('Comment:','comment');
-								$commentInput=array('value'=>'','id'=>'comment','name'=>'comment','style'=>"width: 535px;height: 40px;margin-bottom: 5px;padding: 5px",'placeholder'=>'Comment here');
+								$commentInput=array('value'=>'','id'=>'comment','name'=>'comment','style'=>"width: 400px;height: 40px;margin-bottom: 5px;margin-top: 10px;padding: 5px",'placeholder'=>'Comment here');
 								echo form_input($commentInput);
-								$commentBtn=array('value'=>'Post Comment','id'=>'comment','name'=>'action','class'=>'btn btn-warning pull-right');
+								echo '<br>';
+								$commentBtn=array('value'=>'Post Comment','id'=>'comment','name'=>'action','class'=>'btn btn-warning col-md-offset-5');
 								echo form_submit($commentBtn);
 								
 								echo form_close();
@@ -247,7 +306,6 @@
 							}?>
 						</div>
 					</div>
-				
-		</div>
-	</div>
+
+</div>
 </div>

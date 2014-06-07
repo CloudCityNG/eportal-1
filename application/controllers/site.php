@@ -65,6 +65,9 @@
 			
 			$data['pagination'] = $this->pagination->create_links();
 			$this->load->view('site_view', $data);
+			
+			
+			$this->footer();
 		}
 		
 		function search()
@@ -80,6 +83,18 @@
 		'low_price' => $this->input->post('low_price'),
 		'high_price' => $this->input->post('high_price')
 		);
+		
+		if($qarray['sub_category']==0)
+		{$qarray['sub_category']="";}
+		
+		if($qarray['country']==0)
+		{$qarray['country']="";}
+		
+		if($qarray['province']==0)
+		{$qarray['province']="";}
+		
+		if($qarray['district']==0)
+		{$qarray['district']="";}
 		
 		if(strlen($this->input->post('title')))
 		{
@@ -166,19 +181,19 @@
 			redirect("home");}
 		}
 		
-		function header($tile){
-			$data['title']=$tile;
-			if($this->session->userdata('username')){
-				if($this->session->userdata('usertype')=='a'){
-					$this->load->view('header_admin',$data);
-				}else{
-					$this->load->view('header_loggedin',$data);
-				}
-			}
-			else{
-				$this->load->view('header_not_loggedin',$data);
+			function header($tile){
+		$data['title']=$tile;
+		if($this->session->userdata('username')){
+			if($this->session->userdata('usertype')=='a'){
+				$this->load->view('header_admin',$data);
+			}else{
+				$this->load->view('header_loggedin',$data);
 			}
 		}
+		else{
+			$this->load->view('header_not_loggedin',$data);
+		}
+	}
 	
 	function footer(){
 		$this->load->view('footer');

@@ -8,7 +8,7 @@
 	<link href="<?php echo base_url().'css/bootstrap-theme.min.css'?>" rel="stylesheet">
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
-<body style="background-color: #f1f1f1">
+<body style="background-color: #f6f7f8">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="<?php echo base_url().'js/jquery-1.11.0.min.js'?>" ></script>
 	<script src="<?php echo base_url().'js/jquery-1.11.0.js'?>"></script>
@@ -27,7 +27,7 @@
 	    
 </script>
 <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
-	<div class="navbar navbar-default navbar-fixed-top navbar-set-margin-bottom">	
+	<div class="navbar navbar-inverse navbar-fixed-top navbar-set-margin-bottom">	
 		<div class="container">
 			<a href="<?php echo base_url()?>" class="navbar-brand">E - Marketing</a>
 			
@@ -51,10 +51,10 @@
 						echo form_open('site/search01',$formattributes);
 						// Open the form and redirects to the "login_validation" function in the main controller
 						
-							$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search','style'=>'width:280px;height:33px;padding:5px');
+							$inputkeyword = array('class'=>'form-group','name'=>'title','placeholder'=>'Search','style'=>'width:280px;height:33px;padding:5px');
 							echo form_input($inputkeyword);
 							
-							$registerbtnattributes = array('class' => 'form-group btn btn-sm btn-default','name'=>'search_submit','value'=>'Search');
+							$registerbtnattributes = array('class' => 'form-group btn btn-primary','name'=>'search_submit','value'=>'Search');
 							echo form_submit($registerbtnattributes);
 						echo form_close();
 						
@@ -64,12 +64,12 @@
 					
 				
 				<ul class="nav navbar-nav navbar-right">	
-					<a href="<?php echo base_url().'administration'?>"class="navbar-btn btn-sm btn btn-success" value="adminPanel" > Administrative Panel </a>
+					<a href="<?php echo base_url().'administration/user_management'?>"class="navbar-btn btn btn-success" value="adminPanel" > Administrative Panel </a>
 					<div class="btn-group">
-						<a class="navbar-btn btn btn-sm btn-default" href="<?php if($this->session->userdata('username')){echo base_url().'profile/'.$this->session->userdata('username');}?>">
+						<a class="navbar-btn btn btn-primary" href="<?php if($this->session->userdata('username')){echo base_url().'profile/'.$this->session->userdata('username');}?>">
 							<?php if($this->session->userdata('name')){echo $this->session->userdata('name');}?>
 						</a>
-					  	<a class="navbar-btn btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+					  	<a class="navbar-btn btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					   		<span class="glyphicon glyphicon-cog"></span>
 					   		<span class="caret"></span>
 					  	</a>

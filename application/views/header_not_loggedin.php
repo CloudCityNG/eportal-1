@@ -32,7 +32,7 @@
 </script>
 
 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
-	<div class="navbar navbar-default navbar-fixed-top navbar-set-margin-bottom">	
+	<div class="navbar navbar-inverse navbar-fixed-top navbar-set-margin-bottom">	
 		<div class="container">
 			<a href="<?php echo base_url()?>" class="navbar-brand">E - Marketing</a>
 			
@@ -56,10 +56,10 @@
 						echo form_open('site/search01',$formattributes);
 						// Open the form and redirects to the "login_validation" function in the main controller
 						
-							$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search','style'=>'width:300px;height:33px;padding:5px');
+							$inputkeyword = array('class'=>'form-group','name'=>'title','placeholder'=>'Search','style'=>'width:300px;height:33px;padding:5px');
 							echo form_input($inputkeyword);
 							
-							$registerbtnattributes = array('class' => 'form-group btn btn-default','name'=>'search_submit','value'=>'Search');
+							$registerbtnattributes = array('class' => 'form-group btn btn-primary','name'=>'search_submit','value'=>'Search');
 							echo form_submit($registerbtnattributes);
 						echo form_close();
 						

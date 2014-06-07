@@ -349,6 +349,8 @@ class Advertisement extends CI_Controller {
 			$answer1;
 			if(!isset($adid)&&($this->advertisements->getAdvertisement($adid)==null))
 			{
+				
+				
 				redirect('/advertisement/adList');
 			
 			}
@@ -369,8 +371,54 @@ class Advertisement extends CI_Controller {
 			$data['telephone']=$answer1['telephone'];
 			$data['telemarketer']=$answer1['telemarketer'];
 			$data['featured']=$answer1['featured'];
-			$data['username']=$answer1['username'];	
+			$data['username']=$answer1['username'];
+			$data['countryid']=$answer1['countryid'];
+			$data['provinceid']=$answer1['provinceid'];
+			$data['districtid']=$answer1['districtid'];	
+			$data['categoryid']=$answer1['categoryid'];
+			$data['subcategoryid']=$answer1['subcategoryid'];
 			
+			$this->db->where('id',$answer1['categoryid']);
+			$result=$this->db->get('category');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['category']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['subcategoryid']);
+			$result=$this->db->get('subcategory');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['subcategory']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['countryid']);
+			$result=$this->db->get('country');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['country']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['provinceid']);
+			$result=$this->db->get('province');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['province']=$answer['name'];
+			}
+
+			$this->db->where('id',$answer1['districtid']);
+			$result=$this->db->get('district');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['district']=$answer['name'];
+			}
+
+
 			$this->load->model('site_model');			
 			$comments = $this->site_model->getcommnets($adid);
 			$data['comments'] = $comments['rows'];

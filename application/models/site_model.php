@@ -256,6 +256,21 @@ class site_model extends CI_Model{
 	    $row->fullname = $results;
 		//$row->total_rate = $results['total_rate'];
 		}
+		
+		foreach ($ret['rows'] as &$row) {
+			$results = $this->db->get_where('user_details',array('username'=>$row->username))->result();
+			if($results)
+			{
+				
+				$temp = $results[0];
+				if($temp->profilepicture==null)
+				{
+				$row->image = "default_profile.jpg";	
+				}
+				else
+				{$row->image = $temp->profilepicture;}
+			}
+		}
 	
 	return $ret;	
 	}

@@ -9,6 +9,24 @@ class Report extends CI_Controller {
 		$this->footer();
 	}
 	
+	public function daily_reports(){
+		$this->header('Daily Report');
+			$this->load->view("v_report_daily");
+		$this->footer();
+	}
+	
+	public function monthly_reports(){
+		$this->header('Monthly Report');
+			$this->load->view("v_report_monthly");
+		$this->footer();
+	}
+	
+	public function annually_reports(){
+		$this->header('Annual Report');
+			$this->load->view("v_report_annually");
+		$this->footer();
+	}
+	
 	function header($tile){
 		$data['title']=$tile;
 		if($this->session->userdata('username')){

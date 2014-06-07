@@ -17,10 +17,17 @@ class Rules extends CI_Controller {
             $add  = $this->input->post('address');
             $tel  = $this->input->post ('tel');
 			$img  = $this->input->post ('img');
-		
+		}
 		$this->load->model('m_rules');
         $this->m_rules->addCheck($title, $body, $add, $tel, $img);
-		}
+		
+		if($this->input->post('back'))
+			{
+				redirect('/rules');
+				//$data['state']='data';
+	
+			}
+		
 		$this->load->model('m_rules');
 		$data['Ads']=$this->m_rules->getAdlist();
 		$this->header('View Fields');
@@ -28,7 +35,7 @@ class Rules extends CI_Controller {
 		$this->footer();
 	}
 	
-	public function back(){
+	public function back1(){
 		$this->load->model('m_rules');
 		$data['Ads']=$this->m_rules->getAdlist();
 		$this->header('View Fields');
@@ -38,21 +45,9 @@ class Rules extends CI_Controller {
 	
 	public function editAd($adid)
 	{
-		/*if(!isset($adid))
-		{
-			redirect(base_url().'advertisement/adList');	
-		}
-
-		if(!$this->session->userdata('username'))
-		{
-				redirect(base_url().'signin');
-		}*/
+		
 		$this->load->model('m_rules');
 		$answer1=$this->m_rules	->getAdvertisement($adid);
-		/*if($answer1!=null&&$this->session->userdata('username')!=$answer1['username'])
-		{
-			redirect(base_url().'advertisement/adList');
-		}*/		
 		
 		$this->load->model('m_rules');
 		$this->load->library('form_validation');
@@ -121,73 +116,12 @@ class Rules extends CI_Controller {
 			$data['dur']=14;
 		}*/
 
-		if($this->input->post('advertisment_submit'))
-		{
-			
-			if($this->form_validation->run())
-			{
-				$data['state']='upload';
-			}
-			/*{//if validations are comppleted
-			
-				
-				
-				$adid=uniqid();
-				$this->session->set_userdata('ad_id',$adid);
-				$this->advertisements->setAdvertisement(
-				$adid,
-				$this->input->post('title'),
-				$this->input->post('body'),
-				$this->input->post('category'),
-				$this->input->post('subcategory'),
-				$this->input->post('country'),
-				$this->input->post('district'),
-				$this->input->post('province'),
-				$this->input->post('price'),
-				$this->input->post('address'),
-				date('Y-m-d H:i:s',strtotime('+ '.$this->input->post('duration').' day' ,strtotime(date('Y-m-d H:i:s'))))
-				//,	$data2['upload_data']['file_name']
-				);//adding the advertisementin the db
-				$data['success']=true;
-				//}
-			
-			}*/
-		}
 		
-			if($this->input->post('Finish_submit'))
-			{
-				$data['state']='upload';
-				if(!$this->form_validation->run())
-				{
-					$data['state']='data';
-				}
-				else
-				{
-				$this->advertisements->updateAdvertisement(
-				$adid,
-				$this->input->post('title'),
-				$this->input->post('body'),
-				$this->input->post('category'),
-				$this->input->post('subcategory'),
-				$this->input->post('country'),
-				$this->input->post('district'),
-				$this->input->post('province'),
-				$this->input->post('price'),
-				$this->input->post('address'),
-				$this->input->post('telephone'),
-				$this->session->userdata('email'),
-				$this->session->userdata('username')
-				//date('Y-m-d H:i:s',strtotime('+ '.$this->input->post('duration').' day' ,strtotime(date('Y-m-d H:i:s'))))
-				//,	$data2['upload_data']['file_name']
-				);//adding the advertisementin the db
-				//$data['success']=true;
-				//}
-					$data['success']=true;
-				}
-			}
+		
+			
 			if($this->input->post('back'))
 			{
-				redirect('/rules/back');
+				redirect('/rules/back1');
 				//$data['state']='data';
 	
 			}
@@ -199,13 +133,14 @@ class Rules extends CI_Controller {
 				//$data['state']='data';
 	
 			}
+			
+			if($this->input->post('advertisment_deny'))
+			{
+				redirect('/rules/deny_ad/'.$adid);
+				//$data['state']='data';
+	
+			}
 				
-				if($this->input->post('image_submit'))
-				{
-					$data['state']='upload';
-					$this->advertisements->do_edit_upload('skds',$adid);
-				
-				}
 				
 			
 				$imagedata=$this->m_rules->get_edit_images($adid);
@@ -296,70 +231,71 @@ class Rules extends CI_Controller {
 		$data['title']='Edit Ad';
 		$this->header('Edit Ad');
 		$this->load->view('v_view_fields',$data);
-		$this->footer();
-	
-			
-			
-		
+		$this->footer();		
 	}
 	
-	/*	
-	public function viewAd($adid)//view for displaying ads
-		{
-			$this->load->model('advertisements');
-			$answer1;
-			if(!isset($adid)&&($this->advertisements->getAdvertisement($adid)==null))
-			{
-				
-				
-				redirect('/advertisement/adList');
-			
-			}
-			$imagedata=$this->advertisements->get_images($adid);
-				$images=array();
-				foreach ($imagedata as $img) 
-				{
-					
-					if($this->input->post($img['id']))
-					{
-						
-						$data['state']='upload';
-						$this->advertisements->remove_image($img['id'],$img['Image']);
-						continue;
-					}
-					
-					$images[]=array('url'=>$img['Image'],'name'=>$img['id']);
-				}
-			$data['images']=$images;
-			$answer1=$this->advertisements->getAdvertisement($adid);
-			$data['Title']=$answer1['title'];
-			$data['body']=$answer1['body'];
-			$data['price']=$answer1['price'];
-			$data['email']=$answer1['email'];
-			
-			$this->load->model('site_model');			
-			$comments = $this->site_model->getcommnets($adid);
-			$data['comments'] = $comments['rows'];
-			
-			$this->header('View Ad');
-			$this->load->view('v_view_fields',$data);
-			$this->footer();
-			
-		}
-	*/
-	
-	public function accept_ad($adid){
+	public function accept_ad($a){
 		$this->load->model('m_rules');
-        $this->m_rules->accept_ad($adid);
+
+        $this->m_rules->accept_ad($a);
+		$this->back1();
+	}
+	
+	public function deny_ad($a){
+		$this->header('Send Denial Email');
+		$this->load->view('v_ad_deny',$a);
+		$this->footer();
 		
-		$this->back();
+		if($this->input->post('back'))
+			{
+				redirect('/rules/back1');
+				//$data['state']='data';
+	
+			}
+	}
+	
+	public function send_denial_email(){
+		$config = Array(
+				'protocol' => 'smtp',
+			  	'smtp_host' => 'ssl://smtp.googlemail.com',
+			  	'smtp_port' => 465,
+			  	'smtp_user' => 'it12030736@my.sliit.lk',
+			  	'smtp_pass' => 'It12030736@#1',
+			  	'mailtype' => 'html',
+			  	'charset' => 'iso-8859-1',
+			  	'wordwrap' => TRUE
+			);
+			
+			$message = 'Your Advertisement has been denied ';
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+			$this->email->from('it12030736@my.sliit.lk'); 
+			$this->email->to('gcrescape@gmail.com');
+			$this->email->subject('Advertisement Denied(Eportal)');
+			$this->email->message($message);
+			if($this->email->send())
+			{
+				//echo("success");
+			}
+			else
+			{
+				echo("fail");
+			}
 	}
 	
 	function header($tile){
 		$data['title']=$tile;
-		if($this->session->userdata('username')){$this->load->view('header_loggedin',$data);}
-		else{$this->load->view('header_not_loggedin',$data);}
-	}	
+		if($this->session->userdata('username')){
+			if($this->session->userdata('usertype')=='a'){
+				$this->load->view('header_admin',$data);
+			}else{
+				$this->load->view('header_loggedin',$data);
+			}
+		}
+		else{
+			$this->load->view('header_not_loggedin',$data);
+		}
+	}
 	
 	function footer(){
 		$this->load->view('footer');

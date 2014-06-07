@@ -871,7 +871,6 @@ class Administration extends CI_Controller {
 	function footer(){
 		$this->load->view('footer');
 	}
-	
 	public function acceptExtend($request,$id)
 	{
 		$this->load->model('advertisements');
@@ -902,8 +901,7 @@ class Administration extends CI_Controller {
 			$this->header('Extend Requests');
 			$this->load->view('view_extend_accept',$data);
 			$this->footer();
-	}
-		
+	}	
 	public function acceptFeatured($request,$id)
 	{
 		$this->load->model('advertisements');
@@ -931,7 +929,7 @@ class Administration extends CI_Controller {
 			
 			$this->load->model('advertisements');
 			$data['Ads']=$this->advertisements->getFeaturedList();
-			$this->header('Extend Requests');
+			$this->header('Featured Requests');
 			$this->load->view('view_featured_accept',$data);
 			$this->footer();
 	}	
