@@ -54,7 +54,7 @@
 							$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search','style'=>'width:280px;height:33px;padding:5px');
 							echo form_input($inputkeyword);
 							
-							$registerbtnattributes = array('class' => 'form-group btn btn-default','name'=>'search_submit','value'=>'Search');
+							$registerbtnattributes = array('class' => 'form-group btn btn-sm btn-default','name'=>'search_submit','value'=>'Search');
 							echo form_submit($registerbtnattributes);
 						echo form_close();
 						
