@@ -1,0 +1,12 @@
+normal only
+select * 
+from businessusers, users,user_details
+where user_details.username = users.username 
+	and users.username nOT IN (select businessusers.username from businessusers)
+
+
+
+busines only
+select * 
+from businessusers, users,user_details
+where user_details.username = users.username and businessusers.username = users.username
