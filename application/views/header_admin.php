@@ -41,24 +41,20 @@
 				
 				
 			<div class="collapse navbar-collapse navHeaderCollapse">
-				<ul class="nav navbar-left col-md-offset-2 " style="margin-top: 7px">
+				<ul class="nav navbar-left col-md-offset-1 " style="margin-top: 10px">
 				
 						<?php 
-					
-						echo validation_errors();
-						
-						$formattributes = array('class' => 'form-inline', 'role' => 'search');
-						echo form_open('site/search01',$formattributes);
-						// Open the form and redirects to the "login_validation" function in the main controller
-						
-							$inputkeyword = array('class'=>'form-group','name'=>'title','placeholder'=>'Search','style'=>'width:280px;height:33px;padding:5px');
-							echo form_input($inputkeyword);
-							
-							$registerbtnattributes = array('class' => 'form-group btn btn-primary','name'=>'search_submit','value'=>'Search');
-							echo form_submit($registerbtnattributes);
-						echo form_close();
-						
-					
+							$formattributes = array('class' => 'form-inline', 'role' => 'search');
+								echo form_open('site/search01',$formattributes);
+									// Open the form and redirects to the "login_validation" function in the main controller
+									echo '<div class="btn-group">';	
+									$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Enter advertisement title or keywords','style'=>'width:380px;height:30px;padding-right:7px;margin-right:-2px');
+									echo form_input($inputkeyword);
+									
+									$registerbtnattributes = array('class' => 'form-group btn btn-sm btn-primary pull-right','name'=>'search_submit','value'=>'Search');
+									echo form_submit($registerbtnattributes);
+									echo '</div>';
+								echo form_close();
 						?>
 				</ul>
 					
