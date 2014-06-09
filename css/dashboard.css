@@ -17,6 +17,7 @@
 	padding: 20px 20px 20px 7px;
 	width: 230px;
 	transition-duration: 0.3s;	
+
 }
 
 .dashboard > a{
@@ -26,7 +27,7 @@
 }
 
 .dashboard:hover{
-	background-color: #333;/*5555DD*/
+	background-color: #2A6496;/*5555DD*/
 	transition-duration: 0.3s;
 }
 
@@ -82,13 +83,13 @@
 
 .nav-sidebar > li > a:hover {
   transition-duration: 0.3s;
-  background-color: #333;
+  background-color: #2A6496;
   color: #fff;
 }
 
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #333;
+  background-color: #2A6496;
 }
 
 .nav-sidebar > .dashLink > a{
