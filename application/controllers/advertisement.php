@@ -751,14 +751,7 @@ class Advertisement extends CI_Controller {
 		{
 			$data['dis']=$answer1['districtid'];
 		}
-		/*if($this->input->post('duration')){
-		
-			$data['dur']=$this->input->post('duration');
-		}
-		else
-		{
-			$data['dur']=14;
-		}*/
+
 
 		if($this->input->post('advertisment_submit'))
 		{
