@@ -10,6 +10,7 @@ class Registration extends CI_Controller {
 	
 	public function signup_validate(){
 		$this->load->library('form_validation');
+		
 		$this->form_validation->set_rules('usertype','User type','required');
 		/*$this->form_validation->set_rules('email','Email','required|trim|xss_clean|valid_email|callback_valid_email');*/
 		$this->form_validation->set_rules('email','Email','required|trim|xss_clean|valid_email|is_unique[waiting_normal_users.email]|is_unique[users.email]|is_unique[waiting_business_users.email]');
