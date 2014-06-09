@@ -197,9 +197,22 @@ a:link
     		}
     		 ?><?php if($countryid!=0||$categoryid!=0){?>
     		 <span class="glyphicon glyphicon-tags"></span> 
-    		 <a href="<?php echo base_url();?>site/search02/category/<?php echo $categoryid;?>"><span class="label label-info"><?php echo $category;?></span></a>
+    		 <?php if($categoryid!=0){?>
+ 				<a href="<?php echo base_url();?>site/search02/category/<?php echo $categoryid;?>"><span class="label label-info"><?php echo $category;?></span></a>
+    		    		 	
+    		 <?php }?>
     		 <?php if($subcategoryid!=0){?>
     		 	<a href="<?php echo base_url();?>site/search02/sub_category/<?php echo $subcategoryid;?>"><span class="label label-info"><?php echo $subcategory;?></span></a>
+    		 	<?php }?>
+    		 <?php if($countryid!=0){?>
+    		 	<a href="<?php echo base_url();?>site/search02/country/<?php echo $countryid;?>""><span class="label label-info"><?php echo $country;?></span></a>
+    		 			<?php if($provinceid!=0){?>
+    		 				<a href="<?php echo base_url();?>site/search02/province/<?php echo $provinceid;?>""><span class="label label-info"><?php echo $province;?></span></a>
+    		 					<?php if($districtid!=0){?>
+    		 						<a href="<?php echo base_url();?>site/search02/district/<?php echo $districtid;?>""><span class="label label-info"><?php echo $district;?></span></a>
+    		 	
+    		 					<?php }?>
+    		 			<?php }?>
     		 	<?php }?>
     		 <?php }?>
     		
