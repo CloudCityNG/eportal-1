@@ -6,7 +6,7 @@ label
 	display: inline-block;
 	alignment-baseline: central; 
 	width: 100px;
-	color: black;
+	color: white;
 }	
 
 #pagination strong{
