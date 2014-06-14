@@ -196,15 +196,18 @@ a:link
     			echo 'Featured</b></p>';
     		}
     		 ?><?php if($countryid!=0||$categoryid!=0){?>
-    		 <span class="glyphicon glyphicon-tags"></span> 
+    		 <p><span class="glyphicon glyphicon-tags"></span> 
     		 <?php if($categoryid!=0){?>
  				<a href="<?php echo base_url();?>site/search02/category/<?php echo $categoryid;?>"><span class="label label-info"><?php echo $category;?></span></a>
     		    		 	
-    		 <?php }?>
+    		 
     		 <?php if($subcategoryid!=0){?>
     		 	<a href="<?php echo base_url();?>site/search02/sub_category/<?php echo $subcategoryid;?>"><span class="label label-info"><?php echo $subcategory;?></span></a>
     		 	<?php }?>
+    		 	</p>
+    		 	<?php }?>
     		 <?php if($countryid!=0){?>
+    		 	<p><span class="glyphicon glyphicon-globe"></span> 
     		 	<a href="<?php echo base_url();?>site/search02/country/<?php echo $countryid;?>""><span class="label label-info"><?php echo $country;?></span></a>
     		 			<?php if($provinceid!=0){?>
     		 				<a href="<?php echo base_url();?>site/search02/province/<?php echo $provinceid;?>""><span class="label label-info"><?php echo $province;?></span></a>
@@ -214,6 +217,7 @@ a:link
     		 					<?php }?>
     		 			<?php }?>
     		 	<?php }?>
+    		 	</p>
     		 <?php }?>
     		
     		 </div>
