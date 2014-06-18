@@ -6,6 +6,7 @@
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.min.css'?>" rel="stylesheet">
+	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
 <body style="background-color: #f1f1f1">
@@ -34,6 +35,7 @@
 	    
 </script>
 <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
+	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 	<div class="navbar navbar-default navbar-fixed-top navbar-set-margin-bottom">	
 		<div class="container">
 			<a href="<?php echo base_url()?>" class="navbar-brand">E - Marketing</a>
@@ -84,4 +86,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="navbar navbar-default navbar-static-top navbar-set-margin-bottom"></div>
+<div id='cssmenu' style="margin-top: 53px; margin-bottom: 40px;">
+<ul>
+   <li><a href='index.html'><span>Electronic</span></a>
+   	<ul>
+         <li class=''><a href='#'><span>Men</span></a></li>
+         <li class=''><a href='#'><span>Female</span></a></li>
+      </ul>
+   </li>
+   <li><a href='#'><span>Fashion</span></a>
+      <ul>
+         <li class=''><a href='#'><span>Men</span></a></li>
+         <li class=''><a href='#'><span>Female</span></a></li>
+      </ul>
+   </li>
+   <li><a href='#'><span>About</span></a>
+   	<ul>
+         <li class=''><a href='#'><span>Men</span></a></li>
+         <li class=''><a href='#'><span>Female</span></a></li>
+      </ul>
+   </li>
+   <li class=''><a href='#'><span>Contact</span></a>
+   	<ul>
+         <li class=''><a href='#'><span>Men</span></a></li>
+         <li class=''><a href='#'><span>Female</span></a></li>
+      </ul>
+   </li>
+</ul>
+</div>
