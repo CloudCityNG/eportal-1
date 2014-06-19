@@ -56,6 +56,7 @@
 }
 @media {
   .sidebar {
+  	height:9999px;
     position: fixed;
     top: 99px;
     bottom: 0;
@@ -63,8 +64,7 @@
     z-index: 1000;
     display: block;
     padding: 20px;
-    overflow-x: hidden;
-    overflow-y: hidden; /* Scrollable contents if viewport is shorter than content. */
+    overflow-x: hidden; /* Scrollable contents if viewport is shorter than content. */
     background-color: #181818;
     border-right: 1px solid #eee;
   }
