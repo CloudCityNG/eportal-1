@@ -1,3 +1,9 @@
+<div class="container breadcrumb text-white" style="background-color: #CD0A0A">
+	<br />
+</div>
+
+<br />
+
 <div class="container breadcrumb">
 	
 	<?php $count=0; $adcount=count($Ads); foreach($Ads as $ad){?>
@@ -31,6 +37,15 @@
 			<?php if(($count%4)==3||($count==$adcount)){?>	
 			</div>
 		<?php }?>
-	
 	<?php $count++;}?>
-</div>			
+</div>	
+
+<div class="col-lg-4">
+	<br />
+		<br />
+			<br />
+				<br />
+					<br />
+						<br />
+						
+</div>

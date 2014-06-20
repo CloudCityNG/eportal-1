@@ -499,6 +499,12 @@ cite {
 .text-muted {
   color: #999999;
 }
+.text-white{
+	color: #FFFFFF;	
+}
+a.text-white:hover {
+  color: #428bca;
+}
 .text-primary {
   color: #428bca;
 }
