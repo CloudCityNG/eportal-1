@@ -27,6 +27,25 @@ class Report extends CI_Controller {
 		$this->footer();
 	}
 	
+	public function get_ad_list()
+	{
+		$this->load->model('m_report');
+	//	rows = $this->m_report->getAdlist();
+		
+		
+		
+		foreach($rows as $row) {
+        echo "<tr>  SELECT id, title, body, createdate, price, address, email
+              <td>{$row['id']}</td>
+              <td>{$row['title']}</td>
+              <td>{$row['body']}</td>
+              <td>{$row['createdate']}</td>
+              <td>{$row['price']}</td>
+              <td>{$row['address']}</td>
+              <td>{$row['email']}</td></tr>";
+        }
+	}
+	
 	function header($tile){
 		$data['title']=$tile;
 		if($this->session->userdata('username')){
