@@ -65,7 +65,7 @@ a:link
 			<!--<div class="pull-left">
 			<input type="" onclick="back()" value="Back to search results" class="btn btn-info" />
 		</div>-->
-	<div class="col-md-8 col-md-offset-2 breadcrumb img-thumbnail">
+	<div class="col-md-12 breadcrumb img-thumbnail">
 
 	<!--<script type="text/javascript" src="<?php echo base_url().'Jssor.Slider.FullPack';?>/js/jquery-1.9.1.min.js"></script>-->
 
@@ -223,12 +223,11 @@ a:link
     
     <!-- Jssor Slider End -->
 
-		<div class="h3 text-center" style="margin-bottom: 26px;">
-			<?php echo $Title; ?>
-		</div>
+		
 	
 		<div class="panel panel-default " >
     		<div class="panel-body">
+    			<div class="col-md-6 pull-left">
     		<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
         height: 400px; background: #191919;">
 
@@ -349,7 +348,11 @@ a:link
             </div>
             <!-- Thumbnail Item Skin End -->
         </div>	
-    		
+		</div>
+		</div>
+		<div class="col-md-6 pull-right">
+		<div class="h3 text-left" style="margin-bottom: 26px;">
+			<?php echo $Title; ?>
 		</div>
 		<br />
 		<br />
@@ -396,62 +399,75 @@ a:link
     		
     		 </div>
     		 <!--<div class="pull-left"><a href="<?php echo base_url();?>site/search02/category/1">cat01</a></div>-->
-    		<div class="pull-right">
-<?php	echo form_open('advertisement/submit_rate/'.$this->uri->segment(3));
-		
-		if($this->session->userdata('username'))
-		{$radio_level = "";}
-		else {$radio_level = "disabled";}
-		
-		for($i = 1;$i <= 5;$i++)
-    	{
-        if ($i == round($avg_rate))
-        {
-       	
-       echo'<input name="star" type="radio" class="star" checked="checked" '.$radio_level.' value='.$i.' "/>';
-	   
-        }
-        else
-        {
-         echo'<input name="star" type="radio" class="star" '.$radio_level.' value='.$i.' "/>';
-        }
-    } //end of for
-    echo '</br>';
-    echo '<div class="row"><b>Total Rating: '.$total_rate.'</b>'; echo'</div>' ?>
-    <?php echo form_hidden('is_rated', $is_rated);; ?>
-   <?php if($this->session->userdata('username')) {?>
-    
-    <?php if($is_rated==1) {
-    	echo '<div class="row"> Your Rating: '.$rate.' </div>';
-    }?>
-    <div><?php echo form_submit(array('class' => 'form-control btn btn-default','name'=>'rate','value'=>'Rate this Ad')); ?></div> <?php } else { ?>
-    	
-    <div><?php
-      				$signin = array('class' => 'form-control btn btn-primary','name'=>'signin','value'=>'Sign in to rate','formaction'=>base_url().'signin');
-					echo form_submit($signin);
-      			?></div>
-     <?php } ?>
-     
-     <?php echo form_close(); ?> 			
-</div>  
-    		 
+ 
+    	</div>	 
+    	  <div class="pull-right">
+			<?php	echo form_open('advertisement/submit_rate/'.$this->uri->segment(3));
+					
+					if($this->session->userdata('username'))
+					{$radio_level = "";}
+					else {$radio_level = "disabled";}
+					
+					for($i = 1;$i <= 5;$i++)
+			    	{
+			        if ($i == round($avg_rate))
+			        {
+			       	
+			       echo'<input name="star" type="radio" class="star" checked="checked" '.$radio_level.' value='.$i.' "/>';
+				   
+			        }
+			        else
+			        {
+			         echo'<input name="star" type="radio" class="star" '.$radio_level.' value='.$i.' "/>';
+			        }
+			    } //end of for
+			    echo '</br>';
+			    echo '<div class=""><b>Total Rating: '.$total_rate.'</b>'; echo'</div>' ?>
+			    <?php echo form_hidden('is_rated', $is_rated);; ?>
+			   <?php if($this->session->userdata('username')) {?>
+			    
+			    <?php if($is_rated==1) {
+			    	echo '<div class=""> Your Rating: '.$rate.' </div>';
+			    }?>
+			    <div><?php echo form_submit(array('class' => 'btn btn-sm btn-primary','name'=>'rate','value'=>'Rate this Ad')); ?></div> <?php } else { ?>
+			    	
+			    <div><?php
+			      				$signin = array('class' => 'btn btn-sm btn-primary','name'=>'signin','value'=>'Sign in to rate','formaction'=>base_url().'signin');
+								echo form_submit($signin);
+			      			?></div>
+			     <?php } ?>
+			     
+			     <?php echo form_close(); ?> 			
+		</div> 
     	</div>
-  </div>
-    		<div class="panel panel-default " >
-    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
-			<small>Contact Details</small>
+    	
+ 	 </div>
+  			<div class="col-md-5 pull-right">	
+	    		<div class="panel panel-default">
+	    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
+				<small>Seller information</small>
+	    		</div>
+	    		<div class="panel-body">
+	    		<p><strong><b><span class="glyphicon glyphicon-user"></span> Name :</b> <a class="btn btn-link" href="<?php echo base_url().'profile/'.$username;?>"><?php echo $name;?></a></strong></p>
+	    		<p><strong><b><span class="glyphicon glyphicon-envelope"></span> Email : </b><?php echo $email;?></strong></p>
+	    		<p><strong><b><span class="glyphicon glyphicon-home"></span> Address : </b><?php echo $address;?></strong></p>
+	    		<p><strong><b><span class="glyphicon glyphicon-earphone"></span> Telephone : </b><?php echo $telephone;?></strong></p>
+	    		</div>
+	    		</div>
     		</div>
-    		<div class="panel-body">
-    		<p><strong><b><span class="glyphicon glyphicon-user"></span> Name :</b> <a class="btn btn-link" href="<?php echo base_url().'profile/'.$username;?>"><?php echo $name;?></a></strong></p>
-    		<p><strong><b><span class="glyphicon glyphicon-envelope"></span> Email : </b><?php echo $email;?></strong></p>
-    		<p><strong><b><span class="glyphicon glyphicon-home"></span> Address : </b><?php echo $address;?></strong></p>
-    		<p><strong><b><span class="glyphicon glyphicon-earphone"></span> Telephone : </b><?php echo $telephone;?></strong></p>
+    		<div class="col-md-7 pull-left">	
+	    		<div class="panel panel-default">
+	    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
+				<small>Recomendations</small>
+	    		</div>
+	    		<div class="panel-body">
+	    		</div>
+	    		</div>
     		</div>
-    		</div>
-    		</div>
-
-	<div class="col-md-8 col-md-offset-2 img-thumbnail breadcrumb">
-		<div>
+    			
+    </div>
+<div class="col-md-7 img-thumbnail breadcrumb-white pull-left">
+					<div>
 			
                     <?php foreach ($comments as $comment): ?>
                     	
@@ -475,7 +491,7 @@ a:link
                      
         </div>
 	<div>
-						<div class="col-md-offset-2">
+						<div>
 							<?php if($this->session->userdata('username'))
 							{
 								echo form_open("ad_control/add_comment/".$this->uri->segment(3));
@@ -499,4 +515,5 @@ a:link
 					</div>
 
 </div>
+
 </div>
