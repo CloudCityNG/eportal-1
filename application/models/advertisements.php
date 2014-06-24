@@ -19,6 +19,38 @@ class Advertisements extends CI_Model{
 		return null;
 
 	}
+	public function getCountryConfigCountryid($baseurl){
+
+		$this->db->where('url',$baseurl);
+		$result=$this->db->get('country_config');
+		if($result->num_rows()>0){
+		$answer= $result->row_array();
+		return $answer['countryid'];
+		}
+		return 210;
+
+	}
+	public function getalpha_2($countryid)
+	{
+		$this->db->where('id',$countryid);
+		$result=$this->db->get('country');
+		if($result->num_rows()>0){
+		$answer= $result->row_array();
+		return $answer['alpha_2'];
+		}
+		return 'lk';
+	}
+	public function getusercountryname($countryid)
+	{
+		$this->db->where('id',$countryid);
+		$result=$this->db->get('country');
+		if($result->num_rows()>0){
+		$answer= $result->row_array();
+		return $answer['name'];
+		}
+		return 'lk';
+	}
+	
 
 	public function getSubCategory(){
 		$sql="SELECT name,id FROM subcategory";
@@ -45,6 +77,14 @@ class Advertisements extends CI_Model{
 		$answer= $result->result();
 		return $answer;
 
+	}
+	public function getconfigcountry($baseurl)
+	{
+		$couid=$this->getCountryConfigCountryid($baseurl);
+		$sql="SELECT * FROM country where id='$couid'";
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
 	}
 	public function getCountryId($key){
 		
@@ -129,7 +169,7 @@ class Advertisements extends CI_Model{
 			
 			
 	}
-	public function updateAdvertisement($id,$title,$body,$cat,$subcat,$country,$district,$province,$price,$address,$telephone,$email,$username)
+	public function updateAdvertisement($id,$title,$body,$cat,$subcat,$price)
 	{
 		$data=array(
 			'id'=>$id,
@@ -137,14 +177,14 @@ class Advertisements extends CI_Model{
 			'body'=>$body,
 			'categoryid'=>$cat,
 			'subcategoryid'=>$subcat,
-			'countryid'=>$country,
-			'districtid'=>$district,
-			'provinceid'=>$province,
-			'price'=>$price,
-			'address'=>$address,
-			'telephone'=>$telephone,
-			'email'=>$email,
-			'username'=>$username
+			//'countryid'=>$country,
+			//'districtid'=>$district,
+			//'provinceid'=>$province,
+			'price'=>$price
+			//'address'=>$address,
+			//'telephone'=>$telephone,
+			//'email'=>$email,
+			//'username'=>$username
 			//,
 			//'image'=>$image
 			);
@@ -636,6 +676,23 @@ class Advertisements extends CI_Model{
 			}
 		}
 		return $answer;
+		
+	}
+	public function setcountryconfig($baseurl,$countryid)
+	{
+		$sql='SELECT * FROM country_config where url=\''.$baseurl.'\'';
+			$result=$this->db->query($sql);
+			$answer1= $result->result();
+			if(count($answer1)>0)
+			{
+				$this->db->where('url',$baseurl);
+				$this->db->update('country_config',array('countryid'=>$countryid));
+			}
+			else
+			{
+				$this->db->insert('country_config',array('url'=>$baseurl,'countryid'=>$countryid));
+			}
+		
 		
 	}
 	

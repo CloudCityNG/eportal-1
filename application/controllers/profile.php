@@ -26,18 +26,71 @@ class Profile extends CI_Controller {
 			$data['p_add_ln_1'] = $info->add_ln_1;
 			$data['p_add_ln_2'] = $info->add_ln_2;
 			$data['p_add_ln_3'] = $info->add_ln_3;
+			$data['cou']=$info->countryid;
+			$data['pro']=$info->provinceid;
+			$data['dis']=$info->districtid;
 		}
 		
 		$dataset2 = $this->m_signin->get_user_dataset_type_2($data['p_usertype'],$data['p_username']);
 		foreach ($dataset2 as $info){
 			$data['p_name'] = $info->name;
 		}
+			$this->load->model('advertisements');
+		if($this->input->post('country')){
+		
+			$data['cou']=$this->input->post('country');
+		}
+
+
+		if($this->input->post('province')){
+		
+			$data['pro']=$this->input->post('province');
+		}
+
+
+		if($this->input->post('district')){
+		
+			$data['dis']=$this->input->post('district');
+		}
+
+
+			$answer=$this->advertisements->getCountry();
+		$send['0']='--Select--';
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+			
+		}
+		$data['country']=$send;
+		$send=null;
+		
+		$send['0']='--Select--';
+		if($data['cou']>0){
+			$answer=$this->advertisements->getProvinces($data['cou']);
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+
+		}
+		}
+		$data['province']=$send;//loading the province in the dropdown list
+		$send=null;	
+		
+		$send['0']='--Select--';
+		if($data['cou']>0||$data['pro']>0){
+			$answer=$this->advertisements->getDistricts($data['cou'],$data['pro']);
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+		
+		}
+		}
+		$data['district']=$send;
 		return $data;
 	}
 	
 	public function update(){
 		if($this->session->userdata('username')!=NULL){
 			$this->header('Profile Update');
+			$data=null;
+		
 			$data = $this->profile_details($this->session->userdata('username'));
 			$this->load->view('v_profile_user_update',$data);
 			$this->footer();
@@ -158,7 +211,7 @@ class Profile extends CI_Controller {
 		
 		if($this->form_validation->run()){
 			$this->load->model('users');
-			if($this->users->add_address_admin_confirm($this->input->post('addline1'),$this->input->post('addline2'),$this->input->post('addline3'),$this->session->userdata('usertype'),$this->session->userdata('username'))){
+			if($this->users->add_address_admin_confirm($this->input->post('country'),$this->input->post('province'),$this->input->post('district'),$this->input->post('addline1'),$this->input->post('addline2'),$this->input->post('addline3'),$this->session->userdata('usertype'),$this->session->userdata('username'))){
 				$this->header('Profile Update - success');
 				$data = $this->profile_details($this->session->userdata('username'));
 				$data['status_update_address']=TRUE;

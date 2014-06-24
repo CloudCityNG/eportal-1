@@ -181,7 +181,7 @@
     		</div>
   		</div>
   		<br />
-  			<div class="form-group">
+  			<!--<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Country &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
@@ -217,7 +217,7 @@
       			?>
     		</div>
   		</div>
-  		<br />
+  		<br />-->
   		 			<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Duration &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
@@ -238,10 +238,24 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Address &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-      				$emailattributes = array('class' => 'form-control','name'=>'address');
+      			echo '<p>'.$p_add_ln_1.'</p>';
+				echo '<p>'.$p_add_ln_2.'</p>';
+				echo '<p>'.$p_add_ln_3.'</p>';
+				if(isset($province)||$province!=null)
+				{
+					echo '<p>'.$province;
+					if(isset($district)||$district!=null)
+					{
+						echo ','.$district;
+						
+					}
+					echo '</p>';
+				}
+				echo $country;
+      				/*$emailattributes = array('class' => 'form-control','name'=>'address');
       				echo form_input($emailattributes,$this->input->post('address'));
 					if(form_error('address')!=null)
-						echo '<div class="alert alert-danger">'.form_error('address').'</div>';
+						echo '<div class="alert alert-danger">'.form_error('address').'</div>';*/
       			?>
     		</div>
   		</div>
@@ -259,7 +273,15 @@
   		</div>
   		<br />
   		<div class="form-group">
-    		<label for="inputEmail3" class="col-sm-3 control-label">Price Rs. &nbsp;&nbsp;</label>
+    		<label for="inputEmail3" class="col-sm-3 control-label">Price <?php
+    		$this->load->model('advertisements');
+    		$country=$this->advertisements->getconfigcountry(base_url());
+			$price;
+			foreach($country as $key)
+			{
+				$price=$key->currencysy;
+			}
+    		 echo $price; ?> &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
       				$emailattributes = array('class' => 'form-control','name'=>'price');

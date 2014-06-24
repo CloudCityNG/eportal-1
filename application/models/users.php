@@ -120,7 +120,7 @@ class Users extends CI_Model{
 	 * */
 	public function get_main_details($username){
 		$query = "	SELECT u.email, u.usertype,ud.profilepicture,ud.telemarketer,ud.description,
-							ud.add_ln_1,ud.add_ln_2,ud.add_ln_3
+							ud.add_ln_1,ud.add_ln_2,ud.add_ln_3,ud.countryid,ud.provinceid,ud.districtid
 					FROM user_details ud, users u 
 					WHERE u.username = '$username' 
 						AND ud.username=u.username";
@@ -272,8 +272,11 @@ class Users extends CI_Model{
 	}
 	
 	
-	public function add_address_admin_confirm($l1,$l2,$l3,$usertype,$username){
+	public function add_address_admin_confirm($couid,$proid,$disid,$l1,$l2,$l3,$usertype,$username){
 		$data = array (
+			'countryid'=>$couid,
+			'provinceid'=>$proid,
+			'districtid'=>$disid,
 			'add_ln_1'=>$l1,
 			'add_ln_2'=>$l2,
 			'add_ln_3'=>$l3
@@ -295,7 +298,10 @@ class Users extends CI_Model{
 				$query = $this->db->insert('update_business_users',$data);
 			}
 		}else if($usertype=='a'){
-			$admin = array ('add_ln_1'=>$l1,
+			$admin = array ('countryid'=>$couid,
+							'provinceid'=>$proid,
+							'districtid'=>$disid,
+							'add_ln_1'=>$l1,
 							'add_ln_2'=>$l2,
 							'add_ln_3'=>$l3);
 			$this->db->where('username', $username);

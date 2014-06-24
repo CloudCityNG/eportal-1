@@ -26,14 +26,19 @@
 	<script src="<?php echo base_url().'js/jquery.MetaData.js'?>" type="text/javascript" language="javascript"></script>
  	<script src="<?php echo base_url().'js/jquery.rating.js'?>" type="text/javascript" language="javascript"></script>
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
-	
+	<script type="text/javascript">
+$(function () {
+$('.dropdown-toggle').dropdown();
+});
+</script>
 	<script type="text/javascript">
 	    $(function () {
 	        $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
-	        $('.dropdown-toggle').dropdown();
+	        
 	    });
 	    
 </script>
+
 <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 	<div class="navbar navbar-default navbar-fixed-top navbar-set-margin-bottom">	

@@ -120,11 +120,11 @@
     <div id="data" class="panel-body" <?php if(isset($state)&&$state=='upload'){echo 'style="display:none ;"';}?>> 
 	<input type="hidden" name="state" value="<?php if(isset($state))echo $state;?>">
 		<input type="hidden" name="ad_id" value="<?php echo $ad_id;?>">
-		<input type="hidden" name="cat" value="<?php echo $cat;?>">
+		<!--<input type="hidden" name="cat" value="<?php echo $cat;?>">
 		<input type="hidden" name="subcat" value="<?php echo $subcat;?>">
 		<input type="hidden" name="cou" value="<?php echo $cou;?>">
 		<input type="hidden" name="pro" value="<?php echo $pro;?>">
-		<input type="hidden" name="dis" value="<?php echo $dis;?>">
+		<input type="hidden" name="dis" value="<?php echo $dis;?>">-->
 		
 	<div class="form-group">
 	
@@ -192,7 +192,7 @@
     		</div>
   		</div>
   		<br />
-  			<div class="form-group">
+  			<!--<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Country &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
@@ -268,7 +268,7 @@
       			?>
     		</div>
   		</div>
-  		<br />
+  		<br />-->
   		<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Price Rs. &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
@@ -289,7 +289,7 @@
     		</div>
   		</div>
   		<br />
-  		<div class="form-group">
+  		<!--<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Email Address &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
@@ -310,7 +310,7 @@
       			?>
     		</div>
   		</div>
-  		<br />
+  		<br />-->
 
   		<br />
   		<div class="form-group">

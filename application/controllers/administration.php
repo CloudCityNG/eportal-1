@@ -465,6 +465,15 @@ class Administration extends CI_Controller {
 		{
 			$data['cou3']=0;
 		}
+		if($this->input->post('country4')){
+		
+			$data['cou4']=$this->input->post('country4');
+		}
+		else
+		{
+			$data['cou4']=null;
+		}
+		
 		if($this->input->post('province2')){
 		
 			$data['pro2']=$this->input->post('province2');
@@ -503,6 +512,20 @@ class Administration extends CI_Controller {
 				$this->advertisements->setCountry($this->input->post('country'));
 				//adding the country in the db
 				$data['status_new_country']=true;
+		
+			}
+
+		}
+		if($this->input->post('country_config_submit'))
+		{
+		
+		$data['status_set_country']=false;
+			if($this->input->post('country4')>0)
+			{
+				
+				$this->advertisements->setcountryconfig($this->input->post('baseurl'),$this->input->post('country4'));
+				//adding the country in the db
+				$data['status_set_country']=true;
 		
 			}
 

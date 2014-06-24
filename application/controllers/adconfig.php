@@ -58,6 +58,14 @@ class Adconfig extends CI_Controller {
 		{
 			$data['cou3']=0;
 		}
+		if($this->input->post('country4')){
+		
+			$data['cou4']=$this->input->post('country4');
+		}
+		else
+		{
+			$data['cou4']=$this->advertisementsgetCountryConfigCountryid(baseurl());	
+		}
 		if($this->input->post('province2')){
 		
 			$data['pro2']=$this->input->post('province2');

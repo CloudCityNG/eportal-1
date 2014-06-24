@@ -1,3 +1,90 @@
+<script type="text/javascript">
+		 $(document).ready(function() { 
+
+                
+               
+              $("#country").click(function(){ 
+                	$("#country").change();
+				});
+				$("#country").change(function(){
+                   
+                     /*dropdown post */
+                  
+                   $.ajax({
+                    url:"<?php echo base_url(); ?>advertisement/getProvinces",    
+                    data: {couid: <?php if($cou==null){
+					$result=$this->advertisements->getconfigcountry(base_url());
+					$id;
+					foreach($result as $key)
+					{
+
+						$id=$key->id;
+					}
+					}
+					else
+					{
+						$id=$cou;
+					}
+					echo $id;
+                    ?>},
+                    type: "POST",
+                    success: function(data){
+                        $("#province").html(data);
+                        alert('country');
+                    },
+                    error: function(data){
+                        alert('Ajax Error');
+                       
+                    }
+
+                    
+                    });
+               
+                });
+
+				$("#province").click(function(){
+					
+                	$("#province").change();
+				});
+				$("#province").change(function(){
+                                  
+                     /*dropdown post */
+                  
+                   $.ajax({
+                    url:"<?php echo base_url(); ?>advertisement/getDistricts",    
+                    data: {couid:<?php if($cou==null){
+					$result=$this->advertisements->getconfigcountry(base_url());
+					$name;
+					$flag;
+					$id;
+					foreach($result as $key)
+					{
+						
+						$id=$key->id;
+					}
+					}
+					else
+					{
+						$id=$cou;
+					}
+					echo $id;
+                    ?>,proid: $(this).val()},
+                    type: "POST",
+                    success: function(data){
+                        $("#district").html(data);
+                        
+                    },
+                    error: function(data){
+                        alert('Ajax Error');
+                       
+                    }
+
+                    
+                    });
+               
+                });
+            });
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 breadcrumb img-thumbnail">
@@ -258,7 +345,7 @@
 			  	<div class="panel panel-default">
 			  	<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
 			<small>Contact Details</small>
-    		</div>
+ 				</div>
 			  	<div class="panel-body">
 			  		<?php
 			  			if(isset($status_update_address) && $status_update_address=='TURE'){
@@ -269,6 +356,81 @@
 					$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
 					echo form_open('profile/update_contact_details/',$formattributes);
 					?>
+					   		<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-3 control-label">Country &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+      				$this->load->model('advertisements');
+					//$fnameattributes = array('class' => 'form-control','name'=>'country');
+					if($cou==null){
+					$result=$this->advertisements->getconfigcountry(base_url());
+					$name;
+					$flag;
+					$id;
+					foreach($result as $key)
+					{
+						$name=$key->name;
+						$flag=$key->alpha_2;
+						$id=$key->id;
+					}
+					}
+					else
+					{
+						$id=$cou;
+						$name=$this->advertisements->getusercountryname($id);
+						$flag=$this->advertisements->getalpha_2($id);
+					}
+					echo '<input type="hidden" name="country" value="'.$id.'">';
+      				echo '<p class="form-control-static"><img id="flag" src="'.base_url().'images/countries/'.$flag.'.png"></img>'.$name;
+					      			?></p>
+    		</div>
+  		</div>
+  		<br />
+  			<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-3 control-label">Province &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+				//	$fnameattributes = array('class' => 'form-control','name'=>'province');
+					$this->load->model('advertisements');
+					//$fnameattributes = array('class' => 'form-control','name'=>'country');
+					$result=$this->advertisements->getconfigcountry(base_url());
+					$id;
+					
+					foreach($result as $key)
+					{
+						$id=$key->name;
+						
+					}
+					$result1=$this->advertisements->getProvinces($id);
+					foreach($result1 as $key1)
+					{
+						$province[$key1->id]=$key1->name;
+						
+					}
+					if($pro==null)
+					{
+						$pro=0;
+					}
+					
+      				echo form_dropdown('province',$province,$pro,'id="province"');
+					if(form_error('province')!=null)
+						echo '<div class="alert alert-danger">'.form_error('province').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		<br />
+  			<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-3 control-label">District &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+					//$fnameattributes = array('class' => 'form-control','name'=>'district');
+      				echo form_dropdown('district',$district,$dis,'id="district"');
+					if(form_error('district')!=null)
+						echo '<div class="alert alert-danger">'.form_error('district').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		<br />
 					<div class="form-group">
 			    		<label for="inputPassword" class="col-sm-3 control-label">Address Line 1</label>
 			    		<div class="col-sm-7">

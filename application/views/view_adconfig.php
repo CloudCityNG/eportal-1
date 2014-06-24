@@ -71,6 +71,30 @@
                     });
                
                 });
+                 $("#country4").click(function(){ 
+                	$("#country4").change();
+				});
+				$("#country4").change(function(){
+                   
+                     /*dropdown post */
+                  
+                  $.ajax({
+                    url:"<?php echo base_url(); ?>advertisement/getflag",    
+                    data: {couid: $(this).val()},
+                    type: "POST",
+                    success: function(data){
+                        $("#flag").attr("src",<?php echo '"'.base_url()."images/countries/".'"';?>+data+<?php echo '".png"'; ?>);
+                    },
+                    error: function(data){
+                        alert('Ajax Error');
+                       
+                    }
+
+                    
+                    });
+               
+                });
+
                 
                 $("#province3").click(function(){ 
                 	$("#province3").change();
@@ -81,7 +105,7 @@
                   
                    $.ajax({
                     url:"<?php echo base_url(); ?>advertisement/getDistricts",    
-                    data: {couid:$("#country").val(),proid: $(this).val()},
+                    data: {couid:$("#country3").val(),proid: $(this).val()},
                     type: "POST",
                     success: function(data){
                         $("#district1").html(data);
@@ -120,7 +144,68 @@
 				});
          });
         </script>
-		<div class="panel panel-default">
+        		<div class="panel panel-default">
+    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
+			<small>Configure Country</small>
+    		</div>
+    <div class="panel-body"> 
+    	<?php
+    	    			if(isset($status_set_country) &&$status_set_country=='TURE'){
+			  				echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> 
+			  				Country has been saved.
+			  				</div>'; 
+			  			}
+						/*else if(isset($status_update_country) &&$status_update_country=='TURE'){
+			  				echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> 
+			  				Country has been updated.
+			  				</div>'; 
+			  			} */
+						?>
+    			
+	<?php
+		$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
+		echo form_open('administration/configDetails',$formattributes);
+	?>
+	<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-3 control-label">Country &nbsp;&nbsp;</label>
+    		<div class="col-sm-8">
+      			<?php
+					//$fnameattributes = array('class' => 'form-control','name'=>'country');
+					$this->load->model('advertisements');
+					if((!isset($cou4))||$cou4==null){
+						$cou4=$this->advertisements->getCountryConfigCountryid(base_url());
+							echo '<img id="flag" src="'.base_url().'images/countries/'.$this->advertisements->getalpha_2($cou4).'.png"></img>';
+						}
+					else{
+						echo '<img id="flag" src="'.base_url().'images/countries/'.$this->advertisements->getalpha_2($cou4).'.png"></img>';
+						
+						}
+      				echo form_dropdown('country4',$country,$cou4,'id="country4"');
+					echo form_hidden('baseurl',base_url());
+					if(form_error('country4')!=null)
+						echo '<div class="alert alert-danger">'.form_error('country4').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		<br />
+  		  		<div class="form-group">
+    		<div class="col-sm-offset-8 col-sm-5">
+
+      			<?php
+      				$registerbtnattributes = array('class' => 'btn btn-primary','name'=>'country_config_submit','value'=>'Save Changes');
+					echo form_submit($registerbtnattributes);
+      			?>
+    		</div>
+  		</div>
+  		
+  		<?php
+  			echo form_close();
+  		?>
+  		
+  		
+		</div>
+    		</div>
+	<!--	<div class="panel panel-default">
     			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
 			<small>Country</small>
     		</div>
@@ -191,6 +276,7 @@
   		
 		</div>
     		</div>
+    	-->
     		<div class="panel panel-default">	
     			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
 			<small>Province</small>
