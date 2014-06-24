@@ -140,7 +140,7 @@ class Advertisement extends CI_Controller {
 				date('Y-m-d H:i:s',strtotime('+ '.$this->input->post('duration').' day' ,strtotime(date('Y-m-d H:i:s'))))
 				//,	$data2['upload_data']['file_name']
 				);//adding the advertisementin the db
-				$data['success']=true;
+				//$data['success']=true;
 				//}
 					$data['success']=true;
 				}
@@ -379,6 +379,7 @@ class Advertisement extends CI_Controller {
 				{	
 					$images[]=array('url'=>$img['Image'],'name'=>$img['id']);
 				}
+				$data['adid']=$adid;
 			$data['images']=$images;
 			$answer1=$this->advertisements->getAdvertisement($adid);
 			$data['Title']=$answer1['title'];
@@ -394,6 +395,9 @@ class Advertisement extends CI_Controller {
 			$data['countryid']=$answer1['countryid'];
 			$data['provinceid']=$answer1['provinceid'];
 			$data['districtid']=$answer1['districtid'];	
+			$data['p_add_ln_1'] = $answer1['add_ln_1'];
+			$data['p_add_ln_2'] = $answer1['add_ln_2'];
+			$data['p_add_ln_3'] = $answer1['add_ln_3'];
 			$data['categoryid']=$answer1['categoryid'];
 			$data['subcategoryid']=$answer1['subcategoryid'];
 			
@@ -970,6 +974,128 @@ class Advertisement extends CI_Controller {
 
 			echo $answer;
 		
+	}
+	public function getContactDetails()
+	{
+			$this->load->model('advertisements');
+			$answer1;
+			$adid=$this->input->post('adid');
+			if(!isset($adid)&&($this->advertisements->getAdvertisement($adid)==null))
+			{
+				
+				
+				redirect('/advertisement/adList');
+			
+			}
+			
+			$answer1=$this->advertisements->getAdvertisement($adid);
+			
+			$data['email']=$answer1['email'];
+			$data['name']=$answer1['name'];
+			$data['address']=$answer1['address'];
+			$data['telephone']=$answer1['telephone'];
+			$data['countryid']=$answer1['countryid'];
+			$data['provinceid']=$answer1['provinceid'];
+			$data['districtid']=$answer1['districtid'];	
+			$data['p_add_ln_1'] = $answer1['add_ln_1'];
+			$data['p_add_ln_2'] = $answer1['add_ln_2'];
+			$data['p_add_ln_3'] = $answer1['add_ln_3'];
+			
+			
+			$this->db->where('id',$answer1['categoryid']);
+			$result=$this->db->get('category');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['category']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['subcategoryid']);
+			$result=$this->db->get('subcategory');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['subcategory']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['countryid']);
+			$result=$this->db->get('country');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['country']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['provinceid']);
+			$result=$this->db->get('province');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['province']=$answer['name'];
+			}
+			else
+			{
+				$data['province']=null;
+			}
+
+			$this->db->where('id',$answer1['districtid']);
+			$result=$this->db->get('district');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['district']=$answer['name'];
+			}
+			else
+			{
+				$data['district']=null;
+			}
+			
+			echo 	'<div class="panel-body">
+	    		<label for="inputEmail3" class="col-md-4 control-label"><span class="glyphicon glyphicon-user"></span> Name :</label><div class="col-md-7"><p><a  href="'.base_url().'profile/'.$answer1['username'].'">'
+	    		.$answer1['name'].'</a></p></div>';
+	    		
+	    	echo	'<label for="inputEmail3" class="col-md-4 control-label"><span class="glyphicon glyphicon-envelope"></span> Email :</label>
+	    			<div class="col-md-7"><p>'
+	    			.$answer1['email'].'</p>
+	    		</div>
+				</br/>';
+				
+    		echo '<label for="inputEmail3" class="col-md-4 control-label"><span class="glyphicon glyphicon-home"></span> Address :</label>
+    		
+    		<div class="col-md-7">';
+      			
+      			echo '<p>'.$answer1['add_ln_1'].'</p>';
+				echo '<p>'.$answer1['add_ln_2'].'</p>';
+				echo '<p>'.$answer1['add_ln_3'].'</p>';
+				if(isset($data['province'])||$data['province']!=null)
+				{
+					echo '<p>'.$data['province'];
+					if(isset($data['district'])||$data['district']!=null)
+					{
+						echo ','.$data['district'];
+						
+					}
+					echo '</p>';
+				}
+				echo $data['country'];
+      				/*$emailattributes = array('class' => 'form-control','name'=>'address');
+      				echo form_input($emailattributes,$this->input->post('address'));
+					if(form_error('address')!=null)
+						echo '<div class="alert alert-danger">'.form_error('address').'</div>';*/
+      			
+    		echo '</div>
+  			
+  		<br />
+  		
+	    		
+	    			<label for="inputEmail3" class="col-md-4 control-label"><span class="glyphicon glyphicon-earphone"></span> Telephone : </strong>&nbsp;&nbsp;</label>
+    		<div class="col-md-7">
+	    			';
+	    			echo $answer1['telephone'];
+	    		
+	    		echo '</div>
+	    		</div>
+	    		</div>';
 	}
 
 

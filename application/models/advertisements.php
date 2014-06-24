@@ -444,7 +444,13 @@ class Advertisements extends CI_Model{
 			foreach ($dataset1 as $info) { 
 				$answer['usertype'] = $info->usertype;
 				$answer['email'] = $info->email;
-				$answer['telemarketer']=$info->telemarketer;	
+				$answer['telemarketer']=$info->telemarketer;
+				$answer['countryid']=$info->countryid;
+				$answer['provinceid']=$info->provinceid;	
+				$answer['districtid']=$info->districtid;
+				$answer['add_ln_1']=$info->add_ln_1;		
+				$answer['add_ln_2']=$info->add_ln_2;
+				$answer['add_ln_3']=$info->add_ln_3;
 			}
 			$this->load->model('m_signin');
 			$dataset2 = $this->m_signin->get_user_dataset_type_2($answer['usertype'],$answer['username']);

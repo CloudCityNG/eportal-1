@@ -53,8 +53,37 @@ a:link
 * html .clearfix {
        height: 1%;
   }*/
+ 
 
 </style>
+<script>
+  $(document).ready(function() { 
+
+                
+                /*$("#toggle").click(function(){
+                   
+                     /*dropdown post */
+                  $('#toggle').click(function(){
+                   $.ajax({
+                    url:"<?php echo base_url(); ?>advertisement/getContactDetails",    
+                    data: {adid: $('#adid').val()},
+                    type: "POST",
+                    success: function(data){
+                        $("#contact").html(data);
+                    },
+                    error: function(data){
+                        alert('Ajax Error');
+                       
+                    }}).done(function(){
+                    
+                    $('#contact').toggle('slow');
+                    });
+					});
+                    
+                   /* });*/
+});
+</script>
+<input id="adid"type="hidden" name="adid" value="<?php echo $adid?>" />
 <div class="container">
 	<script type="text/javascript">
 		function back()
@@ -444,15 +473,11 @@ a:link
  	 </div>
   			<div class="col-md-5 pull-right">	
 	    		<div class="panel panel-default">
-	    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
-				<small>Seller information</small>
+	    			<div id="toggle" class=" text-left breadcrumb btn btn-lg btn-block btn-default" style="padding-left:20px; margin-left: 0px;margin-top: 0px;margin:0px;">
+				Seller information
 	    		</div>
-	    		<div class="panel-body">
-	    		<p><strong><b><span class="glyphicon glyphicon-user"></span> Name :</b> <a class="btn btn-link" href="<?php echo base_url().'profile/'.$username;?>"><?php echo $name;?></a></strong></p>
-	    		<p><strong><b><span class="glyphicon glyphicon-envelope"></span> Email : </b><?php echo $email;?></strong></p>
-	    		<p><strong><b><span class="glyphicon glyphicon-home"></span> Address : </b><?php echo $address;?></strong></p>
-	    		<p><strong><b><span class="glyphicon glyphicon-earphone"></span> Telephone : </b><?php echo $telephone;?></strong></p>
-	    		</div>
+	    		<div id="contact" style="display: none">
+	    	
 	    		</div>
     		</div>
     		<div class="col-md-7 pull-left">	
