@@ -270,7 +270,15 @@
   		</div>
   		<br />-->
   		<div class="form-group">
-    		<label for="inputEmail3" class="col-sm-3 control-label">Price Rs. &nbsp;&nbsp;</label>
+    		<label for="inputEmail3" class="col-sm-3 control-label">Price <?php
+    		$this->load->model('advertisements');
+    		$country=$this->advertisements->getconfigcountry(base_url());
+			$currency;
+			foreach($country as $key)
+			{
+				$currency=$key->currencysy;
+			}
+    		 echo $currency; ?>&nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
       				$emailattributes = array('class' => 'form-control','name'=>'price');

@@ -29,7 +29,7 @@
 	}
 	foreach ($Ads as $info) 
 	{
-		echo '<div class="panel-body"><div class="col-md-10 col-md-offset-1 navbar-set-margin-bottom img-thumbnail">';
+		echo '<div class="panel-body"><div class="col-md-10 col-md-offset-1 img-thumbnail" style="margin-bottom: 12px;" >';
 		if($info['expired']==0){
 		echo '<p class="text-muted pull-right">Created On '.$info['createdate'].'<br>Expires On '.$info['duration'].'</p>';
 		}
@@ -55,7 +55,17 @@
 
 					
 				echo '</div></br>';
-				echo '<div class="row"> &nbsp;&nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;&nbsp;<b>Price Rs. '.$info['price'].'/=</b></div>';
+				echo '<div class="row"> &nbsp;&nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;&nbsp;<b>Price ';
+				
+    		$this->load->model('advertisements');
+    		$country=$this->advertisements->getconfigcountry(base_url());
+			$price;
+			foreach($country as $key)
+			{
+				$price=$key->currencysy;
+			}
+    		 echo $price;
+    		 echo ' '.$info['price'].'/=</b></div>';
 				
 			echo '</div>';
 			echo '<div class="pull-right">';

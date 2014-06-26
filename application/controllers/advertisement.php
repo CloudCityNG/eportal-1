@@ -15,7 +15,7 @@ class Advertisement extends CI_Controller {
 		$this->load->helper('form');
 		$this->form_validation->set_rules('title','Title','required|trim|xss_clean');//setting rules for title
 		$this->form_validation->set_rules('body','Body','required|trim|xss_clean');//setting rules for body
-		$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
+		//$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
 		$this->form_validation->set_rules('price','Price','required|trim|xss_clean|numeric');//setting rules for price
 		$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
 		

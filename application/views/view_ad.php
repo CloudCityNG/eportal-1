@@ -96,7 +96,7 @@
 			if($success)
 			{
 				echo '<div class="container">
-	<div class="col-md-8">
+	<div class="col-md-7">
 		<div class="alert alert-success">
 			<b>You have successfully created an Advertisement.</b>
 			your advertisement is sent to admins\'s approval	

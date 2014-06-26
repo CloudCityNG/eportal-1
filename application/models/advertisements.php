@@ -152,13 +152,13 @@ class Advertisements extends CI_Model{
 			'body'=>$body,
 			'categoryid'=>$cat,
 			'subcategoryid'=>$subcat,
-			'countryid'=>$country,
-			'districtid'=>$district,
-			'provinceid'=>$province,
+			//'countryid'=>$country,
+			//'districtid'=>$district,
+			//'provinceid'=>$province,
 			'price'=>$price,
-			'address'=>$address,
+			//'address'=>$address,
 			'telephone'=>$telephone,
-			'email'=>$email,
+			//'email'=>$email,
 			'username'=>$username,
 			'duration'=>$duration
 			//,
@@ -653,10 +653,9 @@ class Advertisements extends CI_Model{
 	public function getHomeList()
 	{
 		$answer=array();
-		$result1=$this->getCategory();
-		foreach($result1 as $key)
-		{
-			$sql='SELECT * FROM advertisement where categoryid=\''.$key->id.'\'and expired=0 ORDER BY createdate desc LIMIT 1';
+		
+
+			$sql='SELECT * FROM advertisement where featured=1 and expired=0 ORDER BY createdate desc';
 			$result=$this->db->query($sql);
 			$answer1= $result->result();
 			if(count($answer1)>0)
@@ -665,7 +664,7 @@ class Advertisements extends CI_Model{
 				foreach($answer1 as $key1)
 				{
 					$answer2=$key1;
-				}
+				
 				$this->db->where('edit',0);
 				$this->db->where('adId',$answer2->id);
 				$answer3=$this->db->get('images');
@@ -679,7 +678,7 @@ class Advertisements extends CI_Model{
 					$answer4['Image']=null;
 				}
 				$answer[]=array('id'=>$answer2->id,'title'=>$answer2->title,'price'=>$answer2->price,'Image'=>$answer4['Image']);
-			}
+				}
 		}
 		return $answer;
 		

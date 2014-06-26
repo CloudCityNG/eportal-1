@@ -414,7 +414,7 @@ a:link
     		 	<?php }?>
     		 <?php if($countryid!=0){?>
     		 	<p><span class="glyphicon glyphicon-globe"></span> 
-    		 	<a href="<?php echo base_url();?>site/search02/country/<?php echo $countryid;?>""><span class="label label-info"><?php echo $country;?></span></a>
+    		 	
     		 			<?php if($provinceid!=0){?>
     		 				<a href="<?php echo base_url();?>site/search02/province/<?php echo $provinceid;?>""><span class="label label-info"><?php echo $province;?></span></a>
     		 					<?php if($districtid!=0){?>

@@ -282,7 +282,16 @@ $("#province").change(function(){
 					
 				echo '</div></br>';
 				//echo '<div class="pull-right"><input name="star'.$i.'" type="radio" class="star" checked="checked" disabled="disabled"/></div>';
-				echo '<div class="row"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Price Rs./= '.$ad->price.'</b>';
+				echo '<div class="row"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Price ';
+				
+    		$this->load->model('advertisements');
+    		$country=$this->advertisements->getconfigcountry(base_url());
+			$price;
+			foreach($country as $key)
+			{
+				$price=$key->currencysy;
+			}
+    		 echo $price.$ad->price.'</b>';
 	echo '<div class="pull-right">';
 	
 	for($i = 1;$i <= 5;$i++)

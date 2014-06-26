@@ -29,7 +29,7 @@
 	
 	foreach ($Ads as $info) 
 	{
-		echo '<div class="col-md-10 col-md-offset-1 navbar-set-margin-bottom img-thumbnail">
+		echo '<div class="col-md-10 col-md-offset-1  img-thumbnail" style="margin-bottom: 12px;">
 			<div class="col-sm-2 pull-left">';
 				 
 				    	if(isset($info['Image']) && $info['Image']!=NULL){
