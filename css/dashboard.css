@@ -12,11 +12,12 @@
  */
 .dashboard{
 	margin-left:-20px;
-	margin-top:-20px;
+	margin-top:48px;
 	margin-bottom:20px;
 	padding: 20px 20px 20px 7px;
 	width: 230px;
 	transition-duration: 0.3s;	
+	overflow-y: visible;
 
 }
 
@@ -53,6 +54,7 @@
 .sidebar {
   display: none;
   margin-right:200px;
+  overflow-y: scroll;
 }
 @media {
   .sidebar {
@@ -65,8 +67,9 @@
     display: block;
     padding: 20px;
     overflow-x: hidden; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #181818;
-    border-right: 1px solid #eee;
+    overflow-y:visible;
+    background-color:#FFFFFF;
+    border-right: 1px solid #ccc;
   }
 }
 

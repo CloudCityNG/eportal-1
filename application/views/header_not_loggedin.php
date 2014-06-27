@@ -1,11 +1,10 @@
-<html lang="en">
+	<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href="<?php echo base_url().'css/bootstrap.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'css/bootstrap-theme.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
@@ -35,28 +34,30 @@
 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 	
-	<div class="navbar navbar-default navbar-fixed-top">	
+	<div class="navbar navbar-default navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
+		
 		<div class="container">
-			<a href="<?php echo base_url()?>" class="navbar-brand">E - Marketing</a>
-			
-			<?php
-				
-			?>
-			<button class="navbar-toggle" data-toggle = "collapse" data-target=".navHeaderCollapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<div class="collapse navbar-collapse navHeaderCollapse">
-				
-				<ul class="nav navbar-left col-md-offset-2 " style="margin-top: 10px">
-				
+			<ul class="nav navbar-nav navbar-right">	
+					<li><a href="<?php echo base_url().'registration'?>" value="Signup" > Signup </a></li>
+					<li><a href="<?php echo base_url().'signin'?>" value="Signin" > Signin </a></li>		
+				</ul>
+		</div>
+		
+		<div style=" background-color: rgba(30, 160, 253, 1); width: 100%;padding-top: 10px;padding-bottom: 25px;">
+			<div class="container">
+				<div class=" col-md-2 pull-left">
+					<div class="h2 text-white pull-left"> ePortal</div>
+				</div>
+				<div class=" col-md-10">
+					<div class="col-md-12">
+						<br />
+						
 						<?php 
 							$formattributes = array('class' => 'form-inline', 'role' => 'search');
 								echo form_open('site/search01',$formattributes);
 									// Open the form and redirects to the "login_validation" function in the main controller
-									echo '<div class="btn-group">';	
-									$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search here...','style'=>'width:400px;height:34px;padding-right:7px;margin-right:-2px');
+									echo '<div class="btn-group pull-right">';	
+									$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search here...','style'=>'width:480px;height:34px;padding-right:7px;margin-right:-2px');
 									echo form_input($inputkeyword);
 									
 									$registerbtnattributes = array('class' => 'form-group btn btn-primary pull-right','name'=>'search_submit','value'=>'Search');
@@ -64,40 +65,42 @@
 									echo '</div>';
 								echo form_close();
 						?>
-				</ul>
-				
-				<ul class="nav navbar-nav navbar-right">	
-					<li><a href="<?php echo base_url().'registration'?>" value="Signup" > Signup </a></li>
-					<li><a href="<?php echo base_url().'signin'?>" value="Signin" > Signin </a></li>		
-				</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div style=" background-color: rgba(30, 160, 253, 1); width: 100%;">
+			<div class="container">
+				<div id='cssmenu' style="border-bottom:1px solid #0080CC;">
+					<ul>
+					   <li><a href='index.html'><span>Electronic</span></a>
+					   	<ul>
+					         <li class=''><a href='#'><span>Men</span></a></li>
+					         <li class=''><a href='#'><span>Female</span></a></li>
+					      </ul>
+					   </li>
+					   <li><a href='#'><span>Fashion</span></a>
+					      <ul>
+					         <li class=''><a href='#'><span>Men</span></a></li>
+					         <li class=''><a href='#'><span>Female</span></a></li>
+					      </ul>
+					   </li>
+					   <li><a href='#'><span>Vehicle</span></a>
+					   	<ul>
+					         <li class=''><a href='#'><span>Men</span></a></li>
+					         <li class=''><a href='#'><span>Female</span></a></li>
+					      </ul>
+					   </li>
+					   <li class=''><a href='#'><span>Lands</span></a>
+					   	<ul>
+					         <li class=''><a href='#'><span>Men</span></a></li>
+					         <li class=''><a href='#'><span>Female</span></a></li>
+					      </ul>
+					   </li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-<div id='cssmenu' style="margin-top: 53px; margin-bottom: 40px;" class="navbar-fixed-top">
-<ul>
-   <li><a href='index.html'><span>Electronic</span></a>
-   	<ul>
-         <li class=''><a href='#'><span>Men</span></a></li>
-         <li class=''><a href='#'><span>Female</span></a></li>
-      </ul>
-   </li>
-   <li><a href='#'><span>Fashion</span></a>
-      <ul>
-         <li class=''><a href='#'><span>Men</span></a></li>
-         <li class=''><a href='#'><span>Female</span></a></li>
-      </ul>
-   </li>
-   <li><a href='#'><span>About</span></a>
-   	<ul>
-         <li class=''><a href='#'><span>Men</span></a></li>
-         <li class=''><a href='#'><span>Female</span></a></li>
-      </ul>
-   </li>
-   <li class=''><a href='#'><span>Contact</span></a>
-   	<ul>
-         <li class=''><a href='#'><span>Men</span></a></li>
-         <li class=''><a href='#'><span>Female</span></a></li>
-      </ul>
-   </li>
-</ul>
-</div>
+<div class="navbar navbar-default navbar-static-top" style="margin-bottom:180px"></div>

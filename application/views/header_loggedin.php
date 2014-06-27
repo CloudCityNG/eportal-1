@@ -5,7 +5,6 @@
 	<link href="<?php echo base_url().'css/bootstrap.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'css/bootstrap-theme.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
@@ -69,7 +68,7 @@ $('.dropdown-toggle').dropdown();
 				</ul>
 				
 				<ul class="nav navbar-nav navbar-right">	
-					<a href="<?php echo base_url().'advertisement/createAd'?>"class="navbar-btn btn btn-warning" value="adnotifire" > Post Advertisement </a>
+					<a href="<?php echo base_url().'advertisement/createAd'?>"class="navbar-btn btn btn-sm btn-warning" value="adnotifire" > Post Advertisement </a>
 					<div class="btn-group">
 						<a class="navbar-btn btn btn-sm btn-default" href="<?php if($this->session->userdata('username')){echo base_url().'profile/'.$this->session->userdata('username');}?>">
 							<?php if($this->session->userdata('name')){echo $this->session->userdata('name');}?>
@@ -90,8 +89,7 @@ $('.dropdown-toggle').dropdown();
 				</ul>
 			</div>
 		</div>
-	</div>
-<div id='cssmenu' style="margin-top: 53px; margin-bottom: 40px;">
+<div id='cssmenu'>
 <ul>
    <li><a href='index.html'><span>Electronic</span></a>
    	<ul>
@@ -105,13 +103,13 @@ $('.dropdown-toggle').dropdown();
          <li class=''><a href='#'><span>Female</span></a></li>
       </ul>
    </li>
-   <li><a href='#'><span>About</span></a>
+   <li><a href='#'><span>Vehicles</span></a>
    	<ul>
          <li class=''><a href='#'><span>Men</span></a></li>
          <li class=''><a href='#'><span>Female</span></a></li>
       </ul>
    </li>
-   <li class=''><a href='#'><span>Contact</span></a>
+   <li class=''><a href='#'><span>Lands</span></a>
    	<ul>
          <li class=''><a href='#'><span>Men</span></a></li>
          <li class=''><a href='#'><span>Female</span></a></li>
@@ -119,3 +117,6 @@ $('.dropdown-toggle').dropdown();
    </li>
 </ul>
 </div>
+	</div>
+
+<div class="navbar navbar-default navbar-static-top" style="margin-bottom: 80px"></div>

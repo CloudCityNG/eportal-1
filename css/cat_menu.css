@@ -1,9 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
 #cssmenu {
-  background: #0486c2;
+  background: rgba(30, 160, 253, 1);
   margin: 0;
   width: auto;
-  padding: 0 0 0 230px;
   line-height: 1;
   display: block;
   position: relative;
@@ -19,7 +18,7 @@
 	border-bottom:1px solid #CCCCCC;
 	border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
-	z-index: 1000;
+	z-index: 100;
 }
 #cssmenu ul:after {
   content: ' ';

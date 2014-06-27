@@ -19,8 +19,29 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+	   	$this->header('welcome');
+		$this->load->view('v_welcome_page');
+		$this->footer();
 	}
+	
+	function header($tile){
+		$data['title']=$tile;
+		if($this->session->userdata('username')){
+			if($this->session->userdata('usertype')=='a'){
+				$this->load->view('header_welcome_admin',$data);
+			}else{
+				$this->load->view('header_welcome_loggedin',$data);
+			}
+		}
+		else{
+			$this->load->view('header_welcome_not_loggedin',$data);
+		}
+	}
+	
+	function footer(){
+		$this->load->view('footer');
+	}
+	
 }
 
 /* End of file welcome.php */
