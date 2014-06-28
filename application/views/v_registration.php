@@ -16,17 +16,18 @@ $(document).ready(function() {
 </script>
 <style type="text/css">
 	body{
-		background: url(<?php echo base_url().'images/3574f899daef41d2f145eba13ff7840f.jpg'; ?>) no-repeat center center fixed;
+		/* background: url(<?php /*echo base_url().'images/3574f899daef41d2f145eba13ff7840f.jpg'; ?>) no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
+		*/?>
 	}
 </style>
 <div class="container">
-	<div class="col-md-7 col-sm-offset-2">
+	<div class="col-md-8 col-sm-offset-2 img-thumbnail">
 		
-    <div class=" breadcrumb"> 
+    <div class=""> 
     	<p class="lead text-center">Sign up</p>
 	<?php
 		$formattributes = array('class' => 'form-horizontal', 'role' => 'form');

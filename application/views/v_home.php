@@ -1,4 +1,4 @@
-<div class="container breadcrumb text-white" style="background-color: #CD0A0A">
+<div class="container breadcrumb text-white" style="background-color: #196CE8">
 	<br />
 </div>
 

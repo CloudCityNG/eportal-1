@@ -1,19 +1,16 @@
 <style type="text/css">
-	body{
-		background: url(<?php echo base_url().'images/3574f899daef41d2f145eba13ff7840f.jpg'; ?>) no-repeat center center fixed;
+	body{/*
+		background: url(<?php /*echo base_url().'images/3574f899daef41d2f145eba13ff7840f.jpg'; ?>) no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
-	}
-	
-	.buledesign-back{
-		margin-top: 150px;
+		 */?>
 	}
 	
 </style>
-<div class="container buledesign-back">
-	<div class="breadcrumb col-md-6 col-md-offset-3">
+<div class="container">
+	<div class="col-md-6 col-md-offset-3 img-thumbnail" style="margin-top: 20px;">
 		<div class="col-md-10 col-md-offset-1">
 			<p class="lead text-center">Sign in</p>
 			<?php
@@ -30,13 +27,14 @@
 					$inputpassword = array('class' => 'form-control','name'=>'password','placeholder'=>'Password');
 					echo form_password($inputpassword).'<br />';
 					
-					$registerbtnattributes = array('class' => 'form-control btn btn-primary','name'=>'login_submit','value'=>'Sign in');
+					$registerbtnattributes = array('class' => 'form-control btn btn-primary pull-right','name'=>'login_submit','value'=>'Signin');
 					echo form_submit($registerbtnattributes).'<br />';
 				echo '</div>';
 				echo form_close();
 			?>
 			<a class="pull-left" href='<?php echo base_url()."login/reset_password" ?>'>Forgot your password ?</a>
-			<a class="pull-right" href='<?php echo base_url()."registration" ?>'>Need to create an account ?</a>
+			<br>
+			<a class="pull-left" href='<?php echo base_url()."registration" ?>'>Need to create an account ?</a>
 		</div>
 	</div>
 </div>

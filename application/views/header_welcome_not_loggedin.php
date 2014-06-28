@@ -35,7 +35,7 @@
 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 	
-	<div class="navbar navbar-default navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
+	<div class="navbar navbar-dark-purple navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
 		<div class="container">
 			<ul class="nav navbar-nav navbar-right">	
 					<li><a href="<?php echo base_url().'registration'?>" value="Signup" > Signup </a></li>

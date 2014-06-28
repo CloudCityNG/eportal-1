@@ -173,7 +173,7 @@ $("#province").change(function(){
 		</script>
 
 	<link href="<?php echo base_url();?>css/dashboard.css" rel="stylesheet">
-	<div class="col-sm-3 col-md-2 sidebar navbar-default" id="search_opt">
+	<div class="col-sm-3 col-md-2 sidebar" id="search_opt" style="margin-top: 70px">
 	<?php echo form_open('site/search'); ?>
 	<div class="search-block"><?php echo form_label('Title:','title')?>
 		<?php echo form_input(array(

@@ -30,32 +30,36 @@
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 
 
-	<div class="navbar navbar-default navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
+	<div class="navbar navbar-dark-purple navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
 		<div class="container">
 			<ul class="nav navbar-nav navbar-right">	
-					<a href="<?php echo base_url().'administration/user_management'?>"class="btn btn-sm btn-link" value="adminPanel" > Administrative Panel </a>
-					<a class="btn btn-sm btn-link" href="<?php if($this->session->userdata('username')){echo base_url().'profile/'.$this->session->userdata('username');}?>">
+					<li><a href="<?php echo base_url().'administration/user_management'?>" value="adminPanel" > Administrative Panel </a></li>
+					
+					<li><a href="<?php if($this->session->userdata('username')){echo base_url().'profile/'.$this->session->userdata('username');}?>">
 							<?php if($this->session->userdata('name')){echo $this->session->userdata('name');}?>
-					</a>
-					<div class="btn-group btn-group-xs">
-					  	<a class="btn btn-sm btn-link dropdown-toggle" data-toggle="dropdown">
-					   		<span class="glyphicon glyphicon-cog"></span>
-					   		<span class="caret"></span>
-					  	</a>
-					  	<ul class="dropdown-menu" role="menu" style="margin-top:-1px;">
-					    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
-					    	<li><a href="#">Notifications</a></li>
-					    	<li><a href="<?php echo base_url().'report'; ?>">Generate Reports</a></li>
-					    	<li class="divider"></li>
-					    	<li><a href="<?php echo base_url().'profile/update'; ?>">Profile settings</a></li>
-					    	<li><a href="<?php echo base_url().'advertisement/createAd'; ?>">Post Advertisement</a></li>
-					    	<li class="divider"></li>
-					    	<li><a href="<?php echo base_url().'signin/signout'; ?>">Sign out</a></li>
-					  	</ul>
-					</div>
+						</a>
+					</li>
+					<li>
+						<div>
+						 	<a class="dropdown-toggle" data-toggle="dropdown">
+						   		<span class="glyphicon glyphicon-cog"></span>
+						   		<span class="caret"></span>
+						  	</a>
+							<ul class="dropdown-menu" role="menu" style="margin-top:3px;">
+							   	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
+							   	<li><a href="#">Notifications</a></li>
+							   	<li><a href="<?php echo base_url().'report'; ?>">Generate Reports</a></li>
+							   	<li class="divider"></li>
+							   	<li><a href="<?php echo base_url().'profile/update'; ?>">Profile settings</a></li>
+							   	<li><a href="<?php echo base_url().'advertisement/createAd'; ?>">Post Advertisement</a></li>
+							   	<li class="divider"></li>
+							   	<li><a href="<?php echo base_url().'signin/signout'; ?>">Sign out</a></li>
+							</ul>
+						</div>
+					</li>
 				</ul>
 		</div>
-		<div style=" background-color: rgba(30, 160, 253, 1); width: 100%;padding-top: 10px;padding-bottom: 25px;margin-top:-5px;">
+		<div style=" background-color: #8A00B8; width: 100%;padding-top: 10px;padding-bottom: 25px;margin-top:3px;">
 			<div class="container">
 				<div class=" col-md-2 pull-left">
 					<div class="h2 text-white pull-left"> ePortal</div>
@@ -82,9 +86,9 @@
 			</div>
 		</div>
 		
-		<div style=" background-color: rgba(30, 160, 253, 1); width: 100%;">
+		<div style=" background-color:#8A00B8; width: 100%;border-bottom:2px solid #660066;">
 			<div class="container">
-				<div id='cssmenu' style="border-bottom:1px solid #0080CC;">
+				<div id='cssmenu'>
 					<ul>
 					   <li><a href='index.html'><span>Electronic</span></a>
 					   	<ul>

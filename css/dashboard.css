@@ -12,12 +12,10 @@
  */
 .dashboard{
 	margin-left:-20px;
-	margin-top:48px;
 	margin-bottom:20px;
 	padding: 20px 20px 20px 7px;
 	width: 230px;
-	transition-duration: 0.3s;	
-	overflow-y: visible;
+	transition-duration: 0.3s;
 
 }
 
@@ -28,14 +26,14 @@
 }
 
 .dashboard:hover{
-	background-color: #2A6496;/*5555DD*/
+	/*background-color: #660066;/*5555DD*/
 	transition-duration: 0.3s;
 }
-
+/*
 .dashboard:hover > a{
 	color:#fff;
 }
-
+*/
 .dashboard > a:hover{
 	text-decoration: none;
 }
@@ -54,22 +52,22 @@
 .sidebar {
   display: none;
   margin-right:200px;
-  overflow-y: scroll;
 }
 @media {
   .sidebar {
-  	height:9999px;
-    position: fixed;
-    top: 99px;
+  	height:100%;
+    position: absolute;
+    top: 130px;
     bottom: 0;
     left: 0;
     z-index: 1000;
     display: block;
     padding: 20px;
     overflow-x: hidden; /* Scrollable contents if viewport is shorter than content. */
-    overflow-y:visible;
     background-color:#FFFFFF;
     border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
   }
 }
 
@@ -82,17 +80,19 @@
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .nav-sidebar > li > a:hover {
   transition-duration: 0.3s;
-  background-color: #2A6496;
+  background-color: #660066;
   color: #fff;
 }
 
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #2A6496;
+  background-color: #660066;
 }
 
 .nav-sidebar > .dashLink > a{
