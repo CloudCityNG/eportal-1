@@ -46,7 +46,7 @@
 		<div style=" background-color: #8A00B8; width: 100%;padding-top: 10px;padding-bottom: 25px;margin-top: 3px;">
 			<div class="container">
 				<div class=" col-md-2 pull-left">
-					<div class="h2 text-white pull-left"> ePortal</div>
+					<a href="<?php echo base_url();?>home"><div class="h2 text-white pull-left"> ePortal</div></a>
 				</div>
 				<div class=" col-md-10">
 					<div class="col-md-12">
@@ -74,28 +74,39 @@
 			<div class="container">
 				<div id='cssmenu'>
 					<ul>
-					   <li><a href='index.html'><span>Electronic</span></a>
-					   	<ul>
-					         <li class=''><a href='#'><span>Men</span></a></li>
-					         <li class=''><a href='#'><span>Female</span></a></li>
+					   <li><a href='<?php echo base_url();?>site/search02/category/2'><span>Electronic</span></a>
+					   	<ul><?php $this->db->where('categoryid',2);
+							$result=$this->db->get('subcategory')->result();
+							foreach($result as $key){?>
+					         <li class=''><a href='<?php echo base_url();?>site/search02/sub_category/<?php echo $key->id;?>'><span><?php echo $key->name;?></span></a></li>
+					         <?php }?>
 					      </ul>
 					   </li>
-					   <li><a href='#'><span>Fashion</span></a>
+					   <li><a href='<?php echo base_url();?>site/search02/category/5'><span>Clocks</span></a>
 					      <ul>
-					         <li class=''><a href='#'><span>Men</span></a></li>
-					         <li class=''><a href='#'><span>Female</span></a></li>
+					        <?php $this->db->where('categoryid',5);
+							$result=$this->db->get('subcategory')->result();
+							foreach($result as $key){?>
+					         <li class=''><a href='<?php echo base_url();?>site/search02/sub_category/<?php echo $key->id;?>'><span><?php echo $key->name;?></span></a></li>
+					         <?php }?>
 					      </ul>
 					   </li>
-					   <li><a href='#'><span>Vehicle</span></a>
+					   <li><a href='<?php echo base_url();?>site/search02/category/1'><span>Vehicles</span></a>
 					   	<ul>
-					         <li class=''><a href='#'><span>Men</span></a></li>
-					         <li class=''><a href='#'><span>Female</span></a></li>
+					         <?php $this->db->where('categoryid',1);
+							$result=$this->db->get('subcategory')->result();
+							foreach($result as $key){?>
+					         <li class=''><a href='<?php echo base_url();?>site/search02/sub_category/<?php echo $key->id;?>'><span><?php echo $key->name;?></span></a></li>
+					         <?php }?>
 					      </ul>
 					   </li>
-					   <li class=''><a href='#'><span>Lands</span></a>
+					   <li class=''><a href='<?php echo base_url();?>site/search02/category/3'><span>Properties</span></a>
 					   	<ul>
-					         <li class=''><a href='#'><span>Men</span></a></li>
-					         <li class=''><a href='#'><span>Female</span></a></li>
+					         <?php $this->db->where('categoryid',3);
+							$result=$this->db->get('subcategory')->result();
+							foreach($result as $key){?>
+					         <li class=''><a href='<?php echo base_url();?>site/search02/sub_category/<?php echo $key->id;?>'><span><?php echo $key->name;?></span></a></li>
+					         <?php }?>
 					      </ul>
 					   </li>
 					</ul>
