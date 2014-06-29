@@ -83,14 +83,11 @@ class Advertisement extends CI_Controller {
 
 		if($this->input->post('advertisment_submit'))
 		{
-			
 			if($this->form_validation->run())
 			{
 				$data['state']='upload';
 			}
-			/*{//if validations are comppleted
-			
-				
+			/*{//if validations are comppleted		
 				
 				$ad_id=uniqid();
 				$this->session->set_userdata('ad_id',$ad_id);
@@ -143,21 +140,35 @@ class Advertisement extends CI_Controller {
 				//$data['success']=true;
 				//}
 					$data['success']=true;
+					
+					//hansila
+					$this->load->model('m_rules');
+					$result1 = $this->m_rules->algorithm($this->input->post('title'));
+					$result2 = $this->m_rules->algorithm($this->input->post('body'));
+					
+					if($result1 || $result2){
+						// send reject email
+						echo("reject");
+					}
+					else {
+						$this->accept_ad($ad_id);
+						//$this->testmail();
+						echo("accepted");
+						//send approve notification
+					}
 				}
+				
 			}
-			if($this->input->post('back'))
-			{
+			
+			if($this->input->post('back')){
 				$data['state']='data';
-	
 			}
 			
 				
-				if($this->input->post('image_submit'))
-				{
-					$data['state']='upload';
-					$this->advertisements->do_upload('skds',$ad_id);
-				
-				}
+			if($this->input->post('image_submit')){
+				$data['state']='upload';
+				$this->advertisements->do_upload('skds',$ad_id);
+			}
 				
 			
 				$imagedata=$this->advertisements->get_images($ad_id);
@@ -470,12 +481,12 @@ class Advertisement extends CI_Controller {
 		}
 		public function testmail()
 		{
-			while(1)
+			/*while(1)
 			{
 				echo("infinite/n");
 				sleep(5);
-			}
-			$config = Array(
+			}*/
+			/*$config = Array(
 				'protocol' => 'smtp',
 			  	'smtp_host' => 'ssl://smtp.googlemail.com',
 			  	'smtp_port' => 465,
@@ -484,13 +495,13 @@ class Advertisement extends CI_Controller {
 			  	'mailtype' => 'html',
 			  	'charset' => 'iso-8859-1',
 			  	'wordwrap' => TRUE
-			);
+			);*/
 			
 			$message = 'testmail';
-			$this->load->library('email', $config);
+			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
-			$this->email->to('gcrescape@gmail.com');
+			$this->email->to('hanafdo@gmail.com');
 			$this->email->subject('Gayam');
 			$this->email->message($message);
 			if($this->email->send())
@@ -1096,6 +1107,11 @@ class Advertisement extends CI_Controller {
 	    		echo '</div>
 	    		</div>
 	    		</div>';
+	}
+
+	public function accept_ad($a){
+		$this->load->model('m_rules');
+        $this->m_rules->accept_ad($a);
 	}
 
 

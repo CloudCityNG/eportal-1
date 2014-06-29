@@ -35,6 +35,31 @@ class Rules extends CI_Controller {
 		$this->footer();
 	}
 	
+	
+	public function testing(){
+		$this->load->model('m_rules');
+		$test1 = 'good';
+		$result1 = $this->m_rules->algorithm($test1);
+		$test2 = 'good very ';
+		$result2 = $this->m_rules->algorithm($test2);
+
+		if($result1 || $result2){
+						// send reject email
+						echo("reject");
+		}
+		else {
+			//$this->accept_ad($ad_id);
+			//$this->testmail();
+			echo("accepted");
+			//send approve notification
+		}
+	}
+
+	public function testing1(){
+		$this->load->model('m_rules');
+		$this->m_rules->find_urls('hello this link www.google.lk');
+	}
+	
 	public function back1(){
 		$this->load->model('m_rules');
 		$data['Ads']=$this->m_rules->getAdlist();
@@ -252,6 +277,30 @@ class Rules extends CI_Controller {
 				//$data['state']='data';
 	
 			}
+	}
+	
+	//new
+	public function algorithm($inputstring){
+		
+		//first check for links and emails
+		//if positive don't continue, reject the ad
+		
+		//then divide it into words
+		$exploded = $this->multiexplode(array(",",".","|",":","?","!","-","_"),$inputstring);
+		
+		//ignore the case
+		
+		//check the words with the Bad Word List
+		
+		
+	}
+	
+	//new
+	public function multiexplode($delimiters,$string) {
+    
+    $ready = str_replace($delimiters, $delimiters[0], $string);
+    $launch = explode($delimiters[0], $ready);
+    return  $launch;
 	}
 	
 	public function send_denial_email(){
