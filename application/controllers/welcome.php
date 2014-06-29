@@ -20,7 +20,10 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 	   	$this->header('welcome');
-		$this->load->view('v_welcome_page');
+		$send[]=array('url'=>"images/front-driver-side-view-640-e1361033301346.png",'description'=>'See Our Vehicle Collection');
+		$send[]=array('url'=>"images/iphone52.png",'description'=>'View Electronic Items');
+		$data['images']=$send;
+		$this->load->view('v_welcome_page',$data);
 		$this->footer();
 	}
 	

@@ -280,6 +280,7 @@ $("#province").change(function(){
 
 					
 				echo '</div></br>';
+				echo '<div class="row"><p>'.$ad->body.'</p></div>';
 				//echo '<div class="pull-right"><input name="star'.$i.'" type="radio" class="star" checked="checked" disabled="disabled"/></div>';
 				echo '<div class="row"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Price ';
 				
