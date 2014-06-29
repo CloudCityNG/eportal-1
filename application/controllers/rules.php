@@ -246,8 +246,8 @@ class Rules extends CI_Controller {
 		}
 		$data['district']=$send;//loading the district in the dropdown list
 		$send=null;	
-		$data['title']='Edit Ad';
-		$this->header('Edit Ad');
+		$data['title']='Accept Ad';
+		$this->header('Accept Ad');
 		$this->load->view('v_view_fields',$data);
 		$this->footer();		
 	}
@@ -263,8 +263,8 @@ class Rules extends CI_Controller {
 			//accept from edit table
 		}
         $this->m_rules->accept_ad($a,$table);
-		
-		
+		//$status_accept  = TRUE;
+		$this->new_ads();
 	}
 	
 	public function deny_ad($a){
@@ -279,6 +279,8 @@ class Rules extends CI_Controller {
 			//reject from edit table
 		}
 		$this->m_rules->deny_ad($a,$table);
+		
+		$this->new_ads();
 /*		
 		$this->header('Send Denial Email');
 		$this->load->view('v_ad_deny',$a);
