@@ -59,7 +59,7 @@
 					</li>
 				</ul>
 		</div>
-		<div style=" background-color: #8A00B8; width: 100%;padding-top: 10px;padding-bottom: 25px;margin-top:3px;">
+		<div style=" background-color: #8A00B8; width: 100%;padding-top: 10px;margin-top:3px;">
 			<div class="container">
 				<div class=" col-md-2 pull-left">
 					<a href="<?php echo base_url();?>home"><div class="h2 text-white pull-left"> ePortal</div></a>

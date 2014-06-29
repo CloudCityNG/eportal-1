@@ -5,13 +5,13 @@ class Admin extends CI_Model{
 	public function get_profileupdates($usertype,$reqtype){
 		if($reqtype=='new'){
 			if($usertype=='n'){
-				$query = "SELECT ud.profilepicture as p_profilepicture, unu.username,unu.fname,unu.lname,unu.password,unu.profilepicture,unu.telemarketer,unu.description,unu.add_ln_1,unu.add_ln_2,unu.add_ln_3, DATE_FORMAT(unu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(unu.dateandtime,'%r') as _time, CONCAT(nu.fname, ' ', nu.lname) as name 
+				$query = "SELECT ud.profilepicture as p_profilepicture, unu.username,unu.fname,unu.lname,unu.password,unu.profilepicture,unu.telemarketer,unu.description,unu.add_ln_1,unu.add_ln_2,unu.add_ln_3, DATE_FORMAT(unu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(unu.dateandtime,'%r') as _time, CONCAT(nu.fname, ' ', nu.lname) as name,unu.contact_number 
 							FROM update_normal_users unu, normal_users nu, user_details ud
 							WHERE TIMESTAMPDIFF(DAY,unu.dateandtime,now()) < 5 AND
 									nu.username=unu.username AND 
 									ud.username=nu.username";
 			}else if($usertype=='b'){
-				$query = "SELECT ud.profilepicture as p_profilepicture,ubu.username,ubu.bname,ubu.password,ubu.profilepicture,ubu.telemarketer,ubu.description,ubu.add_ln_1,ubu.add_ln_2,ubu.add_ln_3,DATE_FORMAT(ubu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(ubu.dateandtime,'%r') as _time,bu.bname as name
+				$query = "SELECT ud.profilepicture as p_profilepicture,ubu.username,ubu.bname,ubu.password,ubu.profilepicture,ubu.telemarketer,ubu.description,ubu.add_ln_1,ubu.add_ln_2,ubu.add_ln_3,DATE_FORMAT(ubu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(ubu.dateandtime,'%r') as _time,bu.bname as name,ubu.contact_number
 							FROM update_business_users ubu, business_users bu, user_details ud
 							WHERE TIMESTAMPDIFF(DAY,ubu.dateandtime,now()) < 5 AND 
 									bu.username=ubu.username AND
@@ -19,12 +19,12 @@ class Admin extends CI_Model{
 			}
 		}else if($reqtype=='all'){
 			if($usertype=='n'){
-				$query = "SELECT ud.profilepicture as p_profilepicture,unu.username,unu.fname,unu.lname,unu.password,unu.profilepicture,unu.telemarketer,unu.description,unu.add_ln_1,unu.add_ln_2,unu.add_ln_3,DATE_FORMAT(unu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(unu.dateandtime,'%r') as _time, CONCAT(nu.fname, ' ', nu.lname) as name 
+				$query = "SELECT ud.profilepicture as p_profilepicture,unu.username,unu.fname,unu.lname,unu.password,unu.profilepicture,unu.telemarketer,unu.description,unu.add_ln_1,unu.add_ln_2,unu.add_ln_3,DATE_FORMAT(unu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(unu.dateandtime,'%r') as _time, CONCAT(nu.fname, ' ', nu.lname) as name,unu.contact_number 
 							FROM update_normal_users unu, normal_users nu, user_details ud
 							WHERE nu.username=unu.username AND 
 									ud.username=nu.username";
 			}else if($usertype=='b'){
-				$query = "SELECT ud.profilepicture as p_profilepicture, ubu.username,ubu.bname,ubu.password,ubu.profilepicture,ubu.telemarketer,ubu.description,ubu.add_ln_1,ubu.add_ln_2,ubu.add_ln_3,DATE_FORMAT(ubu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(ubu.dateandtime,'%r') as _time,bu.bname as name
+				$query = "SELECT ud.profilepicture as p_profilepicture, ubu.username,ubu.bname,ubu.password,ubu.profilepicture,ubu.telemarketer,ubu.description,ubu.add_ln_1,ubu.add_ln_2,ubu.add_ln_3,DATE_FORMAT(ubu.dateandtime,'%D %M %Y') as _when, DATE_FORMAT(ubu.dateandtime,'%r') as _time,bu.bname as name,ubu.contact_number
 							FROM update_business_users ubu, business_users bu, user_details ud
 							WHERE bu.username=ubu.username AND
 									ud.username=bu.username";

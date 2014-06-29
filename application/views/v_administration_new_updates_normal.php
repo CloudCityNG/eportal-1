@@ -74,6 +74,10 @@
 								echo '<strong>Address line 3</strong> => '.$info->add_ln_3 ;
 								}?>
 							</p>
+							<p><?php if(isset($info->contact_number)){
+								echo '<strong>Contact number</strong> => '.$info->contact_number ;
+								}?>
+							</p>
 							<p><?php if(isset($info->profilepicture)){
 								echo '<strong>Profile picture</strong> => <img width="57" src="'.base_url().'images/prifilepictures/'.$info->profilepicture.'" class="img-thumbnail profile-picture"/>' ;
 								}?>

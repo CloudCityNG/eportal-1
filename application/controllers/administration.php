@@ -97,11 +97,12 @@ class Administration extends CI_Controller {
 					if($info->add_ln_2!=null){$data1['add_ln_2']=$info->add_ln_2;}
 					if($info->add_ln_3!=null){$data1['add_ln_3']=$info->add_ln_3;}
 					if($info->password!=null){$data2['password']=$info->password;}
+					if($info->contact_number!=null){$data1['contact_number']=$info->contact_number;}
 				}
 				
 				if(isset($data0)){$stat1 = $this->admin->add_user_update_finish($usertype,$username,$data0);}
 				if(isset($data1)){$stat2 = $this->admin->add_user_details_update_finish($username,$data1);}
-				if(isset($data2)){$stat3 = $this->admin->add_user_password_update_finish($username,$data1);}
+				if(isset($data2)){$stat3 = $this->admin->add_user_password_update_finish($username,$data2);}
 				$stat4 = $this->admin->delete_updates($usertype,$username);
 				
 				if(($stat1 || $stat2 || $stat3) && $stat4){
@@ -119,6 +120,7 @@ class Administration extends CI_Controller {
 					if($info->add_ln_2!=null){$data1['add_ln_2']=$info->add_ln_2;}
 					if($info->add_ln_3!=null){$data1['add_ln_3']=$info->add_ln_3;}
 					if($info->password!=null){$data2['password']=$info->password;}
+					if($info->contact_number!=null){$data1['contact_number']=$info->contact_number;}
 				}
 				
 				if(isset($data0)){$stat1 = $this->admin->add_user_update_finish($usertype,$username,$data0);}

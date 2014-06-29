@@ -61,8 +61,8 @@
 						?>
 					</p>
 					<br />
-					<div class="pull-left col-md-offset-1 col-md-6  ">
-						<div class="col-md-12 img-thumbnail">
+					<div class="pull-left col-md-offset-1 col-md-6 ">
+						<div class="col-md-12">
 						<p class=" pull-left"><strong>Address : </strong></p>
 						<address class="pull-left" >
 						    <?php if(isset($p_add_ln_1)){echo $p_add_ln_1; }?><br>
@@ -74,7 +74,7 @@
 						</address>
 						</div>
 					</div>
-					<div class="pull-right  col-md-5  img-thumbnail">
+					<div class="pull-right  col-md-5">
 						<p class=" pull-left"><strong>Contact number : &nbsp;</strong></p>
 						<?php echo $p_cn;?>
 						
