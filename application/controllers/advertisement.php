@@ -221,6 +221,7 @@ class Advertisement extends CI_Controller {
 			$data['p_add_ln_1'] = $info->add_ln_1;
 			$data['p_add_ln_2'] = $info->add_ln_2;
 			$data['p_add_ln_3'] = $info->add_ln_3;
+			$data['telephone']=$info->contact_number;
 			$data['cou']=$info->countryid;
 			$data['pro']=$info->provinceid;
 			$data['dis']=$info->districtid;

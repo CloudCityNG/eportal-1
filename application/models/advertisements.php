@@ -157,7 +157,7 @@ class Advertisements extends CI_Model{
 			//'provinceid'=>$province,
 			'price'=>$price,
 			//'address'=>$address,
-			'telephone'=>$telephone,
+			//'telephone'=>$telephone,
 			//'email'=>$email,
 			'username'=>$username,
 			'duration'=>$duration
@@ -432,6 +432,7 @@ class Advertisements extends CI_Model{
 	public function getAdvertisement($adid)
 	{
 		$this->db->where('id',$adid);
+		$this->db->where('approved',1);
 		$result=$this->db->get('advertisement');
 		$answer;
 		if($result->num_rows()>0)
@@ -451,6 +452,7 @@ class Advertisements extends CI_Model{
 				$answer['add_ln_1']=$info->add_ln_1;		
 				$answer['add_ln_2']=$info->add_ln_2;
 				$answer['add_ln_3']=$info->add_ln_3;
+				$answer['telephone']=$info->contact_number;
 			}
 			$this->load->model('m_signin');
 			$dataset2 = $this->m_signin->get_user_dataset_type_2($answer['usertype'],$answer['username']);

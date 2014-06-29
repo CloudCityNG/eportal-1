@@ -263,11 +263,10 @@
   		 <div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Telephone &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
+    			
       			<?php
-      				$emailattributes = array('class' => 'form-control','name'=>'telephone');
-      				echo form_input($emailattributes,$this->input->post('telephone'));
-					if(form_error('telephone')!=null)
-						echo '<div class="alert alert-danger">'.form_error('telephone').'</div>';
+      			echo '<p class="form-control-static"><span class="glyphicon glyphicon-lock"></span> '.$telephone.'</p>';
+
       			?>
     		</div>
   		</div>
