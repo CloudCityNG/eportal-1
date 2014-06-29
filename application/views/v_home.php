@@ -1,10 +1,27 @@
-<div class="container breadcrumb text-white" style="background-color: #196CE8">
-	<br />
+<div class="container">
+	<div class="col-md-8">
+		<div class="col-md-12 breadcrumb-white img-thumbnail">
+			/*slide show*/
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="md-md-12 text-white breadcrumb"style="background-color: #660066">
+			<div class="h4 pull-left">
+				Ad Notifier
+			</div>
+			<hr />
+			<div class="h5 text-left">
+				Subscribe to get email notifications when a new item is added to your favorite categories
+			</div>
+			
+			<a class="btn btn-block btn-default">Subscribe</a>
+		</div>
+	</div>
 </div>
 
 <br />
 
-<div class="container breadcrumb">
+<div class="container breadcrumb-white ">
 	
 	<?php $count=0; $adcount=count($Ads); foreach($Ads as $ad){?>
 	<?php if(($count%4)==0){?>	
