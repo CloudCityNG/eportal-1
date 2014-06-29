@@ -173,7 +173,7 @@ $("#province").change(function(){
 		</script>
 
 	<link href="<?php echo base_url();?>css/dashboard.css" rel="stylesheet">
-	<div class="col-sm-3 col-md-2 sidebar" id="search_opt" style="margin-top: 70px">
+	<div class="col-sm-3 col-md-2 sidebar" id="search_opt" style="margin-top: 70px;margin-left: 70px; border-left: 1px solid #ccc">
 	<?php echo form_open('site/search'); ?>
 	<div class="search-block"><?php echo form_label('Title:','title')?>
 		<?php echo form_input(array(
@@ -244,7 +244,8 @@ $("#province").change(function(){
 	<div class="col-md-10 col-md-offset-2">
 	<div class="panel panel-default">
 		<div class="h3 text-center" style="margin-bottom: 26px;">
-			&nbsp;&nbsp;Search Result&nbsp;&nbsp;
+			Search Result
+			<hr />
 		</div>
 		<div class="h2 text-left" style="margin-bottom: 26px;margin-left: 90px"><small>
 			<?php
@@ -257,6 +258,7 @@ $("#province").change(function(){
 					}
 					 
 				?> Advertisments Found</small>
+				
 		</div>
 	<div class="panel-body">
 			<?php $j=0; ?>

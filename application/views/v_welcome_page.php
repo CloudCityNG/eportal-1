@@ -168,7 +168,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-5 breadcrumb-white">
+	<div class="col-md-5" style="margin-top: 30px;">
 		
 			<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
         height: 400px; ">
