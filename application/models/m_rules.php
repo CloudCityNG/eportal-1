@@ -28,7 +28,7 @@ function addCheck($title, $body, $add, $tel, $img) {
 	{
 		$answer=array();
 		
-		$sql1='SELECT id,title,price From new_advertisement union (SELECT id,title,price From edit_advertisement)';
+		$sql1='SELECT id,title,price From new_advertisement WHERE approved=1 union (SELECT id,title,price From edit_advertisement WHERE approved=1)';
 		$result=$this->db->query($sql1);
 		$answer1= $result->result();
 		foreach ($answer1 as $key) {
@@ -188,17 +188,71 @@ public function getAdvertisement($adid)
 
 	}
 	
-	public function accept_ad($adid){
+	public function accept_new_ad($adid){
 		$result=$this->db->get_where('new_advertisement', array('id'=>$adid));
 		$temp = $result->result();
 		//print_r($temp);return;
-		$this->db->insert('advertisement',$temp[0]);	
-		$this->db->where('id',$adid);
-		$this->db->delete('new_advertisement');
+	//	$this->db->insert('advertisement',$temp[0]);	
+	//	$this->db->where('id',$adid);
+	//	$this->db->delete('new_advertisement');
 		
 		$data=array('approved'=>1);
 		$this->db->where('id',$adid);
-		$this->db->update('advertisement',$data);
+		$this->db->update('new_advertisement',$data);
+	}
+	
+	public function accept_edit_ad($adid){
+			
+		$data=array('approved'=>1);
+		$this->db->where('id',$adid);
+		$this->db->update('edit_advertisement',$data);
+	}
+	
+	public function accept_ad($a,$table){
+		if($table == "new_advertisements"){
+			
+			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
+					From new_advertisement 
+					WHERE id=\''.$a.'\'';
+			$result=$this->db->query($sql1);
+			$temp= $result->result();
+			
+	//		$result=$this->db->get_where('new_advertisement', array('id'=>$a));
+		//	$temp = $result->result();
+			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->where('id',$a);
+			$this->db->delete('new_advertisement');
+			
+			$data=array('approved'=>1);
+			$this->db->where('id',$a);
+			$this->db->update('advertisement',$data);
+		}
+		else{
+			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
+					From edit_advertisement 
+					WHERE id=\''.$a.'\'';
+			$result=$this->db->query($sql1);
+			$temp= $result->result();
+			
+	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
+	//		$temp = $result->result();
+			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->where('id',$a);
+			$this->db->delete('edit_advertisement');
+			
+			$data=array('approved'=>1);
+			$this->db->where('id',$a);
+			$this->db->update('advertisement',$data);
+		}
+	}
+	
+	public function check_if_new($a){
+		$this->db->where('id',$a);
+		$result=$this->db->get('new_advertisement');
+		
+		if($result->num_rows() > 0){
+			return TRUE;
+		}
 	}
 	
 	//new

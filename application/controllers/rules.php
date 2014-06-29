@@ -4,33 +4,26 @@ class Rules extends CI_Controller {
 	
 	public function index()
 	{
-		$this->header('Select Fields');
-		$this->load->view("v_select_rules");
+		$this->header('Accept Advertisements');
+		$this->load->view("v_administration_rules_main");
 		$this->footer();
 	}
 	
 	public function new_ads()
 	{
-		if( $this->input->post('continue')){
+	/*	if( $this->input->post('continue')){
 			$title = $this->input->post('title');
             $body = $this->input->post('body');
             $add  = $this->input->post('address');
             $tel  = $this->input->post ('tel');
 			$img  = $this->input->post ('img');
-		}
+		
 		$this->load->model('m_rules');
         $this->m_rules->addCheck($title, $body, $add, $tel, $img);
-		
-		if($this->input->post('back'))
-			{
-				redirect('/rules');
-				//$data['state']='data';
-	
-			}
-		
+		}*/
 		$this->load->model('m_rules');
 		$data['Ads']=$this->m_rules->getAdlist();
-		$this->header('View Fields');
+		$this->header('Advertisement List');
 		$this->load->view('v_check_fields',$data);
 		$this->footer();
 	}
@@ -261,12 +254,31 @@ class Rules extends CI_Controller {
 	
 	public function accept_ad($a){
 		$this->load->model('m_rules');
-
-        $this->m_rules->accept_ad($a);
-		$this->back1();
+		if($this->m_rules->check_if_new($a)){
+			$table = "new_advertisements";
+			//accept from new table
+		}
+		else{
+			$table = "edit_advertisements";
+			//accept from edit table
+		}
+        $this->m_rules->accept_ad($a,$table);
+		
+		
 	}
 	
 	public function deny_ad($a){
+		
+		$this->load->model('m_rules');
+		if($this->m_rules->check_if_new($a)){
+			$table = "new_advertisements";
+			//accept from new table
+		}
+		else{
+			$table = "edit_advertisements";
+			//accept from edit table
+		}
+/*		
 		$this->header('Send Denial Email');
 		$this->load->view('v_ad_deny',$a);
 		$this->footer();
@@ -277,6 +289,8 @@ class Rules extends CI_Controller {
 				//$data['state']='data';
 	
 			}
+ * 
+ */
 	}
 	
 	//new

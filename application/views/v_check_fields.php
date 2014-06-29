@@ -3,12 +3,12 @@
            <div class="h5 text-center dashboard"><a href="<?php echo base_url().'administration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;Dashboard</a></div>
           <ul class="nav nav-sidebar">
             <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/configDetails'?>">Configure Details</a></li>
-            <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/new_ads'?>">New Advertisements</a></li>
+            <li class="sub-link dashLink"><a href="<?php echo base_url().'rules/new_ads'?>">Accept Advertisements</a></li>
 			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptExtend/view/all'?>">Extend Requests</a></li>
 			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>">Featured Requests</a></li>
 			<li class="dashLink active"><a href="<?php echo base_url().'administration/user_management'?>">User Management</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>">Generate Reports</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'rules'?>">Accept Advertisements</a></li>
+			
           </ul>
 
           <ul class="nav nav-sidebar ">
@@ -21,7 +21,7 @@
 	<div class="col-md-10 col-md-offset-1">
 	<div class="panel panel-default">
 	<div class="panel-heading">
-	    		<center><h3 class="panel-title"><strong>New Advertisments</strong></h3></center>
+	    		<center><h3 class="panel-title"><strong>Advertisments</strong></h3></center>
 	  </div>
 	    
 	    <div class="panel-body"> 
@@ -33,10 +33,10 @@
 			<div class="col-sm-2 pull-left">';
 				 
 				    	if(isset($info['Image']) && $info['Image']!=NULL){
-				    		echo '<img  height="100" src="'.base_url().$info['Image'].'" class="img-thumbnail pull-left profile-picture"/>';
+				    		echo '<img  height="150" src="'.base_url().$info['Image'].'" class="img-thumbnail pull-left profile-picture"/>';
 							
 						}else{
-							echo '<img height="100" src="'.base_url().'images/Advertisement/imagenotfound.png" class="img-thumbnail pull-left profile-picture"/>';
+							echo '<img height="150" src="'.base_url().'images/Advertisement/imagenotfound.png" class="img-thumbnail pull-left profile-picture"/>';
 						}
 					
 			echo '</div>

@@ -151,7 +151,7 @@ class Advertisement extends CI_Controller {
 						echo("reject");
 					}
 					else {
-						$this->accept_ad($ad_id);
+						$this->accept_new_ad($ad_id);
 						//$this->testmail();
 						echo("accepted");
 						//send approve notification
@@ -851,6 +851,23 @@ class Advertisement extends CI_Controller {
 				//}
 					$data['success']=true;
 				}
+				
+				//hansila
+					$this->load->model('m_rules');
+					$result1 = $this->m_rules->algorithm($this->input->post('title'));
+					$result2 = $this->m_rules->algorithm($this->input->post('body'));
+					
+					if($result1 || $result2){
+						// send reject email
+						echo("reject");
+					}
+					else {
+						$this->accept_edit_ad($ad_id);
+						//$this->testmail();
+						echo("accepted");
+						//send approve notification
+					}
+				
 			}
 			if($this->input->post('back'))
 			{
@@ -1115,6 +1132,10 @@ class Advertisement extends CI_Controller {
         $this->m_rules->accept_ad($a);
 	}
 
-
+	public function words(){
+		$this->header('My Advertisements');
+		$this->load->view('v_rules_words');
+		$this->footer();
+	}
 }
 	
