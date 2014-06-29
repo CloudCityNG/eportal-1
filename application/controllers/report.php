@@ -48,8 +48,12 @@ class Report extends CI_Controller {
 		$this->load->model('m_report');
 		$data['ads']=$this->m_report->get_current_reported_ad();
 		$this->header('Reported Advertisements');
-		$this->load->view("v_administration_report_all_ad",$data);
+		$this->load->view("v_administration_report_reported_ad",$data);
 		$this->footer();
+	}
+	
+	public function generate_highest_ad(){
+		
 	}
 	
 	public function generate_all_user(){
@@ -59,7 +63,22 @@ class Report extends CI_Controller {
 		$this->load->view("v_administration_report_all_users",$data);
 		$this->footer();
 	}
+
+	public function generate_business_user(){
+		$this->load->model('m_report');
+		$data['users']=$this->m_report->get_current_busi_users();
+		$this->header('Business Users');
+		$this->load->view("v_administration_report_busi_users",$data);
+		$this->footer();
+	}
 	
+	public function generate_normal_user(){
+		$this->load->model('m_report');
+		$data['users']=$this->m_report->get_current_nor_users();
+		$this->header('Normal Users');
+		$this->load->view("v_administration_report_nor_users",$data);
+		$this->footer();
+	}
 	
 	
 	public function get_ad_list()

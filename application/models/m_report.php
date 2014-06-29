@@ -38,20 +38,33 @@ class M_report extends CI_Model {
 	}
 	
 	public function get_current_reported_ad(){
-		$query = "SELECT a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
-					FROM reported_ads a, category c
-					WHERE (a.categoryid=c.id) OR (AND a.categoryid=0)";
-							
-		$result = $this->db->query($query);
-		return $result->result();
+		
 	}
 	
 	public function get_current_al_users(){
 		$query = "SELECT u.username, u.usertype, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
 					FROM users u, user_details d
-					WHERE u.username=d.username";
+					WHERE u.username=d.username ";
 							
 		$result = $this->db->query($query);
 		return $result->result();
 }
+
+	public function get_current_busi_users(){
+		$query = "SELECT b.username, b.bname, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
+					FROM business_users b, user_details d, users u
+					WHERE b.username=d.username AND d.username=u.username";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_current_nor_users(){
+		$query = "SELECT n.username, n.fname, n.lname, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
+					FROM normal_users n, user_details d, users u
+					WHERE n.username=d.username AND d.username=u.username";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 }

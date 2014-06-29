@@ -34,29 +34,29 @@
 	
 	<label style="margin-top: 30px; for="heading" class="col-md-offset-3 control-label">Basic Reports &nbsp;&nbsp;</label>
 	
-	<div class="col-md-7 col-md-offset-4">
+	<div class="col-md-6 col-md-offset-4">
 	<div class="row">
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_all_user'?>">		
-				<h5 class="text-center">Current Month All Users</h5>		
+				<h5 class="text-center">All Users</h5>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_business_user'?>">		
-				<h5 class="text-center">Current Month Business Users</h5>		
+				<h5 class="text-center">Business Users</h5>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_normal_user'?>">		
-				<h5 class="text-center">Current Month Normal Users</h5>		
+				<h5 class="text-center">Normal Users</h5>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_reported_user'?>">		
-				<h5 class="text-center">Current Month Reported Users</h5>		
+				<h5 class="text-center">Reported Users</h5>		
 		</a>
 		</div>	
 		
@@ -68,7 +68,7 @@
 	
     <div class="col-md-5 col-md-offset-3" style="margin-top: 30px;">
 		<?php 
-		$list=array("0"=>"Select","1"=>"All Advertisements","2"=>"Reported Advertisements","3"=>"Highest Rated Advertisements");
+		$list=array("0"=>"Select","1"=>"All Users","2"=>"Reported Users","3"=>"Normal Users","4"=>"Business Users");
 		echo form_dropdown('category',$list);
 		
 		?>

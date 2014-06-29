@@ -21,8 +21,8 @@
       <thead>
         <tr>
           <th>Username</th>
-          
-          <th>User Type</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Description</th>
           <th>Registered On</th>
           <th>District</th>
@@ -35,18 +35,8 @@
       	<?php foreach($users as $details){?>
         <tr>
         <td style="max-width: 210px;"><?php echo $details->username;?></td>
-        <td style="max-width: 210px;">
-        	<?php 
-          		if($details->usertype=="n"){
-          				echo("Normal");
-					}else if($details->usertype=="a") {
-						echo("Adminstrator");
-					}
-					else{
-						echo("Business");
-					}
-          	?>
-		</td>
+        <td style="max-width: 210px;"><?php echo $details->fname;?></td>
+        <td style="max-width: 210px;"><?php echo $details->lname;?></td>
         <td style="max-width: 210px;"><?php echo $details->description;?></td>
         
         <td style="max-width: 210px;">	<?php echo $details->registered_datenadtime    	?></td>

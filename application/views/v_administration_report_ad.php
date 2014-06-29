@@ -37,21 +37,22 @@
 	<div class="row">
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_all_ad'?>">		
-				<h5 class="text-center">Current Month All Advertisements</h5>		
+				<h5 class="text-center">All Advertisements</h5>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_reported_ad'?>">		
-				<h5 class="text-center">Current Month Reported Advertisements</h5>		
+				<h5 class="text-center">Reported Advertisements</h5>		
 		</a>
 		</div>	
 		
 		<div class="col-md-4">
-		<a href="<?php echo base_url().'report/user_reports'?>">		
-				<h5 class="text-center">Current Month Highest Rated Advertisements</h5>		
+		<a href="<?php echo base_url().'report/generate_highest_ad'?>">		
+				<h5 class="text-center">Highest Rated Advertisements</h5>		
 		</a>
-		</div>		
+		</div>	
+			
 	</div>	
 </div>
 </br>
