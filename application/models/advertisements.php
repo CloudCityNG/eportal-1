@@ -700,5 +700,10 @@ class Advertisements extends CI_Model{
 		
 		
 	}
+	public function getRecommendedList($catid,$subcatid,$proid,$disid)
+	{
+		$count=0;
+		
+	}
 	
 }
