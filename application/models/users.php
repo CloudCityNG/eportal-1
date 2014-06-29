@@ -120,7 +120,7 @@ class Users extends CI_Model{
 	 * */
 	public function get_main_details($username){
 		$query = "	SELECT u.email, u.usertype,ud.profilepicture,ud.telemarketer,ud.description,
-							ud.add_ln_1,ud.add_ln_2,ud.add_ln_3,ud.countryid,ud.provinceid,ud.districtid
+							ud.add_ln_1,ud.add_ln_2,ud.add_ln_3,ud.countryid,ud.provinceid,ud.districtid,ud.contact_number
 					FROM user_details ud, users u 
 					WHERE u.username = '$username' 
 						AND ud.username=u.username";
@@ -198,8 +198,7 @@ class Users extends CI_Model{
 		if($query){return true;} 
 		else {return false;	}
 	}
-	
-	
+
 	/*
 	 * adds the profile details to the update_user table depending on the user
 	 * type for admins approval process
@@ -272,14 +271,15 @@ class Users extends CI_Model{
 	}
 	
 	
-	public function add_address_admin_confirm($couid,$proid,$disid,$l1,$l2,$l3,$usertype,$username){
+	public function add_address_admin_confirm($couid,$proid,$disid,$l1,$l2,$l3,$cn,$usertype,$username){
 		$data = array (
 			'countryid'=>$couid,
 			'provinceid'=>$proid,
 			'districtid'=>$disid,
 			'add_ln_1'=>$l1,
 			'add_ln_2'=>$l2,
-			'add_ln_3'=>$l3
+			'add_ln_3'=>$l3,
+			'contact_number'=>$cn
 			);
 		if($usertype=='n'){
 			if($this->check_username_availability_onupdate($username,$usertype)){
@@ -303,7 +303,9 @@ class Users extends CI_Model{
 							'districtid'=>$disid,
 							'add_ln_1'=>$l1,
 							'add_ln_2'=>$l2,
-							'add_ln_3'=>$l3);
+							'add_ln_3'=>$l3,
+							'contact_number'=>$cn
+							);
 			$this->db->where('username', $username);
     		$query = $this->db->update('user_details', $admin);
 		}
@@ -353,6 +355,29 @@ class Users extends CI_Model{
 	 	
 		if($q1 && $q2){return true;} 
 		else {return false;	}
+	 }
+	 
+	 public function p_get_country($id){
+	 	$query = "	SELECT name 
+	 				FROM country
+	 				WHERE id=$id";
+		
+		$result = $this->db->query($query);
+		return $result->result();
+	 }
+	 public function p_get_province($id){
+	 	$query = "	SELECT name 
+	 				FROM province
+	 				WHERE id=$id";
+		$result = $this->db->query($query);
+		return $result->result();
+	 }
+	 public function p_get_district($id){
+	 	$query = "	SELECT name 
+	 				FROM district
+	 				WHERE id=$id";
+		$result = $this->db->query($query);
+		return $result->result();
 	 }
 
 }

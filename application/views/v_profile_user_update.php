@@ -230,9 +230,9 @@
 			  		<br />
 			  		<?php } ?>
 			  		<div class="form-group">
-			    		<div class="col-sm-offset-7 col-sm-5">
+			    		<div class="col-sm-offset-7 col-sm-3">
 			      			<?php
-			      				$updatebtnattributes = array('class' => 'btn btn-primary','name'=>'update_profile_submit','value'=>'Update');
+			      				$updatebtnattributes = array('class' => 'btn btn-primary pull-right','name'=>'update_profile_submit','value'=>'Update');
 								echo form_submit($updatebtnattributes);
 			      			?>
 			    		</div>
@@ -300,9 +300,9 @@
 			  		</div>
 			  		<br />
 			  		<div class="form-group">
-			    		<div class="col-sm-offset-7 col-sm-5">
+			    		<div class="col-sm-offset-7 col-sm-3">
 			      			<?php
-			      				$updatebtnattributes = array('class' => 'btn btn-primary','name'=>'update_profile_submit','value'=>'Update');
+			      				$updatebtnattributes = array('class' => 'btn btn-primary pull-right','name'=>'update_profile_submit','value'=>'Update');
 								echo form_submit($updatebtnattributes);
 			      			?>
 			    		</div>
@@ -347,6 +347,7 @@
 			<small>Contact Details</small>
  				</div>
 			  	<div class="panel-body">
+			  		<div class="col-md-12">
 			  		<?php
 			  			if(isset($status_update_address) && $status_update_address=='TURE'){
 			  				echo '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> Your Address has been successfully changed and it has been send to administration for approval process</div>'; 
@@ -467,16 +468,29 @@
 			    		</div>
 			  		</div>
 			  		<br />
-					<div class="form-group">
-			    		<div class="col-sm-offset-7 col-sm-6">
+			  		<div class="form-group">
+			    		<label class="col-sm-3 control-label">Contact number</label>
+			    		<div class="col-sm-7">
 			      			<?php
-			      				$updatebtnattributes = array('class' => 'btn btn-primary','name'=>'update_profile_submit','value'=>'Update');
+			      				$contactnumberattributes = array('class' => 'form-control','value'=> $p_cn,'name'=>'contactnumber');
+			      				echo form_input($contactnumberattributes);
+								if(form_error('contactnumber')!=null)
+									echo '<div class="alert alert-danger">'.form_error('contactnumber').'</div>';
+			      			?>
+			    		</div>
+			  		</div>
+			  		<br />
+					<div class="form-group">
+			    		<div class="col-sm-offset-7 col-sm-3">
+			      			<?php
+			      				$updatebtnattributes = array('class' => 'btn btn-primary pull-right','name'=>'update_profile_submit','value'=>'Update');
 								echo form_submit($updatebtnattributes);
 			      			?>
 			    		</div>
 			  		</div>
 			  		
 					<?php echo form_close();?>
+					</div>
 			  		</div>
 			  	</div>
 			  	
@@ -550,9 +564,9 @@
 			  		</div>
 			  		<br />
 					<div class="form-group">
-			    		<div class="col-sm-offset-7 col-sm-6">
+			    		<div class="col-sm-offset-7 col-sm-3">
 			      			<?php
-			      				$updatebtnattributes = array('class' => 'btn btn-primary','name'=>'update_profile_submit','value'=>'Update');
+			      				$updatebtnattributes = array('class' => 'btn btn-primary pull-right','name'=>'update_profile_submit','value'=>'Update');
 								echo form_submit($updatebtnattributes);
 			      			?>
 			    		</div>

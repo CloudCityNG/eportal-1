@@ -60,13 +60,25 @@
 							}
 						?>
 					</p>
-					<br /><?php if(isset($p_add_ln_1)) {?>
-						<address class="col-md-offset-1 pull-left breadcrumb">
-						  <strong><?php echo $p_add_ln_1; }?></strong><br>
-						  <?php if(isset($p_add_ln_2)){ echo $p_add_ln_2;}?><br>
-						  <?php if(isset($p_add_ln_3)){ echo $p_add_ln_3;}?><br>
+					<br />
+					<div class="pull-left col-md-offset-1 col-md-6  ">
+						<div class="col-md-12 img-thumbnail">
+						<p class=" pull-left"><strong>Address : </strong></p>
+						<address class="pull-left" >
+						    <?php if(isset($p_add_ln_1)){echo $p_add_ln_1; }?><br>
+						  	<?php if(isset($p_add_ln_2)){ echo $p_add_ln_2;}?><br>
+						  	<?php if(isset($p_add_ln_3)){ echo $p_add_ln_3;}?><br>
+						  	<?php if(isset($p_dis)){ echo $p_dis;}?><br>
+							<?php if(isset($p_pro)){ echo $p_pro;}?><br>
+							<?php if(isset($p_cou)){ echo $p_cou;}?>
 						</address>
-					
+						</div>
+					</div>
+					<div class="pull-right  col-md-5  img-thumbnail">
+						<p class=" pull-left"><strong>Contact number : &nbsp;</strong></p>
+						<?php echo $p_cn;?>
+						
+					</div>
 			   	</div>
 			   	
 			  </div><!--

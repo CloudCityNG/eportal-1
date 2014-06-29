@@ -8,6 +8,19 @@ class Profile extends CI_Controller {
 		$this->load->view('v_profile_user',$data);
 		$this->footer();
 	}
+	private function p_get_country($id){
+		$this->load->model("users");
+		return $this->users->p_get_country($id);
+	}
+	private function p_get_province($id){
+		$this->load->model("users");
+		return $this->users->p_get_province($id);
+	}
+	
+	private function p_get_district($id){
+		$this->load->model("users");
+		return $this->users->p_get_district($id);
+	}
 	
 	private function profile_details($username){
 		$this->load->model("users");
@@ -26,9 +39,23 @@ class Profile extends CI_Controller {
 			$data['p_add_ln_1'] = $info->add_ln_1;
 			$data['p_add_ln_2'] = $info->add_ln_2;
 			$data['p_add_ln_3'] = $info->add_ln_3;
+			$data['p_cn']=$info->contact_number;
+			$p_cou=$this->p_get_country($info->countryid);
+			$p_pro=$this->p_get_province($info->provinceid);
+			$p_dis=$this->p_get_district($info->districtid);
 			$data['cou']=$info->countryid;
 			$data['pro']=$info->provinceid;
 			$data['dis']=$info->districtid;
+		}
+		
+		foreach ($p_cou as $bb){
+				$data['p_cou']=$bb->name;
+		}
+		foreach ($p_pro as $bb){
+				$data['p_pro']=$bb->name;
+		}
+		foreach ($p_dis as $bb){
+				$data['p_dis']=$bb->name;
 		}
 		
 		$dataset2 = $this->m_signin->get_user_dataset_type_2($data['p_usertype'],$data['p_username']);
@@ -208,13 +235,40 @@ class Profile extends CI_Controller {
 		$this->form_validation->set_rules('addline1','Address Line 1','required|trim|xss_clean');
 		$this->form_validation->set_rules('addline2','Address Line 2','required|trim|xss_clean');
 		$this->form_validation->set_rules('addline3','Address Line 3','required|trim|xss_clean');
+		$this->form_validation->set_rules('contactnumber','Contact number','required|trim|xss_clean|numeric|min_length[9]|max_length[10]');
 		
 		if($this->form_validation->run()){
 			$this->load->model('users');
-			if($this->users->add_address_admin_confirm($this->input->post('country'),$this->input->post('province'),$this->input->post('district'),$this->input->post('addline1'),$this->input->post('addline2'),$this->input->post('addline3'),$this->session->userdata('usertype'),$this->session->userdata('username'))){
+			if($this->users->add_address_admin_confirm($this->input->post('country'),$this->input->post('province'),$this->input->post('district'),$this->input->post('addline1'),$this->input->post('addline2'),$this->input->post('addline3'),$this->input->post('contactnumber'),$this->session->userdata('usertype'),$this->session->userdata('username'))){
 				$this->header('Profile Update - success');
 				$data = $this->profile_details($this->session->userdata('username'));
 				$data['status_update_address']=TRUE;
+				$this->load->view('v_profile_user_update',$data);
+				$this->footer();
+			}else{
+				$this->header('Profile Update - not added to database');
+				$data = $this->profile_details($this->session->userdata('username'));
+				$this->load->view('v_profile_user_update',$data);
+				$this->footer();
+			}
+		}else{
+			$this->header('Profile Update - validation failed');
+			$data = $this->profile_details($this->session->userdata('username'));
+			$this->load->view('v_profile_user_update',$data);
+			$this->footer();
+		}
+	}
+
+	public function update_contact_number(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('contactnumber','Contact number','required|trim|xss_clean');
+		
+		if($this->form_validation->run()){
+			$this->load->model('users');
+			if($this->users->add_contact_number_admin_confirm($this->input->post('contactnumber'),$this->session->userdata('usertype'),$this->session->userdata('username'))){
+				$this->header('Profile Update - success');
+				$data = $this->profile_details($this->session->userdata('username'));
+				$data['status_update_contact_number']=TRUE;
 				$this->load->view('v_profile_user_update',$data);
 				$this->footer();
 			}else{
