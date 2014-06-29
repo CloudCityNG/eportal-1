@@ -272,12 +272,13 @@ class Rules extends CI_Controller {
 		$this->load->model('m_rules');
 		if($this->m_rules->check_if_new($a)){
 			$table = "new_advertisements";
-			//accept from new table
+					//reject from new table
 		}
 		else{
 			$table = "edit_advertisements";
-			//accept from edit table
+			//reject from edit table
 		}
+		$this->m_rules->deny_ad($a,$table);
 /*		
 		$this->header('Send Denial Email');
 		$this->load->view('v_ad_deny',$a);

@@ -228,7 +228,7 @@ public function getAdvertisement($adid)
 			$this->db->update('advertisement',$data);
 		}
 		else{
-			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
+			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, username, price, approved 
 					From edit_advertisement 
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
@@ -241,6 +241,44 @@ public function getAdvertisement($adid)
 			$this->db->delete('edit_advertisement');
 			
 			$data=array('approved'=>1);
+			$this->db->where('id',$a);
+			$this->db->update('advertisement',$data);
+		}
+	}
+	
+	public function deny_ad($a,$table){
+		if($table == "new_advertisements"){
+			
+			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
+					From new_advertisement 
+					WHERE id=\''.$a.'\'';
+			$result=$this->db->query($sql1);
+			$temp= $result->result();
+			
+	//		$result=$this->db->get_where('new_advertisement', array('id'=>$a));
+		//	$temp = $result->result();
+			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->where('id',$a);
+			$this->db->delete('new_advertisement');
+			
+			$data=array('approved'=>0);
+			$this->db->where('id',$a);
+			$this->db->update('advertisement',$data);
+		}
+		else{
+			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, username, price, approved 
+					From edit_advertisement 
+					WHERE id=\''.$a.'\'';
+			$result=$this->db->query($sql1);
+			$temp= $result->result();
+			
+	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
+	//		$temp = $result->result();
+			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->where('id',$a);
+			$this->db->delete('edit_advertisement');
+			
+			$data=array('approved'=>0);
 			$this->db->where('id',$a);
 			$this->db->update('advertisement',$data);
 		}
