@@ -54,11 +54,6 @@ class site_model extends CI_Model{
 			$q->where('subcategoryid =', $qarray['sub_category']);
 		}
 		
-		if(strlen($qarray['country']))
-		{
-			$q->where('countryid =', $qarray['country']);
-		}
-		
 		if(strlen($qarray['province']))
 		{
 			$q->where('provinceid =', $qarray['province']);
@@ -123,11 +118,6 @@ class site_model extends CI_Model{
 			$q->where('subcategoryid =', $qarray['sub_category']);
 		}
 		
-		if(strlen($qarray['country']))
-		{
-			$q->where('countryid =', $qarray['country']);
-		}
-		
 		if(strlen($qarray['province']))
 		{
 			$q->where('provinceid =', $qarray['province']);
@@ -190,11 +180,11 @@ class site_model extends CI_Model{
 		return $categroy_opt;
 	}
 	
-	public function sub_category_opt($id)
+	public function sub_category_opt()
 	{
 		$subcat_row= $this->db->select('id,name')
 		->from('subcategory')
-		->where('id',$id)
+		->where('categoryid',$this->input->get('category'))
 		->get()->result();
 		
 		$sub_categroy_opt = array('' => '');
@@ -204,6 +194,45 @@ class site_model extends CI_Model{
 			
 		} 
 		return $sub_categroy_opt;
+	}
+
+	public function province_opt()
+	{
+		$this->load->model('advertisements');
+		$counid = $this->advertisements->getCountryConfigCountryid(base_url());
+		$pro_row= $this->db->select('id,name')
+		->from('province')
+		->where('countryid',$counid)
+		->get()->result();
+		
+		$province_opt = array('' => '');
+		
+		foreach ($pro_row as $row) {
+			$province_opt[$row->id] = $row->name;
+			
+			
+		}
+		return $province_opt;
+	}
+	
+	public function distirct_opt()
+	{
+		$this->load->model('advertisements');
+		$counid = $this->advertisements->getCountryConfigCountryid(base_url());
+		$dis_row= $this->db->select('id,name')
+		->from('district')
+		->where('countryid',$counid)
+		->where('provinceid',$this->input->get('province'))
+		->get()->result();
+		
+		$distirct_opt = array('' => '');
+		
+		foreach ($dis_row as $row) {
+			$distirct_opt[$row->id] = $row->name;
+			
+			
+		}
+		return $distirct_opt;
 	}
 	
 	public function keyword_search($string)

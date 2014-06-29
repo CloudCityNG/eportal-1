@@ -13,7 +13,6 @@
 		'title' => $this->input->get('title'),
 		'category' => $this->input->get('category'),
 		'sub_category' => $this->input->get('sub_category'),
-		'country' => $this->input->get('country'),
 		'province' => $this->input->get('province'),
 		'district' => $this->input->get('district'),
 		'sort_by' => $this->input->get('sort_by'),
@@ -47,15 +46,17 @@
 			$this->pagination->initialize($config);
 			
 			$data['category_opt'] = $this->site_model->category_opt();
-			$data['sub_category_opt'] = array('0' =>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-			$answer = $this->advertisements->getCountry();
+			$data['sub_category_opt'] = $this->site_model->sub_category_opt();
+			//$answer = $this->advertisements->getCountry();
+			//$send['0']='          ';
+			//foreach ($answer as $key) {$send[$key->id]=$key->name;}
+			//$data['country_opt']=$send;
 			
-			$send['0']='          ';
-			foreach ($answer as $key) {$send[$key->id]=$key->name;}
-			$data['country_opt']=$send;
+			$data['province_opt'] = $this->site_model->province_opt();
+			$data['district_opt'] = $this->site_model->distirct_opt();
 			
-			$data['province_opt'] = array('0' => '         ');
-			$data['district_opt'] = array('0' => '         ');
+			//$data['province_opt'] = array('0' => '');
+			//$data['district_opt'] = array('0' => '');
 			
 			$data['sort_by_opt'] = array (
 			'' => '',
@@ -76,9 +77,8 @@
 		'title' => $this->input->post('title'),	
 		'category' => $this->input->post('category'),
 		'sub_category' => $this->input->post('sub_category'),
-		'country' => $this->input->get('country'),
-		'province' => $this->input->get('province'),
-		'district' => $this->input->get('district'),
+		'province' => $this->input->post('province'),
+		'district' => $this->input->post('district'),
 		'sort_by' => $this->input->post('sort_by'),
 		'low_price' => $this->input->post('low_price'),
 		'high_price' => $this->input->post('high_price')
@@ -86,9 +86,6 @@
 		
 		if($qarray['sub_category']==0)
 		{$qarray['sub_category']="";}
-		
-		if($qarray['country']==0)
-		{$qarray['country']="";}
 		
 		if($qarray['province']==0)
 		{$qarray['province']="";}
@@ -181,7 +178,7 @@
 			redirect("home");}
 		}
 		
-			function header($tile){
+		function header($tile){
 		$data['title']=$tile;
 		if($this->session->userdata('username')){
 			if($this->session->userdata('usertype')=='a'){
@@ -198,6 +195,29 @@
 	function footer(){
 		$this->load->view('footer');
 	}
+	
+	public function getDistricts()
+		{
+			$this->load->model('advertisements');
+			$counid = $this->advertisements->getCountryConfigCountryid(base_url());
+			$answer=$this->advertisements->getDistricts($counid, $this->input->post('proid'));
+						
+			$output=null;
+			if(count($answer)<1){
+				$output .= "<option value='"."0"."'>"."-No District-"."</option>";
+			}
+			else
+			{
+				$output .= "<option value='"."0"."' selected>"."-Select-"."</option>";
+			}
+			foreach ($answer as $key ) {
+				 $output .= "<option value='".$key->id."'>".$key->name."</option>";
+
+			}
+
+			echo $output;
+		}
+	
     }
 
 ?>

@@ -101,14 +101,14 @@ $(document).ready(function(){
                 
   $("#category").click(function(){ 
                 	$("#category").change();
-				});
-				
+				});			
+	
+	/*			
   $("#country").change(function(){
                    
-                     /*dropdown post */
-                  
+                   
                    $.ajax({
-                    url:"<?php echo base_url(); ?>advertisement/getProvinces",    
+                    url:"<!--?php echo base_url(); ?>advertisement/getProvinces",    
                     data: {couid: $(this).val()},
                     type: "POST",
                     success: function(data){
@@ -127,14 +127,14 @@ $(document).ready(function(){
   $("#country").click(function(){ 
                 	$("#country").change();
 				});
-				
+		*/		
 $("#province").change(function(){
                    
                      /*dropdown post */
                   
                    $.ajax({
-                    url:"<?php echo base_url(); ?>advertisement/getDistricts",    
-                    data: {couid:$("#country").val(),proid: $(this).val()},
+                    url:"<?php echo base_url(); ?>site/getDistricts",    
+                    data: {proid: $(this).val()},
                     type: "POST",
                     success: function(data){
                         $("#district").html(data);
@@ -195,8 +195,7 @@ $("#province").change(function(){
 	<?php echo form_label('Sub-category:','sub_category')?>
 		<?php echo form_dropdown('sub_category', $sub_category_opt, set_value('sub_category') ,'id="sub_category"; style="width:100%" class="form-control"')?></div>
 	
-	<div><?php echo form_label('Country:','country')?>
-		<?php echo form_dropdown('country', $country_opt, set_value('country') ,'id="country"; style="width:100%" class="form-control"')?>
+	<div>
 	<?php echo form_label('Province:','province')?>
 		<?php echo form_dropdown('province', $province_opt, set_value('province') ,'id="province"; style="width:100%" class="form-control"')?>
 	<?php echo form_label('District:','district')?>
