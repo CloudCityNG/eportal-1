@@ -5,27 +5,62 @@ class Report extends CI_Controller {
 	public function index()
 	{
 		$this->header('Generate Report');
-			$this->load->view("v_report");
+			$this->load->view("v_administration_report_main");
 		$this->footer();
 	}
 	
-	public function daily_reports(){
-		$this->header('Daily Report');
-			$this->load->view("v_report_daily");
+	public function ad_reports(){
+		$this->header('Advertisement Reports');
+			$this->load->view("v_administration_report_ad");
 		$this->footer();
 	}
 	
-	public function monthly_reports(){
-		$this->header('Monthly Report');
-			$this->load->view("v_report_monthly");
+	public function user_reports(){
+		$this->header('User Reports');
+			$this->load->view("v_administration_report_user");
 		$this->footer();
 	}
 	
-	public function annually_reports(){
-		$this->header('Annual Report');
-			$this->load->view("v_report_annually");
+	public function other_reports(){
+		$this->header('Other Report');
+			$this->load->view("v_administration_report_other");
 		$this->footer();
 	}
+	
+	public function generate_all_ad(){
+		$this->load->model('m_report');
+		$data['ads']=$this->m_report->get_current_month_all_ad();
+		$this->header('All Advertisements');
+		$this->load->view("v_administration_report_all_ad",$data);
+		$this->footer();
+		
+/*		$this->load->library('table');
+		$this->table->set_heading('Title', 'Description', 'Category', 'Sub Category', 'District', 'Provice', 'Featured', 'Create Date', 'Expiry Date', 'Username', 'Price');
+		$query = $this->db->query("SELECT a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
+		FROM advertisement a, category c
+		WHERE (expired=1 AND approved=1 AND a.categoryid=c.id) OR (expired=1 AND approved=1 AND a.categoryid=0)");
+		echo $this->table->generate($query);
+ * 
+ */
+	}
+	
+	public function generate_reported_ad(){
+		$this->load->model('m_report');
+		$data['ads']=$this->m_report->get_current_reported_ad();
+		$this->header('Reported Advertisements');
+		$this->load->view("v_administration_report_all_ad",$data);
+		$this->footer();
+	}
+	
+	public function generate_all_user(){
+		$this->load->model('m_report');
+		$data['users']=$this->m_report->get_current_al_users();
+		$this->header('All Users');
+		$this->load->view("v_administration_report_all_users",$data);
+		$this->footer();
+	}
+	
+	
 	
 	public function get_ad_list()
 	{
@@ -58,6 +93,17 @@ class Report extends CI_Controller {
 		else{
 			$this->load->view('header_not_loggedin',$data);
 		}
+	}
+
+	public function generate_ad_report(){
+		if($this->input->post('Advertisement_submit'))
+			{
+				if($this->input->post('category') == $list[1]){
+					$this->load->library('table');
+					$query = $this->db->query("SELECT * FROM my_table");
+					echo $this->table->generate($query);
+				}
+			}
 	}
 	
 	function footer(){

@@ -17,20 +17,20 @@
 <div class="col-md-10 col-md-offset-2">
 	<div class="row">
 		<div class="col-md-4">
-		<a href="<?php echo base_url().'report/daily_reports'?>">		
-				<h4 class="text-center">Daily Reports</h4>		
+		<a href="<?php echo base_url().'report/ad_reports'?>">		
+				<h4 class="text-center">Advertisement Reports</h4>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
-		<a href="<?php echo base_url().'report/monthly_reports'?>">		
-				<h4 class="text-center">Monthly Reports</h4>		
+		<a href="<?php echo base_url().'report/user_reports'?>">		
+				<h4 class="text-center">User Reports</h4>		
 		</a>
 		</div>
 		
 		<div class="col-md-4">
-		<a href="<?php echo base_url().'report/annually_reports'?>">		
-				<h4 class="text-center">Annual Reports</h4>		
+		<a href="<?php echo base_url().'report/other_reports'?>">		
+				<h4 class="text-center">Other Reports</h4>		
 		</a>
 		</div>
 		
