@@ -6,15 +6,17 @@
 	</div>
 	<div class="col-md-4">
 		<div class="md-md-12 text-white breadcrumb"style="background-color: #660066">
-			<div class="h4 pull-left">
-				Ad Notifier
+			<div class="h4 text-center">
+				Ad-Email Notifier
 			</div>
-			<hr />
+			<br />
+			<hr style="margin-top: -10px" />
 			<div class="h5 text-left">
+				Want a E-mail notifications?<br /><br />
 				Subscribe to get email notifications when a new item is added to your favorite categories
 			</div>
 			
-			<a class="btn btn-block btn-default">Subscribe</a>
+			<a <?php if($this->session->userdata('username')){?>href="<?php echo base_url().'subscribe'?>" <?php }else{ ?> data-toggle="modal" href="#myModal" <?php } ?>class="btn btn-block btn-default">Subscribe</a>
 		</div>
 	</div>
 </div>
@@ -67,12 +69,29 @@
 	<?php $count++;}?>
 </div>	
 
-<div class="col-lg-4">
-	<br />
-		<br />
-			<br />
-				<br />
-					<br />
-						<br />
-						
+<div class="col-lg-4">				
 </div>
+<?php if(!$this->session->userdata('username')){?>
+<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #660066">
+					<a herf="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
+					<h4 class="text-white text-center">Please login to subscribe to this service</h4>
+				</div>
+				<div class="modal-body" style="min-height: 80px;">
+					<div class="col-md-6">
+						<div class="col-md-12">
+							<a class="btn btn-block btn-default">Login</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="col-md-12">
+							<a class="btn btn-block btn-default">Signup</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php } ?>
