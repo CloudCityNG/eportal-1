@@ -24,7 +24,7 @@ class site_model extends CI_Model{
 		$q = $this->db->select('advertisement.id, title, body, price, DATE_FORMAT(createdate,\'%d-%m-%Y\') as cDATE, categoryid, subcategoryid, countryid, provinceid, districtid, ', FALSE)
 		-> from ('advertisement')
 		//->join('images', 'images.adid = advertisement.id','left')
-		->where('expired',0)
+		->where('expired',0)->where('approved',1)
 		->limit($limit, $offest)
 		->order_by($sort_by, $sort_ord);
 		
