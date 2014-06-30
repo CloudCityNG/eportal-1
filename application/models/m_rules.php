@@ -215,15 +215,11 @@ public function getAdvertisement($adid)
 					From new_advertisement 
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
-			$temp;
-			foreach($result->result() as $key)
-			{
-				$temp=$key;
-			}
+			$temp= $result->result();
 			
 	//		$result=$this->db->get_where('new_advertisement', array('id'=>$a));
 		//	$temp = $result->result();
-			$this->db->insert('advertisement',$temp);	
+			$this->db->insert('advertisement',$temp[0]);	
 			$this->db->where('id',$a);
 			$this->db->delete('new_advertisement');
 			
@@ -236,14 +232,11 @@ public function getAdvertisement($adid)
 					From edit_advertisement 
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
-			foreach($result->result() as $key)
-			{
-				$temp=$key;
-			}
+			$temp= $result->result();
 			
 	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
 	//		$temp = $result->result();
-			$this->db->insert('advertisement',$temp);	
+			$this->db->insert('advertisement',$temp[0]);	
 			$this->db->where('id',$a);
 			$this->db->delete('edit_advertisement');
 			
