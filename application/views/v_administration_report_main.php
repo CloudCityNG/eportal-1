@@ -27,12 +27,12 @@
 				<h4 class="text-center">User Reports</h4>		
 		</a>
 		</div>
-		
+<!--		
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/other_reports'?>">		
 				<h4 class="text-center">Other Reports</h4>		
 		</a>
 		</div>
-		
+	-->	
 	</div>	
 </div>

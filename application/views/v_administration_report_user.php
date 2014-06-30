@@ -53,18 +53,18 @@
 				<h5 class="text-center">Normal Users</h5>		
 		</a>
 		</div>
-		
+		<!--
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_reported_user'?>">		
 				<h5 class="text-center">Reported Users</h5>		
 		</a>
 		</div>	
 		
-			
+		-->	
 	</div>	
 </div>
 </br>
-	<label style="margin-top: 30px; for="heading" class="col-md-offset-3 control-label">Choose a Report Type and time period : &nbsp;&nbsp;</label>
+<!--	<label style="margin-top: 30px; for="heading" class="col-md-offset-3 control-label">Choose a Report Type and time period : &nbsp;&nbsp;</label>
 	
     <div class="col-md-5 col-md-offset-3" style="margin-top: 30px;">
 		<?php 
@@ -87,5 +87,6 @@
 					echo form_close();
       			?>
 		</div>
+	-->
 	
 </div>
