@@ -20,8 +20,8 @@
  		<table class="table table-hover">
       <thead>
         <tr>
-          <th>Username</th>
-          <th>Name</th>
+          <th>Title</th>
+          <th>Body</th>
           <th>User Type</th>
           <th>Description</th>
           <th>Registered On</th>
@@ -34,8 +34,8 @@
       <tbody>
       	<?php foreach($ads as $details){?>
         <tr>
-        <td style="max-width: 210px;"><?php echo $details->username;?></td>
-        
+        <td style="max-width: 210px;"><?php echo $details->title;?></td>
+        <td style="max-width: 210px;"><?php echo $details->body;?></td>
         <td style="max-width: 210px;">
           	<?php 
           		if($details->usertype==a ){
