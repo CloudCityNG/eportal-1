@@ -20,30 +20,6 @@
  	<script src="<?php echo base_url().'js/jquery.rating.js'?>" type="text/javascript" language="javascript"></script>
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
  	
- 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-	    $(function() {
-	        $( "#autocomplete" ).autocomplete({
-	            source: function(request, response) {
-	                $.ajax({ url: "<?php echo site_url('site/suggestions'); ?>",
-	                data: { term: $("#autocomplete").val()},
-	                dataType: "json",
-	                type: "POST",
-	                success: function(data){
-	                    response(data);
-	                }
-	            });
-	        },
-	        minLength: 1
-	        });
-	    });
-	});
-	</script>
- 	
- 	
 	<script type="text/javascript">
 	    $(function () {
 	        $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});

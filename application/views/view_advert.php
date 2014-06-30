@@ -98,7 +98,7 @@ a:link
 
 	<!--<script type="text/javascript" src="<?php echo base_url().'Jssor.Slider.FullPack';?>/js/jquery-1.9.1.min.js"></script>-->
 
-    <script type="text/javascript" src="<?php echo base_url().'Jssor.Slider.FullPack';?>/js/jssor.slider.mini.js"></script>
+<script type="text/javascript" src="<?php echo base_url().'Jssor.Slider.FullPack';?>/js/jssor.slider.mini.js"></script>
     <script>
 
         $(document).ready(function ($) {
@@ -234,6 +234,7 @@ a:link
             
         });
     </script>
+    
     <script>
 	function DelCom(id) {
     var url="<?php echo base_url();?>";
@@ -480,16 +481,6 @@ a:link
 	    	
 	    		</div>
     		</div>
-    		<div class="col-md-7 pull-left">	
-	    		<div class="panel panel-default">
-	    			<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
-				<small>Recomendations</small>
-	    		</div>
-	    		<div class="panel-body">
-	    		</div>
-	    		</div>
-    		</div>
-    			
     </div>
 <div class="col-md-7 img-thumbnail breadcrumb-white pull-left">
 					<div>

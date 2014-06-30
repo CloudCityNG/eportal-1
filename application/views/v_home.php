@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-md-8">
-		<div class="col-md-12 breadcrumb-white img-thumbnail">
-			/*slide show*/
+		<div class="col-md-12">
+			<img width="720px" src="<?php echo base_url().'images/3702_GBH_ROW_SellerBanners_Week_26_MFBB_868x250_Tech_EN_C02_6_5_2014_7_16_56_552.jpg'?>" />
 		</div>
 	</div>
 	<div class="col-md-4">
