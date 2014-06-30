@@ -304,10 +304,18 @@
 			 <br />
 			 <br />
 			<div class="text-justify h4" style="font-family:Corbel">
-			• Sprint planning: User stories chosen for sprint backlog. Describe reasons for the choice and any modifications to the user stories. Describe initial high level task breakdown and effort estimation. 
-• Scrum meetings: Provide short reports on these meetings which are intended to report/review ongoing progress of the team during a sprint. 
-• Details of the design. Include relevant details of the design (may use UML, ER diagram for the database, etc.). Provide reasons for decisions made. Report any changes to the user stories that occurred during the design process (in consultation with the Product Owner). 
-• Implementation details. Document the implementation including (planned and actually completed) tasks, effort, features and task distribution. Provide screen shots of the various functions as appropriate. Describe any changes made to the initial design. Describe the testing that was carried out. 
+			eportal is an American multinational Internet 
+			consumer-to-consumer corporation, headquartered in San Jose, California. 
+			It was founded by Pierre Omidyar in 1995, and it became a notable success 
+			story of the dot-com bubble; it is now a multi-billion dollar business with 
+			operations localized in over thirty countries. The company manages eBay.com,
+			 an online auction and shopping website in which people and businesses buy and 
+			 sell a broad variety of goods and services worldwide. In addition to its 
+			 auction-style sellings, the website has since expanded to include "Buy It Now" 
+			 standard shopping; shopping by UPC, ISBN, or other kind of SKU 
+			 online classified advertisements  online event 
+			 ticket trading online money transfers and other 
+			 services. 
 			<br />
 			<br />
 				<a class="btn btn-link-white" href="#">Using cookies</a>

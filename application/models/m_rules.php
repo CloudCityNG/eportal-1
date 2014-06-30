@@ -207,6 +207,28 @@ public function getAdvertisement($adid)
 		$this->db->where('id',$adid);
 		$this->db->update('edit_advertisement',$data);
 	}
+	/*************************************************************/
+	public function get_cid_sid_subscription($a){
+		$sql='SELECT categoryid, subcategoryid
+				From new_advertisement 
+				WHERE id=\''.$a.'\'';
+			$result=$this->db->query($sql);
+			return $result->result();
+		
+	}
+	
+	public function get_email_subscription($cid,$sid){
+		$sql='select u.email
+				from users u
+				where u.username in (SELECT s.username
+									From subscribes s
+									WHERE s.catid='.$cid.' and s.subcatid='.$sid.')';
+		$result=$this->db->query($sql);
+		return $result->result();
+	}
+	
+	
+	/*************************************************************/
 	
 	public function accept_ad($a,$table){
 		if($table == "new_advertisements"){
@@ -216,6 +238,9 @@ public function getAdvertisement($adid)
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
 			$temp= $result->result();
+			/*************************************************************
+			$this->subscription_send_mail($a);
+			/*************************************************************/
 			
 	//		$result=$this->db->get_where('new_advertisement', array('id'=>$a));
 		//	$temp = $result->result();

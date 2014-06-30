@@ -252,6 +252,42 @@ class Rules extends CI_Controller {
 		$this->footer();		
 	}
 	
+	private function send_subscription_mail($a){
+		$this->load->model('m_rules');
+		$result = $this->m_rules->get_cid_sid_subscription($a);
+		foreach($result as $record){
+			$cid=$record->categoryid;
+			$sid=$record->subcategoryid;
+		}
+		
+		$result = $this->m_rules->get_email_subscription($cid,$sid);
+		$config = Array(
+				'protocol' => 'smtp',
+			  	'smtp_host' => 'ssl://smtp.googlemail.com',
+			  	'smtp_port' => 465,
+			  	'smtp_user' => 'jojocitytwo@gmail.com',
+			  	'smtp_pass' => 'jojocity',
+			  	'mailtype' => 'html',
+			  	'charset' => 'iso-8859-1',
+			  	'wordwrap' => TRUE
+			);
+			
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+			$this->email->from('jojocitytwo@gmail.com'); 
+			$this->email->subject('E - Marketing portal');
+			$message="<b>E - Marketing Protal</b><br />";
+			$message.="A new Advertisement has been posted for your subscription.<br /><br />";
+			$message.="<a href='".base_url()."advertisement/viewAd/$a'>click here</a> to view the ad.";
+			$this->email->message($message);
+		
+		foreach($result as $record){
+			$this->email->to($record->email);
+			$this->email->send();
+		}
+	}
+	
+	
 	public function accept_ad($a){
 		$this->load->model('m_rules');
 		if($this->m_rules->check_if_new($a)){
@@ -262,6 +298,7 @@ class Rules extends CI_Controller {
 			$table = "edit_advertisements";
 			//accept from edit table
 		}
+		$this->send_subscription_mail($a);
         $this->m_rules->accept_ad($a,$table);
 		//$status_accept  = TRUE;
 		$this->new_ads();
