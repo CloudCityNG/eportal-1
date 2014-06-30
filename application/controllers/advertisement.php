@@ -151,7 +151,7 @@ class Advertisement extends CI_Controller {
 						echo("reject");
 					}
 					else {
-						$this->accept_new_ad($ad_id);
+						$this->m_rules->accept_new_ad($ad_id);
 						//$this->testmail();
 						echo("accepted");
 						//send approve notification
@@ -862,7 +862,7 @@ class Advertisement extends CI_Controller {
 						echo("reject");
 					}
 					else {
-						$this->accept_edit_ad($ad_id);
+						$this->m_rules->accept_edit_ad($ad_id);
 						//$this->testmail();
 						echo("accepted");
 						//send approve notification
