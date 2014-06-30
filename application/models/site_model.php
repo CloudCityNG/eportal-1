@@ -24,7 +24,7 @@ class site_model extends CI_Model{
 		$q = $this->db->select('advertisement.id, title, body, price, DATE_FORMAT(createdate,\'%d-%m-%Y\') as cDATE, categoryid, subcategoryid, countryid, provinceid, districtid, ', FALSE)
 		-> from ('advertisement')
 		//->join('images', 'images.adid = advertisement.id','left')
-		->where('expired',0)->where('approved',1)
+		->where('expired',0)
 		->limit($limit, $offest)
 		->order_by($sort_by, $sort_ord);
 		
@@ -388,6 +388,36 @@ class site_model extends CI_Model{
 		}
 		
 		return $name;
+	}
+	
+	function suggestion($title)
+	{
+		$q = $this->db->select('title, categoryid', FALSE)
+		-> from ('advertisement')
+		->like('title', $title)
+		->limit(5)
+		->get();
+		
+		if($q->num_rows()>0)
+		{
+			$output = '<ul>';
+			foreach($q->result() as $row)
+			{
+				$output .= '<li>'.$row->title.'</li>'; 
+			}
+			$output .= '</ul>';
+			return $output;
+		}
+		//else {return '';}
+	}
+	
+	function get_autocomplete($term)
+	{
+		$this->db->select('id, title');
+		$this->db->like('title', $term);
+		$q = $this->db->get('advertisement');
+		return  $q->result();
+		
 	}
 }
 ?>

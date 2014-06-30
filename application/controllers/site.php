@@ -217,6 +217,31 @@
 
 			echo $output;
 		}
+		
+	function ajaxsearch()
+		{
+			$title = $this->input->post('qtitle');
+			$this->load->model('site_model');
+			echo $this->site_model->suggestion($title);
+		}
+
+	function suggestions()
+	    {
+	        // Search term from jQuery
+	    $this->load->model('site_model');
+	    $term = $this->input->post('term',TRUE);
+	 
+	    if (strlen($term) < 2) break;
+	 
+	    $rows = $this->site_model->get_autocomplete($term);
+	 
+	    $json_array = array();
+	    foreach ($rows as $row)
+	         array_push($json_array, $row->title);
+	 
+	    echo json_encode($json_array);
+			
+	    }
 	
     }
 
