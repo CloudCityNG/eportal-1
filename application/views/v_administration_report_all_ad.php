@@ -20,13 +20,18 @@
  		<table class="table table-hover">
       <thead>
         <tr>
-          <th>Username</th>
-          <th>Name</th>
-          <th>User Type</th>
-          <th>Description</th>
-          <th>Registered On</th>
-          <th>Provice</th>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Category</th>
+          <th>Subcategory</th>
           <th>District</th>
+          <th>Provice</th>
+          <th>Featured</th>
+          <th>Created On</th>
+          <th>Expires On</th>
+          
+          <th>User</th>
+          <th>Price</th>
           
         </tr>
       </thead>
@@ -34,42 +39,24 @@
       <tbody>
       	<?php foreach($ads as $details){?>
         <tr>
-        <td style="max-width: 210px;"><?php echo $details->username;?></td>
-        
+        <td style="max-width: 210px;"><?php echo $details->title;?></td>
+        <td style="max-width: 210px;"><?php echo $details->body;?></td>
+        <td style="max-width: 210px;"><?php echo $details->name;?></td>
         <td style="max-width: 210px;">
-          	<?php 
-          		if($details->usertype==a ){
-          				$this->db->where('username',$details->username);
-						$result=$this->db->get('admin_users')->result();
-						foreach($result as $key)
-						{
-						//	echo $key->name + ;
-						}	
-					}else if($details->usertype==n){
-						$this->db->where('id',$details->districtid);
-						$result=$this->db->get('district')->result();
+        	<?php 
+          		if($details->subcategoryid==0){
+          				echo("No Subcategory");
+					}else{
+						$this->db->where('id',$details->subcategoryid);
+						$result=$this->db->get('subcategory')->result();
 						foreach($result as $key)
 						{
 							echo $key->name;
 						}	
 					}          	
           	?>
-          </td>
-        
-        <td style="max-width: 210px;">
-        	<?php 
-          		if($details->usertype==a){
-          				echo("Administrator");
-					}else if($details->usertype==n){
-						echo("Normal");
-					}  
-					else if($details->usertype==b){
-						echo("Business");
-					}         
-					else 	
-						echo("No Type");
-          	?>
-        </td>
+          	</td>
+          	
           <td style="max-width: 210px;">
           	<?php 
           		if($details->districtid==0){
