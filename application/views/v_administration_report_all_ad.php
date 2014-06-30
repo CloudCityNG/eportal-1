@@ -25,14 +25,8 @@
 
           <th>Category</th>
           <th>Subcategory</th>
-
-          <th>User Type</th>
-          <th>Description</th>
-          <th>Registered On</th>
-          <th>Provice</th>
-
           <th>District</th>
-          <th>Provice</th>
+          <th>Province</th>
           <th>Featured</th>
           <th>Created On</th>
           <th>Expires On</th>
