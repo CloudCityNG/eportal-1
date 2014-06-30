@@ -305,13 +305,14 @@ class Advertisements extends CI_Model{
 		mkdir('./images/Advertisement/'.$dirname,0777);
 			}*/
 		$config=array(
-		'allowed_types'=>'jpg|jpeg|gif|png',
+		'allowed_types'=>'jpg|jpeg|JPG|JPEG|png|PNG|jpe',
 		'upload_path'=>'./images/Advertisement',//.$dirname,
 		'max_size'=>'5120'
 		);
 		$this->load->library('upload',$config);
 		if($this->upload->do_upload())
 		{
+		
 			$file=$this->upload->data();
 			$data=array('adId'=>$Ad_id,
 			'Image'=>'images/Advertisement/'.$file['file_name'],
@@ -321,7 +322,7 @@ class Advertisements extends CI_Model{
 			return TRUE;
 		}
 		return FALSE;
-		
+	
 		
 	}
 	public function do_edit_upload($dirname,$Ad_id)
@@ -330,7 +331,7 @@ class Advertisements extends CI_Model{
 		mkdir('./images/Advertisement/'.$dirname,0777);
 			}*/
 		$config=array(
-		'allowed_types'=>'jpg|jpeg|gif|png',
+		'allowed_types'=>'jpg|jpeg|JPG|JPEG|png|PNG|jpe',
 		'upload_path'=>'./images/Advertisement',//.$dirname,
 		'max_size'=>'5120'
 		);
