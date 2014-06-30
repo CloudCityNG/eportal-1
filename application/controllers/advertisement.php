@@ -17,7 +17,7 @@ class Advertisement extends CI_Controller {
 		$this->form_validation->set_rules('body','Body','required|trim|xss_clean');//setting rules for body
 		//$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
 		$this->form_validation->set_rules('price','Price','required|trim|xss_clean|numeric');//setting rules for price
-		//$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
+		$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
 		
 	
 		$data['title']='Create Advertisement';
@@ -110,22 +110,7 @@ class Advertisement extends CI_Controller {
 			
 			}*/
 		}
-		$this->load->model('users');
-      			$dataset = $this->users->get_main_details($this->session->userdata('username'));
-		foreach ($dataset as $info){
-			$data['p_email'] = $info->email;
-			$data['p_usertype'] = $info->usertype;
-			$data['p_prfilepicture'] = $info->profilepicture;
-			$data['p_telemarketer'] = $info->telemarketer;
-			$data['p_description'] = $info->description;
-			$data['p_add_ln_1'] = $info->add_ln_1;
-			$data['p_add_ln_2'] = $info->add_ln_2;
-			$data['p_add_ln_3'] = $info->add_ln_3;
-			$data['telephone']=$info->contact_number;
-			$data['cou']=$info->countryid;
-			$data['pro']=$info->provinceid;
-			$data['dis']=$info->districtid;
-		}	
+		
 			if($this->input->post('Finish_submit'))
 			{
 				$data['state']='upload';
@@ -141,9 +126,9 @@ class Advertisement extends CI_Controller {
 				$this->input->post('body'),
 				$this->input->post('category'),
 				$this->input->post('subcategory'),
-				$data['cou'],
-				$data['dis'],
-				$data['pro'],
+				$this->input->post('country'),
+				$this->input->post('district'),
+				$this->input->post('province'),
 				$this->input->post('price'),
 				$this->input->post('address'),
 				$this->input->post('telephone'),
@@ -225,7 +210,22 @@ class Advertisement extends CI_Controller {
 		}
 		$data['subcategory']=$send;//loading subcategories in the dropdown list
 		$send=null;
-			
+		$this->load->model('users');
+      			$dataset = $this->users->get_main_details($this->session->userdata('username'));
+		foreach ($dataset as $info){
+			$data['p_email'] = $info->email;
+			$data['p_usertype'] = $info->usertype;
+			$data['p_prfilepicture'] = $info->profilepicture;
+			$data['p_telemarketer'] = $info->telemarketer;
+			$data['p_description'] = $info->description;
+			$data['p_add_ln_1'] = $info->add_ln_1;
+			$data['p_add_ln_2'] = $info->add_ln_2;
+			$data['p_add_ln_3'] = $info->add_ln_3;
+			$data['telephone']=$info->contact_number;
+			$data['cou']=$info->countryid;
+			$data['pro']=$info->provinceid;
+			$data['dis']=$info->districtid;
+		}		
 		$answer=$this->advertisements->getCountry();
 		$send['0']='--Select--';
 		foreach ($answer as $key ) {
