@@ -22,8 +22,15 @@
         <tr>
           <th>Title</th>
           <th>Body</th>
+<<<<<<< HEAD
+          <th>User Type</th>
+          <th>Description</th>
+          <th>Registered On</th>
+          <th>Provice</th>
+=======
           <th>Category</th>
           <th>Subcategory</th>
+>>>>>>> All ad report
           <th>District</th>
           <th>Provice</th>
           <th>Featured</th>
@@ -41,7 +48,10 @@
         <tr>
         <td style="max-width: 210px;"><?php echo $details->title;?></td>
         <td style="max-width: 210px;"><?php echo $details->body;?></td>
+<<<<<<< HEAD
+=======
         <td style="max-width: 210px;"><?php echo $details->name;?></td>
+>>>>>>> All ad report
         <td style="max-width: 210px;">
         	<?php 
           		if($details->subcategoryid==0){
