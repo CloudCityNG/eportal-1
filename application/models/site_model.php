@@ -10,10 +10,15 @@ class site_model extends CI_Model{
 			$sort_by = 'createdate';
 			$sort_ord = 'desc';
 		}
-		else if($qarray['sort_by'] == 'price')
+		else if($qarray['sort_by'] == 'low_price')
 		{
 			$sort_by = 'price';
 			$sort_ord = 'asc';
+		}
+		else if($qarray['sort_by'] == 'high_price')
+		{
+			$sort_by = 'price';
+			$sort_ord = 'desc';
 		}
 		else
 		{
