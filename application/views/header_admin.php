@@ -19,7 +19,7 @@
 	<script src="<?php echo base_url().'js/jquery.MetaData.js'?>" type="text/javascript" language="javascript"></script>
  	<script src="<?php echo base_url().'js/jquery.rating.js'?>" type="text/javascript" language="javascript"></script>
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
- 	
+
 	<script type="text/javascript">
 	    $(function () {
 	        $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
@@ -74,7 +74,7 @@
 								echo form_open('site/search01',$formattributes);
 									// Open the form and redirects to the "login_validation" function in the main controller
 									echo '<div class="btn-group pull-right">';	
-									$inputkeyword = array('type'=>'text','id'=>'autocomplete','class'=>'form-group form-control','name'=>'title','placeholder'=>'Search here...','style'=>'width:480px;height:34px;padding-right:7px;margin-right:-2px');
+									$inputkeyword = array('class'=>'form-group form-control','name'=>'title','placeholder'=>'Search here...','style'=>'width:480px;height:34px;padding-right:7px;margin-right:-2px');
 									echo form_input($inputkeyword);
 									
 									$registerbtnattributes = array('class' => 'form-group btn btn-primary pull-right','name'=>'search_submit','value'=>'Search');

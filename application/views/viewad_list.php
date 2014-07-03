@@ -85,7 +85,7 @@
 				{
 				echo '<a href="'.base_url().'advertisement/editAd/'.$info['id'].'" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit&nbsp;</a>';
 				}
-			   	echo '<a href="'.base_url().'profile/update'.'" class="btn btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Extend&nbsp;<span class="caret"></span></a>';
+			   	echo '<a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Extend&nbsp;<span class="caret"></span></a>';
 				echo'<ul class="dropdown-menu" role="menu">
 					    	<li><a href="'.base_url().'advertisement/extendAd/'.$info['id'].'/2">2 weeks</a></li>
 					    	<li><a href="'.base_url().'advertisement/extendAd/'.$info['id'].'/3">3 weeks</a></li>
