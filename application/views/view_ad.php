@@ -340,45 +340,22 @@
 	
 	
 	<div id="upload" class="panel-body" <?php if((!isset($state))){echo 'style="display:none ;"';}else if($state=='data'){echo 'style="display:none ;"';}?>> 
-	    	<?php 
-    	$width=150;
-		$height=100;
-    	echo '<div class="col-md-10 col-md-offset-1">';
-    	if(isset($images)&&count($images)){
-    		foreach ($images as $image) {
-    			echo '<div class="row">';
-				
-				echo '<img   src="'.base_url().$image['url'].'" height=\'100\' width=\'150\' class="img-thumbnail" >&nbsp&nbsp';
-				
-				//echo '</div>';
-				//<div class="col-sm-7">
-				//echo '<div class="row">';
-				echo'<input type="submit" name="'.$image['name'].'" value="Delete" class="btn btn-danger btn-delete"> </div>';
-			}
-		}
-		else{
-			echo 'No file found';
-		}
-		echo '</div>';
-    	
-    	?>
+
     	
     	<div class="form-group">
 
-			    		<?php 
+			    		<?php if(isset($images)&&count($images)<5){
     			$Uploadbtnattributes = array('class' => 'btn btn-primary','name'=>'image_submit','value'=>'Upload Picture');
 		echo form_submit($Uploadbtnattributes); 
     		?>
     		<div class="col-sm-5">
 			    			    		<?php
 		$Browsebtnattributes = array('class' => 'form-control','name'=>'userfile');
-		echo form_upload($Browsebtnattributes);
+		echo form_upload($Browsebtnattributes);}
 			?>
-
-	</div>
-	</div>
+			</div>
 	<div class="form-group">
-		<div class="col-sm-offset-6 col-sm-5">
+		<div class="col-sm-offset-9 col-sm-5">
 			      			<?php
       				$backbtnattributes = array('class' => 'btn btn-default','name'=>'back','value'=>'Back','type'=>'submit', 'content'=>'Back');
       				echo form_button($backbtnattributes);
@@ -389,7 +366,37 @@
 					echo form_submit($registerbtnattributes);
       			?>
 		</div>
+	
 	</div>
+		    	<?php 
+    	$width=150;
+		$height=100;
+    	echo '<div class="col-md-10 col-md-offset-1">';
+		
+    	if(isset($images)&&count($images)){
+    		echo count($images).' of 5 images';
+    		foreach ($images as $image) {
+    			
+    			echo '<div class="row">';
+				
+				echo '<img   src="'.base_url().$image['url'].'" height=\'100\' width=\'150\' class="img-thumbnail" >&nbsp&nbsp';
+				
+				//echo '</div>';
+				//<div class="col-sm-7">
+				//echo '<div class="row">';
+				echo'<input type="submit" name="'.$image['name'].'" value="Delete" class="btn btn-danger btn-delete"> </div><br/>';
+			
+			}
+				
+		}
+		else{
+			echo 'No file found';
+		}
+		echo '</div>';
+    	
+    	?>
+	</div>
+
 	
 
 	</div>

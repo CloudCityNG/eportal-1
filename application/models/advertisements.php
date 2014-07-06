@@ -400,10 +400,10 @@ class Advertisements extends CI_Model{
 		$answer=array();
 		if((!isset($uname))||($uname==null))
 		{
-			$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement order by duration desc';
+			$sql1='SELECT id,title,price,createdate,duration,username,featured,expired,approved From advertisement order by duration desc';
 		}
 		else{
-		$sql1='SELECT id,title,price,createdate,duration,username,featured,expired From advertisement where username=\''.$uname.'\' order by duration desc';
+		$sql1='SELECT id,title,price,createdate,duration,username,featured,expired,approved From advertisement where username=\''.$uname.'\' order by duration desc';
 		}
 		$result=$this->db->query($sql1);
 		$answer1= $result->result();
@@ -425,7 +425,7 @@ class Advertisements extends CI_Model{
 			}
 
 			$answer[]=array('title'=>$key->title,'price'=>$key->price,'Image'=>$answer2['Image'],'id'=>$key->id,
-			'createdate'=>$key->createdate,'duration'=>$key->duration,'featured'=>$key->featured,'expired'=>$key->expired);
+			'createdate'=>$key->createdate,'duration'=>$key->duration,'featured'=>$key->featured,'expired'=>$key->expired,'approved'=>$key->approved);
 		}
 		return $answer;
 		
