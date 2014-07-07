@@ -21,11 +21,6 @@ class Advertisement extends CI_Controller {
 		
 	
 		$data['title']='Create Advertisement';
-		if($this->input->post('success'))
-		{
-							
-			redirect(base_url().'advertisement/createAd');
-		}
 		$data['success']=false;
 		$ad_id;
 		if(!$this->input->post('ad_id')){
@@ -133,7 +128,6 @@ class Advertisement extends CI_Controller {
 		}
 			if($this->input->post('Finish_submit'))
 			{
-
 				$data['state']='upload';
 				if(!$this->form_validation->run())
 				{

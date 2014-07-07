@@ -127,14 +127,6 @@
 		<input type="hidden" name="pro" value="<?php echo $pro;?>">
 		<input type="hidden" name="dis" value="<?php echo $dis;?>">
 		<input type="hidden" name="dur" value="<?php echo $dur;?>">
-		<?php if($success){
-		echo '<input type="hidden" name="success" value="1">';
-		}
-		else
-		{
-			echo '<input type="hidden" name="success" value="0">';
-		}
-		?>
 	<div class="form-group">
 	
 		<div class="form-group">
