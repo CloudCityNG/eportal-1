@@ -406,9 +406,16 @@ class Advertisement extends CI_Controller {
 				{	
 					$images[]=array('url'=>$img['Image'],'name'=>$img['id']);
 				}
-				$data['adid']=$adid;
+			$data['adid']=$adid;
 			$data['images']=$images;
 			$answer1=$this->advertisements->getAdvertisement($adid);
+			if($answer1['approved']==0)
+			{
+				if($this->session->userdata('username')!=$answer1['username'])
+				{
+					redirect('/advertisement/adList');
+				}
+			}
 			$data['Title']=$answer1['title'];
 			$data['body']=$answer1['body'];
 			$data['price']=$answer1['price'];

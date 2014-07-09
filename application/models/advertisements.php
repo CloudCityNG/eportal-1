@@ -433,7 +433,7 @@ class Advertisements extends CI_Model{
 	public function getAdvertisement($adid)
 	{
 		$this->db->where('id',$adid);
-		$this->db->where('approved',1);
+		//$this->db->where('approved',1);
 		$result=$this->db->get('advertisement');
 		$answer;
 		if($result->num_rows()>0)
