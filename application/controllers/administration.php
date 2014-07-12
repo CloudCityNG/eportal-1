@@ -96,6 +96,9 @@ class Administration extends CI_Controller {
 					if($info->add_ln_1!=null){$data1['add_ln_1']=$info->add_ln_1;}
 					if($info->add_ln_2!=null){$data1['add_ln_2']=$info->add_ln_2;}
 					if($info->add_ln_3!=null){$data1['add_ln_3']=$info->add_ln_3;}
+					if($info->countryid!=null){$data1['countryid']=$info->countryid;}
+					if($info->provinceid!=null){$data1['provinceid']=$info->provinceid;}
+					if($info->districtid!=null){$data1['districtid']=$info->districtid;}
 					if($info->password!=null){$data2['password']=$info->password;}
 					if($info->contact_number!=null){$data1['contact_number']=$info->contact_number;}
 				}
@@ -119,6 +122,9 @@ class Administration extends CI_Controller {
 					if($info->add_ln_1!=null){$data1['add_ln_1']=$info->add_ln_1;}
 					if($info->add_ln_2!=null){$data1['add_ln_2']=$info->add_ln_2;}
 					if($info->add_ln_3!=null){$data1['add_ln_3']=$info->add_ln_3;}
+					if($info->countryid!=null){$data1['countryid']=$info->countryid;}
+					if($info->provinceid!=null){$data1['provinceid']=$info->provinceid;}
+					if($info->districtid!=null){$data1['districtid']=$info->districtid;}
 					if($info->password!=null){$data2['password']=$info->password;}
 					if($info->contact_number!=null){$data1['contact_number']=$info->contact_number;}
 				}

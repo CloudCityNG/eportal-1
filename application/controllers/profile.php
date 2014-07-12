@@ -93,11 +93,25 @@ class Profile extends CI_Controller {
 		$send['0']='--Select--';
 		if($data['cou']>0){
 			$answer=$this->advertisements->getProvinces($data['cou']);
+		}else
+		{
+			$result=$this->advertisements->getconfigcountry(base_url());
+					
+					foreach($result as $key)
+					{
+
+						$data['cou']=$key->id;
+					}
+					
+
+					
+			$answer=$this->advertisements->getProvinces($data['cou']);
+		}
 		foreach ($answer as $key ) {
 			$send[$key->id]=$key->name;
 
 		}
-		}
+		
 		$data['province']=$send;//loading the province in the dropdown list
 		$send=null;	
 		

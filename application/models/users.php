@@ -360,7 +360,7 @@ class Users extends CI_Model{
 	 public function p_get_country($id){
 	 	$query = "	SELECT name 
 	 				FROM country
-	 				WHERE id=$id";
+	 				WHERE id='$id'";
 		
 		$result = $this->db->query($query);
 		return $result->result();
@@ -368,14 +368,14 @@ class Users extends CI_Model{
 	 public function p_get_province($id){
 	 	$query = "	SELECT name 
 	 				FROM province
-	 				WHERE id=$id";
+	 				WHERE id='$id'";
 		$result = $this->db->query($query);
 		return $result->result();
 	 }
 	 public function p_get_district($id){
 	 	$query = "	SELECT name 
 	 				FROM district
-	 				WHERE id=$id";
+	 				WHERE id='$id'";
 		$result = $this->db->query($query);
 		return $result->result();
 	 }

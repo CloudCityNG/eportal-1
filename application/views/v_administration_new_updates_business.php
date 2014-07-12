@@ -70,6 +70,28 @@
 								echo '<strong>Address line 3</strong> => '.$info->add_ln_3 ;
 								}?>
 							</p>
+							<p><?php if(isset($info->provinceid)){
+								$this->db->where('id',$info->provinceid);
+								$result=$this->db->get('province');
+
+								if($result->num_rows()>0){
+									$answer= $result->row_array();
+		 							
+								}
+
+								echo '<strong>Province</strong> => '.$answer['name'] ;
+								}?>
+							</p>
+							<p><?php if(isset($info->districtid)){
+								
+								$this->db->where('id',$info->districtid);
+								$result=$this->db->get('district');
+								if($result->num_rows()>0){
+									$answer= $result->row_array();
+								}
+								echo '<strong>District</strong> => '.$answer['name'] ;
+								}?>
+							</p>
 							<p><?php if(isset($info->contact_number)){
 								echo '<strong>Contact number</strong> => '.$info->contact_number ;
 								}?>

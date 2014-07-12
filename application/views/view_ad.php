@@ -1,3 +1,43 @@
+<?php if(!isset($country)){?>
+<script>
+
+	$(function (){
+	$('#myModal').modal({
+  keyboard: false,
+  show:true,
+  toggle:true,
+  	
+})});
+
+	
+</script>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Update Contact Details</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please Update your contact details to continue with posting advertisement!</p>
+      </div>
+      <div class="modal-footer">
+        
+        <a class="btn btn-primary" href="<?php echo base_url();?>profile/update">Update Profile</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<?php }else{?>
+
+
+
+
+
+
+
+
+
 <div class="container">
 	<div class="col-md-8 col-md-offset-2 breadcrumb img-thumbnail">
 		<div class="h3 text-center" style="margin-bottom: 26px;">
@@ -411,3 +451,4 @@
 	</div>
 	</div>
 </div>
+<?php }?>
