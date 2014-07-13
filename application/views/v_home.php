@@ -32,9 +32,9 @@
 		<div class="col-md-3">
 			
 		  	<div class="thumbnail">
-		  		<div style="height: 200"align="center"><a href="<?php echo base_url().'advertisement/viewAd/'.$ad['id'];?>">
+		  		<div style="height: 200px"align="center"><a href="<?php echo base_url().'advertisement/viewAd/'.$ad['id'];?>">
 		  			<?php if(isset($ad['Image'])&&$ad['Image']!=null){?>
-	      			<img style="max-height: 200; max-width: 250" src="<?php echo base_url().$ad['Image']?>">
+	      			<img style="max-height: 200px; max-width: 250px; width:auto !important; height:auto !important;" src="<?php echo base_url().$ad['Image']?>">
 	      			<?php }else{?>
 	      			<img width="250px" height="200px" src="<?php echo base_url().'images/Advertisement/imagenotfound.png'?>">
 	      				<?php }?></a>
