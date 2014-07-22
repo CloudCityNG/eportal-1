@@ -18,35 +18,37 @@
 <div class="row">
   <div class="col-sm-5 col-md-4">
     <div class="thumbnail">
-      <div class="caption text-center">
-        <div class="h4 text-left " ><a href="<?php echo base_url().'administration/add_user/a'?>" role="button"><span class="label label-danger"><span class="glyphicon glyphicon-star"></span></span>&nbsp;Create administrative account</a></div>
+    	<div class="h3 text-center">Create new account</div>
+      	<hr />
+      <div class="caption text-center col-md-offset-2">
+        <div class=" text-left " ><a href="<?php echo base_url().'administration/add_user/a'?>" role="button"><span class="label label-danger"><span class="glyphicon glyphicon-star"></span></span>&nbsp;Administrative account</a></div>
        	</div>
-       	<div class="caption text-center">
-       	<div class="h4 text-left "><a href="<?php echo base_url().'administration/add_user/n'?>" role="button"><span class="label label-warning"><span class="glyphicon glyphicon-user"></span></span>&nbsp;Create private account </a></div>
+       	<div class="caption text-center col-md-offset-2">
+       	<div class=" text-left "><a href="<?php echo base_url().'administration/add_user/n'?>" role="button"><span class="label label-warning"><span class="glyphicon glyphicon-user"></span></span>&nbsp; Private account </a></div>
        	</div>
-        <div class="caption text-center">
-        <div class="h4 text-left "><a href="<?php echo base_url().'administration/add_user/b'?>" role="button"><span class="label label-primary"><span class="glyphicon glyphicon-briefcase"></span></span>&nbsp;Create business account </a></div>
+        <div class="caption text-center col-md-offset-2">
+        <div class=" text-left "><a href="<?php echo base_url().'administration/add_user/b'?>" role="button"><span class="label label-primary"><span class="glyphicon glyphicon-briefcase"></span></span>&nbsp; Business account </a></div>
       </div>
     </div>
   </div>
   
 
   
- 		<div class="col-sm-5 col-md-4">
+ 		<div class="col-sm-4 col-md-4">
     <div class="thumbnail">
       <div class="caption text-left">
       	<div class="h3"><a href="<?php echo base_url().'administration/users/all'?>"><span class="label label-success"><?php echo $total_u; ?></span> Total registered users</a></div>
       	<hr />
-            <p><a href="<?php echo base_url().'administration/users/n'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-warning">'.$n_total_u.'</span> Private users';?> </a> <br />
-        	   <a href="<?php echo base_url().'administration/users/b'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-primary">'.$b_total_u.'</span> Business users'?> </a><br />
-        	   <a href="<?php echo base_url().'administration/users/a'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-danger">'.$a_total_u.'</span> Administrative users'?> </a>
+            <p><a href="<?php echo base_url().'administration/users/n'?>" class="btn btn-link col-md-offset-2" role="button"><?php echo '<span class="label label-warning">'.$n_total_u.'</span> Private users';?> </a> <br />
+        	   <a href="<?php echo base_url().'administration/users/b'?>" class="btn btn-link col-md-offset-2" role="button"><?php echo '<span class="label label-primary">'.$b_total_u.'</span> Business users'?> </a><br />
+        	   <a href="<?php echo base_url().'administration/users/a'?>" class="btn btn-link col-md-offset-2" role="button"><?php echo '<span class="label label-danger">'.$a_total_u.'</span> Administrative users'?> </a>
         </p>
       </div>
     </div>
   </div>
   
   
-  <div class="col-sm-4 col-md-3">
+  <div class="col-sm-4 col-md-4">
     <div class="thumbnail">
       <div class="caption text-center <?php if($total_profile_reports>1)echo 'bg-danger';?>">
       		<div class="h4"><a href="<?php echo base_url().'administration/users_reported/view_all'?>"><span class="label label-danger"><?php echo $total_profile_reports; ?></span> Profiles reports on users</a></div>
@@ -56,7 +58,7 @@
       		?>
       			<hr />
       			<a href="<?php echo base_url().'administration/users_reported/'.$info->accused_user_username; ?>" class="btn-link">
-      			<p class="text-justify text-danger"><span class="label label-info"><?php echo $info->count.'</span> reports has been submitted on '.$info->accused_user_name; ?> </p>
+      			<p class="text-left text-danger"><span class="label label-info"><?php echo $info->count.'</span> reports has been submitted on '.$info->accused_user_name; ?> </p>
       			</a>
       		<?php 
 					}
@@ -65,21 +67,24 @@
       </div>
     </div>
   </div>
+</div>
 
-    	<div class="col-sm-4 col-md-3">
+<div class="row">
+    	<div class="col-sm-4 col-md-4">
     <div class="thumbnail">
       <div class="caption text-center">
-        <h3>Profile updates
+        <h3>Profile updates</h3>
         <hr />
-        <small><br />Private users</small></h3>
-        <p><a href="<?php echo base_url().'administration/profileupdates/n/new'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-warning">'.$n_new.'</span> new updates';?> </a> <br />
-        	<a href="<?php echo base_url().'administration/profileupdates/n/all'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-warning">'.$n_all.'</span> total updates'?> </a>
-        </p>
-      <div class="text-center">
+        <div class="">
+	        <h3><small><br />Private users</small></h3>
+	        <p><a href="<?php echo base_url().'administration/profileupdates/n/new'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-warning">'.$n_new.'</span> new updates';?> </a> <br />
+	        	<a href="<?php echo base_url().'administration/profileupdates/n/all'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-warning">'.$n_all.'</span> total updates'?> </a>
+	        </p>
+        </div>
+      <div class="">
       	<h3><small><br />Business users</small></h3>
-      	
             <p><a href="<?php echo base_url().'administration/profileupdates/b/new'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-primary">'.$b_new.'</span> new updates';?> </a> <br />
-        	<a href="<?php echo base_url().'administration/profileupdates/b/all'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-primary">'.$b_all.'</span> total updates'?> </a>
+        		<a href="<?php echo base_url().'administration/profileupdates/b/all'?>" class="btn btn-link" role="button"><?php echo '<span class="label label-primary">'.$b_all.'</span> total updates'?> </a>
         </p>
       </div>
     </div>
