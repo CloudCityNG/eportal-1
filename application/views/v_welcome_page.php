@@ -139,8 +139,8 @@
 <div class="container" style="margin-top: 50px;">
 <div class="row" style="margin-bottom: 25px;">
 	<div class="col-md-2">
-		<div class="h2 text-white">
-			ePortal
+		<div class="pull-left">
+			<img class="site-logo" src="<?php echo base_url()?>images/logo/logo.png" />
 		</div>
 	</div>
 	<div class="col-md-10">

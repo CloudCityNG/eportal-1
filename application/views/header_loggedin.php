@@ -84,7 +84,11 @@ $('.dropdown-toggle').dropdown();
 		<div class="logo-background">
 			<div class="container">
 				<div class=" col-md-2 pull-left">
-					<a href="<?php echo base_url();?>home"><div class="h2 text-white pull-left"> ePortal</div></a>
+					<a href="<?php echo base_url();?>home">
+						<div class="pull-left">
+							<img class="site-logo" src="<?php echo base_url()?>images/logo/logo.png" />
+						</div>
+					</a>
 				</div>
 				<div class=" col-md-10">
 					<div class="col-md-12">
