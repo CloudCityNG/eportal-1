@@ -2,7 +2,7 @@
     class Cron extends CI_Controller {
     	public function allcron()
     	{
-    		set_time_limit(0);
+    		
 			$emaillist=$this->db->query('select a.id,u.email from advertisement a,users u where DATEDIFF(a.duration,CURRENT_TIMESTAMP)<=0 and a.expired=0 and a.username=u.username')->result();
 			foreach($emaillist as $email)
 			{
@@ -40,9 +40,9 @@
 			}
 		}
 		$this->db->simple_query('update advertisement set expired=1 
-where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
+where DATEDIFF(duration,CURRENT_TIMESTAMP)<=0 and expired=0');
 
-			$emaillist=$this->db->query('select a.id,u.email from advertisement a,users u where DATEDIFF(a.duration,CURRENT_TIMESTAMP)<=0 and a.expired=0 and a.username=u.username')->result();
+			$emaillist=$this->db->query('select a.id,u.email from advertisement a,users u where DATEDIFF(a.duration,CURRENT_TIMESTAMP)<=2 and a.expired=0 and a.username=u.username')->result();
 			foreach($emaillist as $email)
 			{
 				$config = Array(
@@ -81,10 +81,14 @@ where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
 		$this->db->simple_query('update advertisement set notified=1 
 where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
 			
-			
+			echo "featured";
 			$emaillist=$this->db->query('SELECT f.adId, u.email FROM featured f,advertisement a,users u where DATEDIFF(f.duration,CURRENT_TIMESTAMP)<=0 and f.adId=a.id and u.username=a.username')->result();
 			foreach($emaillist as $email)
 			{
+				$this->db->where('adId',$email->adId);
+				$this->db->delete('featured');
+				$this->db->where('id',$email->adId);
+				$this->db->update('advertisement',array('featured'=>0));
 				$config = Array(
 				'protocol' => 'smtp',
 			  	'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -96,7 +100,7 @@ where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
 			  	'wordwrap' => TRUE
 				);
 			
-			$message = 'Your Featured Advertisement has been expired.Check through this link\n <a href="'.base_url().'advertisement/viewAd/'.$email->adId.'">'.base_url().'advertisement/viewAd/'.$email->id.'</a>';
+			$message = 'Your Featured Advertisement has been expired.Check through this link\n <a href="'.base_url().'advertisement/viewAd/'.$email->adId.'">'.base_url().'advertisement/viewAd/'.$email->adId.'</a>';
 			$this->load->library('email',$config);
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
@@ -118,17 +122,7 @@ where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
 				print($e);
 			}
 		}
-		$featured=$this->db->query('SELECT adId FROM featured where DATEDIFF(duration,CURRENT_TIMESTAMP)<=0')->result();
-		foreach($featured as $feature)
-		{
-			$this->db->where('adId',$feature->adId);
-			$this->db->delete('featured');
-			$this->db->where('id',$feature->adId);
-			$this->db->update('advertisement',array('featured'=>0));
-				
-		}
-			//$this->db->query('call featuredAd()');
-			
+		
  			
 			
     	}
