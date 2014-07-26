@@ -989,6 +989,12 @@ class Administration extends CI_Controller {
 		$this->footer();
 	}
 	
+	public function icon_configuration(){
+		$this->header('Administration - Logo configuration');
+		$this->load->view('v_administration_design_configuration_icon');
+		$this->footer();
+	}
+	
 	public function apply_theme($theme){
 		$this->load->helper('file');
 		if($theme=='dp'){
@@ -1111,7 +1117,7 @@ class Administration extends CI_Controller {
 
 	public function logo_configuration_update(){
 		$config['upload_path'] ='./images/';
-		$config['allowed_types'] = 'png|PNG';
+		$config['allowed_types'] = 'jpg|jpeg|png';
 		$config['max_size']	= '5120'; //5mb
 		
 		$this->load->library('upload', $config);
@@ -1124,6 +1130,7 @@ class Administration extends CI_Controller {
 					$delete = false;
 					$this->header('Administration - Logo update fail');
 					$data['message']='unable to delete the previous logo';
+					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
 				}
@@ -1136,11 +1143,13 @@ class Administration extends CI_Controller {
 					unlink('./images/'.$uploadData['file_name']);
 					$this->header('Administration - Logo update fail');
 					$data['message']='logo was successfully changed';
+					$data['status']='success';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
 				}else{
 					$this->header('Administration - Logo update fail');
 					$data['message']='unable to copy from original path to destination';
+					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
 				}	
@@ -1148,8 +1157,59 @@ class Administration extends CI_Controller {
 		}else{
 			$this->header('Administration - Logo update fail');
 			$data['uploadErr'] = $this->upload->display_errors();
-			$data['message']='Upload Error';
+			$data['message']='Upload error';
+			$data['status']='fail';
 			$this->load->view('v_administration_design_configuration_logo',$data);
+			$this->footer();
+		}
+	}
+
+	
+	public function icon_configuration_update(){
+		$config['upload_path'] ='./images/';
+		$config['allowed_types'] = 'ico';
+		$config['max_size']	= '5120'; //5mb
+		
+		$this->load->library('upload', $config);
+		
+		if ($this->upload->do_upload()){
+			$uploadData = $this->upload->data();
+			if(file_exists('./images/site/icon.ico')){
+				if($delete = unlink('./images/site/icon.ico')){
+				}else{
+					$delete = false;
+					$this->header('Administration - icon update fail');
+					$data['message']='unable to delete the previous icon image';
+					$data['status']='fail';
+					$this->load->view('v_administration_design_configuration_icon',$data);
+					$this->footer();
+				}
+			}else{
+				$delete = true;	
+			}
+			
+			if($delete){
+				if(copy('./images/'.$uploadData['file_name'], './images/site/icon.ico')){
+					unlink('./images/'.$uploadData['file_name']);
+					$this->header('Administration - Logo update fail');
+					$data['message']='icon was successfully changed';
+					$data['status']='success';
+					$this->load->view('v_administration_design_configuration_icon',$data);
+					$this->footer();
+				}else{
+					$this->header('Administration - Logo update fail');
+					$data['message']='unable to copy from original path to destination';
+					$data['status']='fail';
+					$this->load->view('v_administration_design_configuration_icon',$data);
+					$this->footer();
+				}	
+			}
+		}else{
+			$this->header('Administration - Logo update fail');
+			$data['uploadErr'] = $this->upload->display_errors();
+			$data['message']='Upload error';
+			$data['status']='fail';
+			$this->load->view('v_administration_design_configuration_icon',$data);
 			$this->footer();
 		}
 	}

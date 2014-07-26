@@ -31,7 +31,6 @@
 			<br />
 			<br />
 			<div class="pull-right">
-				<a class="btn btn-default " href="#">Learn how to configure</a>
 				<a class="btn btn-primary " href="<?php echo base_url().'administration/logo_configuration'?>">Configure</a>
 			</div>
 		</div>
@@ -85,4 +84,20 @@
 			</div>
 		</div>
 	<!--End Dashboard color configuration-------------------------------------------->
+	
+	<!--Start site icon configuration------------------------------------------>
+		<div class="container breadcrumb-white img-thumbnail">
+			<div class="h3">
+				Site icon configuration
+			</div>
+			<div class="col-md-offset-1">
+				Changing the site icon which you sees on the browser tab
+				<br />
+				<br />
+				<div class="pull-right">
+					<a class="btn btn-primary " href="<?php echo base_url().'administration/icon_configuration'?>">Configure</a>
+				</div>
+			</div>
+		</div>
+	<!--End site icon configuration-------------------------------------------->
 </div>

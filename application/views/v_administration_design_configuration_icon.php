@@ -14,18 +14,21 @@
           <ul class="nav nav-sidebar ">
           </ul>
 </div>
+
 <div class="col-md-7 col-md-offset-3 breadcrumb img-thumbnail">
 	<div class="h2 text-center">
-		Logo configuration
+		Site icon configuration
 	</div>
+	
+	<!--Start icon configuration----------------------------------------------->
 	<div class="col-md-12 breadcrumb-white img-thumbnail">
 		<div class="h3">
-			Select an image
+			Select an icon image
 		</div>
 		<div>
 			<?php
 				$formattributes = array('class' => 'form-horizontal', 'role' => 'form', 'enctype'=>'multipart/form-data' );
-				echo form_open('administration/logo_configuration_update/',$formattributes);
+				echo form_open('administration/icon_configuration_update/',$formattributes);
 			?>
 			
 			<?php
@@ -35,20 +38,18 @@
 			<br />
 			<br />
 			<?php
-				$submit = array('class' => 'btn btn-primary pull-right','name'=>'logo_submit ','value'=>'Update logo');
+				$submit = array('class' => 'btn btn-primary pull-right','name'=>'logo_submit ','value'=>'Update icon');
 				echo '<div class="col-md-12">'.form_submit($submit).'</div>';
   				
   				echo form_close();
   			?>
-		</div>
-		<br />
+  		<br />
 		<?php
-			
 			
 			if(isset($status) && $status=='success'){
 				echo '<hr />';
 				echo '<div class="col-md-12 alert alert-success">';
-				echo '<div class="h3 text-center">Successfully changed the logo</div>';
+				echo '<div class="h3 text-center">Successfully changed the site icon</div>';
 				echo '<hr />';
 				echo '<b>Server status : </b>'.$status.'<br>';
 				echo '<b>Server reply : </b>'.$message;
@@ -74,5 +75,7 @@
 				}
 			}
 		?>
+		</div>
 	</div>
+	<!--End icon configuration----------------------------------------------->
 </div>
