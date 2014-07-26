@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<div class="md-md-12 text-white breadcrumb"style="background-color: #660066">
+		<div class="md-md-12 theme-box-background-text breadcrumb theme-box-background">
 			<div class="h4 text-center">
 				Ad-Email Notifier
 			</div>

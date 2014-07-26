@@ -1,0 +1,177 @@
+.navbar-main-theme {
+  background-color: #660066;
+  border-color: #333;
+}
+.navbar-main-theme .navbar-brand {
+  color: #777777;
+}
+.navbar-main-theme .navbar-brand:hover,
+.navbar-main-theme .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-main-theme .navbar-text {
+  color: #CCC;
+}
+.navbar-main-theme .navbar-nav > li > a {
+  color: #CCC;
+}
+.navbar-main-theme .navbar-nav > li > a:hover,
+.navbar-main-theme .navbar-nav > li > a:focus {
+  color: #FFFFFF;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.navbar-main-theme .navbar-nav > .active > a,
+.navbar-main-theme .navbar-nav > .active > a:hover,
+.navbar-main-theme .navbar-nav > .active > a:focus {
+  color: #555555;
+  background-color: #e7e7e7;
+}
+.navbar-main-theme .navbar-nav > .disabled > a,
+.navbar-main-theme .navbar-nav > .disabled > a:hover,
+.navbar-main-theme .navbar-nav > .disabled > a:focus {
+  color: #cccccc;
+  background-color: transparent;
+}
+.navbar-main-theme .navbar-toggle {
+  border-color: #dddddd;
+}
+.navbar-main-theme .navbar-toggle:hover,
+.navbar-main-theme .navbar-toggle:focus {
+  background-color: #dddddd;
+}
+.navbar-main-theme .navbar-toggle .icon-bar {
+  background-color: #888888;
+}
+.navbar-main-theme .navbar-collapse,
+.navbar-main-theme .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-main-theme .navbar-nav > .open > a,
+.navbar-main-theme .navbar-nav > .open > a:hover,
+.navbar-main-theme .navbar-nav > .open > a:focus {
+  background-color: #e7e7e7;
+  color: #555555;
+}
+@media (max-width: 767px) {
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > li > a {
+    color: #777777;
+  }
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333333;
+    background-color: transparent;
+  }
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555555;
+    background-color: #e7e7e7;
+  }
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-main-theme .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #cccccc;
+    background-color: transparent;
+  }
+}
+.navbar-main-theme .navbar-link {
+  color: #FFFFFF;
+}
+.navbar-main-theme .navbar-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.nav > li > div > a {
+  color: #CCDDFF;
+  text-decoration: none;
+}
+.nav > li > div > a:hover,
+.nav > li > div > a:focus {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+#cssmenu > ul > li ul{
+	border-top:4px solid #660066;
+	border-left:2px solid #660066;
+	border-right:2px solid #660066;
+	border-bottom:2px solid #660066;
+}
+
+#cssmenu ul li ul li {
+  background: #660066;
+}
+
+#cssmenu ul li ul li.has-sub:before {
+  border-left-color: #660066;
+}
+
+#cssmenu ul li ul li:hover
+{
+	background-color: #8A00B8;
+}
+
+#cssmenu ul li ul li:hover:after,
+#cssmenu ul li ul li.active:after {
+  background: #660066;
+}
+
+#cssmenu > ul > li:after {
+  background: #660066;
+}
+
+#cssmenu > ul > li.has-sub > a:after {
+ background: #660066;
+}
+
+#cssmenu > ul > li.has-sub > a:before {
+ border-top-color: #660066;
+}
+
+.logo-background{
+	background-color: #8A00B8; 
+	width: 100%;
+	padding-top: 10px;
+	margin-top:3px;
+}
+
+.navbar-background{
+	background-color:#8A00B8; 
+	width: 100%;
+	border-bottom:2px solid #660066;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color:#660066 ;
+}
+.welcome-body-background{
+	background-color: #8A00B8;
+}
+.theme-box-background{
+	background-color: #660066;
+}
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li.active > a {
+  color: #FFFFFF;			/*category font hoover color*/
+}
+
+#cssmenu > ul > li > a {
+  color: #FFFFFF;			/*category font  color*/
+}
+
+#cssmenu ul li ul li:hover > a,
+#cssmenu ul li ul li.active > a {
+  color: #FFFFFF;			/*subcategory font hoover color*/
+}
+
+#cssmenu ul li ul li a {
+  color: #FFFFFF;			/*subcategory font color*/
+}
+
+.theme-box-background-text{
+color: #FFFFFF;				/*theme box back ground color*/
+}

@@ -286,7 +286,9 @@ class Admin extends CI_Model{
 	}
 	
 	
-	
+	public function site_logo_update($username){
+		
+	}
 	
 
 

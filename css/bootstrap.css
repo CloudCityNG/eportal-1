@@ -529,6 +529,9 @@ a.text-info:hover {
 a.text-warning:hover {
   color: #66512c;
 }
+.text-danger-2{
+  color: #FF0000;
+}
 .text-danger {
   color: #a94442;
 }
@@ -3052,7 +3055,7 @@ input[type="button"].btn-block {
 .dropdown-menu > li > a:focus {
   text-decoration: none;
   color: #FFFFFF;
-  background-color:#660066 ;
+  /*background-color:#660066 ;*/
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,

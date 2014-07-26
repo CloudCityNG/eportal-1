@@ -14,10 +14,10 @@
   display: block;
 }
 #cssmenu > ul > li ul{
-	border-top:4px solid #660066;
+	/*border-top:4px solid #660066;
 	border-left:2px solid #660066;
 	border-right:2px solid #660066;
-	border-bottom:2px solid #660066;
+	border-bottom:2px solid #660066;*/
 	z-index: 100;
 	width: 250px;
 }
@@ -58,7 +58,7 @@
   -ms-transition: max-height 0.4s ease-out;
   -o-transition: max-height 0.4s ease-out;
   transition: max-height 0.4s ease-out;
-  background: #660066;
+  /*background: #660066;*/
 }
 #cssmenu ul li ul li.has-sub:after {
   display: block;
@@ -79,7 +79,7 @@
   height: 0;
   width: 0;
   border: 3px solid transparent;
-  border-left-color: #660066;
+  /*border-left-color: #660066;*/
   z-index: 2;
   top: 15px;
   right: 15px;
@@ -88,16 +88,18 @@
   font-size: 14px;
   font-weight: 400;
   text-transform: none;
-  color: #CCCCFF;
+  /*color: #CCCCFF;*/
   letter-spacing: 0;
   display: block;
-  width: 140px;
+  width: 100%;
   padding: 11px 10px 11px 20px;
 }
+/*
 #cssmenu ul li ul li:hover > a,
 #cssmenu ul li ul li.active > a {
   color: #FFFFFF;
 }
+/*
 #cssmenu ul li ul li:hover
 {
 	background-color: #8A00B8;
@@ -107,6 +109,7 @@
 #cssmenu ul li ul li.active:after {
   background: #660066;
 }
+*/
 #cssmenu ul li ul li:hover > ul {
   left: 170px;
   top: 0;
@@ -126,7 +129,7 @@
   height: 0;
   top: 0;
   z-index: 0;
-  background: #660066;
+ /* background: #660066;*/
   -webkit-transition: height .2s;
   -moz-transition: height .2s;
   -ms-transition: height .2s;
@@ -139,7 +142,7 @@
 #cssmenu > ul > li.has-sub > a:after {
   display: block;
   content: '';
-  background: #660066;
+ /* background: #660066;*/
   height: 12px;
   width: 12px;
   position: absolute;
@@ -151,7 +154,7 @@
   display: block;
   content: '';
   border: 4px solid transparent;
-  border-top-color: #660066;
+  /*border-top-color: #660066;*/
   z-index: 2;
   height: 0;
   width: 0;
@@ -160,7 +163,7 @@
   top: 21px;
 }
 #cssmenu > ul > li > a {
-  color: #FFFFFF;
+  /*color: #FFFFFF;*/
   padding: 15px 20px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -172,11 +175,11 @@
 #cssmenu > ul > li:hover:after,
 #cssmenu > ul > li.active:after {
   height: 100%;
-}
+}/*
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
   color: #FFFFFF;
-}
+}*/
 #cssmenu > ul > li:hover > a:after,
 #cssmenu > ul > li.active > a:after {
   background: #FFFFFF;
@@ -274,8 +277,8 @@
     position: absolute;
     height: 3px;
     width: 22px;
-    border-top: 2px solid #660066;
-    border-bottom: 2px solid #660066;
+    border-top: 2px solid /*#660066*/;
+    border-bottom: 2px solid /*#660066*/;
     right: 20px;
     top: 16px;
   }
@@ -285,7 +288,7 @@
     position: absolute;
     height: 3px;
     width: 22px;
-    border-top: 2px solid #660066;
+    border-top: 2px solid /*#660066*/;
     right: 20px;
     top: 26px;
   }

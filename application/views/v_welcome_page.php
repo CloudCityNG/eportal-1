@@ -1,9 +1,4 @@
-<style type="text/css">
-	body{
-		background-color: #8A00B8;
-	}
-	
-</style>
+
 
 <script type="text/javascript" src="<?php echo base_url().'Jssor.Slider.FullPack';?>/js/jssor.slider.mini.js"></script>
     <script>

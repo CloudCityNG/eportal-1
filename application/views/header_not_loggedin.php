@@ -6,11 +6,17 @@
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
+	
+<!-------------------------------Theme stylesheet----------------------------->
+
+	<link href="<?php echo base_url().'css/site-color-theme.css'?>" rel="stylesheet">
+
+<!--------------------------------End Theme stylesheet------------------------>
+
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
 <body style="background-color: #f1f1f1">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!--<script src="<?php echo base_url().'js/jquery-1.11.0.min.js'?>" ></script>-->
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	
@@ -24,7 +30,7 @@
 	<script src="<?php echo base_url().'js/jquery.MetaData.js'?>" type="text/javascript" language="javascript"></script>
  	<script src="<?php echo base_url().'js/jquery.rating.js'?>" type="text/javascript" language="javascript"></script>
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
-
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
  	
  	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
@@ -37,7 +43,7 @@
 	    
 	</script>
 	
-	<div class="navbar navbar-dark-purple navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
+	<div class="navbar navbar-main-theme navbar-fixed-top" style="max-height: 25px; min-height: 25px;" >	
 		
 		<div class="container">
 			<ul class="nav navbar-nav navbar-right">	
@@ -46,7 +52,7 @@
 				</ul>
 		</div>
 		
-		<div style=" background-color: #8A00B8; width: 100%;padding-top: 10px;margin-top: 3px;">
+		<div class="logo-background">
 			<div class="container">
 				<div class=" col-md-2 pull-left">
 					<a href="<?php echo base_url();?>home"><div class="h2 text-white pull-left"> ePortal</div></a>
@@ -73,7 +79,7 @@
 			</div>
 		</div>
 		
-		<div style=" background-color:#8A00B8; width: 100%;border-bottom:2px solid #660066;">
+		<div class="navbar-background">
 			<div class="container">
 				<div id='cssmenu'>
 					<ul>

@@ -965,5 +965,192 @@ class Administration extends CI_Controller {
 			$this->footer();
 	}	
 	
+	public function design_configuration(){
+		$this->header('Administration - Design configuration');
+		$this->load->view('v_administration_design_configuration');
+		$this->footer();
+	}
+
+	public function logo_configuration(){
+		$this->header('Administration - Logo configuration');
+		$this->load->view('v_administration_design_configuration_logo');
+		$this->footer();
+	}
 	
+	public function color_configuration(){
+		$this->header('Administration - Color theme configuration');
+		$this->load->view('v_administration_design_configuration_color');
+		$this->footer();
+	}
+
+	public function dashboard_configuration(){
+		$this->header('Administration - Color theme configuration');
+		$this->load->view('v_administration_design_configuration_dashboard');
+		$this->footer();
+	}
+	
+	public function apply_theme($theme){
+		$this->load->helper('file');
+		if($theme=='dp'){
+			if($filedata = read_file('./css/themes/dark-purple.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Dark purple</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/dark-purple.css)'.$path;
+			}
+		}else if($theme=='gl'){
+			if($filedata = read_file('./css/themes/green-lantern.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Green lantern</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/green-lantern.css)';
+			}
+		}else if($theme=='nb'){
+			if($filedata = read_file('./css/themes/nigel-blue.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Nigel blue</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/nigel-blue.css)';
+			}
+		}else if($theme=='nd'){
+			if($filedata = read_file('./css/themes/nigel-dark.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Nigel dark</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';						
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';					
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/nigel-dark.css)';				
+			}
+		}else if($theme=='rf'){
+			if($filedata = read_file('./css/themes/red-flash.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Red flash</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';						
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';					
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/red-flash.css)';				
+			}
+		}else if($theme=='vn'){
+			if($filedata = read_file('./css/themes/venice.css')){
+				if(unlink('./css/site-color-theme.css')){
+					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$data['status']='sucess';
+						$data['message']='The theme has been successfully changed to <b>Venice</b>.';
+					}else{
+						$data['status']='fail';
+						$data['message']='could not create and/or write the style sheet data to the site-color-theme.css file';
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='could not delete the current theme file (site-color-theme.css)';					
+				}
+			}else{
+				$data['status']='fail';
+				$data['message']='Could not read theme data from the original theme file. (css/themes/venice.css)';				
+			}
+		}else{
+			$data['status']='info';
+			$data['message']='unknown theme file selection';
+		}
+
+		$this->header('Administration - Color theme configuration');
+		$this->load->view('v_administration_design_configuration_color_apply_status',$data);
+		$this->footer();
+	}
+
+	public function logo_configuration_update(){
+		$config['upload_path'] ='./images/';
+		$config['allowed_types'] = 'png|PNG';
+		$config['max_size']	= '5120'; //5mb
+		
+		$this->load->library('upload', $config);
+		
+		if ($this->upload->do_upload()){
+			$uploadData = $this->upload->data();
+			if(file_exists('./images/logo/logo.png')){
+				if($delete = unlink('./images/logo/logo.png')){
+				}else{
+					$delete = false;
+					$this->header('Administration - Logo update fail');
+					$data['message']='unable to delete the previous logo';
+					$this->load->view('v_administration_design_configuration_logo',$data);
+					$this->footer();
+				}
+			}else{
+				$delete = true;	
+			}
+			
+			if($delete){
+				if(copy('./images/'.$uploadData['file_name'], './images/logo/logo.png')){
+					unlink('./images/'.$uploadData['file_name']);
+					$this->header('Administration - Logo update fail');
+					$data['message']='logo was successfully changed';
+					$this->load->view('v_administration_design_configuration_logo',$data);
+					$this->footer();
+				}else{
+					$this->header('Administration - Logo update fail');
+					$data['message']='unable to copy from original path to destination';
+					$this->load->view('v_administration_design_configuration_logo',$data);
+					$this->footer();
+				}	
+			}
+		}else{
+			$this->header('Administration - Logo update fail');
+			$data['uploadErr'] = $this->upload->display_errors();
+			$data['message']='Upload Error';
+			$this->load->view('v_administration_design_configuration_logo',$data);
+			$this->footer();
+		}
+	}
 }
