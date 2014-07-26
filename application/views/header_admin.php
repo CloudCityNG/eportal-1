@@ -2,17 +2,20 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link rel="shortcut icon" href="<?php echo base_url().'images/site/icon.ico'?>">
+	
 	<link href="<?php echo base_url().'css/bootstrap.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	
+<!-------------------------------Start site icon----------------------------->
+	<link rel="shortcut icon" href="<?php echo base_url().'images/site/icon.ico'?>">
+<!--------------------------------End site icon------------------------------>
+		
 <!-------------------------------Theme stylesheet----------------------------->
-
 	<link href="<?php echo base_url().'css/site-color-theme.css'?>" rel="stylesheet">
-
 <!--------------------------------End Theme stylesheet------------------------>
+
 	<title><?php if(isset($title)) echo $title;?></title>
 </head>
 <body style="background-color: #f1f1f1">

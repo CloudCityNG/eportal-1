@@ -8,12 +8,15 @@
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	<title><?php if(isset($title)) echo $title;?></title>
 	
-	<!-------------------------------Theme stylesheet----------------------------->
-
+<!-------------------------------Start site icon----------------------------->
+	<link rel="shortcut icon" href="<?php echo base_url().'images/site/icon.ico'?>">
+<!--------------------------------End site icon------------------------------>
+		
+<!-------------------------------Theme stylesheet----------------------------->
 	<link href="<?php echo base_url().'css/site-color-theme.css'?>" rel="stylesheet">
+<!--------------------------------End Theme stylesheet------------------------>
 
-	<!--------------------------------End Theme stylesheet------------------------>
-	
+	<title><?php if(isset($title)) echo $title;?></title>	
 </head>
 <body class="welcome-body-background">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

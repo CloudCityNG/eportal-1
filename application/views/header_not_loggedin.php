@@ -7,10 +7,12 @@
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/cat_menu.css'?>" rel="stylesheet">
 	
+<!-------------------------------Start site icon----------------------------->
+	<link rel="shortcut icon" href="<?php echo base_url().'images/site/icon.ico'?>">
+<!--------------------------------End site icon------------------------------>
+		
 <!-------------------------------Theme stylesheet----------------------------->
-
 	<link href="<?php echo base_url().'css/site-color-theme.css'?>" rel="stylesheet">
-
 <!--------------------------------End Theme stylesheet------------------------>
 
 	<title><?php if(isset($title)) echo $title;?></title>
