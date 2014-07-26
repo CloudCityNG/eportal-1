@@ -86,7 +86,7 @@ $('.dropdown-toggle').dropdown();
 				<div class=" col-md-2 pull-left">
 					<a href="<?php echo base_url();?>home">
 						<div class="pull-left">
-							<img class="site-logo" src="<?php echo base_url()?>images/logo/logo.png" />
+							<img class="site-logo" src="<?php echo base_url()?>images/site/logo.png" />
 						</div>
 					</a>
 				</div>

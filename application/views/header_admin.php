@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	
+	<link rel="shortcut icon" href="<?php echo base_url().'images/site/icon.ico'?>">
 	<link href="<?php echo base_url().'css/bootstrap.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/style.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'css/bootstrap-theme.css'?>" rel="stylesheet">
@@ -72,7 +72,7 @@
 				<div class=" col-md-2 pull-left">
 					<a href="<?php echo base_url();?>home">
 						<div class="pull-left">
-							<img class="site-logo" src="<?php echo base_url()?>images/logo/logo.png" />
+							<img class="site-logo" src="<?php echo base_url()?>images/site/logo.png" />
 						</div>
 					</a>
 				</div>

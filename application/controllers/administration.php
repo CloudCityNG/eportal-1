@@ -1118,8 +1118,8 @@ class Administration extends CI_Controller {
 		
 		if ($this->upload->do_upload()){
 			$uploadData = $this->upload->data();
-			if(file_exists('./images/logo/logo.png')){
-				if($delete = unlink('./images/logo/logo.png')){
+			if(file_exists('./images/site/logo.png')){
+				if($delete = unlink('./images/site/logo.png')){
 				}else{
 					$delete = false;
 					$this->header('Administration - Logo update fail');
@@ -1132,7 +1132,7 @@ class Administration extends CI_Controller {
 			}
 			
 			if($delete){
-				if(copy('./images/'.$uploadData['file_name'], './images/logo/logo.png')){
+				if(copy('./images/'.$uploadData['file_name'], './images/site/logo.png')){
 					unlink('./images/'.$uploadData['file_name']);
 					$this->header('Administration - Logo update fail');
 					$data['message']='logo was successfully changed';

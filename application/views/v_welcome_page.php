@@ -140,7 +140,7 @@
 <div class="row" style="margin-bottom: 25px;">
 	<div class="col-md-2">
 		<div class="pull-left">
-			<img class="site-logo" src="<?php echo base_url()?>images/logo/logo.png" />
+			<img class="site-logo" src="<?php echo base_url()?>images/site/logo.png" />
 		</div>
 	</div>
 	<div class="col-md-10">
