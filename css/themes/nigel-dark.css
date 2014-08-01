@@ -175,3 +175,17 @@
 .theme-box-background-text{
 color: #FFFFFF;				/*theme box back ground color*/
 }
+
+.dropdown-menu{
+	background-color: #ffffff;
+}
+
+.dropdown-menu > li > a {
+	color: #333333;
+}
+
+.dropdown-menu > li > a:hover,     /* controller text hover color*/
+.dropdown-menu > li > a:focus {
+  color: #FFFFFF;
+}
+

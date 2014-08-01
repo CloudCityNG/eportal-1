@@ -1213,4 +1213,10 @@ class Administration extends CI_Controller {
 			$this->footer();
 		}
 	}
+
+	public function custom_colour_theme(){
+		$this->header('Administration - Custom color theme configuration');
+		$this->load->view('v_administration_design_configuration_color_custom');
+		$this->footer();
+	}
 }

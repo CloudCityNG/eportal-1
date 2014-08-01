@@ -142,6 +142,22 @@
 				</div>
 			<!--End theme 6------------------------------------------------->
 		<!--End colour themes------------------------------------------------->
+		
+		<div class="col-md-12"><hr /></div>
+		
+		<!--Start custom color theme------------------------------------------------->
+		<div class="col-md-12 margin-btm-1">
+			<div class="h3">
+				Create your own color theme
+			</div>
+			<br />
+			<br />
+			<div class="pull-right">
+				<a class="btn btn-default" href="<?php echo base_url().'administration/'?>">Learn how to create a custom theme</a>
+				<a class="btn btn-primary" href="<?php echo base_url().'administration/custom_colour_theme'?>">Start creating a custom theme</a>
+			</div>
+		</div>
+		<!--End custom color theme--------------------------------------------------->
 	</div>
 	<!--End colour configuration------------------------------------------------->
 

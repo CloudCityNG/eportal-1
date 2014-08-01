@@ -175,3 +175,39 @@
 .theme-box-background-text{
 color: #acf0f2;				/*theme box back ground color*/
 }
+
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li.active > a {
+  color: #FFFFFF;			/*category font hoover color*/
+}
+
+#cssmenu > ul > li > a {
+  color: #FFFFFF;			/*category font  color*/
+}
+
+#cssmenu ul li ul li:hover > a,
+#cssmenu ul li ul li.active > a {
+  color: #FFFFFF;			/*subcategory font hoover color*/
+}
+
+#cssmenu ul li ul li a {
+  color: #FFFFFF;			/*subcategory font color*/
+}
+
+.theme-box-background-text{
+color: #FFFFFF;				/*theme box back ground color*/
+}
+.dropdown-menu{
+	background-color: #ffffff;
+}
+
+.dropdown-menu > li > a {
+	color: #333333;
+}
+
+.dropdown-menu > li > a:hover,     /* controller text hover color*/
+.dropdown-menu > li > a:focus {
+  color: #FFFFFF;
+}
+
+
