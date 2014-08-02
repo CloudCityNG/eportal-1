@@ -36,18 +36,20 @@
 		<br />
 		<br />
 		<!--Start colour theme history----------------------------------------------->
-		<div class=" col-md-7 breadcrumb img-thumbnail">
-			<div class="text-center">
-				<b>Current color theme history</b>
+		<div class=" col-md-12 breadcrumb img-thumbnail">
+			<div class=" h3 text-center">
+				Current color theme history
+			</div>
+			<hr />
+			<div>
+				<b>Activated by :</b>  <?php if(isset($name)){ echo $name;}?>
+				<br />
+				<b>Current color theme :</b>  <?php if(isset($theme)){ echo $theme;}?>
+				<br />
+				<b>Activated on :</b>  <?php if(isset($dateandtime)){ echo $dateandtime;}?>
 			</div>
 			<br />
-			<div>
-				Current color theme : Dark purple
-				<br />
-				Activated by : Jason Nelon
-				<br />
-				Activated on : 24th july 2013
-			</div>
+			<a class="btn btn-default pull-right" href="<?php echo base_url().'administration/history/theme/all'?>">View entire theme history</a>
 		</div>
 		<!--End colour theme history------------------------------------------------->
 		

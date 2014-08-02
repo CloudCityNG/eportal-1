@@ -972,14 +972,34 @@ class Administration extends CI_Controller {
 	}
 
 	public function logo_configuration(){
+		$this->load->model("admin");
+		$log=$this->admin->get_logo_history('current');
+		foreach($log as $info)
+		{
+			$data['original_name'] = $info->original_name;
+			$data['size'] = $info->size;
+			$data['dateandtime'] = $info->dateandtime;
+			$data['name'] = $this->setup_names($info->username);
+		}
+		
+		
 		$this->header('Administration - Logo configuration');
-		$this->load->view('v_administration_design_configuration_logo');
+		$this->load->view('v_administration_design_configuration_logo',$data);
 		$this->footer();
 	}
 	
 	public function color_configuration(){
+		$data=array();
+		$this->load->model("admin");
+		$log=$this->admin->get_theme_history('current');
+		foreach($log as $info)
+		{
+			$data['theme'] = $info->theme;
+			$data['name'] = $this->setup_names($info->username);
+			$data['dateandtime'] = $info->dateandtime;
+		}
 		$this->header('Administration - Color theme configuration');
-		$this->load->view('v_administration_design_configuration_color');
+		$this->load->view('v_administration_design_configuration_color',$data);
 		$this->footer();
 	}
 
@@ -990,17 +1010,31 @@ class Administration extends CI_Controller {
 	}
 	
 	public function icon_configuration(){
+		$this->load->model("admin");
+		$log=$this->admin->get_icon_history('current');
+		foreach($log as $info)
+		{
+			$data['original_name'] = $info->original_name;
+			$data['size'] = $info->size;
+			$data['dateandtime'] = $info->dateandtime;
+			$data['name'] = $this->setup_names($info->username);
+		}
+		
 		$this->header('Administration - Logo configuration');
-		$this->load->view('v_administration_design_configuration_icon');
+		$this->load->view('v_administration_design_configuration_icon',$data);
 		$this->footer();
 	}
 	
+	
+	
 	public function apply_theme($theme){
 		$this->load->helper('file');
+		$this->load->model("admin");
 		if($theme=='dp'){
 			if($filedata = read_file('./css/themes/dark-purple.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Dark purple');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Dark purple</b>.';
 					}else{
@@ -1019,6 +1053,7 @@ class Administration extends CI_Controller {
 			if($filedata = read_file('./css/themes/green-lantern.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Green Lantern');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Green lantern</b>.';
 					}else{
@@ -1037,6 +1072,7 @@ class Administration extends CI_Controller {
 			if($filedata = read_file('./css/themes/nigel-blue.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Nigel blue');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Nigel blue</b>.';
 					}else{
@@ -1055,6 +1091,7 @@ class Administration extends CI_Controller {
 			if($filedata = read_file('./css/themes/nigel-dark.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Nigel dark');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Nigel dark</b>.';
 					}else{
@@ -1073,6 +1110,7 @@ class Administration extends CI_Controller {
 			if($filedata = read_file('./css/themes/red-flash.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Red flash');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Red flash</b>.';
 					}else{
@@ -1091,6 +1129,7 @@ class Administration extends CI_Controller {
 			if($filedata = read_file('./css/themes/venice.css')){
 				if(unlink('./css/site-color-theme.css')){
 					if(write_file('./css/site-color-theme.css',$filedata,'w')){
+						$this->admin->site_theme_update($this->session->userdata('username'),'Venice');
 						$data['status']='sucess';
 						$data['message']='The theme has been successfully changed to <b>Venice</b>.';
 					}else{
@@ -1142,6 +1181,16 @@ class Administration extends CI_Controller {
 				if(copy('./images/'.$uploadData['file_name'], './images/site/logo.png')){
 					unlink('./images/'.$uploadData['file_name']);
 					$this->header('Administration - Logo update fail');
+					$this->load->model("admin");
+					$this->admin->site_logo_update($this->session->userdata('username'),$uploadData['file_name'],$uploadData['file_size'],'logo');
+					$log=$this->admin->get_logo_history('current');
+					foreach($log as $info)
+					{
+						$data['original_name'] = $info->original_name;
+						$data['size'] = $info->size;
+						$data['dateandtime'] = $info->dateandtime;
+						$data['name'] = $this->setup_names($info->username);
+					}
 					$data['message']='logo was successfully changed';
 					$data['status']='success';
 					$this->load->view('v_administration_design_configuration_logo',$data);
@@ -1192,6 +1241,17 @@ class Administration extends CI_Controller {
 				if(copy('./images/'.$uploadData['file_name'], './images/site/icon.ico')){
 					unlink('./images/'.$uploadData['file_name']);
 					$this->header('Administration - Logo update fail');
+					$this->load->model("admin");
+					$this->admin->site_logo_update($this->session->userdata('username'),$uploadData['file_name'],$uploadData['file_size'],'icon');
+					$log=$this->admin->get_icon_history('current');
+					foreach($log as $info)
+					{
+						$data['original_name'] = $info->original_name;
+						$data['size'] = $info->size;
+						$data['dateandtime'] = $info->dateandtime;
+						$data['name'] = $this->setup_names($info->username);
+					}
+		
 					$data['message']='icon was successfully changed';
 					$data['status']='success';
 					$this->load->view('v_administration_design_configuration_icon',$data);
@@ -1270,6 +1330,8 @@ class Administration extends CI_Controller {
 			if($delete){
 				if($generatedData=str_replace($find, $replaceWith, $filedata)){
 					if(write_file('./css/site-color-theme.css',$generatedData,'w')){
+						$this->load->model("admin");
+						$this->admin->site_theme_update($this->session->userdata('username'),'Custom theme');
 						$data['status']='sucess';
 						$data['message']='A new custom theme has been successfully created in your preferences.';
 					}else{

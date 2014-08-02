@@ -14,21 +14,22 @@
           <ul class="nav nav-sidebar ">
           </ul>
 </div>
+<div class="col-md-8 col-md-offset-3">
 <?php 
-
+		
 			if($status=='sucess'){
 				echo '<div class="col-md-12 alert alert-success">';
 				echo '<div class="h3 text-center"> Color theme successfully changed</div>';
 				echo '<hr />';
 				echo '<b>Server status</b> : Success<br />';
-				echo '<b>Server reply</b> :'.$message;
+				echo '<b>Server reply</b> : '.$message;
 				echo '</div>';
 			}else if($status=='fail'){
 				echo '<div class="col-md-7 col-md-offset-3  alert alert-danger">';
 				echo '<div class="h3 text-center"> Error while changing the theme </div>';
 				echo '<hr />';
 				echo '<b>Server status</b> : Fail<br />';
-				echo '<b>Server reply</b> :'.$message;
+				echo '<b>Server reply</b> : '.$message;
 				echo '</div>';
 			}else{
 				echo '<div class="col-md-7 col-md-offset-3 breadcrumb">';

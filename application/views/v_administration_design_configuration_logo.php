@@ -43,8 +43,6 @@
 		</div>
 		<br />
 		<?php
-			
-			
 			if(isset($status) && $status=='success'){
 				echo '<hr />';
 				echo '<div class="col-md-12 alert alert-success">';
@@ -74,5 +72,23 @@
 				}
 			}
 		?>
+		<br />
+		<div class="col-md-12 breadcrumb img-thumbnail">
+			<div class="h4 text-center">
+				Current logo details
+			</div>
+			<hr />
+			<div>
+				<b>Updated by :</b> <?php if(isset($name)){ echo $name;}?>
+				<br />
+				<b>Updated on :</b> <?php if(isset($dateandtime)){ echo $dateandtime;} ?>
+				<br />
+				<b>Original image name :</b> <?php if(isset($original_name)){ echo $original_name; } ?> 
+				<br />
+				<b>Image size :</b> <?php if(isset($size)){ echo $size.' Kilobytes'; } ?> 
+			</div>
+			<br />
+			<a class="btn btn-default pull-right" href="<?php echo base_url().'administration/history/logo/all'?>"> View entire logo history</a>
+		</div>
 	</div>
 </div>

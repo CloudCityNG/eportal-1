@@ -286,12 +286,90 @@ class Admin extends CI_Model{
 	}
 	
 	
-	public function site_logo_update($username){
+	public function site_logo_update($username,$original_name,$size,$type){
+		$logo = array (
+					'username' => $username,
+					'original_name' =>$original_name,
+					'size'=>$size,
+					'type'=>$type
+				);
+		$query = $this->db->insert('site_history_logo',$logo);
 		
+		if($query){return true;} 
+		else {return false;	}
 	}
 	
+	public function get_logo_history($get){
+		if($get=='current'){
+			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_logo 
+					WHERE type='logo'
+					ORDER BY dateandtime DESC
+					LIMIT 1
+					";
+		}
+		
+		if($get=='all'){
+			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_logo 
+					WHERE type='logo'
+					ORDER BY dateandtime DESC";
+		}
+		
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_icon_history($get){
+		if($get=='current'){
+			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_logo 
+					WHERE type='icon'
+					ORDER BY dateandtime DESC
+					LIMIT 1
+					";
+		}
+		
+		if($get=='all'){
+			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_logo 
+					WHERE type='icon'
+					ORDER BY dateandtime DESC";
+		}
+		
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 
-
+	public function site_theme_update($username,$themename){
+		$theme = array (
+					'username' => $username,
+					'theme' =>$themename
+				);
+		$query = $this->db->insert('site_history_theme',$theme);
+		
+		if($query){return true;} 
+		else {return false;	}
+	}
+	
+	public function get_theme_history($get){
+		if($get=='current'){
+			$query = "SELECT username,theme,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_theme 
+					ORDER BY dateandtime DESC
+					LIMIT 1
+					";
+		}
+		
+		if($get=='all'){
+			$query = "SELECT username,theme,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
+					FROM site_history_theme 
+					ORDER BY dateandtime DESC";
+		}
+		
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 
 
 
