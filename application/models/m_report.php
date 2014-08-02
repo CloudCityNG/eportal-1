@@ -67,4 +67,31 @@ class M_report extends CI_Model {
 		$result = $this->db->query($query);
 		return $result->result();
 	}
+	
+	public function get_given_time_all_ad($category,$startdate,$enddate){
+		if($category == 1){
+		//all advertisements
+		$query = 'SELECT a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
+					FROM advertisement a, category c
+					WHERE (createdate between \''.$startdate.'\' AND \''.$enddate.'\') AND ((expired=0 AND approved=1 AND a.categoryid=c.id) OR (expired=0 AND approved=1 AND a.categoryid=0))';
+		}
+		
+		elseif($category == 2){
+			
+		}
+		
+		elseif($category == 3){
+			
+		}
+		else{
+			
+		}
+		
+		echo $category;
+		//echo $startdate;
+		echo $enddate;
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 }

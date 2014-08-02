@@ -9,10 +9,62 @@ class Report extends CI_Controller {
 		$this->footer();
 	}
 	
-	public function ad_reports(){
+	public function ad_reports(){ 
+		
+		$this->load->model('advertisements');
+		
+
+		if($this->input->post('country3')){
+			$data['cou3']=$this->input->post('country3');
+		}
+		else
+		{
+			$data['cou3']=210;
+		}
+		
+		if($this->input->post('province3')){
+			$data['pro3']=$this->input->post('province3');
+		}
+		else
+		{
+			$data['pro3']=0;
+		}
+		
+		if($this->input->post('district1')){
+			$data['dis']=$this->input->post('district1');
+		}
+		else
+		{
+			$data['dis']=0;
+		}
+		
+		$send=null;	
+		$send['0']='--Select--';
+		if($data['cou3']>0){
+			$answer=$this->advertisements->getProvinces($data['cou3']);
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+
+		}
+		}
+		
+		$data['province3']=$send;//loading the province in the dropdown list
+		$send=null;
+		$send['0']='--Select--';
+		if($data['cou3']>0||$data['pro3']>0){
+			$answer=$this->advertisements->getDistricts($data['cou3'],$data['pro3']);
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+		
+		}
+		}
+		
+		$data['district']=$send;//loading the district in the dropdown list
+		$send=null;	
+		
 		$this->header('Advertisement Reports');
-			$this->load->view("v_administration_report_ad");
-		$this->footer();
+			$this->load->view("v_administration_report_ad",$data);
+			$this->footer();
 	}
 	
 	public function user_reports(){
@@ -115,13 +167,36 @@ class Report extends CI_Controller {
 	}
 
 	public function generate_ad_report(){
+		
+		if($this->input->post('category')){
+		
+			$data['cat']=$this->input->post('category');
+		}
+		else
+		{
+			$data['cat']=0;
+		}
+		
 		if($this->input->post('Advertisement_submit'))
 			{
+				/*	
 				if($this->input->post('category') == $list[1]){
 					$this->load->library('table');
 					$query = $this->db->query("SELECT * FROM my_table");
 					echo $this->table->generate($query);
-				}
+					echo "one";
+					
+				}*/
+				
+				//echo $this->input->post('category');
+				//echo $this->input->post('startdate');
+				//echo $this->input->post('enddate');
+				
+				$this->load->model('m_report');
+				$data['ads']=$this->m_report->get_given_time_all_ad($this->input->post('category'),$this->input->post('startdate'),$this->input->post('enddate'));
+				$this->header('Advertisements');
+				$this->load->view("v_administration_report_all_ad",$data);
+				$this->footer();
 			}
 	}
 	
