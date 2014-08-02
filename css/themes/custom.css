@@ -1,6 +1,6 @@
 .navbar-main-theme {
-  background-color: #660066;
-  border-color: #333;
+  background-color: oneOne ;
+  border-color: oneTwo ;
 }
 .navbar-main-theme .navbar-brand {
   color: #777777;
@@ -14,11 +14,11 @@
   color: #CCC;
 }
 .navbar-main-theme .navbar-nav > li > a {
-  color: #CCC;
+  color: oneThree ;
 }
 .navbar-main-theme .navbar-nav > li > a:hover,
 .navbar-main-theme .navbar-nav > li > a:focus {
-  color: #FFFFFF;
+  color: oneFour ;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -83,131 +83,90 @@
   color: #FFFFFF;
   text-decoration: underline;
 }
-
 .nav > li > div > a {
-  color: #CCDDFF;
+  color: oneThree ;
   text-decoration: none;
 }
 .nav > li > div > a:hover,
 .nav > li > div > a:focus {
-  color: #FFFFFF;
+  color: oneFour ;
   text-decoration: underline;
 }
-
 #cssmenu > ul > li ul{
-	border-top:4px solid #660066;
-	border-left:2px solid #660066;
-	border-right:2px solid #660066;
-	border-bottom:2px solid #660066;
+	border-top:4px solid threeFour ;
+	border-left:2px solid threeFour ;
+	border-right:2px solid threeFour ;
+	border-bottom:2px solid threeFour ;
 }
-
 #cssmenu ul li ul li {
-  background: #660066;
+  background: threeFour ;
 }
-
 #cssmenu ul li ul li.has-sub:before {
-  border-left-color: #660066;
+  border-left-color: threeFour ;
 }
-
 #cssmenu ul li ul li:hover
 {
-	background-color: #8A00B8;
+	background-color: threeFive ;
 }
-
 #cssmenu ul li ul li:hover:after,
 #cssmenu ul li ul li.active:after {
-  background: #660066;
+  background: threeFive ;
 }
-
 #cssmenu > ul > li:after {
-  background: #660066;
+  background: threeOne ;
 }
-
 #cssmenu > ul > li.has-sub > a:after {
  background: #660066;
 }
-
 #cssmenu > ul > li.has-sub > a:before {
  border-top-color: #660066;
 }
-
 .logo-background{
-	background-color: #8A00B8; 
+	background-color: twoOne ; 
 	width: 100%;
 	padding-top: 10px;
 	margin-top:3px;
 }
-
 .navbar-background{
-	background-color:#8A00B8; 
+	background-color:twoOne ; 
 	width: 100%;
-	border-bottom:2px solid #660066;
+	border-bottom:2px solid twoTwo;
 }
-
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  background-color:#660066 ;
+  background-color: fourTwo ;
 }
 .welcome-body-background{
-	background-color: #8A00B8;
+	background-color: twoOne ;
 }
 .theme-box-background{
-	background-color: #660066;
-}
-#cssmenu > ul > li:hover > a,
-#cssmenu > ul > li.active > a {
-  color: #acf0f2;			/*category font hoover color*/
-}
-
-#cssmenu > ul > li > a {
-  color: #acf0f2;			/*category font  color*/
-}
-
-#cssmenu ul li ul li:hover > a,
-#cssmenu ul li ul li.active > a {
-  color: #acf0f2;			/*subcategory font hoover color*/
-}
-
-#cssmenu ul li ul li a {
-  color: #acf0f2;			/*subcategory font color*/
-}
-
-.theme-box-background-text{
-color: #acf0f2;				/*theme box back ground color*/
+	background-color: fiveOne ;
 }
 
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #FFFFFF;			/*category font hoover color*/
+  color: threeThree ;			/*category font hoover color*/
 }
-
 #cssmenu > ul > li > a {
-  color: #FFFFFF;			/*category font  color*/
+  color: threeTwo ;			/*category font  color*/
 }
-
 #cssmenu ul li ul li:hover > a,
 #cssmenu ul li ul li.active > a {
-  color: #FFFFFF;			/*subcategory font hoover color*/
+  color: threeThree ;			/*subcategory font hoover color*/
 }
-
 #cssmenu ul li ul li a {
-  color: #FFFFFF;			/*subcategory font color*/
+  color: threeTwo ;			/*subcategory font color*/
 }
-
 .theme-box-background-text{
-color: #FFFFFF;				/*theme box back ground color*/
+color: fiveTwo ;				/*theme box back ground color*/
 }
 .dropdown-menu{
 	background-color: #ffffff;
 }
-
 .dropdown-menu > li > a {
 	color: #333333;
 }
-
 .dropdown-menu > li > a:hover,     /* controller text hover color*/
 .dropdown-menu > li > a:focus {
-  color: #FFFFFF;
+  color: fourOne ;
 }
-
-

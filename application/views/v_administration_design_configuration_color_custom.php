@@ -31,12 +31,12 @@
 	
 <div id="coz-txt">
 </div>
-
 <div class="col-md-8 col-md-offset-3 breadcrumb img-thumbnail">
 	<div class="h2 text-center">
 		Custom colour theme configuration
 	</div>
 	<br>
+	
 	<!--Start custom colour configuration----------------------------------------------->
 	<div class="col-md-12 breadcrumb-white img-thumbnail">
 		<br />
@@ -50,6 +50,10 @@
 			</ul>
 		<!-- end nav tabs -->	
 		
+		<?php
+			$formattributes = array('role' => 'form', 'enctype'=>'multipart/form-data' );
+			echo form_open('administration/generate_colour_theme/',$formattributes);
+		?>
 		<!-- Start tab panes -->
 			<div class="tab-content">
 				<!--start one -->
@@ -64,7 +68,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-1-bg-colour" class="picker"></input>
+					  				<input alt="1st navigation bar background colour" type="text" id="nav-1-bg-colour" class="picker" name="oneOne"></input>
 					  			</div>
 				  			</div>
 				  			<!--2-->
@@ -75,7 +79,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-1-bdr-btm-colour" class="picker"></input>
+					  				<input alt="1st navigation bar border bottom colour" type="text" id="nav-1-bdr-btm-colour" class="picker" name="oneTwo"></input>
 					  			</div>
 				  			</div>
 				  			<!--3-->
@@ -86,7 +90,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-1-link-colour" class="picker"></input>
+					  				<input alt="1st navigation bar text colour" type="text" id="nav-1-link-colour" class="picker" name="oneThree"></input>
 					  			</div>
 				  			</div>
 				  			<!--4-->
@@ -97,7 +101,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-1-link-hover-colour" class="picker"></input>
+					  				<input alt="1st navigation bar text hover colour" type="text" id="nav-1-link-hover-colour" class="picker" name="oneFour"></input>
 					  			</div>
 				  			</div>
 			  			</div>
@@ -116,7 +120,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-2-bg-colour" class="picker"></input>
+					  				<input alt="2n navigation bar background colour" type="text" id="nav-2-bg-colour" class="picker" name="twoOne"></input>
 					  			</div>
 				  			</div>
 				  			<!--2-->
@@ -127,7 +131,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-2-bdr-btm-colour" class="picker"></input>
+					  				<input alt="2n navigation bar border bottom colour" type="text" id="nav-2-bdr-btm-colour" class="picker" name="twoTwo"></input>
 					  			</div>
 				  			</div>
 						</div>
@@ -157,7 +161,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input alt="Category background hover colour" type="text" id="nav-dropdown-bg-hover-colour" class="picker"></input>
+					  				<input alt="Navigation dropdown menue category background hover colour" alt="Category background hover colour" type="text" id="nav-dropdown-bg-hover-colour" class="picker" name="threeOne"></input>
 					  			</div>
 				  			</div>
 				  			<!--3-->
@@ -168,7 +172,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-dropdown-text-colour" class="picker"></input>
+					  				<input alt="Navigation dropdown menue text colour" type="text" id="nav-dropdown-text-colour" class="picker" name="threeTwo"></input>
 					  			</div>
 				  			</div>
 				  			<!--4-->
@@ -179,7 +183,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-dropdown-text-hover-colour" class="picker"></input>
+					  				<input alt="Navigation dropdown menue text hover colour" type="text" id="nav-dropdown-text-hover-colour" class="picker" name="threeThree"></input>
 					  			</div>
 				  			</div>
 				  			<!--5-->
@@ -190,10 +194,10 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-dropdown-list-colour" class="picker"></input>
+					  				<input alt="Navigation dropdown menue subcategory background colour" type="text" id="nav-dropdown-list-colour" class="picker" name="threeFour"></input>
 					  			</div>
 				  			</div>
-				  			<!--1-->
+				  			<!--6-->
 			  				<div class="form-group">
 			  					<div class="col-md-5 text-right pull-left">
 						  			<label for="nav-dropdown-list-hover-colour" class="control-label">
@@ -201,7 +205,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="nav-dropdown-list-hover-colour" class="picker"></input>
+					  				<input alt="Navigation dropdown menue subcategory background hover colour" type="text" id="nav-dropdown-list-hover-colour" class="picker" name="threeFive"></input>
 					  			</div>
 				  			</div>
 						</div>
@@ -242,7 +246,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="controller-dropdown-text-hover" class="picker"></input>
+					  				<input alt="Controller dropdown menue text hover color" type="text" id="controller-dropdown-text-hover" class="picker" name="fourOne"></input>
 					  			</div>
 				  			</div>
 				  			<!--3-->
@@ -253,7 +257,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="controller-dropdown-text-hover-bg" class="picker"></input>
+					  				<input alt="Controller dropdown menue text hover background colour" type="text" id="controller-dropdown-text-hover-bg" class="picker" name="fourTwo"></input>
 					  			</div>
 				  			</div>
 						</div>
@@ -272,7 +276,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="theme-box-bg-colour" class="picker"></input>
+					  				<input alt="Theme box background colour" type="text" id="theme-box-bg-colour" class="picker" name="fiveOne"></input>
 					  			</div>
 				  			</div>
 				  			<!--2-->
@@ -283,7 +287,7 @@
 						  			</label>
 					  			</div>
 					  			<div class="col-md-3">
-					  				<input type="text" id="theme-box-text-colour" class="picker"></input>
+					  				<input alt="Theme box text color" type="text" id="theme-box-text-colour" class="picker" name="fiveTwo"></input>
 					  			</div>
 				  			</div>
 							<br />
@@ -316,17 +320,16 @@
 		
 		<div class="col-lg-12">
 		<br />
-			<div class="pull-left">
-				!important you need to fill all the textboxes
+			<div id="txtbox-remain" class="pull-left text-danger-2">
+				<b>important !</b>
 				<br />
-				<div id="txtbox-remain">
-					12 remaining
-				</div>
+				You need to fill all the colour boxes in order to generate a theme.
 			</div>
-			<a id="generate" class="btn btn-primary disabled pull-right">
-				Generate and apply theme
-			</a>
+			<input type="submit" name="custom_theme_submit" id="generate" class="btn btn-primary disabled pull-right" href="<?php echo base_url().'administration/generate_colour_theme'?>" value="Generate and apply theme">
 		</div>
+		<?php
+			echo form_close();
+		?>
 	</div>
 	<!--Start custom colour configuration----------------------------------------------->
 </div>
@@ -479,10 +482,12 @@ $(document).ready(function() {
 	
 	//enabling button
 	var status=true;
+	var boxName='';
 	$(".picker").blur(function(){
 		$(".picker").each(function() {
 			if($(this).val().length == 0){
 				status=false;
+				boxName=$(this).attr( "alt");
 				return false;	
 			}
 			status=true;
@@ -492,7 +497,7 @@ $(document).ready(function() {
 			$("#txtbox-remain").html("");
 		}else{
 			$( "#generate" ).addClass( "disabled" );
-			$("#txtbox-remain").html(" Please fill all the colour boxes ");
+			$("#txtbox-remain").html('<b>important !</b><br />You need to fill all the colour boxes in order to generate a theme.<br /><span class="label label-danger">'+boxName+'</span> needs to be filled');
 		}
 	});
 });

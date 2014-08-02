@@ -1219,4 +1219,75 @@ class Administration extends CI_Controller {
 		$this->load->view('v_administration_design_configuration_color_custom');
 		$this->footer();
 	}
+
+	public function generate_colour_theme(){
+		$find=array(
+			'oneOne',
+			'oneTwo',
+			'oneThree',
+			'oneFour',
+			'twoOne',
+			'twoTwo',
+			'threeOne',
+			'threeTwo',
+			'threeThree',
+			'threeFour',
+			'threeFive',
+			'fourOne',
+			'fourTwo',
+			'fiveOne',
+			'fiveTwo'
+		);
+		
+		$replaceWith=array(
+			'#'.$this->input->post('oneOne'),
+			'#'.$this->input->post('oneTwo'),
+			'#'.$this->input->post('oneThree'),
+			'#'.$this->input->post('oneFour'),
+			'#'.$this->input->post('twoOne'),
+			'#'.$this->input->post('twoTwo'),
+			'#'.$this->input->post('threeOne'),
+			'#'.$this->input->post('threeTwo'),
+			'#'.$this->input->post('threeThree'),
+			'#'.$this->input->post('threeFour'),
+			'#'.$this->input->post('threeFive'),
+			'#'.$this->input->post('fourOne'),
+			'#'.$this->input->post('fourTwo'),
+			'#'.$this->input->post('fiveOne'),
+			'#'.$this->input->post('fiveTwo'),
+		);
+		$this->load->helper('file');
+		if($filedata = read_file('./css/themes/custom.css')){
+			if(file_exists('./css/site-color-theme.css')){
+				if(unlink('./css/site-color-theme.css')){
+					$delete=true;
+				}else{
+					$delete=false;
+					$data['status']='fail';
+					$data['message']='Deleting the current theme file failed';
+				}
+			}
+			if($delete){
+				if($generatedData=str_replace($find, $replaceWith, $filedata)){
+					if(write_file('./css/site-color-theme.css',$generatedData,'w')){
+						$data['status']='sucess';
+						$data['message']='A new custom theme has been successfully created in your preferences.';
+					}else{
+						$data['status']='fail';
+						$data['message']='Saving the generated file theme failed.';
+					}
+				}else{
+					$data['status']='fail';
+					$data['message']='Generating the theme file with your preferences failed.';
+				}
+			}
+		}else{
+			$data['status']='fail';
+			$data['message']='Reading custom.css file failed';
+		}
+		
+		$this->header('Administration - Custom color theme generating');
+		$this->load->view('v_administration_design_configuration_color_custom_status',$data);
+		$this->footer();
+	}
 }
