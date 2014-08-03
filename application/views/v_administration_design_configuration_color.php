@@ -2,16 +2,13 @@
 <div class="col-sm-3 col-md-2 sidebar navbar-default">
            <div class="h5 text-center dashboard"><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;Dashboard</a></div>
           <ul class="nav nav-sidebar">
-            <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/configDetails'?>">Configure Details</a></li>
-            <li class="sub-link dashLink"><a href="<?php echo base_url().'rules/new_ads'?>">Accept Advertisements</a></li>
-			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptExtend/view/all'?>">Extend Requests</a></li>
-			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>">Featured Requests</a></li>
-			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'report'?>">Generate Reports</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>">Design Configuration</a></li>
-          </ul>
-
-          <ul class="nav nav-sidebar ">
+            <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/configDetails'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Configure Details</a></li>
+            <li class="sub-link dashLink"><a href="<?php echo base_url().'rules/new_ads'?>"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Accept Advertisements</a></li>
+			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptExtend/view/all'?>"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Extend Requests</a></li>
+			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Featured Requests</a></li>
+			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Management</a></li>
+			<li class="dashLink"><a href="<?php echo base_url().'report'?>"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Reports</a></li>
+			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Design Configuration</a></li>
           </ul>
 </div>
 
@@ -62,6 +59,7 @@
 						Dark purple
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Dark-purple.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/dp'?>">Apply theme</a>
@@ -77,6 +75,7 @@
 						Green lantern
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Green-lantern.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/gl'?>">Apply theme</a>
@@ -92,6 +91,7 @@
 						Nigel blue
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Nigel-blue.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/nb'?>">Apply theme</a>
@@ -107,6 +107,7 @@
 						Nigel dark
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Nigel dark.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/nd'?>">Apply theme</a>
@@ -122,6 +123,7 @@
 						Red flash
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Red-flash.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/rf'?>">Apply theme</a>
@@ -137,6 +139,7 @@
 						Venice
 					</div>
 					<br />
+					<img width="650px" src="<?php echo base_url().'images/theme-images/Venice.png'?>" />
 					<br />
 					<div class="pull-right">
 						<a class="btn btn-primary" href="<?php echo base_url().'administration/apply_theme/vn'?>">Apply theme</a>
@@ -144,23 +147,19 @@
 				</div>
 			<!--End theme 6------------------------------------------------->
 		<!--End colour themes------------------------------------------------->
-		
-		<div class="col-md-12"><hr /></div>
-		
-		<!--Start custom color theme------------------------------------------------->
-		<div class="col-md-12 margin-btm-1">
+	</div>
+	
+	<!--Start custom color theme------------------------------------------------->
+		<div class="col-md-12 margin-btm-1 breadcrumb-white img-thumbnail">
 			<div class="h3">
 				Create your own color theme
 			</div>
 			<br />
-			<br />
 			<div class="pull-right">
-				<a class="btn btn-default" href="<?php echo base_url().'administration/'?>">Learn how to create a custom theme</a>
 				<a class="btn btn-primary" href="<?php echo base_url().'administration/custom_colour_theme'?>">Start creating a custom theme</a>
 			</div>
 		</div>
 		<!--End custom color theme--------------------------------------------------->
-	</div>
 	<!--End colour configuration------------------------------------------------->
 
 </div>

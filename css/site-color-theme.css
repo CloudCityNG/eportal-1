@@ -1,6 +1,6 @@
 .navbar-main-theme {
-  background-color: #6ea9d4 ;
-  border-color: #2c3840 ;
+  background-color: #efc94c;
+  border-color: #efc94c;
 }
 .navbar-main-theme .navbar-brand {
   color: #777777;
@@ -11,14 +11,13 @@
   background-color: transparent;
 }
 .navbar-main-theme .navbar-text {
-  color: #CCC;
+  color: #273b47;
 }
 .navbar-main-theme .navbar-nav > li > a {
-  color: #ed0e28 ;
+  color: #273b47;
 }
 .navbar-main-theme .navbar-nav > li > a:hover,
 .navbar-main-theme .navbar-nav > li > a:focus {
-  color: #12e612 ;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -83,90 +82,108 @@
   color: #FFFFFF;
   text-decoration: underline;
 }
+
 .nav > li > div > a {
-  color: #ed0e28 ;
+  color: #002E5C;
   text-decoration: none;
 }
 .nav > li > div > a:hover,
 .nav > li > div > a:focus {
-  color: #12e612 ;
-  text-decoration: underline;
+  color: #002E5C;
 }
+
 #cssmenu > ul > li ul{
-	border-top:4px solid #0c8eeb ;
-	border-left:2px solid #0c8eeb ;
-	border-right:2px solid #0c8eeb ;
-	border-bottom:2px solid #0c8eeb ;
+	border-top:4px solid #273b47;
+	border-left:2px solid #273b47;
+	border-right:2px solid #273b47;
+	border-bottom:2px solid #273b47;
+	/*660066*/
 }
+
 #cssmenu ul li ul li {
-  background: #0c8eeb ;
+  background: #273b47;
 }
+
 #cssmenu ul li ul li.has-sub:before {
-  border-left-color: #0c8eeb ;
+  border-left-color: #FF0000;
 }
+
 #cssmenu ul li ul li:hover
 {
-	background-color: #224a66 ;
+	background-color: #334d5c;/*subcategory hover background color*/
 }
+
 #cssmenu ul li ul li:hover:after,
 #cssmenu ul li ul li.active:after {
-  background: #224a66 ;
+  background: #FF0000;
 }
+
 #cssmenu > ul > li:after {
-  background: #db186d ;
+  background: #273b47;
 }
+
 #cssmenu > ul > li.has-sub > a:after {
  background: #660066;
 }
+
 #cssmenu > ul > li.has-sub > a:before {
- border-top-color: #660066;
+ border-top-color: #FF0000;
 }
+
 .logo-background{
-	background-color: #2d516b ; 
+	background-color: #334d5c; 
 	width: 100%;
 	padding-top: 10px;
 	margin-top:3px;
 }
+
 .navbar-background{
-	background-color:#2d516b ; 
+	background-color:#334d5c; 
 	width: 100%;
-	border-bottom:2px solid #0e8feb;
+	border-bottom:1px solid #334d5c;
 }
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  background-color: #ad133f ;
+  background-color:#334d5c ;
 }
 .welcome-body-background{
-	background-color: #2d516b ;
+	background-color: #334d5c;
 }
 .theme-box-background{
-	background-color: #143142 ;
+	background-color: #334d5c;
 }
 
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #0095ff ;			/*category font hoover color*/
+  color: #efc94c;
 }
+
 #cssmenu > ul > li > a {
-  color: #fcfcfc ;			/*category font  color*/
+  color: #efc94c;
 }
+
 #cssmenu ul li ul li:hover > a,
 #cssmenu ul li ul li.active > a {
-  color: #0095ff ;			/*subcategory font hoover color*/
+  color: #efc94c;
 }
+
 #cssmenu ul li ul li a {
-  color: #fcfcfc ;			/*subcategory font color*/
+  color: #efc94c;
 }
+
 .theme-box-background-text{
-color: #ff00aa ;				/*theme box back ground color*/
+	color: #efc94c;
 }
 .dropdown-menu{
 	background-color: #ffffff;
 }
+
 .dropdown-menu > li > a {
 	color: #333333;
 }
+
 .dropdown-menu > li > a:hover,     /* controller text hover color*/
 .dropdown-menu > li > a:focus {
-  color: #c5d7e3 ;
+  color: #FFFFFF;
 }

@@ -304,7 +304,7 @@ class Admin extends CI_Model{
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
 					WHERE type='logo'
-					ORDER BY dateandtime DESC
+					ORDER BY id DESC
 					LIMIT 1
 					";
 		}
@@ -312,7 +312,7 @@ class Admin extends CI_Model{
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
 					WHERE type='logo'
-					ORDER BY dateandtime DESC";
+					ORDER BY id DESC";
 		}
 		
 		$result = $this->db->query($query);
@@ -324,7 +324,7 @@ class Admin extends CI_Model{
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
 					WHERE type='icon'
-					ORDER BY dateandtime DESC
+					ORDER BY id DESC
 					LIMIT 1
 					";
 		}
@@ -332,7 +332,7 @@ class Admin extends CI_Model{
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
 					WHERE type='icon'
-					ORDER BY dateandtime DESC";
+					ORDER BY id DESC";
 		}
 		
 		$result = $this->db->query($query);
@@ -354,14 +354,14 @@ class Admin extends CI_Model{
 		if($get=='current'){
 			$query = "SELECT username,theme,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_theme 
-					ORDER BY dateandtime DESC
+					ORDER BY id DESC
 					LIMIT 1
 					";
 		}
 		 if($get=='all'){
 			$query = "SELECT username,theme,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_theme 
-					ORDER BY dateandtime DESC";
+					ORDER BY id DESC";
 		}
 		
 		$result = $this->db->query($query);
