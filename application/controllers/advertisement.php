@@ -160,15 +160,20 @@ class Advertisement extends CI_Controller {
 					$this->load->model('m_rules');
 					$result1 = $this->m_rules->algorithm($this->input->post('title'));
 					$result2 = $this->m_rules->algorithm($this->input->post('body'));
-					
+					$this->load->model('notifications');
 					if($result1 || $result2){
 						// send reject email
 						echo("reject");
+						$this->notifications->setNotification($this->session->userdata('username'),'Advertisement rejected',
+						'Your Advertisement is not accepted please create a new ad from the link <a href="'.base_url().'advertisement/createAd">'.base_url().'/advertisement/createAd</a>');
 					}
 					else {
 						$this->m_rules->accept_new_ad($ad_id);
 						//$this->testmail();
 						echo("accepted");
+						$this->notifications->setNotification($this->session->userdata('username'),'Advertisement Pending',
+						'Your Advertisement is pendng for admins approval.');
+						
 						//send approve notification
 					}
 				}
@@ -509,19 +514,19 @@ class Advertisement extends CI_Controller {
 				echo("infinite/n");
 				sleep(5);
 			}*/
-			/*$config = Array(
+			$config = Array(
 				'protocol' => 'smtp',
-			  	'smtp_host' => 'ssl://smtp.googlemail.com',
+			  	'smtp_host' => 'smtp.googlemail.com',
 			  	'smtp_port' => 465,
 			  	'smtp_user' => 'it12030736@my.sliit.lk',
 			  	'smtp_pass' => 'It12030736@#1',
 			  	'mailtype' => 'html',
 			  	'charset' => 'iso-8859-1',
 			  	'wordwrap' => TRUE
-			);*/
+			);
 			
 			$message = 'testmail';
-			$this->load->library('email');
+			$this->load->library('email',$config);
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
 			$this->email->to('hanafdo@gmail.com');
@@ -878,15 +883,20 @@ class Advertisement extends CI_Controller {
 					$this->load->model('m_rules');
 					$result1 = $this->m_rules->algorithm($this->input->post('title'));
 					$result2 = $this->m_rules->algorithm($this->input->post('body'));
-					
+					$this->load->model('notifications');
 					if($result1 || $result2){
 						// send reject email
 						echo("reject");
+						$this->notifications->setNotification($this->session->userdata('username'),'Edit Advertisement rejected',
+						'Your Advertisement is not accepted please create a new ad from the link <a href="'.base_url().'advertisement/editAd'.$ad_id.'">'.base_url().'/advertisement/editAd'.$ad_id.'</a>');
+						
 					}
 					else {
 						$this->m_rules->accept_edit_ad($ad_id);
 						//$this->testmail();
 						echo("accepted");
+						$this->notifications->setNotification($this->session->userdata('username'),'Edit Advertisement Pending',
+						'Your Edit Advertisement is pendng for admins approval.');
 						//send approve notification
 					}
 				

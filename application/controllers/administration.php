@@ -911,17 +911,23 @@ class Administration extends CI_Controller {
 			}
 			if((isset($request))&&(isset($id)))
 			{
+				$this->load->model('notifications');
 				if($request=='accept')
 				{
 					if($this->advertisements->acceptExtend($id))
 					{
+						$this->notifications->setNotification($this->session->userdata('username'),'Extend Advertisement Approved',
+						'Your Advertisement extension request is accepted <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/eviewAd/'.$id.'</a>');
 						$data['status_accept']=true;
 					}	
+					
 				}
 				else if($request=='decline')
 				{
 					if($this->advertisements->declineExtend($id))
 					{
+						$this->notifications->setNotification($this->session->userdata('username'),'Extend Advertisement Declined',
+						'Your Advertisement extension request is Declined <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/eviewAd/'.$id.'</a>');
 						$data['status_decline']=true;
 					}
 				}
@@ -942,17 +948,23 @@ class Administration extends CI_Controller {
 			}
 			if((isset($request))&&(isset($id)))
 			{
+				$this->load->model('notifications');
 				if($request=='accept')
 				{
 					if($this->advertisements->acceptFeatured($id))
 					{
+						//$this->notifications->setNotification($this->session->userdata('username'),'Featured Advertisement Approved',
+						//'Your Advertisement Featured request is accepted <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/viewAd/'.$id.'</a>');
 						$data['status_accept']=true;
+						
 					}	
 				}
 				else if($request=='decline')
 				{
 					if($this->advertisements->declineFeatured($id))
 					{
+						//$this->notifications->setNotification($this->session->userdata('username'),'Featured Advertisement Declined',
+						//'Your Advertisement Featured request is declined <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/viewAd/'.$id.'</a>');
 						$data['status_decline']=true;
 					}
 				}

@@ -40,8 +40,79 @@
  	 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 
-	<script type="text/javascript">
+	<link rel="stylesheet" href="<?php echo base_url().'jGrowl-master/jquery.jgrowl.css'; ?>" type="text/css"/>
+	<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>
+		<script type="text/javascript">
 
+		// In case you don't have firebug...
+		if (!window.console || !console.firebug) {
+			var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml", "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
+			window.console = {};
+			for (var i = 0; i < names.length; ++i) window.console[names[i]] = function() {};
+		}
+
+		(function($){
+
+			$(document).ready(function(){
+		
+			
+				// This specifies how many messages can be pooled out at any given time.
+				// If there are more notifications raised then the pool, the others are
+				// placed into queue and rendered after the other have disapeared.
+				$.jGrowl.defaults.pool = 5;
+			
+				
+					
+				setInterval( function() {
+					
+
+
+					 $.ajax({
+                    url:"<?php echo base_url(); ?>notification/getCount",    
+                    data: {uname: "<?php echo $this->session->userdata('username');?>"},
+                    type: "POST",
+                    success: function(data){
+                        $("#noti").html(data);
+                    },
+                    error: function(data){
+                        
+                       
+                    }
+
+                    
+                    });
+					
+					
+					
+				} , 1000 );
+				
+					setInterval( function() {				$.ajax({
+                    url:"<?php echo base_url(); ?>notification/getInstantMessages",    
+                    data: {uname: "<?php echo $this->session->userdata('username');?>"},
+                    type: "POST",
+                    success: function(data){
+                    	if(data!="")
+                    	{
+                        	$('#noti1').jGrowl("<a href='<?php echo base_url()."notification"; ?>'><div class='notif'>"+data+"</div></a>", {
+								sticky:			false,
+								life: 			12000
+							});
+						}
+                    },
+                    error: function(data){
+                        
+                      
+                    }
+
+                    
+                    });
+					} , 800 );
+			});
+		})(jQuery);
+
+		</script>
+		  
+<script type="text/javascript">
 $(function () {
 $('.dropdown-toggle').dropdown();
 });
@@ -73,7 +144,10 @@ $('.dropdown-toggle').dropdown();
 						  	</a>
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
-						    	<li><a href="#">Notifications</a></li>
+						    	<li ><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications
+						    	
+						    	
+						    		</a></li>
 						    	<li class="divider"></li>
 						    	<li><a href="<?php echo base_url()."profile/update"; ?>">Profile settings</a></li>
 						    	<li class="divider"></li>
@@ -159,7 +233,7 @@ $('.dropdown-toggle').dropdown();
 		</div>
 	</div>
 <div class="navbar navbar-default navbar-static-top" style="margin-bottom:180px"></div>
-
+<div id='noti1' class="bottom-left"></div>
 	
 	
 	
