@@ -61,7 +61,8 @@
 			$data['sort_by_opt'] = array (
 			'' => '',
 			'recent_post' => 'Recently Posted',
-			'price' => 'Lowest Price'
+			'price' => 'Lowest Price',
+			'rated' => 'Most Rated'
 			);
 			
 			$data['pagination'] = $this->pagination->create_links();

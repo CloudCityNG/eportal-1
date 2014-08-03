@@ -77,6 +77,11 @@ class site_model extends CI_Model{
 	    $row->avg_rate = $results['avg_rate'];
 		$row->total_rate = $results['total_rate'];
 		}
+
+		if($qarray['sort_by'] == 'rated')
+		{
+			usort($ret['rows'], array($this, "cmp"));
+		}
 		
 		//images
 		foreach ($ret['rows'] as &$row) {
@@ -420,6 +425,42 @@ class site_model extends CI_Model{
 		$q = $this->db->get('advertisement');
 		return  $q->result();
 		
+	}
+	
+	function cmp($a, $b)
+	{
+    if ($a->total_rate == $b->total_rate) {
+        return 0;
+    }
+    
+    return ($a->total_rate < $b->total_rate) ? 1 : -1;
+	}
+	
+	function best_match($array, $title)
+	{
+		foreach($array as &$row)
+		{
+			$row->hits = 0;
+		}
+		$words = explode(' ', trim($array->title));
+		$title_words = explode(' ', trim($title));
+		
+		foreach ($title_words as $term) {
+    		foreach ($words as $word) {
+        		if(strcmp($word, $term))
+					$array->hits++;
+    		}
+    	}	
+    
+	}
+	
+	function cmp2($a, $b)
+	{
+    if ($a->hits == $b->hits) {
+        return 0;
+    }
+    
+    return ($a->hits < $b->hits) ? 1 : -1;
 	}
 }
 ?>
