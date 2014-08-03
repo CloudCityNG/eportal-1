@@ -91,7 +91,8 @@ class site_model extends CI_Model{
 		//count
 		$q = $this->db->select('COUNT(*) as count', FALSE)
 		-> from ('advertisement')
-		->where('expired',0);
+		->where('expired',0)
+		->where('approved',1);
 		
 		if(strlen($qarray['title']))
 		{
