@@ -308,7 +308,6 @@ class Admin extends CI_Model{
 					LIMIT 1
 					";
 		}
-		
 		if($get=='all'){
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
@@ -329,7 +328,6 @@ class Admin extends CI_Model{
 					LIMIT 1
 					";
 		}
-		
 		if($get=='all'){
 			$query = "SELECT username,original_name,size,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_logo 
@@ -360,8 +358,7 @@ class Admin extends CI_Model{
 					LIMIT 1
 					";
 		}
-		
-		if($get=='all'){
+		 if($get=='all'){
 			$query = "SELECT username,theme,DATE_FORMAT(dateandtime,'%D %M %Y %r') as dateandtime 
 					FROM site_history_theme 
 					ORDER BY dateandtime DESC";
@@ -370,6 +367,7 @@ class Admin extends CI_Model{
 		$result = $this->db->query($query);
 		return $result->result();
 	}
+	
 
 
 

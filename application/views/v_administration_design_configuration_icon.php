@@ -92,7 +92,7 @@
 				<b>Image size :</b> <?php if(isset($size)){ echo $size.' Kilobytes'; } ?> 
 			</div>
 			<br />
-			<a class="btn btn-default pull-right" href="<?php echo base_url().'administration/history/logo/all'?>"> View entire logo history</a>
+			<a class="btn btn-default pull-right" href="<?php echo base_url().'administration/history/icon/all'?>"> View entire logo history</a>
 		</div>
 	</div>
 	<!--End icon configuration----------------------------------------------->

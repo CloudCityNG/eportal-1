@@ -1020,7 +1020,7 @@ class Administration extends CI_Controller {
 			$data['name'] = $this->setup_names($info->username);
 		}
 		
-		$this->header('Administration - Logo configuration');
+		$this->header('Administration - Icon configuration');
 		$this->load->view('v_administration_design_configuration_icon',$data);
 		$this->footer();
 	}
@@ -1352,4 +1352,61 @@ class Administration extends CI_Controller {
 		$this->load->view('v_administration_design_configuration_color_custom_status',$data);
 		$this->footer();
 	}
+
+	public function history($type,$get){
+		$data['h_type'] = $type;
+		$data['h_get'] = $get;
+		$stat=false;
+		$log=array();
+		$this->load->model("admin");
+		
+		if($type=='icon'&& ($get=='all' || $get=='current')){
+			$stat=true;
+			$log=$this->admin->get_icon_history($get);
+		}else if($type=='theme'&& ($get=='all' || $get=='current')){
+			$stat=true;
+			$log=$this->admin->get_theme_history($get);
+		}else if($type=='logo'&& ($get=='all' || $get=='current')){
+			$stat=true;
+			$log=$this->admin->get_logo_history($get);
+		}else{}
+		
+		if($stat && $type=='theme' && ($get=='all' || $get=='current')){
+			$history=array();
+			$dataset=array();
+			$key=0;
+			foreach($log as $key=>$value){
+				$history['theme'] = $value->theme;
+				$history['dateandtime'] = $value->dateandtime;
+				$history['name'] = $this->setup_names($value->username);
+				$dataset[$key]=(object)$history;
+				$key++;
+			}
+
+			$data['history']=$dataset;
+			$this->header('Administration - Site history logo/icon');
+			$this->load->view('v_administration_design_configuration_history_theme',$data);
+			$this->footer();
+		}else if($stat && ($type=='logo' || $type=='icon') && ($get=='all' || $get=='current')){
+			$history=array();
+			$dataset=array();
+			$key=0;
+			foreach($log as $key=>$value){
+				$history['original_name'] = $value->original_name;
+				$history['size'] = $value->size;
+				$history['dateandtime'] = $value->dateandtime;
+				$history['name'] = $this->setup_names($value->username);
+				$dataset[$key]=(object)$history;
+				$key++;
+			}
+			
+			$data['history']=$dataset;
+			$this->header('Administration - Site history logo/icon');
+			$this->load->view('v_administration_design_configuration_history_icon_logo',$data);
+			$this->footer();
+
+		}else{
+			show_404('asdasdasdasdasd','hmmmm');
+		}
+	}	
 }
