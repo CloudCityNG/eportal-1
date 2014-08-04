@@ -50,26 +50,28 @@ code {
 </style>
 </head>
 <body>
-	<div id="oop" class="col-md-5">
+	<div id="oop" class="col-md-6">
 		<div id="container" class=" col-md-12 breadcrumb-white img-thumbnail">
 			<div class="pull-left">
 				<a href="<?php echo base_url();?>home">
 					<img class="site-logo" src="<?php echo base_url()?>images/site/logo.png" />
 				</a>
 			</div>
-			<div class="">
+			<div class="pull-right">
 				<div class="h1 text-left">
 					<?php echo $heading; ?>
 				</div>
 				<br />
 			</div>
 			<br /><br />
-			<div class="h5">
+			<div class="h5 pull-left">
 				<?php echo $message; ?>
 			</div>
 			<br />
-			<div class="">
-				<a class="btn btn-primary btn-block " href="<?php echo base_url().'home'?>"> Go back to home page</a>
+			<div class="col-md-12">
+				<div class="">
+					<a class="btn btn-primary btn-block " href="<?php echo base_url().'home'?>"> Go back to home page</a>
+			    </div>
 			</div>
 		</div>
 	</div>
