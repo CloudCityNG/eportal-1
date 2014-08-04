@@ -21,7 +21,7 @@ class site_model extends CI_Model{
 			$sort_ord = 'asc';
 		}
 
-		$q = $this->db->select('advertisement.id, title, body, price, DATE_FORMAT(createdate,\'%d-%m-%Y\') as cDATE, categoryid, subcategoryid, countryid, provinceid, districtid, ', FALSE)
+		$q = $this->db->select('advertisement.id, title, body, price, DATE_FORMAT(createdate,\'%d-%m-%Y\') as cDATE, categoryid, subcategoryid, countryid, provinceid, districtid', FALSE)
 		-> from ('advertisement')
 		//->join('images', 'images.adid = advertisement.id','left')
 		->where('expired',0)
@@ -427,6 +427,55 @@ class site_model extends CI_Model{
 		
 	}
 	
+	public function reportads($data){
+	 	$db['reported_adid']=$data['adid'];
+	 	$db['reported_by']=$data['user'];
+		$db['type']=$data['type'];
+		$db['description']=$data['description'];
+		
+		$q1 = $this->db->insert('reported_ads',$db);
+	 	
+		if($q1){return true;} 
+		else {return false;	}
+	 }
+	
+	public function get_all_ad_reports(){
+		$q = $this->db->select('id, type, reported_adid as adid, reported_by as username, description, DATE_FORMAT(dateandtime,\'%d-%m-%Y\') as DATE', FALSE)
+		-> from ('reported_ads');
+		$ret['rows'] = $q->get()->result();
+		
+		if($this->count_total_ad_reports()>0)
+		{
+		foreach($ret['rows'] as &$row)
+		{
+		$results = $this->db->get_where('advertisement', array('id' => $row->adid))->result();
+		$row->title = $results[0]->title;
+		$row->fullname = $this->get_fullname($row->username);	    
+		}
+		}
+		
+		return $ret;
+	}
+	
+	public function ads_reported_resolved($rid){
+		if($rid!=null){
+			$this->db->where('id', $rid);
+			$q1 = $this->db->delete('reported_ads');
+		}
+		if($q1){return true;}
+		else{return false;}
+	}
+	
+	public function count_total_ad_reports(){
+		$query = "SELECT count(id) as total_ad_reports
+					FROM reported_ads";
+		$result = $this->db->query($query);
+		
+		$temp = $result->result(); 
+		return $temp[0]->total_ad_reports;
+		
+	}
+	 
 	function cmp($a, $b)
 	{
     if ($a->total_rate == $b->total_rate) {

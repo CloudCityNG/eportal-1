@@ -1,14 +1,17 @@
 <link href="<?php echo base_url();?>css/dashboard.css" rel="stylesheet">
 <div class="col-sm-3 col-md-2 sidebar navbar-default">
-          <div class="h5 text-center dashboard"><a href="<?php echo base_url().'administration/user_management'?>">Dashboard</a></div>
+          <div class="h5 text-center dashboard"><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;Dashboard</a></div>
           <ul class="nav nav-sidebar">
-            <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/configDetails'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Configure Details</a></li>
-            <li class="sub-link dashLink"><a href="<?php echo base_url().'rules/new_ads'?>"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Accept Advertisements</a></li>
-			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptExtend/view/all'?>"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Extend Requests</a></li>
-			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Featured Requests</a></li>
-			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Management</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'report'?>"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Reports</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Design Configuration</a></li>
+            <li class="sub-link dashLink"><a href="<?php echo base_url().'administration/configDetails'?>">Configure Details</a></li>
+            <li class="sub-link dashLink"><a href="<?php echo base_url().'rules/new_ads'?>">Accept Advertisements</a></li>
+			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptExtend/view/all'?>">Extend Requests</a></li>
+			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>">Featured Requests</a></li>
+			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
+			<li class="dashLink"><a href="<?php echo base_url().'report'?>">Generate Reports</a></li>
+			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>">Design Configuration</a></li>
+          </ul>
+
+          <ul class="nav nav-sidebar ">
           </ul>
 </div>
 <div class="col-lg-10 col-md-offset-2">
@@ -64,6 +67,27 @@
       </div>
     </div>
   </div>
+  
+  <div class="col-sm-4 col-md-4">
+    <div class="thumbnail">
+      <div class="caption text-center <?php if($total_ad_reports>1)echo 'bg-danger';?>">
+      		<div class="h4"><a href="<?php echo base_url().'site/ads_reported/view_all'?>"><span class="label label-danger"><?php echo $total_ad_reports; ?></span> Advertisments Reports</a></div>
+      		<?php 
+      		/*	if(isset($top_5_reported_users)){
+      				foreach($top_5_reported_users as $info){
+      		?>
+      			<hr />
+      			<a href="<?php echo base_url().'administration/users_reported/'.$info->accused_user_username; ?>" class="btn-link">
+      			<p class="text-left text-danger"><span class="label label-info"><?php echo $info->count.'</span> reports has been submitted on '.$info->accused_user_name; ?> </p>
+      			</a>
+      		<?php 
+					}
+				}*/
+      		?>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 <div class="row">

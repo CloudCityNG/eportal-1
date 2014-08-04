@@ -243,6 +243,54 @@
 	    echo json_encode($json_array);
 			
 	    }
+		
+	public function reportads($adid,$user){
+		$this->load->model('site_model');
+		$data['description']=$this->input->post('reportOtherDescription');	
+		$data['type']=$this->input->post('rt');
+		$data['adid']=$adid;
+		$data['user']=$user;	
+		
+		if($this->site_model->reportads($data)){
+			$stat['status']=true;
+			$this->header('Profile Report - success');
+			$this->load->view('v_profile_user_report',$stat);
+			$this->footer();
+		}else{
+			$stat['status']=false;
+			$this->header('Profile Report - failed');
+			$this->load->view('v_profile_user_report',$stat);
+			$this->footer();
+		}
+	}
+	
+	public function ads_reported($request)
+	{
+		if($request=='view_all'){
+			$this->load->model('site_model');
+			$results = $this->site_model->get_all_ad_reports();
+			
+			$data['ads'] = $results['rows'];
+			$data['total_ad_reports'] = $this->site_model->count_total_ad_reports();
+			//if($results['rows'][0]->count>0)
+			{
+			$this->header('Administration - User Profiles Reported');
+			$this->load->view("ad_reports",$data);
+			$this->footer();
+			}
+			//else{
+			//	redirect(base_url().'administration/user_management');}
+		}
+	}	
+	
+	public function ads_reported_resolved($rid){
+		$this->load->model('site_model');
+		if($this->site_model->ads_reported_resolved($rid)){
+			redirect(base_url().'site/ads_reported/view_all');
+		}else{
+			redirect(base_url().'site/ads_reported/view_all');
+		}
+	}
 	
     }
 

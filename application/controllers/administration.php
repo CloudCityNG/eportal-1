@@ -11,6 +11,7 @@ class Administration extends CI_Controller {
 	public function user_management(){
 		$this->header('Administration');
 		$this->load->model("admin");
+		$this->load->model('site_model');
 		$key=0;
 		$dataset=array();
 		
@@ -24,7 +25,6 @@ class Administration extends CI_Controller {
 		$a_total_u = $this->admin->count_total_admin_users();
 		$total_profile_reports = $this->admin->count_total_profile_reports();
 		$top_5_reported_users = $this->admin->get_mostly_reported_users();
-		
 		
 		foreach($top_5_reported_users as $key=>$value){
 			$rp['accused_user_username'] = $value->accused_user;
@@ -45,6 +45,7 @@ class Administration extends CI_Controller {
 		foreach($total_u as $info){$data['total_u'] = $info->total_u;}
 		foreach($total_profile_reports as $info){$data['total_profile_reports'] = $info->total_profile_reports;}
 		
+		$data['total_ad_reports'] = $this->site_model->count_total_ad_reports();
 		$this->load->view('v_administration_user_management',$data);
 		$this->footer();
 	}
@@ -911,23 +912,17 @@ class Administration extends CI_Controller {
 			}
 			if((isset($request))&&(isset($id)))
 			{
-				$this->load->model('notifications');
 				if($request=='accept')
 				{
 					if($this->advertisements->acceptExtend($id))
 					{
-						$this->notifications->setNotification($this->session->userdata('username'),'Extend Advertisement Approved',
-						'Your Advertisement extension request is accepted <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/eviewAd/'.$id.'</a>');
 						$data['status_accept']=true;
 					}	
-					
 				}
 				else if($request=='decline')
 				{
 					if($this->advertisements->declineExtend($id))
 					{
-						$this->notifications->setNotification($this->session->userdata('username'),'Extend Advertisement Declined',
-						'Your Advertisement extension request is Declined <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/eviewAd/'.$id.'</a>');
 						$data['status_decline']=true;
 					}
 				}
@@ -948,23 +943,17 @@ class Administration extends CI_Controller {
 			}
 			if((isset($request))&&(isset($id)))
 			{
-				$this->load->model('notifications');
 				if($request=='accept')
 				{
 					if($this->advertisements->acceptFeatured($id))
 					{
-						//$this->notifications->setNotification($this->session->userdata('username'),'Featured Advertisement Approved',
-						//'Your Advertisement Featured request is accepted <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/viewAd/'.$id.'</a>');
 						$data['status_accept']=true;
-						
 					}	
 				}
 				else if($request=='decline')
 				{
 					if($this->advertisements->declineFeatured($id))
 					{
-						//$this->notifications->setNotification($this->session->userdata('username'),'Featured Advertisement Declined',
-						//'Your Advertisement Featured request is declined <a href="'.base_url().'advertisement/viewAd/'.$id.'">'.base_url().'/advertisement/viewAd/'.$id.'</a>');
 						$data['status_decline']=true;
 					}
 				}

@@ -27,11 +27,7 @@ box-shadow:1px 1px 5px rgba(0,0,0,.2);
   left:-10px;
   top:12px;
   }
-a:link
-		{
-			color: red;
-		}
-		a:hover
+a:hover
 		{
 			color: red;
 			cursor: pointer; cursor: hand;
@@ -383,7 +379,14 @@ a:link
 		<div class="col-md-6 pull-right">
 		<div class="h3 text-left" style="margin-bottom: 26px;">
 			<?php echo $Title; ?>
+			
+			<?php if($this->session->userdata('usertype')=='n'||$this->session->userdata('usertype')=='b'): ?>
+		<div class="pull-right">
+			<a data-toggle="modal" href="#myModal" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Report&nbsp;</a><br/>
 		</div>
+			<?php endif; ?>
+		</div>
+		
 		<br />
 		<br />
 		<p><?php echo $body;?></p>
@@ -528,8 +531,76 @@ a:link
 								echo '<a class="btn btn-warning btn-block btn-lg" href="'.base_url().'registration"> You don\'t have an account ? </a>';
 							}?>
 						</div>
+				</div>
+</div>
+</div>
+
+
+	<div class="modal" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4><strong>Report user : </strong> <?php echo $Title ;?><a herf="#" class="btn pull-right pull-up" data-dismiss="modal"> X </a></h4>
+				</div>
+				<div class="modal-body">
+					<h4>Select the type of report</h4>
+					<div class="col-md-offset-1">
+					<?php
+						$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
+						echo form_open('site/reportads/'.$adid.'/'.$this->session->userdata('username'),$formattributes);
+					?>
+					<label for="reportType1" class="control-label">
+					<?php
+						$rt1 = array('id'=>'reportType1','name'=>'rt','value'=>'type1');
+	      				echo form_radio($rt1);
+					?>&nbsp;This is a fake advertisemesnt</label>
+					<br />
+					<label for="reportType2" class="control-label">
+					<?php
+						$rt2 = array('id'=>'reportType2','name'=>'rt','value'=>'type2');
+	      				echo form_radio($rt2);
+					?>&nbsp;This is an inappropriate advertisement
+					</label>
+					<br />
+					<label for="reportType3" class="control-label">
+					<?php
+						$rt3 = array('id'=>'reportType3','name'=>'rt','value'=>'type3');
+	      				echo form_radio($rt3);
+					?>&nbsp;This contains inappropriate images
+					</label>
+					<br />
+					<label for="reportType4" class="control-label">
+					<?php
+						$rt4 = array('id'=>'reportType4','name'=>'rt','value'=>'type4');
+	      				echo form_radio($rt4);
+					?>&nbsp;This contains inappropriate commnents
+					</label>
+					<br />
+					<label for="reportType5" class="control-label">
+					<?php
+						$rt5 = array('id'=>'reportType5','name'=>'rt','value'=>'type5');
+	      				echo form_radio($rt5);
+					?>&nbsp;Other&nbsp;
+					</label>
+					<br /><br />
+					<label for="reportTypeOtherText" class="control-label"> Discribe your situation more : </label>
+					<?php
+			      			
+			      		$rt5 = array('id'=>'reportTypeOtherText','class' => 'form-horizontal', 'role' => 'form','name'=> 'reportOtherDescription','rows'=> '5','cols'=> '10','style'=> 'width:100%');
+						echo form_textarea($rt5);
+					?>
 					</div>
-
-</div>
-
-</div>
+				</div>
+				<div class="modal-footer">
+					<?php
+	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'report_submit','value'=>'Submit Report');
+						echo form_submit($reportattributes);
+	      			?>
+				</div>
+				
+				<?php
+					echo form_close();
+				?>
+			</div>
+		</div>
+	</div>
