@@ -526,10 +526,10 @@ class Advertisement extends CI_Controller {
 			);
 			
 			$message = 'testmail';
-			$this->load->library('email',$config);
+			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
-			$this->email->to('hanafdo@gmail.com');
+			$this->email->to('gcrescape@gmail.com');
 			$this->email->subject('Gayam');
 			$this->email->message($message);
 			if($this->email->send())

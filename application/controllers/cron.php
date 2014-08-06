@@ -18,7 +18,7 @@
 				);
 			
 			$message = 'Your Advertisement has been expired.Check through this link\n <a href="'.base_url().'advertisement/viewAd/'.$email->id.'">'.base_url().'advertisement/viewAd/'.$email->id.'</a>';
-			$this->load->library('email',$config);
+			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
 			$this->email->to($email->email);
@@ -57,7 +57,7 @@ where DATEDIFF(duration,CURRENT_TIMESTAMP)<=0 and expired=0');
 				);
 			
 			$message = 'Your Advertisement will be expired in 2 days time.Check through this link\n <a href="'.base_url().'advertisement/viewAd/'.$email->id.'">'.base_url().'advertisement/viewAd/'.$email->id.'</a>';
-			$this->load->library('email',$config);
+			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
 			$this->email->to($email->email);
@@ -101,7 +101,7 @@ where DATEDIFF(duration,CURRENT_TIMESTAMP)<=2 and expired=0');
 				);
 			
 			$message = 'Your Featured Advertisement has been expired.Check through this link\n <a href="'.base_url().'advertisement/viewAd/'.$email->adId.'">'.base_url().'advertisement/viewAd/'.$email->adId.'</a>';
-			$this->load->library('email',$config);
+			$this->load->library('email');
 			$this->email->set_newline("\r\n");
 			$this->email->from('it12030736@my.sliit.lk'); 
 			$this->email->to($email->email);

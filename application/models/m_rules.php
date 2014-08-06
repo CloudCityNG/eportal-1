@@ -209,7 +209,7 @@ public function getAdvertisement($adid)
 	}
 	/*************************************************************/
 	public function get_cid_sid_subscription($a){
-		$sql='SELECT categoryid, subcategoryid
+		$sql='SELECT categoryid, subcategoryid, username
 				From new_advertisement 
 				WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql);
@@ -217,12 +217,12 @@ public function getAdvertisement($adid)
 		
 	}
 	
-	public function get_email_subscription($cid,$sid){
+	public function get_email_subscription($cid,$sid,$un){
 		$sql='select u.email
 				from users u
 				where u.username in (SELECT s.username
 									From subscribes s
-									WHERE s.catid='.$cid.' and s.subcatid='.$sid.')';
+									WHERE s.catid='.$cid.' and s.subcatid='.$sid.' and s.username<>\''.$un.'\')';
 		$result=$this->db->query($sql);
 		return $result->result();
 	}

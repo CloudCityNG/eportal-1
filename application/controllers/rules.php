@@ -258,9 +258,10 @@ class Rules extends CI_Controller {
 		foreach($result as $record){
 			$cid=$record->categoryid;
 			$sid=$record->subcategoryid;
+			$un=$record->username;
 		}
 		
-		$result = $this->m_rules->get_email_subscription($cid,$sid);
+		$result = $this->m_rules->get_email_subscription($cid,$sid,$un);
 		$config = Array(
 				'protocol' => 'smtp',
 			  	'smtp_host' => 'ssl://smtp.googlemail.com',
