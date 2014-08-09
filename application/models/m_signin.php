@@ -33,12 +33,91 @@ class M_signin extends CI_Model {
 	
 	public function email_exists($email){
 		
-		$sql = "SELECT fname, email FROM users WHERE email = '{$email}' LIMIT 1";
+		$sql = "SELECT usertype FROM users WHERE email = '{$email}' LIMIT 1";
 		$query = $this->db->query($sql);
 		$row = $query->row();
+		$username = $row->username;
 		
-		if($query->num_rows() == 1 && $row->email){
-			return $row->fname;
+		if($row->usertype == 'a'){
+			$sql = "SELECT fname FROM admin_users WHERE username = '{$username}' LIMIT 1";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			
+			if($query->num_rows() == 1 && $row->email){
+				return $row->fname;
+			}
+			else{
+				return false;
+			}
+		}
+		elseif($row->usertype == 'b'){
+			$sql = "SELECT fname FROM admin_users WHERE username = '{$username}' LIMIT 1";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			
+			if($query->num_rows() == 1 && $row->email){
+				return $row->fname;
+			}
+			else{
+				return false;
+			}
+		}
+		elseif($row->usertype == 'n'){
+			$sql = "SELECT fname FROM normal_users WHERE username = '{$username}' LIMIT 1";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			
+			if($query->num_rows() == 1 && $row->email){
+				return $row->fname;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			$sql = "SELECT bname FROM business_users WHERE username = '{$username}' LIMIT 1";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			
+			if($query->num_rows() == 1 && $row->email){
+				return $row->fname;
+			}
+			else{
+				return false;
+			}
+		}
+		
+		
+	}
+	
+	public function verify_reset_password_code($email, $code){
+				
+			
+		
+		$sql = "SELECT username 
+				FROM users 
+				WHERE email = '{$email}' LIMIT 1";
+		$result = $this->db->query($sql);
+		$row = $result->row();
+		
+		if($result->num_rows() == 1){
+			return ($code == md5($this->config->item('salt') . $row->fname)) ? true : FALSE;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public function update_password(){
+		
+		$email = $this->input->post('email');
+		$password = sha1($this->config->item('salt') . $this->input->post('password'));
+		
+		$sql = "UPDATE users SET password = '{$password}' WHERE email = '{$email}' LIMIT 1";
+		$this->db->query($sql);
+		
+		if ($this->db->affected__rows() === 1){
+			return true;
 		}
 		else{
 			return false;

@@ -79,26 +79,26 @@ class Signin extends CI_Controller {
 				// email didn't validate, send back to reset password form and show errors
 				// this will likely never occur due to front end validation done on type = "email"
 				$data['title']="Reset Password";
-		        $this->load->view('header',$data);
+		        $this->header($data);
 				$this->load->view('view_reset_password', array('error' => 'Please supply a valid email address.'));
 				$this->load->view('footer');
 			}
 			else {
 				$email = trim($this->input->post('email'));
-				$this->load->model('model_login');
-				$result = $this->model_login->email_exists($email);
+				$this->load->model('m_signin');
+				$result = $this->m_signin->email_exists($email);
 				
 				if ($result) {
 					// if we found the email. $result is now their first name
 					$this->send_reset_password_email($email, $result);
 					$data['title']="Success";
-					$this->load->view('header',$data);
+					$this->header($data);
 					$this->load->view('view_reset_password_sent', array('email' => $email));
 					$this->load->view('footer');
 				}
 				else{
 					$data['title']="Reset Password";
-					$this->load->view('header',$data);
+					$this->header($data);
 					$this->load->view('view_reset_password', array('error' => 'Email address not registered with this website.'));
 					$this->load->view('footer');
 				}
@@ -143,8 +143,8 @@ class Signin extends CI_Controller {
 		if (isset($email, $email_code)) {
 			$email = trim($email);
 			$email_hash = shal($email . $email_code);
-			$this->load->model('model_login');
-			$verified = $this->model_login->verify_reset_password_code($email, $email_code);
+			$this->load->model('m_signin');
+			$verified = $this->m_signin->verify_reset_password_code($email, $email_code);
 			
 			if ($verified) {
 				$data['title']="Update Password";
@@ -187,7 +187,7 @@ class Signin extends CI_Controller {
 		else {
 			// successful update
 			// returns users first name if successful
-			$result = $this->model_login->update_password();
+			$result = $this->m_signin->update_password();
 			
 			if ($result) {
 				$data['title']="Update Password Success";
