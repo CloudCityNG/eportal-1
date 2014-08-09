@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>datepicker demo</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+     <script type="text/javascript">
+$(function(){
+   $('.datepicker').datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+});
+</script> 
 </head>
 </html>
 
@@ -22,16 +28,24 @@
           </ul>
 </div>
 
+<div class="col-md-offset-2">
+
+
+<div class="">
+	<div class="col-md-7 col-md-offset-2 breadcrumb img-thumbnail">
 <?php
 		$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
-		echo form_open_multipart('report/generate_ad_report',$formattributes);
+		echo form_open_multipart('report/generate_user_report',$formattributes);
 	?>
 
-<div class="form-group">
-	
-	<label style="margin-top: 30px; for="heading" class="col-md-offset-3 control-label">Basic Reports &nbsp;&nbsp;</label>
-	
-	<div class="col-md-6 col-md-offset-4">
+<div class="panel panel-default">
+    		 	<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
+			<small>Current Month Reports</small>
+    		</div>
+    		<div class="panel-body">	
+
+<div class="form-group">	
+	<div class="col-md-8 col-md-offset-2">
 	<div class="row">
 		<div class="col-md-4">
 		<a href="<?php echo base_url().'report/generate_all_user'?>">		
@@ -60,30 +74,68 @@
 		-->	
 	</div>	
 </div>
+</div>
+
 </br>
-<!--	<label style="margin-top: 30px; for="heading" class="col-md-offset-3 control-label">Choose a Report Type and time period : &nbsp;&nbsp;</label>
+
+<div class="panel panel-default">
+    		 	<div class="h2 text-left breadcrumb" style="padding-left:20px; margin-left: 0px;margin-top: 0px;">
+			<small>Customized Reports</small>
+    		</div>
+    		<div class="panel-body">
+	<div class="form-group">
 	
     <div class="col-md-5 col-md-offset-3" style="margin-top: 30px;">
-		<?php 
-		$list=array("0"=>"Select","1"=>"All Users","2"=>"Reported Users","3"=>"Normal Users","4"=>"Business Users");
-		echo form_dropdown('category',$list);
-		
-		?>
+			<?php 
+				$list=array("0"=>"Select","1"=>"All Users","2"=>"Business Users","3"=>"Normal Users");
+				echo form_dropdown('category',$list);		
+			?>
+			</div>
 	</div>
-	
 
-		<div class="col-md-5 col-md-offset-5" id="datepicker"></div>
- 		<script>
-		$( "#datepicker" ).datepicker();
-		</script>
-		
+	
+	<div class="form-group">
+    	<label for="inputStartDate" class="col-sm-3 control-label" style="color: #0088cc">From: &nbsp;&nbsp;</label>
+    	<div class="col-sm-7">
+      			<?php
+      				$StartDateattributes = array('class' => 'datepicker','name'=>'startdate','id'=>'dp1');
+      				echo form_input($StartDateattributes,$this->input->post('startdate'));
+					if(form_error('startdate')!=null)
+						echo '<div class="alert alert-danger">'.form_error('startdate').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		
+		<div class="form-group">
+    		<label for="inputEndDate" class="col-sm-3 control-label" style="color: #0088cc">To: &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+      				$EndDateattributes = array('class' => 'datepicker','name'=>'enddate','id'=>'dp2');
+      				echo form_input($EndDateattributes,$this->input->post('enddate'));
+					if(form_error('enddate')!=null)
+						echo '<div class="alert alert-danger">'.form_error('enddate').'</div>';
+      			?>
+    		</div>
+  		</div>
+	  			
+	
+  		
+  		</br>
 	<div class="col-sm-offset-6 col-sm-5" style="margin-top: 30px;" >
       			<?php
-      				$generatebtnattributes = array('class' => 'btn btn-primary','name'=>'Advertisement_submit','value'=>'Generate');
+      				$generatebtnattributes = array('class' => 'btn btn-primary','name'=>'User_submit','value'=>'Generate');
 					echo form_submit($generatebtnattributes);
 					echo form_close();
       			?>
 		</div>
-	-->
+  		
+  		
+    			
+    		 </div>
+    		 </div>
 	
+</div>
+</div>
+</div>
+</div>
 </div>

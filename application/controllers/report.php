@@ -98,14 +98,18 @@ class Report extends CI_Controller {
 	
 	public function generate_reported_ad(){
 		$this->load->model('m_report');
-		$data['ads']=$this->m_report->get_current_reported_ad();
+		$data['ads']=$this->m_report->get_current_month_reported_ad();
 		$this->header('Reported Advertisements');
 		$this->load->view("v_administration_report_reported_ad",$data);
 		$this->footer();
 	}
 	
 	public function generate_highest_ad(){
-		
+		$this->load->model('m_report');
+		$data['ads']=$this->m_report->get_current_month_highest_ad();
+		$this->header('Highest Rating Advertisements');
+		$this->load->view("v_administration_report_highest_ad",$data);
+		$this->footer();
 	}
 	
 	public function generate_all_user(){
@@ -176,6 +180,22 @@ class Report extends CI_Controller {
 		{
 			$data['cat']=0;
 		}
+		if($this->input->post('province3')){
+		
+			$data['pro3']=$this->input->post('province3');
+		}
+		else
+		{
+			$data['pro3']=0;
+		}
+		if($this->input->post('district1')){
+		
+			$data['dis']=$this->input->post('district1');
+		}
+		else
+		{
+			$data['dis']=0;
+		}
 		
 		if($this->input->post('Advertisement_submit'))
 			{
@@ -188,16 +208,68 @@ class Report extends CI_Controller {
 					
 				}*/
 				
-				//echo $this->input->post('category');
-				//echo $this->input->post('startdate');
+				//echo $this->input->post('province');
+				//echo ('and');
+			//	echo $this->input->post('district1');
 				//echo $this->input->post('enddate');
 				
 				$this->load->model('m_report');
-				$data['ads']=$this->m_report->get_given_time_all_ad($this->input->post('category'),$this->input->post('startdate'),$this->input->post('enddate'));
+				
+				$data['ads']=$this->m_report->get_given_time_all_ad($this->input->post('category'),$this->input->post('province3'),$this->input->post('district1'),$this->input->post('startdate'),$this->input->post('enddate'));
+				
+				if($this->input->post('category') == 1 || $this->input->post('category') == 0){
 				$this->header('Advertisements');
 				$this->load->view("v_administration_report_all_ad",$data);
 				$this->footer();
+				}
+				
+				elseif($this->input->post('category') == 2){
+				$this->header('Reported Advertisements');
+				$this->load->view("v_administration_report_reported_ad",$data);
+				$this->footer();}
+				
+				else {
+				$this->header('Highest Rating Advertisements');
+				$this->load->view("v_administration_report_highest_ad",$data);
+				$this->footer();
+				}
+				
 			}
+	}
+	
+	public function generate_user_report(){
+		
+		if($this->input->post('category')){
+	
+			$data['cat']=$this->input->post('category');
+		}
+		else
+		{
+			$data['cat']=0;
+		}
+		
+		if($this->input->post('User_submit'))
+			{
+				$this->load->model('m_report');
+				
+				$data['users']=$this->m_report->get_given_time_all_users($this->input->post('category'),$this->input->post('startdate'),$this->input->post('enddate'));
+				if($this->input->post('category') == 1 || $this->input->post('category') == 0){
+				$this->header('Users');
+				$this->load->view("v_administration_report_all_users",$data);
+				$this->footer();
+				}
+				elseif($this->input->post('category') == 2){
+				$this->header('Users');
+				$this->load->view("v_administration_report_busi_users",$data);
+				$this->footer();
+				}
+				else{
+				$this->header('Users');
+				$this->load->view("v_administration_report_nor_users",$data);
+				$this->footer();
+				}
+			}
+	
 	}
 	
 	function footer(){
