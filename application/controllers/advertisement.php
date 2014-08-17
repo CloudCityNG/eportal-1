@@ -439,6 +439,7 @@ class Advertisement extends CI_Controller {
 			$data['p_add_ln_3'] = $answer1['add_ln_3'];
 			$data['categoryid']=$answer1['categoryid'];
 			$data['subcategoryid']=$answer1['subcategoryid'];
+			$data['ad_id']=$answer1['ad_id'];
 			
 			$this->db->where('id',$answer1['categoryid']);
 			$result=$this->db->get('category');

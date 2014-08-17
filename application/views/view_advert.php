@@ -389,7 +389,8 @@ a:hover
 		
 		<br />
 		<br />
-		<p><?php echo $body;?></p>
+		<p><b>ID : </b><?php echo $ad_id;?></p>
+		<p><b>Description : </b><?php echo $body;?></p>
 		<br /><div class="pull-left">
     		<p><b><span class="glyphicon glyphicon-shopping-cart"></span> Price Rs./= <?php echo $price; ?></b></p>
     		 <?php 
