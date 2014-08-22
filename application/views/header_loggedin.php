@@ -144,11 +144,16 @@ $('.dropdown-toggle').dropdown();
 						  	</a>
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
+<<<<<<< HEAD
 
 						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
 						    	<li><a id="noti" href="<?php echo base_url()."delivery"; ?>">Request delivery</a></li>
 						    	<li ><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
 
+=======
+						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
+						    	<li><a id="noti" href="<?php echo base_url()."delivery"; ?>">Request delivery</a></li>
+>>>>>>> 0ea9bd551872be7c4ee14c0573adfc9fadd13d96
 						    	<li class="divider"></li>
 						    	<li><a href="<?php echo base_url()."profile/update"; ?>">Profile settings</a></li>
 						    	<li class="divider"></li>

@@ -15,17 +15,23 @@ class Delivery extends CI_Controller {
 		if($this->input->post('country')){
 			$data['cou']=$this->input->post('country');
 		}
+<<<<<<< HEAD
 		else
 		{
 			$data['cou']=0;
 		}
+=======
+>>>>>>> 0ea9bd551872be7c4ee14c0573adfc9fadd13d96
 		
 		if($this->input->post('province')){
 			$data['pro']=$this->input->post('province');
 		}
+<<<<<<< HEAD
 		else {
 			$data['pro']=0;
 		}
+=======
+>>>>>>> 0ea9bd551872be7c4ee14c0573adfc9fadd13d96
 
 
 		if($this->input->post('district')){
@@ -59,7 +65,11 @@ class Delivery extends CI_Controller {
 		$send=null;	
 		
 		$send['0']='--Select--';
+<<<<<<< HEAD
 		if($data['cou']>0&&$data['pro']>0){
+=======
+		if($data['cou']>0||$data['pro']>0){
+>>>>>>> 0ea9bd551872be7c4ee14c0573adfc9fadd13d96
 			$answer=$this->advertisements->getDistricts($data['cou'],$data['pro']);
 		foreach ($answer as $key ) {
 			$send[$key->id]=$key->name;
