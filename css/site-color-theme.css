@@ -1,6 +1,6 @@
 .navbar-main-theme {
-  background-color: #2995e3 ;
-  border-color: #980ec2 ;
+  background-color: #660066;
+  border-color: #333;
 }
 .navbar-main-theme .navbar-brand {
   color: #777777;
@@ -14,11 +14,11 @@
   color: #CCC;
 }
 .navbar-main-theme .navbar-nav > li > a {
-  color: #046eba ;
+  color: #CCC;
 }
 .navbar-main-theme .navbar-nav > li > a:hover,
 .navbar-main-theme .navbar-nav > li > a:focus {
-  color: #141414 ;
+  color: #FFFFFF;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -83,90 +83,108 @@
   color: #FFFFFF;
   text-decoration: underline;
 }
+
 .nav > li > div > a {
-  color: #046eba ;
+  color: #CCDDFF;
   text-decoration: none;
 }
 .nav > li > div > a:hover,
 .nav > li > div > a:focus {
-  color: #141414 ;
+  color: #FFFFFF;
   text-decoration: underline;
 }
+
 #cssmenu > ul > li ul{
-	border-top:4px solid #1888d9 ;
-	border-left:2px solid #1888d9 ;
-	border-right:2px solid #1888d9 ;
-	border-bottom:2px solid #1888d9 ;
+	border-top:4px solid #660066;
+	border-left:2px solid #660066;
+	border-right:2px solid #660066;
+	border-bottom:2px solid #660066;
 }
+
 #cssmenu ul li ul li {
-  background: #1888d9 ;
+  background: #660066;
 }
+
 #cssmenu ul li ul li.has-sub:before {
-  border-left-color: #1888d9 ;
+  border-left-color: #660066;
 }
+
 #cssmenu ul li ul li:hover
 {
-	background-color: #7415e8 ;
+	background-color: #8A00B8;
 }
+
 #cssmenu ul li ul li:hover:after,
 #cssmenu ul li ul li.active:after {
-  background: #7415e8 ;
+  background: #660066;
 }
+
 #cssmenu > ul > li:after {
-  background: #a80a41 ;
+  background: #660066;
 }
+
 #cssmenu > ul > li.has-sub > a:after {
  background: #660066;
 }
+
 #cssmenu > ul > li.has-sub > a:before {
  border-top-color: #660066;
 }
+
 .logo-background{
-	background-color: #eb0e8f ; 
+	background-color: #8A00B8; 
 	width: 100%;
 	padding-top: 10px;
 	margin-top:3px;
 }
+
 .navbar-background{
-	background-color:#eb0e8f ; 
+	background-color:#8A00B8; 
 	width: 100%;
-	border-bottom:2px solid #32c75e;
-}
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  background-color: #cc21c1 ;
-}
-.welcome-body-background{
-	background-color: #eb0e8f ;
-}
-.theme-box-background{
-	background-color: #6140db ;
+	border-bottom:2px solid #660066;
 }
 
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color:#660066 ;
+}
+.welcome-body-background{
+	background-color: #8A00B8;
+}
+.theme-box-background{
+	background-color: #660066;
+}
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #e320e3 ;			/*category font hoover color*/
+  color: #FFFFFF;			/*category font hoover color*/
 }
+
 #cssmenu > ul > li > a {
-  color: #1f8ede ;			/*category font  color*/
+  color: #FFFFFF;			/*category font  color*/
 }
+
 #cssmenu ul li ul li:hover > a,
 #cssmenu ul li ul li.active > a {
-  color: #e320e3 ;			/*subcategory font hoover color*/
+  color: #FFFFFF;			/*subcategory font hoover color*/
 }
+
 #cssmenu ul li ul li a {
-  color: #1f8ede ;			/*subcategory font color*/
+  color: #FFFFFF;			/*subcategory font color*/
 }
+
 .theme-box-background-text{
-color: #040d14 ;				/*theme box back ground color*/
+color: #FFFFFF;				/*theme box back ground color*/
 }
 .dropdown-menu{
 	background-color: #ffffff;
 }
+
 .dropdown-menu > li > a {
 	color: #333333;
 }
+
 .dropdown-menu > li > a:hover,     /* controller text hover color*/
 .dropdown-menu > li > a:focus {
-  color: #2b95e0 ;
+  color: #FFFFFF;
 }
+
