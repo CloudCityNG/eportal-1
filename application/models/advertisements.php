@@ -442,7 +442,7 @@ class Advertisements extends CI_Model{
 				$answer= $result->row_array();
 				$this->load->model("users");
 				$dataset1 = $this->users->get_main_details($answer['username']);
-			
+				$answer['ad_id'] = $adid;
 			foreach ($dataset1 as $info) { 
 				$answer['usertype'] = $info->usertype;
 				$answer['email'] = $info->email;
