@@ -9,6 +9,8 @@
 			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>">Generate Reports</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>">Design Configuration</a></li>
+        <li class="sub-link dashLink"><a href="<?php echo base_url().'permissions'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Manage Permissions</a></li>  
+          
           </ul>
 
           <ul class="nav nav-sidebar ">
