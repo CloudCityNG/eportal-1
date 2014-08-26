@@ -4,8 +4,11 @@ class Permissions extends CI_Controller {
 	
 	public function index()
 	{
+		
+		$this->load->model("m_permissions");
+		$data['func']=$this->m_permissions->get_all_functions();
 		$this->header('Manage User Permissions');
-		$this->load->view("v_administration_permission");
+		$this->load->view("v_administration_permission",$data);
 		$this->footer();
 	}
 	
