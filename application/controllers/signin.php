@@ -25,6 +25,7 @@ class Signin extends CI_Controller {
 				$data['username'] = $info->username; 
 				$data['usertype'] = $info->usertype;
 				$data['email'] = $info->email;	
+				$data['is_logged_in'] = 1;
 			}
 			
 			$dataset2 = $this->m_signin->get_user_dataset_type_2($data['usertype'],$data['username']);
@@ -205,5 +206,6 @@ class Signin extends CI_Controller {
 		}
 		
 	}
+	
 	
 }
