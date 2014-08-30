@@ -1,83 +1,60 @@
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Delivery extends CI_Controller {
 
 	public function index(){
 		$this->header('Delivery');
-		$data= $this->get_province_district();
+		$this->load->model('advertisements');
+		$result=$this->advertisements->getconfigcountry(base_url());
+					
+					foreach($result as $key)
+					{
+
+						$data['cou']=$key->id;
+					}
+					
+
+					
+			$answer=$this->advertisements->getProvinces($data['cou']);
+		$send[0]='-Select-';
+		foreach ($answer as $key ) {
+			$send[$key->id]=$key->name;
+
+		}
+		
+		$data['province']=$send;
+		$data['district']=array('0'=>'-Select-');
+		 
 		$this->load->view('v_delivery_request',$data);
 		$this->footer();
 	}
 	
-	private function get_province_district(){
-		if($this->session->userdata('username')){
-			$this->load->model('advertisements');
-		if($this->input->post('country')){
-			$data['cou']=$this->input->post('country');
-		}
+	public function get_district(){
+		$this->load->model('advertisements');
+		$result=$this->advertisements->getconfigcountry(base_url());
+					
+					foreach($result as $key)
+					{
 
-		else
-		{
-			$data['cou']=0;
-		}
-
-		
-		if($this->input->post('province')){
-			$data['pro']=$this->input->post('province');
-		}
-
-		else {
-			$data['pro']=0;
-		}
-
-
-
-		if($this->input->post('district')){
-			$data['dis']=$this->input->post('district');
-		}
-
-
-			$answer=$this->advertisements->getCountry();
-		$send['0']='--Select--';
-		foreach ($answer as $key ) {
-			$send[$key->id]=$key->name;
-		}
-		$data['country']=$send;
-		$send=null;
-		
-		$send['0']='--Select--';
-		if($data['cou']>0){
-			$answer=$this->advertisements->getProvinces($data['cou']);
-		}else{
-			$result=$this->advertisements->getconfigcountry(base_url());
-					foreach($result as $key){
 						$data['cou']=$key->id;
 					}
-			$answer=$this->advertisements->getProvinces($data['cou']);
-		}
-		foreach ($answer as $key ) {
-			$send[$key->id]=$key->name;
-		}
-		
-		$data['province']=$send;//loading the province in the dropdown list
-		$send=null;	
-		
-		$send['0']='--Select--';
+			$answer=$this->advertisements->getDistricts($data['cou'],$this->input->post('proid'));
+						
+			$output=null;
+			if(count($answer)<1){
+				$output .= "<option value='"."0"."'>"."-No District-"."</option>";
+			}
+			else
+			{
+				$output .= "<option value='"."0"."' selected>"."-Select-"."</option>";
+			}
+			foreach ($answer as $key ) {
+				 $output .= "<option value='".$key->id."'>".$key->name."</option>";
 
-		if($data['cou']>0&&$data['pro']>0){
+			}
 
-		if($data['cou']>0||$data['pro']>0){
-			$answer=$this->advertisements->getDistricts($data['cou'],$data['pro']);
-		foreach ($answer as $key ) {
-			$send[$key->id]=$key->name;
-		}
-		}
-		$data['district']=$send;
-			return $data;
-		}else{
-			return false;
-		}
-		}
+			echo $output;
 	}
 
 	

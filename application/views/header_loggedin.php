@@ -41,7 +41,7 @@
 	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
 
 	<link rel="stylesheet" href="<?php echo base_url().'jGrowl-master/jquery.jgrowl.css'; ?>" type="text/css"/>
-	<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>
+	<!--<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>
 		<script type="text/javascript">
 
 		// In case you don't have firebug...
@@ -110,8 +110,8 @@
 			});
 		})(jQuery);
 
-		</script>
-		  
+	</script>
+		-->
 <script type="text/javascript">
 $(function () {
 $('.dropdown-toggle').dropdown();
