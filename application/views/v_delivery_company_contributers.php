@@ -4,34 +4,31 @@
 			Contributers			 			
 		</div>
 		<hr />
-		
-		
 			<table class="table table-bordered">
 				<thead>
 						<td><b>ID</b></td>
 						<td><b>Username</b></td>
 						<td><b>Email address</b></td>
 						<td><b>Name</b></td>
-						<td><b>Activation type</b></td>
-						<td><b>Registered on</b></td>
-						<td><b>Last updated on</b></td>
+						<td><b>Role</b></td>
+						<td><b>Added by</b></td>
+						<td><b>Added on</b></td>
 				</thead>
 				<tbody>
 					<?php foreach($contributers as $info){?>
 						<tr>
 							<td><?php echo $info['id']?></td>
-							<td><?php echo $info['username']?></td>
+							<td><?php echo $info['c_username']?></td>
 							<td><?php echo $info['email']?></td>
-							<td><?php echo $info['name']?></td>
-							<td><?php echo $info['activation_type']?></td>
-							<td><?php echo $info['registered_on']?></td>
-							<td><?php echo $info['last_updated_on']?></td>
+							<td><a href="<?php echo base_url().'profile/'.$info['c_username'];?>"><?php echo $info['c_name']?></a></td>
+							<td><?php echo $info['role']?></td>
+							<td><a href="<?php echo base_url().'profile/'.$info['added_by_username'];?>"><?php echo $info['added_by_name']?></a></td>
+							<td><?php echo $info['added_on']?></td>
 						</tr>
 					<?php } ?>
 				</tbody>
 				<tr></tr>
 			</table>
-		
 	</div>
 	.
 

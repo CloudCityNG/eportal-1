@@ -71,6 +71,7 @@ class Deliveries extends CI_Controller {
 			
 			$this->load->model('m_delivery');
 			$requests = $this->m_delivery->pending_all($this->session->userdata('company_id'));
+			//$requests = $this->m_delivery->pending_all('1');
 			foreach($requests as $key=>$value){
 				$data['pending_requests'][$key]['dp_id']=$value->dp_id;
 				$data['pending_requests'][$key]['ad_id']=$value->ad_id;
@@ -177,7 +178,9 @@ class Deliveries extends CI_Controller {
 			return $name;
 		}else if($type=='delivery'){
 			$this->load->model('m_company');
-			$name = $this->m_company->get_name($username);
+			$usertype = $this->m_company->get_usertype($username);
+			foreach($usertype as $info){$usertype = $info->usertype;}
+			$name = $this->m_company->get_name($usertype,$username);
 			foreach ($name as $info){$name = $info->name;}
 			return $name;
 		}else{
@@ -186,15 +189,15 @@ class Deliveries extends CI_Controller {
 	}
 	
 	private function setup_ad_category($id){
-		$this->load->model('m_advertisement');
-			$cname = $this->m_advertisement->get_category_name($id);
+		$this->load->model('m_advertisement_delivery');
+			$cname = $this->m_advertisement_delivery->get_category_name($id);
 			foreach ($cname as $info){$cname = $info->name;}
 			return $cname;
 	}
 
 	private function setup_ad_subcategory($id){
-		$this->load->model('m_advertisement');
-		$sname = $this->m_advertisement->get_subcategory_name($id);
+		$this->load->model('m_advertisement_delivery');
+		$sname = $this->m_advertisement_delivery->get_subcategory_name($id);
 		foreach ($sname as $info){$sname = $info->name;}
 		return $sname;
 	}
@@ -214,7 +217,7 @@ class Deliveries extends CI_Controller {
 			if($this->session->userdata('usertype')=='a'){
 				$this->load->view('header_admin',$data);
 			}else{
-				$this->load->view('header_loggedin',$data);
+				$this->load->view('header_loggedin_delivery',$data);
 			}
 		}else{
 			$this->load->view('header_not_loggedin',$data);

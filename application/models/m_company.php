@@ -55,19 +55,36 @@ class M_company extends CI_Model {
 		else{return false;}
 	}
 	
-	public function get_name($username){
+	/*public function get_name($username){
 		$query="SELECT  CONCAT(first_name, ' ', last_name) As name 
 				FROM delivery_company_contributors 
 				WHERE username = '{$username}'";
 		$result = $this->db->query($query);
 		return $result->result();
 	}
+	*/
+	
+	public function get_usertype($username){
+		$result = $this->db->query("SELECT usertype	FROM users	WHERE username = '{$username}'");
+		return $result->result();
+	}
+	
+	public function get_name($usertype,$username){
+		if($usertype=='n'){
+			$query = "SELECT  CONCAT(fname, ' ', lname) As name FROM normal_users WHERE username = '{$username}'";
+		}else if($usertype=='b'){
+			$query = "SELECT bname As name FROM business_users WHERE username = '{$username}'";
+		}else if($usertype=='a'){
+			$query = "SELECT CONCAT(fname, ' ', lname) As name FROM admin_users WHERE username = '{$username}'";
+		}
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 	
 	public function get_contributers($company_id){
-		$query="SELECT id,username,email,CONCAT(first_name, ' ', last_name) As name,activation_type,DATE_FORMAT(registered_dateandtime,'%D %M %Y') as registered_on,DATE_FORMAT(dateandtime,'%D %M %Y') as last_updated_on 
-				FROM delivery_company_contributors
-				WHERE company_id='{$company_id}'";
-		
+		$query="SELECT con.id,con.username,DATE_FORMAT(con.dateandtime,'%D %M %Y') as added_on, con.role,u.email,con.added_by
+				FROM delivery_company_contributors con,users u
+				WHERE con.company_id='{$company_id}' AND con.username = u.username";
 		$result = $this->db->query($query);
 		return $result->result();
 	}

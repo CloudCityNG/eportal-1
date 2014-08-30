@@ -6,14 +6,14 @@ class M_delivery extends CI_Model {
 		$query = "SELECT dp.id as dp_id,dp.delivery_location, dp.username as client_username, DATE_FORMAT(dp.delivery_date,'%D %M %Y') as delivery_date,ad.id as ad_id,ad.title,ad.body,ad.categoryid, ad.subcategoryid,DATE_FORMAT(dp.dateandtime,'%D %M %Y, %r') as requested_on,ud.profilepicture
 				  FROM delivery_requests_pending dp, advertisement ad,user_details ud
 				  WHERE dp.id in (SELECT id 
-                        				  FROM delivery_requests_pending
-                        				  WHERE company_id ='{$company_id}') 
+                        		  FROM delivery_requests_pending
+                        		  WHERE company_id ='{$company_id}') 
          				AND 
-        					ad.id in (SELECT ad_id 
-                  					  FROM delivery_requests_pending
-                  					  WHERE company_id ='{$company_id}')
+        				ad.id in (SELECT ad_id 
+                  				  FROM delivery_requests_pending
+                  				  WHERE company_id ='{$company_id}')
                   		 AND
-      						ud.username = dp.username
+      					ud.username = dp.username
                 	ORDER BY dp.dateandtime ASC";
 		$result = $this->db->query($query);
 		return  $result->result();

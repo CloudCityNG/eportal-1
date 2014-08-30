@@ -14,34 +14,60 @@ class Contributers extends CI_Controller {
 	}
 	/************** Start private function****************************************************************/
 	private function contributer_view_all(){
-		echo '1';
 		$this->load->model('m_company');
-		echo '1';
 		$contributers = $this->m_company->get_contributers($this->session->userdata('company_id'));
-		echo '1';
 		
 		foreach($contributers as $key=>$value){
 			$data['contributers'][$key]['id']=$value->id;
-			$data['contributers'][$key]['username']=$value->username;
+			$data['contributers'][$key]['c_username']=$value->username;
+			$data['contributers'][$key]['c_name']=$this->setup_names('delivery',$value->username);
+			$data['contributers'][$key]['added_on']=$value->added_on;
+			$data['contributers'][$key]['role']=$value->role;
 			$data['contributers'][$key]['email']=$value->email;
-			$data['contributers'][$key]['name']=$value->name;
-			$data['contributers'][$key]['activation_type']=$value->activation_type;
-			$data['contributers'][$key]['registered_on']=$value->registered_on;
-			$data['contributers'][$key]['last_updated_on']=$value->last_updated_on;
+			
+			if($value->added_by != null){
+				$data['contributers'][$key]['added_by_name']=$this->setup_names('delivery',$value->added_by);
+				$data['contributers'][$key]['added_by_username']=$value->added_by;
+			}else{
+				$data['contributers'][$key]['added_by_name']=null;
+				$data['contributers'][$key]['added_by_username']=null;
+			}
 		}
 		
 		$this->header('Delivery contributers');
-		$this->load->view('v_contributers',$data);
+		$this->load->view('v_delivery_company_contributers',$data);
 		$this->footer();
 	}
+
 	/************** End private function****************************************************************/
+	
+		private function setup_names($type,$username){
+		if($type=='client'){
+			$this->load->model('m_clients');
+			$usertype = $this->m_clients->get_usertype($username);
+			foreach($usertype as $info){$usertype = $info->usertype;}
+			$name = $this->m_clients->get_name($usertype,$username);
+			foreach ($name as $info){$name = $info->name;}
+			return $name;
+		}else if($type=='delivery'){
+			$this->load->model('m_company');
+			$usertype = $this->m_company->get_usertype($username);
+			foreach($usertype as $info){$usertype = $info->usertype;}
+			$name = $this->m_company->get_name($usertype,$username);
+			foreach ($name as $info){$name = $info->name;}
+			return $name;
+		}else{
+			return 'the return :P ';
+		}
+	}
+	
 	private function header($tile){
 		$data['title']=$tile;
 		if($this->session->userdata('username')){
 			if($this->session->userdata('usertype')=='a'){
 				$this->load->view('header_admin',$data);
 			}else{
-				$this->load->view('header_loggedin',$data);
+				$this->load->view('header_loggedin_delivery',$data);
 			}
 		}else{
 			$this->load->view('header_not_loggedin',$data);
