@@ -8,7 +8,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?php echo base_url()?>css/delivery_bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>css/delivery_bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<?php echo base_url()?>css/delivery_flat-ui.css" rel="stylesheet">
      <link href="<?php echo base_url()?>css/delivery_sb-admin.css" rel="stylesheet">
 
@@ -72,12 +72,15 @@
 		                    <a href="<?php echo base_url()?>deliveries/rejected">Rejected</a>
 		                </li>
 		                <li>
+		                    <a href="<?php echo base_url()?>deliveries/out_of_date">Completed</a>
+		                </li>
+		                <li>
 		                    <a href="<?php echo base_url()?>deliveries/out_of_date">Out of date</a>
 		                </li>
 		            </ul>
 		        </li>
 		        <li>
-		            <a href="<?php echo base_url()?>contributers"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Contributers</a>
+		            <a href="<?php echo base_url()?>contributers"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Contributors</a>
 		        </li>
 		        <li>
 		            <a href="bootstrap-elements.html"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send customer e-mail</a>

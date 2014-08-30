@@ -38,7 +38,7 @@
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
  	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
  	 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
-	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
+	<script type='text/javascript' src='<?php echo base_url().'js/menu_jquery.js';?>'></script>
 
 	<link rel="stylesheet" href="<?php echo base_url().'jGrowl-master/jquery.jgrowl.css'; ?>" type="text/css"/>
 	<!--<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>

@@ -88,4 +88,12 @@ class M_company extends CI_Model {
 		$result = $this->db->query($query);
 		return $result->result();
 	}
+	
+	public function comapany_details(){
+		$query="SELECT id, company_name,profile_picture,description
+				FROM delivery_company_details";
+				
+		$result = $this->db->query($query);
+		return $result->result();
+	}
 }
