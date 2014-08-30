@@ -48,6 +48,10 @@ $route['profile/update_password'] = 'profile/update_password';
 $route['profile/update_contact_details'] = 'profile/update_contact_details';
 $route['profile/report/(.*)'] = 'profile/report/$1/$1';
 $route['profile/(.*)'] = 'profile/index/$1';
+//$route['company/contributers/()'] = 'company/contributers/$1';
+//$route['deliveries/([a-zA-Z0-9]+)'] = 'deliveries/';
+$route['company/([0-9]+)'] = 'company/by_id/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

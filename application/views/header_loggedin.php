@@ -145,6 +145,15 @@ $('.dropdown-toggle').dropdown();
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
 								<li class="divider"></li>
+								<?php
+									if($this->session->userdata('company_name')){?>
+										<li>
+											<a target="_blank" href="<?php echo base_url().'company/'.$this->session->userdata('company_id') ?>">
+												<?php echo $this->session->userdata('company_name'); ?>
+											</a>
+										</li>
+										<li class="divider"></li>
+								<?php }?>
 						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
 						    	<li><a id="noti" href="<?php echo base_url()."delivery"; ?>">Request delivery</a></li>
 						    	<li class="divider"></li>

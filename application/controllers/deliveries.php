@@ -91,7 +91,6 @@ class Deliveries extends CI_Controller {
 			$this->header('Pending deliveries');
 			$this->load->view('v_delivery_pending',$data);
 			$this->footer();
-			
 		}
 
 		private function pending_client_username($username){

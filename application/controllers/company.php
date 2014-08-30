@@ -39,7 +39,7 @@ class Company extends CI_Controller {
 			}
 			
 			$this->header('Delivery - Company');
-			$this->load->view('v_profile',$data);
+			$this->load->view('v_delivery_company_profile',$data);
 			$this->footer();
 		}else{
 			show_404();			
@@ -84,7 +84,7 @@ class Company extends CI_Controller {
 			if($this->session->userdata('usertype')=='a'){
 				$this->load->view('header_admin',$data);
 			}else{
-				$this->load->view('header_loggedin',$data);
+				$this->load->view('header_loggedin_delivery',$data);
 			}
 		}else{
 			$this->load->view('header_not_loggedin',$data);
@@ -93,6 +93,6 @@ class Company extends CI_Controller {
 	
 	private function footer()
 	{
-		$this->load->view('footer');
+		$this->load->view('footer_delivery');
 	}
 }

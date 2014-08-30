@@ -137,4 +137,26 @@ class M_signin extends CI_Model {
 			return false;
 		}
 	}
+	
+	public function get_delivery_details($username){
+		if($this->is_delivery_company_user_exist($username)){
+			$query="SELECT comp.id,comp.company_name
+					FROM delivery_company_contributors cont,delivery_company_details comp
+					WHERE cont.id = comp.id and cont.username = '{$username}'";
+			$result = $this->db->query($query);
+		return $result->result();
+		}else{
+			return false;
+		}
+	}
+	
+	private function is_delivery_company_user_exist($username){
+		$query = "SELECT * FROM delivery_company_contributors WHERE username = '{$username}' ";
+		$result = $this->db->query($query);
+		$row = $result->row();
+		if($result->num_rows() == 1){return true;}
+		else{return false;}
+	}
+	
+	
 }

@@ -4,7 +4,7 @@ class M_company extends CI_Model {
 	
 	public function get_basic_details($companyid){
 		if($this->company_exists($companyid)){
-			$query = "SELECT * FROM delivery_company_user_details WHERE id = '{$companyid}'";
+			$query = "SELECT * FROM delivery_company_details WHERE id = '{$companyid}'";
 			$result = $this->db->query($query);
 			return  $result->result();
 		}else{
@@ -43,7 +43,7 @@ class M_company extends CI_Model {
 	}
 	
 	private function company_exists($companyid){
-		$query = "SELECT * FROM delivery_company_user_details WHERE id = '{$companyid}'";
+		$query = "SELECT * FROM delivery_company_details WHERE id = '{$companyid}'";
 		$result = $this->db->query($query);
 		if($result->num_rows() == 1){return true;}
 		else{return false;}
@@ -57,7 +57,7 @@ class M_company extends CI_Model {
 	
 	public function get_name($username){
 		$query="SELECT  CONCAT(first_name, ' ', last_name) As name 
-				FROM delivery_company_users 
+				FROM delivery_company_contributors 
 				WHERE username = '{$username}'";
 		$result = $this->db->query($query);
 		return $result->result();
@@ -65,7 +65,7 @@ class M_company extends CI_Model {
 	
 	public function get_contributers($company_id){
 		$query="SELECT id,username,email,CONCAT(first_name, ' ', last_name) As name,activation_type,DATE_FORMAT(registered_dateandtime,'%D %M %Y') as registered_on,DATE_FORMAT(dateandtime,'%D %M %Y') as last_updated_on 
-				FROM delivery_company_users
+				FROM delivery_company_contributors
 				WHERE company_id='{$company_id}'";
 		
 		$result = $this->db->query($query);
