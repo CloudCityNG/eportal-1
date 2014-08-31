@@ -10,8 +10,45 @@ class Contributers extends CI_Controller {
 		if($view==null || $view=='view' ){
 			$this->contributer_view_all();
 		}
-		
 	}
+	
+	public function add(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username','Contributor username','required|trim|xss_clean|callback_username_availability|callback_username_can_add');
+		
+		if($this->form_validation->run()){
+			$username=$this->input->post('username');
+			$this->load->model('m_company');
+			if($this->m_company->add_new_contributor($this->session->userdata('company_id'),$this->session->userdata('username'),$username)){
+				redirect(base_url().'contributers');
+			}else{
+				show_error('error while processing your request');
+			}
+		}else{
+			$this->contributer();
+		}
+	}
+	
+	public function username_availability(){
+		$this->load->model('m_company');
+		if($this->m_company->check_username_availability($this->input->post('username'))){
+			return true;
+		}else{
+			$this->form_validation->set_message('username_availability','This username is not available');
+			return false;
+		}
+	}
+	
+	public function username_can_add(){
+		$this->load->model('m_company');
+		if($this->m_company->check_username_can_add($this->input->post('username'))){
+			return true;
+		}else{
+			$this->form_validation->set_message('username_can_add','This user already registered on another delivery company');
+			return false;
+		}
+	}
+	
 	/************** Start private function****************************************************************/
 	private function contributer_view_all(){
 		$this->load->model('m_company');

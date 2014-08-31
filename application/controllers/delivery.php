@@ -4,17 +4,6 @@
 class Delivery extends CI_Controller {
 
 	public function index(){
-		/*$this->header('Delivery');
-		$this->load->model('advertisements');
-		$result=$this->advertisements->getconfigcountry(base_url());
-		foreach($result as $key){$data['cou']=$key->id;}
-		$answer=$this->advertisements->getProvinces($data['cou']);
-		$send[0]='-Select-';
-		foreach ($answer as $key ) {$send[$key->id]=$key->name;}
-		$data['province']=$send;
-		$data['district']=array('0'=>'-Select-');
-		$this->load->view('v_delivery_request',$data);
-		$this->footer();*/
 		$this->view_delivery_companies();
 	}
 	

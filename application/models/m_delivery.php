@@ -167,7 +167,7 @@ class M_delivery extends CI_Model {
 				                WHERE company_id ='{$company_id}')
 					AND drd.company_id = '{$company_id}'
 			    GROUP BY drd.id
-			    ORDER BY drd.id ASC";
+			    ORDER BY drd.id DESC";
 		$result = $this->db->query($query);
 		return  $result->result();
 	}
@@ -184,7 +184,7 @@ class M_delivery extends CI_Model {
 					DATEDIFF(NOW(),delivery_dateandtime) as no_of_dates_expired
 			FROM delivery_requests_accepted
 			WHERE DATEDIFF(NOW(),delivery_dateandtime) > 0 AND company_id = '{$company_id}'
-			ORDER BY accepted_dateandtime ASC";
+			ORDER BY accepted_dateandtime DESC";
 			
 		$result = $this->db->query($query);
 		return  $result->result();

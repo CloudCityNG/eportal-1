@@ -162,28 +162,3 @@
 		</div>	
 	</div>
 </div>
-
-<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-				<?php
-				/*	$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
-					echo form_open('profile/report/',$formattributes);*/
-				?>
-				</div>
-				</div>
-				<div class="modal-footer">
-					<?php
-	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'report_submit','value'=>'Submit Report');
-						echo form_submit($reportattributes);
-	      			?>
-				</div>
-				
-				<?php/*
-					echo form_close();
-				 
-				 */
-				?>
-			</div>
-	</div>

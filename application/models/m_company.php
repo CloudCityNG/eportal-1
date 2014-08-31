@@ -84,7 +84,8 @@ class M_company extends CI_Model {
 	public function get_contributers($company_id){
 		$query="SELECT con.id,con.username,DATE_FORMAT(con.dateandtime,'%D %M %Y') as added_on, con.role,u.email,con.added_by
 				FROM delivery_company_contributors con,users u
-				WHERE con.company_id='{$company_id}' AND con.username = u.username";
+				WHERE con.company_id='{$company_id}' AND con.username = u.username
+				ORDER BY con.id ASC";
 		$result = $this->db->query($query);
 		return $result->result();
 	}
@@ -131,5 +132,34 @@ class M_company extends CI_Model {
 					ORDER BY id";
 		$result = $this->db->query($query);
 		return  $result->result();
+	}
+	
+	public function check_username_availability($contributor_username){
+		$result = $this->db->query("SELECT * FROM users WHERE username = '{$contributor_username}'");
+		if($result->num_rows() == 1){return true;}
+		else{return false;}
+	}
+	public function check_username_can_add($contributor_username){
+		$result = $this->db->query("SELECT * FROM delivery_company_contributors WHERE username = '{$contributor_username}'");
+		if($result->num_rows() == 1){return false;}
+		else{return true;}
+	}
+	public function add_new_contributor($company_id,$username,$contributor_username){
+		$this->db->trans_begin();
+		
+		$data['company_id']=$company_id;
+		$data['username']=$contributor_username;
+		$data['added_by']=$username;
+		$data['role']='contributor';
+		
+		$this->db->insert('delivery_company_contributors', $data);
+		
+		if ($this->db->trans_status() === FALSE){
+		    $this->db->trans_rollback();
+			return false;
+		}else{
+		    $this->db->trans_commit();
+			return true;
+		} 
 	}
 }
