@@ -401,6 +401,51 @@ class Rules extends CI_Controller {
 		}
 	}
 	
+	public function approvebyrating(){
+		if($this->session->userdata('is_logged_in')){
+		$this->load->model("m_rules");
+		$result['value']=$this->m_rules->get_boundary();
+		$this->header('Automatic Approval');
+		$this->load->view('v_administration_autoapp',$result);
+		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
+	}
+	
+	public function whitelist(){
+		if($this->session->userdata('is_logged_in')){
+			$this->load->model('m_rules');
+			$data['users']=$this->m_rules->get_whitelist_users();
+			$this->header('White List');
+			$this->load->view("v_administration_auto_whitelist",$data);
+			$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
+	}
+	
+	public function blacklist(){
+		if($this->session->userdata('is_logged_in')){
+			$this->load->model('m_rules');
+			$data['users']=$this->m_rules->get_blacklist_users();
+			$this->header('Black List');
+			$this->load->view("v_administration_auto_blacklist",$data);
+			$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
+	}
+
+	public function restricted() {
+		$this->header('Please Signin');
+		$this->load->view("v_restricted");
+		$this->footer();
+	}
+
 	function footer(){
 		$this->load->view('footer');
 	}
