@@ -50,6 +50,7 @@ $route['profile/report/(.*)'] = 'profile/report/$1/$1';
 $route['profile/(.*)'] = 'profile/index/$1';
 //$route['company/contributers/()'] = 'company/contributers/$1';
 //$route['deliveries/([a-zA-Z0-9]+)'] = 'deliveries/';
+$route['company'] = 'company/index';
 $route['company/([0-9]+)'] = 'company/by_id/$1';
 
 

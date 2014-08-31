@@ -96,4 +96,40 @@ class M_company extends CI_Model {
 		$result = $this->db->query($query);
 		return $result->result();
 	}
+	
+	public function get_counters_outdated($company_id){
+		$query="SELECT count(id) as count
+				FROM delivery_requests_accepted
+				WHERE DATEDIFF(NOW(),delivery_dateandtime) > 0 AND company_id = '{$company_id}'";
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_counters_pending($company_id){
+		$query="SELECT count(id) as count
+				FROM delivery_requests_pending
+				WHERE company_id = '{$company_id}'";
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_counters_deliveries_today($company_id){
+		$query="SELECT count(id) as count
+				FROM delivery_requests_accepted
+				WHERE DATEDIFF(NOW(),delivery_dateandtime) = 0 AND company_id = '{$company_id}'";
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_deliveries_today($company_id){
+		$query = "SELECT id,
+						ad_id,
+						customer_username,
+						delivery_location
+					FROM delivery_requests_accepted
+					WHERE DATEDIFF(NOW(),delivery_dateandtime) = 0 AND company_id = '{$company_id}'
+					ORDER BY id";
+		$result = $this->db->query($query);
+		return  $result->result();
+	}
 }
