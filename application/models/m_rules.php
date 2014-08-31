@@ -413,4 +413,30 @@ public function getAdvertisement($adid)
 	}
 	}
 	
+	public function get_boundary(){
+		$id = '1';	
+		$sql='SELECT value FROM boundary where id=\''.$id.'\'';
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
+	}
+	
+	public function get_whitelist_users(){
+		$query = "SELECT u.username, u.usertype, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
+					FROM users u, user_details d
+					WHERE u.username=d.username and white=1";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_blacklist_users(){
+		$query = "SELECT u.username, u.usertype, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
+					FROM users u, user_details d
+					WHERE u.username=d.username and white=0";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
 	}	
