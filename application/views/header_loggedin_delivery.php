@@ -72,7 +72,7 @@
 		                    <a href="<?php echo base_url()?>deliveries/rejected">Rejected</a>
 		                </li>
 		                <li>
-		                    <a href="<?php echo base_url()?>deliveries/out_of_date">Completed</a>
+		                    <a href="<?php echo base_url()?>deliveries/completed">Completed</a>
 		                </li>
 		                <li>
 		                    <a href="<?php echo base_url()?>deliveries/out_of_date">Out of date</a>

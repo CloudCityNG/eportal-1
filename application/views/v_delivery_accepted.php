@@ -1,16 +1,17 @@
 <div id="page-wrapper" style="background-color: #FFFFFF;min-height: 400px;">
 	<div class="col-md-12">
 		<div class="h3 text-center">
-			Accepted deliveries
-			<br />
-			<small> viewing <?php echo $viewing['type'] ?></small>			 			
+			Accepted deliveries		
 		</div>
+		<div class="h5 text-center">
+			viewing <?php echo $viewing['type'] ?>
+		</div>			 
 		<hr />
 		
 		<?php 
 			if(isset($status_info)){
 				echo '<div class="col-md-12 palette-emerald" style="border: 1px solid #27AE60;color: #FFFFFF;padding:10px 0px 10px 20px;margin-bottom: 15px">';
-				echo 'Request successfully '.$status_info['status'].' [request id : '.$status_info['request_id'].']';
+				echo 'Status changed as delivered. [id = '.$status_info['confirm_id'].']';
 				echo '</div>';
 			}
 		?>

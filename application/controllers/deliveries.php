@@ -29,8 +29,16 @@ class Deliveries extends CI_Controller {
 			$this->accepted_all();
 		}else if($view=='today'){
 			$this->accepted_today();
-		}else if(($view=='cancel' || $view=='delivered') && $a_id!=null){
-			if($type = $this->accepted_cancel_or_complete($view,$id)){
+		}else if($view=='delivered' && $a_id!=null){
+			if($id = $this->accepted_complete($a_id,$this->session->userdata('username'))){
+				$data['confirm_id']=$id;
+				//$this->accepted_all($data);
+				redirect(base_url().'deliveries/accepted');
+			}else{
+				show_error("unable to $view id: $a_id",'','ERROR!');
+			}	
+		}else if($view=='cancel' && $a_id!=null){
+			if($type = $this->accepted_reject($id,$reason,$this->session->userdata('username'))){
 				$data['status']=$type;
 				$data['request_id']=$id;
 				$this->accepted_all($data);
@@ -47,6 +55,14 @@ class Deliveries extends CI_Controller {
 			$this->rejected_all();
 		}else if($this->is_a_username($view)){
 			$this->rejected_client_username($view);
+		}else{
+			show_404();
+		}
+	}
+	
+	public function completed($view=null){
+		if($view==null || $view=='all'){
+			$this->completed_all();
 		}else{
 			show_404();
 		}
@@ -116,8 +132,7 @@ class Deliveries extends CI_Controller {
 		private function accepted_all($status_info=null){
 				
 			if($status_info!=null){
-				$data['status_info']['status']=$status_info['status'];
-				$data['status_info']['request_id']=$status_info['accept_id'];
+				$data['status_info']['confirm_id']=$status_info['confirm_id'];
 			}
 
 			$this->load->model('m_delivery');
@@ -147,7 +162,19 @@ class Deliveries extends CI_Controller {
 			echo 'accepted today';
 		}
 		
+		private function accepted_complete($id,$username){
+			$this->load->model('m_delivery');
+			if($this->m_delivery->delivery_complete($id,$username)){
+				return $id;
+			}else{
+				return false;
+			}
+		}
 		
+		private function accepted_reject($id,$reason,$username){
+			$this->load->model('m_delivery');
+			$this->m_delivery->delivery_reject($id,$reason,$username);
+		}
 		
 		private function rejected_all(){
 			echo 'rejected all';
@@ -156,9 +183,67 @@ class Deliveries extends CI_Controller {
 		private function rejected_client_username($username){
 			echo 'rejected by username';
 		}
+
+		private function completed_all(){
+			$this->load->model('m_delivery');
+			$delivered = $this->m_delivery->delivery_completed_all($this->session->userdata('company_id'));
+			
+			foreach($delivered as $key=>$value){
+				$data['delivered_items'][$key]['delivery_id']=$value->delivery_id;
+				
+				$data['delivered_items'][$key]['accepted_username']=$value->accepted_username;
+				$data['delivered_items'][$key]['accepted_name']=$this->setup_names('client',$value->accepted_username);
+				
+				$data['delivered_items'][$key]['accepted_dateandtime']=$value->accepted_dateandtime;
+				
+				$data['delivered_items'][$key]['requested_dateandtime']=$value->requested_dateandtime;
+				
+				$data['delivered_items'][$key]['customer_username']=$value->customer_username;
+				$data['delivered_items'][$key]['customer_name']=$this->setup_names('client',$value->customer_username);
+				
+				$data['delivered_items'][$key]['delivery_location']=$value->delivery_location;
+				
+				$data['delivered_items'][$key]['delivery_dateandtime']=$value->delivery_dateandtime;
+				
+				$data['delivered_items'][$key]['delivered_username']=$value->delivered_username;
+				$data['delivered_items'][$key]['delivered_name']=$this->setup_names('client',$value->delivered_username);
+				
+				$data['delivered_items'][$key]['ad_title']=$value->ad_title;
+				
+				$data['delivered_items'][$key]['ad_id']=$value->ad_id;
+			}
+			
+			$data['viewing']['type']='all completed deliveries';
+			
+			$this->header('Pending deliveries');
+			$this->load->view('v_delivery_completed',$data);
+			$this->footer();
+		}
 		
 		private function out_of_date_all(){
-			echo 'out of date all';
+			$this->load->model('m_delivery');
+			$out_of_date = $this->m_delivery->delivery_out_of_date($this->session->userdata('company_id'));
+			
+			foreach($out_of_date as $key=>$value){
+				$data['out_of_delivery_date_items'][$key]['id']=$value->id;
+				$data['out_of_delivery_date_items'][$key]['accepted_username']=$value->accepted_username;
+				$data['out_of_delivery_date_items'][$key]['accepted_name']=$this->setup_names('client',$value->accepted_username);
+				$data['out_of_delivery_date_items'][$key]['accepted_dateandtime']=$value->accepted_dateandtime;
+				$data['out_of_delivery_date_items'][$key]['requested_dateandtime']=$value->requested_dateandtime;
+				$data['out_of_delivery_date_items'][$key]['ad_id']=$value->ad_id;
+				$data['out_of_delivery_date_items'][$key]['customer_username']=$value->customer_username;
+				$data['out_of_delivery_date_items'][$key]['customer_name']=$this->setup_names('client',$value->customer_username);
+				$data['out_of_delivery_date_items'][$key]['delivery_location']=$value->delivery_location;
+				$data['out_of_delivery_date_items'][$key]['delivery_dateandtime']=$value->delivery_dateandtime;
+				$data['out_of_delivery_date_items'][$key]['no_of_dates_expired']=$value->no_of_dates_expired;
+			}
+			
+			$data['viewing']['type']='all outdated deliveries';
+			
+			$this->header('Pending deliveries');
+			$this->load->view('v_delivery_expired',$data);
+			$this->footer();
+
 		}
 
 		

@@ -47,7 +47,55 @@ class Delivery extends CI_Controller {
 	
 	/*******************************End private functions****************************************************/
 	
+	public function make_request(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('itemID','','required|trim|xss_clean|alpha_numeric|callback_check_item_id');
+		$this->form_validation->set_rules('location','','required|trim|xss_clean|callback_by_email');
+		$this->form_validation->set_rules('companyID','','required|trim|xss_clean|callback_check_company_id');
+		$this->form_validation->set_rules('datepicker','','required|trim|xss_clean');
+		
+		if($this->form_validation->run()){
+			$company_id=$this->input->post('companyID');
+			$item_id=$this->input->post('itemID');
+			$delivery_location=$this->input->post('location');
+			$delivery_date=$this->input->post('datepicker');
+			
+			$this->load->model('m_delivery');
+			
+			if($this->m_delivery->add_delivery_request($company_id,$item_id,$delivery_location,$delivery_date)){
+				$this->view_delivery_companies();
+			}else{
+				show_error('error while processing your request');
+			}
+		}else{
+			$this->view_delivery_companies();
+		}
+	}
 	
+	public function check_company_id(){
+		/*if($this->input->post('companyID')==NULL){*/
+			$this->load->model('m_delivery');
+			if($this->m_delivery->check_delivery_company_availability($this->input->post('companyID'))){
+				return true;
+			}else{
+				$this->form_validation->set_message('check_company_id','There is no company available for your selection');
+				return false;
+			}
+		/*}else{
+			$this->form_validation->set_message('check_company_id','Please select a delivery company');
+			return false;
+		}*/
+	}
+
+	public function check_item_id(){
+		$this->load->model('m_delivery');
+		if($this->m_delivery->check_item_availability($this->session->userdata('username'),$this->input->post('itemID'))){
+			return true;
+		}else{
+			$this->form_validation->set_message('check_item_id','There is no item ID available from your stock');
+			return false;
+		}
+	}
 	
 	
 	
