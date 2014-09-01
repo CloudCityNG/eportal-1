@@ -485,14 +485,14 @@ class Advertisement extends CI_Controller {
 			$this->load->model('site_model');			
 			$comments = $this->site_model->getcommnets($adid);
 			$data['comments'] = $comments['rows'];
-			
+			$this->load->model('site_model');	
 			$this->load->model('rating_m');			
 			$rating = $this->rating_m->get_rate($adid,$this->session->userdata('username'));
 			$data['avg_rate'] = $rating['avg_rate'];
 			$data['total_rate'] = $rating['total_rate'];
 			$data['is_rated'] = $rating['is_rated'];
 			$data['rate'] = $rating['rate'];
-			
+			$data['reserved'] = $this->site_model->is_reserved($adid);
 			$this->header('View Ad');
 			$this->load->view('view_advert',$data);
 			$this->footer();

@@ -964,6 +964,10 @@ class Administration extends CI_Controller {
 			$this->header('Featured Requests');
 			$this->load->view('view_featured_accept',$data);
 			$this->footer();
+	}
+	public function resolutionCenter($type=Null)
+	{
+		
 	}	
 	
 	public function design_configuration(){
@@ -1409,5 +1413,99 @@ class Administration extends CI_Controller {
 		}else{
 			show_404('asdasdasdasdasd','hmmmm');
 		}
+	}
+
+	public function resolution()
+	{
+		$this->load->model('resolutionCenters');
+		$data['all']=$this->resolutionCenters->getAllTickets();
+		$this->header('Resolution Center');
+			$this->load->view('view_admin_resolution',$data);
+			$this->footer();
 	}	
+	public function resolution_status($request,$id)
+	{
+		$this->load->model('resolutionCenters');
+		if((isset($request))&&(isset($id)))
+			{
+				if($request=='reject')
+				{
+					if($this->resolutionCenters->request_reject($id))
+					{
+						$data['status_reject']=true;
+					}	
+				}
+				else if($request=='resolved')
+				{
+					if($this->resolutionCenters->request_resolved($id))
+					{
+						$data['status_resolved']=true;
+					}
+				}
+			}
+		$this->load->model('resolutionCenters');
+		$data['all']=$this->resolutionCenters->getAllTickets();
+		$this->header('Resolution Center');
+			$this->load->view('view_admin_resolution',$data);
+			$this->footer();	
+		
+		
+		
+	}
+	public function resolution_history($id)
+	{
+		$this->load->model('resolutionCenters');
+		$this->load->model('messages');
+		$data['all']=$this->resolutionCenters->getAllTickets();
+		$data['history']=true;
+		$ticket=$this->resolutionCenters->getTicket($id);
+		foreach($ticket as $row){
+		$data['accused']=$row->accused;
+		$data['accuser']=$row->accuser;
+		}
+		$data['conversation']=$this->messages->getConversation($data['accused'],$data['accuser']);
+		$this->header('Resolution Center');
+			$this->load->view('view_admin_resolution',$data);
+			$this->footer();	
+	}
+	public function resolution_messaging($id)
+	{
+		$this->load->model('resolutionCenters');
+		$this->load->model('messages');
+		//$data['all']=$this->resolutionCenters->getAllTickets();
+		$data['message']=true;
+		$ticket=$this->resolutionCenters->getTicket($id);
+		$data['id']=$id;
+		foreach($ticket as $row){
+		$data['accused']=$row->accused;
+		$data['accuser']=$row->accuser;
+		$data['issue']=$row->issue;
+		
+		}
+		$data['messages']=$this->messages->getMessages($id);
+		$this->header('Resolution Center');
+		$this->load->view('view_admin_resolution',$data);
+		$this->footer();	
+	} 
+	public function set_Message()
+	{
+		$this->load->model('resolutionCenters');
+		$this->resolutionCenters->setMessage($this->input->post('id'),$this->input->post('from'),$this->input->post('message'));
+	}
+	public function getMessages(){
+				$this->load->model('resolutionCenters');
+			$conversation=$this->resolutionCenters->getMessages($this->input->post('id'));
+			
+			
+			foreach($conversation as $message){
+				if($message->from!=$this->input->post('from')){
+					echo '<div class="comment_left"><p><a href="'.base_url().'profile/'.$message->from.'">'.$message->from.'</a><p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
+				}
+				else{
+					echo '<div class="comment_right"><p><a href="'.base_url().'profile/'.$message->from.'">'.$message->from.'</a><p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
+				}
+			}
+	
+	}
+	
 }

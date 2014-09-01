@@ -1,4 +1,13 @@
 <style>
+table {
+    
+}
+
+td {
+    height: 30px;
+}
+
+
 .bubble img {/*
   float:left;
   width:70px;
@@ -389,11 +398,18 @@ a:hover
 		
 		<br />
 		<br />
-		<p><b>ID : </b><?php echo $ad_id;?></p>
-		<p><b>Description : </b><?php echo $body;?></p>
+		<p><?php echo $body;?></p>
 		<br /><div class="pull-left">
-    		<p><b><span class="glyphicon glyphicon-shopping-cart"></span> Price Rs./= <?php echo $price; ?></b></p>
-    		 <?php 
+    		<p><b>Price Rs./= <?php echo $price; ?></b>
+    		<?php	if ($reserved): ?>
+    		<button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Reserved&nbsp;</button>	
+    		<?php else: ?>
+    		<a data-toggle="modal" href="#ModalCart"  class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart&nbsp;</a>
+    		<!--a href="<?php echo base_url().'cart/view_cart/'.$this->uri->segment(3);?>" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart&nbsp;</a-->
+    		<?php endif; ?>
+    		</p>
+    		
+    		<?php 
     		if($telemarketer==0)
     		{
     			echo '<p><b><span class="glyphicon glyphicon-exclamation-sign"></span> ';
@@ -541,7 +557,7 @@ a:hover
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4><strong>Report user : </strong> <?php echo $Title ;?><a herf="#" class="btn pull-right pull-up" data-dismiss="modal"> X </a></h4>
+					<h4><strong>Report Advertisement : </strong> <?php echo $Title ;?><a herf="#" class="btn pull-right pull-up" data-dismiss="modal"> <span class="glyphicon glyphicon-remove"></span> </a></h4>
 				</div>
 				<div class="modal-body">
 					<h4>Select the type of report</h4>
@@ -602,6 +618,48 @@ a:hover
 				<?php
 					echo form_close();
 				?>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="ModalCart" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4><strong>This item will be added to your cart : </strong></h4>
+				</div>
+				<div class="modal-body">
+					<h4><strong> <?php echo $Title ;?> </strong></h4>
+					<div class="col-md-offset-1">
+						
+						<table>
+  						<tr>
+    					<td align="right">Seller&nbsp;&nbsp;:</td>
+    					<td>&nbsp;&nbsp;username</td>
+  						</tr>
+  						<tr>
+    					<td align="right">Item Location &nbsp;&nbsp; :</td>
+    					<td>&nbsp;&nbsp;address</td>
+  						</tr>
+  						<tr>
+    					<td align="right">Price &nbsp;&nbsp; :</td>
+    					<td>&nbsp;&nbsp;Rs.<?php echo $price ?>/=</td>
+  						</tr>
+  						<tr>
+    					<td align="right">Expired Date &nbsp;&nbsp; :</td>
+    					<td>&nbsp;&nbsp;date</td>
+  						</tr>
+						</table>
+						
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<a herf="#" class="btn btn-sm btn-danger pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Cancel&nbsp;</a>
+					<a href="<?php echo base_url().'cart/view_cart/'.$this->uri->segment(3);?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add & View Cart&nbsp;</a>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
