@@ -189,4 +189,40 @@ class M_delivery extends CI_Model {
 		$result = $this->db->query($query);
 		return  $result->result();
 	}
+	
+	public function delivery_reject($accepted_id,$reason,$username,$company_id){
+		$this->db->trans_begin();
+		
+		$query="SELECT *
+				FROM delivery_requests_accepted
+				WHERE id='{$accepted_id}' AND company_id='{$company_id}'";
+				
+		$result = $this->db->query($query);
+		$info = $result->row_array();
+		
+		$data['accept_id']=$info['id'];
+		$data['company_id']=$info['company_id'];
+		$data['accepted_username']=$info['accepted_username'];
+		$data['accepted_dateandtime']=$info['accepted_dateandtime'];
+		$data['requested_dateandtime']=$info['requested_dateandtime'];
+		$data['ad_id']=$info['ad_id'];
+		$data['customer_username']=$info['customer_username'];
+		$data['delivery_location']=$info['delivery_location'];
+		$data['delivery_dateandtime']=$info['delivery_dateandtime'];
+		$data['rejected_by']=$username;
+		$data['rejected_reason']=$reason;
+		
+		$this->db->insert('delivery_requests_accepted_rejects',$data);
+		
+		$this->db->where('id', $accepted_id);
+		$this->db->delete('delivery_requests_accepted');
+		
+		if ($this->db->trans_status() === FALSE){
+		    $this->db->trans_rollback();
+			return false;
+		}else{
+		    $this->db->trans_commit();
+			return true;
+		} 
+	}
 }

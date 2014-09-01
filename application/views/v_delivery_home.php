@@ -53,7 +53,11 @@
 			Deliveries today
 		</div>
 		<hr />
-		<?php foreach($deliveries_today as $datarow){?>
+		<?php 
+			if( isset($deliveries_today) &&($deliveries_today != null)){
+			foreach($deliveries_today as $datarow){
+			
+		?>
 			<div class="col-md-8 col-md-offset-1 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 25px;">
 				<table class="table" >
 					<tr>
@@ -90,7 +94,16 @@
 					</tr>
 				</table>
 			</div>
-		<?php }?>
+		<?php 
+			}
+		}else{
+		?>
+		<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 25px;">
+			There are no deliveries for today.
+		</div>
+		<?php 
+			}
+		?>
 	</div>	
 	.	
 </div>

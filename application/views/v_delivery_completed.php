@@ -15,7 +15,9 @@
 				echo '</div>';
 			}
 		?>
-		<?php foreach ($delivered_items as $value) {?>
+		<?php
+			if(isset($delivered_items) && $delivered_items!=null){
+		 foreach ($delivered_items as $value) {?>
 			<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 25px;">
 				<table class="table" style="border: none">
 					<tbody>
@@ -118,7 +120,12 @@
 					</tbody>
 				</table>
 			</div>
-		<?php } ?>
+		<?php }
+		}else{ ?>
+			<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 20px">
+				There are no deliveries completed.
+			</div>
+		<?php }?>
 	</div>
 	.
 </div>

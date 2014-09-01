@@ -37,14 +37,16 @@ class Deliveries extends CI_Controller {
 			}else{
 				show_error("unable to $view id: $a_id",'','ERROR!');
 			}	
-		}else if($view=='cancel' && $a_id!=null){
-			if($type = $this->accepted_reject($id,$reason,$this->session->userdata('username'))){
-				$data['status']=$type;
-				$data['request_id']=$id;
+		}else if($view=='cancel'){
+			$accepted_id=$this->input->post('reject_id');
+			$reason=$this->input->post('reject_reason');
+			
+			if($type = $this->accepted_reject($accepted_id,$reason,$this->session->userdata('username'),$this->session->userdata('company_id'))){
+				$data['reject_id']=$accepted_id;
 				$this->accepted_all($data);
 			}else{
 				show_error("unable to $view id: $a_id",'','ERROR!');
-			}	
+			}
 		}else{
 			show_404();
 		}
@@ -131,10 +133,14 @@ class Deliveries extends CI_Controller {
 
 		private function accepted_all($status_info=null){
 				
-			if($status_info!=null){
+			if($status_info!=null && isset($status_info['confirm_id'])){
 				$data['status_info']['confirm_id']=$status_info['confirm_id'];
 			}
 
+			if($status_info!=null && isset($status_info['reject_id'])){
+				$data['status_info']['reject_id']=$status_info['reject_id'];
+			}
+			
 			$this->load->model('m_delivery');
 			$acepted = $this->m_delivery->accepted_all($this->session->userdata('company_id'));
 			
@@ -171,9 +177,13 @@ class Deliveries extends CI_Controller {
 			}
 		}
 		
-		private function accepted_reject($id,$reason,$username){
+		public function accepted_reject($accepted_id,$reason,$username,$company_id){
 			$this->load->model('m_delivery');
-			$this->m_delivery->delivery_reject($id,$reason,$username);
+			if($this->m_delivery->delivery_reject($accepted_id,$reason,$username,$company_id)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 		
 		private function rejected_all(){
@@ -220,9 +230,17 @@ class Deliveries extends CI_Controller {
 			$this->footer();
 		}
 		
-		private function out_of_date_all(){
+		private function out_of_date_all($status_info=null){
 			$this->load->model('m_delivery');
 			$out_of_date = $this->m_delivery->delivery_out_of_date($this->session->userdata('company_id'));
+			
+			if($status_info!=null && isset($status_info['confirm_id'])){
+				$data['status_info']['confirm_id']=$status_info['confirm_id'];
+			}
+
+			if($status_info!=null && isset($status_info['reject_id'])){
+				$data['status_info']['reject_id']=$status_info['reject_id'];
+			}
 			
 			foreach($out_of_date as $key=>$value){
 				$data['out_of_delivery_date_items'][$key]['id']=$value->id;

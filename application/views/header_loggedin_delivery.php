@@ -35,7 +35,7 @@
 
 <div id="wrapper">
 	<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-top" role="navigation" style="padding-right: 30px;">
-		<a class="navbar-brand" href="<?php echo base_url()?>">
+		<a class="navbar-brand" href="<?php echo base_url().'company/'?>" style="margin-left: 30px">
 			ePortal - Delivery service
 		</a>
 		<ul class="nav navbar-nav navbar-right">
@@ -57,9 +57,6 @@
 		            &nbsp;
 		        </li>
 		        <li>
-		            <a href="tables.html"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Calendar</a>
-		        </li>
-		        <li>
 		            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Deliveries <span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
 		            <ul id="demo" class="collapse">
 		                <li>
@@ -67,9 +64,6 @@
 		                </li>
 		                <li>
 		                    <a href="<?php echo base_url()?>deliveries/accepted">Accepted</a>
-		                </li>
-		                <li>
-		                    <a href="<?php echo base_url()?>deliveries/rejected">Rejected</a>
 		                </li>
 		                <li>
 		                    <a href="<?php echo base_url()?>deliveries/completed">Completed</a>
@@ -85,6 +79,7 @@
 		        <li>
 		            <a href="bootstrap-elements.html"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send customer e-mail</a>
 		        </li>
+		        
 		    </ul>
 		</div>     
 	</nav>

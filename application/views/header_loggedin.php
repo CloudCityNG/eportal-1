@@ -148,8 +148,15 @@ $('.dropdown-toggle').dropdown();
 								<?php
 									if($this->session->userdata('company_name')){?>
 										<li>
-											<a target="_blank" href="<?php echo base_url().'company/'.$this->session->userdata('company_id') ?>">
+											<a target="_blank" href="<?php echo base_url().'company'?>">
 												<?php echo $this->session->userdata('company_name'); ?>
+											</a>
+										</li>
+										<li class="divider"></li>
+								<?php }else{?>
+									<li>
+											<a target="_blank" href="<?php echo base_url().'company'?>">
+												Create a delivery company
 											</a>
 										</li>
 										<li class="divider"></li>

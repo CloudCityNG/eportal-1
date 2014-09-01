@@ -45,7 +45,12 @@ class Company extends CI_Controller {
 			show_404();			
 		}
 	}
-
+	
+	public function create(){
+		
+	}
+	
+	
 	private function home_page(){
 		if($company_id = $this->session->userdata('company_id')){
 			$this->load->model('m_company');
