@@ -38,10 +38,10 @@
  	<link href="<?php echo base_url().'js/jquery.rating.css'?>" type="text/css" rel="stylesheet"/>
  	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
  	 	<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
-	<script type='text/javascript' src='<?php echo base_url().'menu_jquery.js';?>'></script>
+	<script type='text/javascript' src='<?php echo base_url().'js/menu_jquery.js';?>'></script>
 
 	<link rel="stylesheet" href="<?php echo base_url().'jGrowl-master/jquery.jgrowl.css'; ?>" type="text/css"/>
-	<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>
+	<!--<script type="text/javascript" src="<?php echo base_url().'jGrowl-master/jquery.jgrowl.js'; ?>"></script>
 		<script type="text/javascript">
 
 		// In case you don't have firebug...
@@ -110,8 +110,8 @@
 			});
 		})(jQuery);
 
-		</script>
-		  
+	</script>
+		-->
 <script type="text/javascript">
 $(function () {
 $('.dropdown-toggle').dropdown();
@@ -144,6 +144,7 @@ $('.dropdown-toggle').dropdown();
 						  	</a>
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
+<<<<<<< HEAD
 
 
 						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
@@ -154,6 +155,27 @@ $('.dropdown-toggle').dropdown();
 
 
 						    	
+=======
+								<li class="divider"></li>
+								<?php
+									if($this->session->userdata('company_name')){?>
+										<li>
+											<a target="_blank" href="<?php echo base_url().'company'?>">
+												<?php echo $this->session->userdata('company_name'); ?>
+											</a>
+										</li>
+										<li class="divider"></li>
+								<?php }else{?>
+									<li>
+											<a target="_blank" href="<?php echo base_url().'company/create'?>">
+												Create a delivery company
+											</a>
+										</li>
+										<li class="divider"></li>
+								<?php }?>
+						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
+						    	<li><a id="noti" href="<?php echo base_url()."delivery"; ?>">Request delivery</a></li>
+>>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
 						    	<li class="divider"></li>
 						    	<li><a href="<?php echo base_url()."profile/update"; ?>">Profile settings</a></li>
 						    	<li class="divider"></li>

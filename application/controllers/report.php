@@ -4,9 +4,14 @@ class Report extends CI_Controller {
 	
 	public function index()
 	{
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Generate Report');
 			$this->load->view("v_administration_report_main");
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	
 	public function ad_reports(){ 
@@ -270,6 +275,12 @@ class Report extends CI_Controller {
 				}
 			}
 	
+	}
+	
+	public function restricted() {
+		$this->header('Please Signin');
+		$this->load->view("v_restricted");
+		$this->footer();
 	}
 	
 	function footer(){

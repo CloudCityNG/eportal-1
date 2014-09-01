@@ -3,9 +3,14 @@
 class Administration extends CI_Controller {
 	
 	public function index(){
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Dashboard');
 		$this->load->view('v_administration');
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}	
 		
 	public function user_management(){
@@ -45,9 +50,15 @@ class Administration extends CI_Controller {
 		foreach($total_u as $info){$data['total_u'] = $info->total_u;}
 		foreach($total_profile_reports as $info){$data['total_profile_reports'] = $info->total_profile_reports;}
 		
+		if($this->session->userdata('is_logged_in')){
+		
 		$data['total_ad_reports'] = $this->site_model->count_total_ad_reports();
 		$this->load->view('v_administration_user_management',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	
 	public function profileupdates($usertype,$reqtype){
@@ -56,26 +67,48 @@ class Administration extends CI_Controller {
 		if($reqtype=='new' && $usertype=='n'){
 			$data['update_data']= $this->admin->get_profileupdates($usertype,$reqtype);
 			$data['panel_text']='Profile updates > Private users > New';
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Normal user new updates');
 			$this->load->view("v_administration_new_updates_normal",$data);
+			}
+		else {
+			$this->restricted();
+		}
 			
 		}else if($reqtype=='new' && $usertype=='b'){
 			$data['update_data']= $this->admin->get_profileupdates($usertype,$reqtype);
 			$data['panel_text']='Profile updates > Business users > New';
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Business user new updates');
 			$this->load->view("v_administration_new_updates_business",$data);
+			}
+		else {
+			$this->restricted();
+		}
 		
 		}else if($reqtype=='all' && $usertype=='n'){
 			$data['update_data']= $this->admin->get_profileupdates($usertype,$reqtype);
 			$data['panel_text']='Profile updates > Private users > all';
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Normal user updates');
 			$this->load->view("v_administration_new_updates_normal",$data);
+			}
+		else {
+			$this->restricted();
+		}
 		
 		}else if($reqtype=='all' && $usertype=='b') {
 			$data['update_data']= $this->admin->get_profileupdates($usertype,$reqtype);
 			$data['panel_text']='Profile updates > Business users > all';
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Business user updates');
 			$this->load->view("v_administration_new_updates_business",$data);
+			}
+		else {
+			$this->restricted();
+		}
 		
 		}else{
 			$this->index();
@@ -158,40 +191,79 @@ class Administration extends CI_Controller {
 		
 		if($users=='n'){
 			$data['users']=$this->admin->get_all_normal_user_details();
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - All Normal Users');
 			$this->load->view("v_administration_users",$data);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else if($users=='b'){
 			$data['users']=$this->admin->get_all_business_user_details();
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - All Business Users');
 			$this->load->view("v_administration_users",$data);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else if($users=='a'){
 			$data['users']=$this->admin->get_all_admin_user_details();
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - All Business Users');
 			$this->load->view("v_administration_users",$data);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else{
 			$data['users']=$this->admin->get_all_user_details();
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - All Users');
 			$this->load->view("v_administration_users",$data);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}			
 	}
 	
 	public function add_user($usertype){
 		if($usertype=='a'){
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Add administrative user');
 			$this->load->view("v_administration_add_user_admin");
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else if($usertype=='b'){
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Add business users');
 			$this->load->view("v_administration_add_user_business");
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else if($usertype=='n'){
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Add normal users');
 			$this->load->view("v_administration_add_user_normal");
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}else{
 			
 		}
@@ -253,10 +325,12 @@ class Administration extends CI_Controller {
 					$this->footer();
 				}else{
 					//email not send
+					
 					$this->header('Administration - Add business user');
 					$d['status']='email failed';
 					$this->load->view("v_administration_add_user_business",$d);
 					$this->footer();
+					
 				}
 			}else{
 				//not added to db
@@ -366,9 +440,16 @@ class Administration extends CI_Controller {
 			}
 			
 			$reports['data']=$dataset;
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - User Profiles Reported');
 			$this->load->view("v_administration_users_profile_reports",$reports);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
+			
 		}else{
 			$this->load->model('admin');
 			$key=0;
@@ -390,9 +471,14 @@ class Administration extends CI_Controller {
 			}
 			
 			$reports['data']=$dataset;
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - User Profiles Reported');
 			$this->load->view("v_administration_users_profile_reports",$reports);
 			$this->footer();
+			}
+			else {
+				$this->restricted();
+			}
 		}
 	}
 	
@@ -863,9 +949,14 @@ class Administration extends CI_Controller {
 		}
 		$data['district']=$send;//loading the district in the dropdown list
 		$send=null;	
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Configure Ad');
 		$this->load->view('view_adconfig',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 
 	}
 	public function new_ads()
@@ -882,9 +973,14 @@ class Administration extends CI_Controller {
 		}
 		$this->load->model('m_rules');
 		$data['Ads']=$this->m_rules->getAdlist();
+		if($this->session->userdata('is_logged_in')){
 		$this->header('View Fields');
 		$this->load->view('v_check_fields',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	function header($tile){
 		$data['title']=$tile;
@@ -930,9 +1026,14 @@ class Administration extends CI_Controller {
 			
 			$this->load->model('advertisements');
 			$data['Ads']=$this->advertisements->getExtendList();
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Extend Requests');
 			$this->load->view('view_extend_accept',$data);
 			$this->footer();
+			}
+			else {
+			$this->restricted();
+		}
 	}	
 	public function acceptFeatured($request,$id)
 	{
@@ -961,19 +1062,33 @@ class Administration extends CI_Controller {
 			
 			$this->load->model('advertisements');
 			$data['Ads']=$this->advertisements->getFeaturedList();
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Featured Requests');
 			$this->load->view('view_featured_accept',$data);
 			$this->footer();
+<<<<<<< HEAD
 	}
 	public function resolutionCenter($type=Null)
 	{
 		
+=======
+			}
+		else {
+			$this->restricted();
+		}
+>>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
 	}	
 	
 	public function design_configuration(){
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Design configuration');
 		$this->load->view('v_administration_design_configuration');
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 
 	public function logo_configuration(){
@@ -987,10 +1102,14 @@ class Administration extends CI_Controller {
 			$data['name'] = $this->setup_names($info->username);
 		}
 		
-		
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Logo configuration');
 		$this->load->view('v_administration_design_configuration_logo',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	
 	public function color_configuration(){
@@ -1003,15 +1122,26 @@ class Administration extends CI_Controller {
 			$data['name'] = $this->setup_names($info->username);
 			$data['dateandtime'] = $info->dateandtime;
 		}
+
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Color theme configuration');
 		$this->load->view('v_administration_design_configuration_color',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 
 	public function dashboard_configuration(){
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Color theme configuration');
 		$this->load->view('v_administration_design_configuration_dashboard');
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	
 	public function icon_configuration(){
@@ -1024,10 +1154,14 @@ class Administration extends CI_Controller {
 			$data['dateandtime'] = $info->dateandtime;
 			$data['name'] = $this->setup_names($info->username);
 		}
-		
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Icon configuration');
 		$this->load->view('v_administration_design_configuration_icon',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 	
 	
@@ -1154,9 +1288,14 @@ class Administration extends CI_Controller {
 			$data['message']='unknown theme file selection';
 		}
 
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Color theme configuration');
 		$this->load->view('v_administration_design_configuration_color_apply_status',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 
 	public function logo_configuration_update(){
@@ -1172,11 +1311,16 @@ class Administration extends CI_Controller {
 				if($delete = unlink('./images/site/logo.png')){
 				}else{
 					$delete = false;
+					if($this->session->userdata('is_logged_in')){
 					$this->header('Administration - Logo update fail');
 					$data['message']='unable to delete the previous logo';
 					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
+					}
+		else {
+			$this->restricted();
+		}
 				}
 			}else{
 				$delete = true;	
@@ -1185,6 +1329,8 @@ class Administration extends CI_Controller {
 			if($delete){
 				if(copy('./images/'.$uploadData['file_name'], './images/site/logo.png')){
 					unlink('./images/'.$uploadData['file_name']);
+					
+					if($this->session->userdata('is_logged_in')){
 					$this->header('Administration - Logo update fail');
 					$this->load->model("admin");
 					$this->admin->site_logo_update($this->session->userdata('username'),$uploadData['file_name'],$uploadData['file_size'],'logo');
@@ -1200,21 +1346,35 @@ class Administration extends CI_Controller {
 					$data['status']='success';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
+					}
+					else {
+						$this->restricted();
+					}
 				}else{
+					if($this->session->userdata('is_logged_in')){
 					$this->header('Administration - Logo update fail');
 					$data['message']='unable to copy from original path to destination';
 					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_logo',$data);
 					$this->footer();
+					}
+					else {
+						$this->restricted();
+					}
 				}	
 			}
 		}else{
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Logo update fail');
 			$data['uploadErr'] = $this->upload->display_errors();
 			$data['message']='Upload error';
 			$data['status']='fail';
 			$this->load->view('v_administration_design_configuration_logo',$data);
 			$this->footer();
+			}
+		else {
+			$this->restricted();
+		}
 		}
 	}
 
@@ -1232,11 +1392,16 @@ class Administration extends CI_Controller {
 				if($delete = unlink('./images/site/icon.ico')){
 				}else{
 					$delete = false;
+					if($this->session->userdata('is_logged_in')){
 					$this->header('Administration - icon update fail');
 					$data['message']='unable to delete the previous icon image';
 					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_icon',$data);
 					$this->footer();
+					}
+		else {
+			$this->restricted();
+		}
 				}
 			}else{
 				$delete = true;	
@@ -1245,6 +1410,8 @@ class Administration extends CI_Controller {
 			if($delete){
 				if(copy('./images/'.$uploadData['file_name'], './images/site/icon.ico')){
 					unlink('./images/'.$uploadData['file_name']);
+					
+					
 					$this->header('Administration - Logo update fail');
 					$this->load->model("admin");
 					$this->admin->site_logo_update($this->session->userdata('username'),$uploadData['file_name'],$uploadData['file_size'],'icon');
@@ -1259,30 +1426,50 @@ class Administration extends CI_Controller {
 		
 					$data['message']='icon was successfully changed';
 					$data['status']='success';
+					if($this->session->userdata('is_logged_in')){
 					$this->load->view('v_administration_design_configuration_icon',$data);
 					$this->footer();
+					}
+					else {
+						$this->restricted();
+					}
 				}else{
+					if($this->session->userdata('is_logged_in')){
 					$this->header('Administration - Logo update fail');
 					$data['message']='unable to copy from original path to destination';
 					$data['status']='fail';
 					$this->load->view('v_administration_design_configuration_icon',$data);
 					$this->footer();
+					}
+					else {
+						$this->restricted();
+					}
 				}	
 			}
 		}else{
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Logo update fail');
 			$data['uploadErr'] = $this->upload->display_errors();
 			$data['message']='Upload error';
 			$data['status']='fail';
 			$this->load->view('v_administration_design_configuration_icon',$data);
 			$this->footer();
+			}
+					else {
+						$this->restricted();
+					}
 		}
 	}
 
 	public function custom_colour_theme(){
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Custom color theme configuration');
 		$this->load->view('v_administration_design_configuration_color_custom');
 		$this->footer();
+		}
+					else {
+						$this->restricted();
+					}
 	}
 
 	public function generate_colour_theme(){
@@ -1352,10 +1539,14 @@ class Administration extends CI_Controller {
 			$data['status']='fail';
 			$data['message']='Reading custom.css file failed';
 		}
-		
+		if($this->session->userdata('is_logged_in')){
 		$this->header('Administration - Custom color theme generating');
 		$this->load->view('v_administration_design_configuration_color_custom_status',$data);
 		$this->footer();
+		}
+		else {
+			$this->restricted();
+		}
 	}
 
 	public function history($type,$get){
@@ -1389,9 +1580,15 @@ class Administration extends CI_Controller {
 			}
 
 			$data['history']=$dataset;
+			
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Site history logo/icon');
 			$this->load->view('v_administration_design_configuration_history_theme',$data);
 			$this->footer();
+					}
+		else {
+			$this->restricted();
+		}
 		}else if($stat && ($type=='logo' || $type=='icon') && ($get=='all' || $get=='current')){
 			$history=array();
 			$dataset=array();
@@ -1406,9 +1603,14 @@ class Administration extends CI_Controller {
 			}
 			
 			$data['history']=$dataset;
+			if($this->session->userdata('is_logged_in')){
 			$this->header('Administration - Site history logo/icon');
 			$this->load->view('v_administration_design_configuration_history_icon_logo',$data);
 			$this->footer();
+			}
+		else {
+			$this->restricted();
+		}
 
 		}else{
 			show_404('asdasdasdasdasd','hmmmm');
@@ -1423,6 +1625,7 @@ class Administration extends CI_Controller {
 			$this->load->view('view_admin_resolution',$data);
 			$this->footer();
 	}	
+<<<<<<< HEAD
 	public function resolution_status($request,$id)
 	{
 		$this->load->model('resolutionCenters');
@@ -1508,4 +1711,12 @@ class Administration extends CI_Controller {
 	
 	}
 	
+=======
+
+	public function restricted() {
+		$this->header('Please Signin');
+		$this->load->view("v_restricted");
+		$this->footer();
+	}
+>>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
 }

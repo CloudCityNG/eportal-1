@@ -1,0 +1,14 @@
+.text-white {
+  color: #FFFFFF;
+}
+
+a.text-white:hover {
+  color: #CCCCCC;
+}
+
+.text-black {
+  color: #2c3e50;
+}
+a.text-black:hover {
+  color: #34495e;
+}
