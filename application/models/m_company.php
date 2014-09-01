@@ -162,4 +162,77 @@ class M_company extends CI_Model {
 			return true;
 		} 
 	}
+	
+	public function create_new_company($company_name,$uername){
+		$company = array(
+					'company_name'=>$company_name,
+					'created_by'=>$uername
+				);	
+		
+		if($this->db->insert('delivery_company_details', $company)){
+			$query = "SELECT id
+					FROM delivery_company_details
+					WHERE company_name='{$company_name}' AND created_by = '{$uername}'";
+			$result = $this->db->query($query);
+			return  $result->result();
+		}else{
+			return false;
+		}
+	}
+	
+	public function new_company_email($id,$email,$username){
+		$company = array(
+					'company_id'=>$id,
+					'email'=>$email,
+					'identity_name'=>'Primary',
+					'username'=>$username
+				);
+		if($this->db->insert('delivery_company_email', $company)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function new_company_address($id,$line_one,$line_two,$username){
+		$company = array(
+					'company_id'=>$id,
+					'address_line_1'=>$line_one,
+					'address_line_2'=>$line_two,
+					'identity_name'=>'Primary',
+					'username'=>$username
+				);
+		if($this->db->insert('delivery_company_address', $company)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function new_company_contact($id,$contact_number,$username){
+		$company = array(
+					'company_id'=>$id,
+					'contact_number'=>$contact_number,
+					'identity_name'=>'Primary',
+					'username'=>$username
+				);
+		if($this->db->insert('delivery_company_contact_numbers', $company)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function new_company_owner($id,$username){
+		$company = array(
+					'company_id'=>$id,
+					'role'=>'owner',
+					'username'=>$username
+				);
+		if($this->db->insert('delivery_company_contributors', $company)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

@@ -47,7 +47,49 @@ class Company extends CI_Controller {
 	}
 	
 	public function create(){
+		$this->header_two('Create new delivery company');
+		$this->load->view('v_delivery_signup');
+		$this->footer();
+	}
+
+	public function create_submit(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('company_name','Company name','required|trim|xss_clean');
+		$this->form_validation->set_rules('contact_number','Contact number','required|trim|xss_clean|numeric||min_length[9]|max_length[10]');
+		$this->form_validation->set_rules('email','Email address','required|trim|xss_clean|valid_email');
+		$this->form_validation->set_rules('address_one','Address line one','required|trim|xss_clean');
+		$this->form_validation->set_rules('address_two','Address line two','required|trim|xss_clean');
 		
+		if($this->form_validation->run()){
+			
+			$company_name=$this->input->post('company_name');
+			$contact_number=$this->input->post('contact_number');
+			$email=$this->input->post('email');
+			$address_one=$this->input->post('address_one');
+			$address_two=$this->input->post('address_two');
+			
+			$this->load->model('m_company');
+			
+			if($queryResult = $this->m_company->create_new_company($company_name,$this->session->userdata('username'))){
+					
+				foreach($queryResult as $result){$company_id = $result->id;}
+				
+				if($this->m_company->new_company_owner($company_id,$this->session->userdata('username')) &&$this->m_company->new_company_email($company_id,$email,$this->session->userdata('username')) && $this->m_company->new_company_address($company_id,$address_one,$address_two,$this->session->userdata('username')) && $this->m_company->new_company_contact($company_id,$contact_number,$this->session->userdata('username'))){
+					$session_data = $this->session->userdata('ci_session');
+					$session_data['company_id'] = $company_id;
+					$session_data['company_name'] = $company_name;
+					$this->session->set_userdata($session_data);
+					
+					redirect(base_url().'company/'.$company_id);
+				}else{
+					show_error('error while processing your profile requests');
+				}
+			}else{
+				show_error('error while processing your request');
+			}
+		}else{
+			$this->create();
+		}
 	}
 	
 	
@@ -127,6 +169,19 @@ class Company extends CI_Controller {
 				$this->load->view('header_admin',$data);
 			}else{
 				$this->load->view('header_loggedin_delivery',$data);
+			}
+		}else{
+			$this->load->view('header_not_loggedin',$data);
+		}
+	}
+	
+	private function header_two($tile){
+		$data['title']=$tile;
+		if($this->session->userdata('username')){
+			if($this->session->userdata('usertype')=='a'){
+				$this->load->view('header_admin',$data);
+			}else{
+				$this->load->view('header_loggedin',$data);
 			}
 		}else{
 			$this->load->view('header_not_loggedin',$data);

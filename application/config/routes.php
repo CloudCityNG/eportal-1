@@ -51,6 +51,8 @@ $route['profile/(.*)'] = 'profile/index/$1';
 //$route['company/contributers/()'] = 'company/contributers/$1';
 //$route['deliveries/([a-zA-Z0-9]+)'] = 'deliveries/';
 $route['company'] = 'company/index';
+$route['company/create'] = 'company/create';
+$route['company/create_submit'] = 'company/create_submit';
 $route['company/([0-9]+)'] = 'company/by_id/$1';
 
 

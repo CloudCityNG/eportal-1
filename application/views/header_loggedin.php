@@ -155,7 +155,7 @@ $('.dropdown-toggle').dropdown();
 										<li class="divider"></li>
 								<?php }else{?>
 									<li>
-											<a target="_blank" href="<?php echo base_url().'company'?>">
+											<a target="_blank" href="<?php echo base_url().'company/create'?>">
 												Create a delivery company
 											</a>
 										</li>

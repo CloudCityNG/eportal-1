@@ -42,7 +42,7 @@
              </script>
 
 
-<div class="container breadcrumb-white" style="border: 1px solid #CCCCCC">
+<!--<div class="container breadcrumb-white" style="border: 1px solid #CCCCCC">
 	<div class="h3" style="margin-left: 30px">
 		Filter delivery companies
 	</div>
@@ -78,11 +78,11 @@
 	<div class="col-md-12">
 		<a class="btn btn-success pull-right">Filter search</a>
 	</div>
-</div>
+</div>-->
 <?php echo validation_errors(); ?>
 <div class="container breadcrumb-white" style="border: 1px solid #CCCCCC">
-	<div class="h3"	style="margin-left: 30px">
-		Delivery companies
+	<div class="h2 text-center"	style="margin-left: 30px">
+		Available delivery companies
 	</div>
 	<hr />
 	<?php foreach($delivery_company as $key=>$record){?>
