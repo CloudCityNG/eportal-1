@@ -53,6 +53,8 @@ $route['profile/(.*)'] = 'profile/index/$1';
 $route['company'] = 'company/index';
 $route['company/create'] = 'company/create';
 $route['company/create_submit'] = 'company/create_submit';
+$route['company/customer_email'] = 'company/customer_email';
+$route['company/send_customer_email'] = 'company/send_customer_email';
 $route['company/([0-9]+)'] = 'company/by_id/$1';
 
 

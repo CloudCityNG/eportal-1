@@ -121,6 +121,67 @@ class Company extends CI_Controller {
 			show_404();
 		}
 	}
+
+	public function customer_email(){
+		$this->header('Send comapany emails');
+		$this->load->view('v_delivery_send_customer_email');
+		$this->footer();
+	}
+	
+	public function send_customer_email(){
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('message', 'Message', 'required');
+		
+		if ($this->form_validation->run()){
+			$title = $this->input->post('title');
+			$message = $this->input->post('message');
+			
+			$this->send_delivery_client_mail($title,$message);
+			
+			echo 'sucess';
+		}else{
+			$this->customer_email();
+		}
+	}
+
+	public function send_delivery_client_mail($title,$message){
+		$this->load->model('m_company');
+		
+		$emails = $this->m_company->get_delivery_client_email($this->session->userdata('company_id'));
+		
+		$cid = $this->session->userdata('company_id');
+		$cname = $this->session->userdata('company_name') ;
+		
+		$config = Array(
+				'protocol' => 'smtp',
+			  	'smtp_host' => 'ssl://smtp.googlemail.com',
+			  	'smtp_port' => 465,
+			  	'smtp_user' => 'jojocitytwo@gmail.com',
+			  	'smtp_pass' => 'jojocity',
+			  	'mailtype' => 'html',
+			  	'charset' => 'iso-8859-1',
+			  	'wordwrap' => TRUE
+			);
+			
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+			$this->email->from('jojocitytwo@gmail.com'); 
+			$this->email->subject('E - Marketing portal');
+			$message="<b>";
+			$message.=$title;
+			$message.="</b><br />";
+			$message.=$message;
+			$message.="<br /><br />";
+			$message.="This message was sent to you by <a href='".base_url()."company/$cid'>$cname</a>";
+			$this->email->message($message);
+		
+		foreach($emails as $email){
+			$this->email->to($email->email);
+			$this->email->send();
+		}
+	}
 	
 	private function get_company_basic_details($companyid){
 		$this->load->model('m_company');

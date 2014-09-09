@@ -235,4 +235,16 @@ class M_company extends CI_Model {
 			return false;
 		}
 	}
+	
+	public function get_delivery_client_email($comapny_id){
+		$query = "select email
+				from users
+				where username in
+		                (select customer_username 
+		                from delivery_requests_delivered 
+		                where company_id = '{$comapny_id}'
+		                group by customer_username)";
+		$result = $this->db->query($query);
+		return  $result->result();
+	}
 }

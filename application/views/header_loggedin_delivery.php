@@ -77,7 +77,7 @@
 		            <a href="<?php echo base_url()?>contributers"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Contributors</a>
 		        </li>
 		        <li>
-		            <a href="bootstrap-elements.html"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send customer e-mail</a>
+		            <a href="<?php echo base_url()?>company/customer_email"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Send customer e-mail</a>
 		        </li>
 		        
 		    </ul>
