@@ -42,7 +42,7 @@
         <tr>
        
           <td style="max-width: 210px;"><?php echo $details->function;?></td>
-<<<<<<< HEAD
+
           <td> <div class="checkbox">
     			<input type="checkbox" align="center" id="checknor">
 			  </div> 
