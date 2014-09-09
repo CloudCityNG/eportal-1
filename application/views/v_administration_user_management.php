@@ -9,12 +9,12 @@
 			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>">Generate Reports</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>">Design Configuration</a></li>
-<<<<<<< HEAD
+
 			<li class="dashLink"><a href="<?php echo base_url().'administration/resolution'?>">Resolution Center</a></li>
-=======
+
         <li class="sub-link dashLink"><a href="<?php echo base_url().'permissions'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Manage Permissions</a></li>  
           
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+
           </ul>
 
           <ul class="nav nav-sidebar ">

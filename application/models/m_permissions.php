@@ -8,8 +8,7 @@ class M_permissions extends CI_Model{
 		$result = $this->db->query($query);
 		return $result->result();
 	}
-<<<<<<< HEAD
-=======
+
 	
 	public function insert_permissions($arr){
 		
@@ -29,5 +28,5 @@ class M_permissions extends CI_Model{
 		}
 		
 	}
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+
 }

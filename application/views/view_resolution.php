@@ -150,7 +150,7 @@ foreach ($usernames as $row)
 	<div class="col-md-7">
 		<div class="alert alert-success">
 			<b>You have successfully Issued  a Ticket </b>
-			against '.$accused.' .	
+			against '.$accusing.' .	
 			<br />
 			Your ticket id is '.$id.'.
 			

@@ -401,12 +401,7 @@ a:hover
 		<p><?php echo $body;?></p>
 		<br /><div class="pull-left">
     		<p><b>Price Rs./= <?php echo $price; ?></b>
-    		<?php	if ($reserved): ?>
-    		<button class="btn btn-success" disabled="disabled"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Reserved&nbsp;</button>	
-    		<?php else: ?>
-    		<a data-toggle="modal" href="#ModalCart"  class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart&nbsp;</a>
-    		<!--a href="<?php echo base_url().'cart/view_cart/'.$this->uri->segment(3);?>" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart&nbsp;</a-->
-    		<?php endif; ?>
+    		
     		</p>
     		
     		<?php 

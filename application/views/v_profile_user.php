@@ -174,7 +174,7 @@
 					<a herf="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
 					<h4 class="text-white text-center">Please login to Send Message</h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-footer">
 					<div class="col-md-6">
 						<div class="col-md-12">
 							<a class="btn btn-block btn-default" href="<?php echo base_url().'signin';?>">Login</a>

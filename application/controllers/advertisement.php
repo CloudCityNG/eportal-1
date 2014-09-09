@@ -492,7 +492,7 @@ class Advertisement extends CI_Controller {
 			$data['total_rate'] = $rating['total_rate'];
 			$data['is_rated'] = $rating['is_rated'];
 			$data['rate'] = $rating['rate'];
-			$data['reserved'] = $this->site_model->is_reserved($adid);
+			
 			$this->header('View Ad');
 			$this->load->view('view_advert',$data);
 			$this->footer();

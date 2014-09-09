@@ -34,7 +34,7 @@ class Delivery extends CI_Controller {
 		$this->footer();
 	}
 	
-<<<<<<< HEAD
+
 	private function get_province_district(){
 		if($this->session->userdata('username')){
 			$this->load->model('advertisements');
@@ -60,7 +60,9 @@ class Delivery extends CI_Controller {
 
 		if($this->input->post('district')){
 			$data['dis']=$this->input->post('district');
-=======
+		}
+		}
+		}
 	/*******************************End private functions****************************************************/
 	
 	public function make_request(){
@@ -85,7 +87,7 @@ class Delivery extends CI_Controller {
 			}
 		}else{
 			$this->view_delivery_companies();
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+
 		}
 	}
 	
@@ -130,7 +132,6 @@ class Delivery extends CI_Controller {
 			$output .= "<option value='"."0"."' selected>"."-Select-"."</option>";
 		}
 		
-<<<<<<< HEAD
 		$data['province']=$send;//loading the province in the dropdown list
 		$send=null;	
 		
@@ -141,18 +142,14 @@ class Delivery extends CI_Controller {
 		if($data['cou']>0||$data['pro']>0){
 
 			$answer=$this->advertisements->getDistricts($data['cou'],$data['pro']);
-=======
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+
 		foreach ($answer as $key ) {
 			 $output .= "<option value='".$key->id."'>".$key->name."</option>";
 		}
 		echo $output;
 	}
-<<<<<<< HEAD
-	}
-=======
 
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+	}
 	
 	function header($tile){
 		$data['title']=$tile;
@@ -170,4 +167,5 @@ class Delivery extends CI_Controller {
 	function footer(){
 		$this->load->view('footer');
 	}	
+}
 }

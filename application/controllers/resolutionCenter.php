@@ -48,7 +48,7 @@
 			$id=uniqid();
 			$this->resolutionCenters->issueTicket($id,$this->session->userdata('username'),$accused,$this->input->post('description'));
 			$data['success']=TRUE;
-			$data['accused']=$accused;
+			$data['accusing']=$accused;
 			$data['id']=$id;
 			
 			$this->load->view('view_resolution',$data);

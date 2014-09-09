@@ -1067,17 +1067,14 @@ class Administration extends CI_Controller {
 			$this->header('Featured Requests');
 			$this->load->view('view_featured_accept',$data);
 			$this->footer();
-<<<<<<< HEAD
+
+	}
 	}
 	public function resolutionCenter($type=Null)
 	{
 		
-=======
-			}
-		else {
-			$this->restricted();
-		}
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+			
+
 	}	
 	
 	public function design_configuration(){
@@ -1625,7 +1622,7 @@ class Administration extends CI_Controller {
 			$this->load->view('view_admin_resolution',$data);
 			$this->footer();
 	}	
-<<<<<<< HEAD
+
 	public function resolution_status($request,$id)
 	{
 		$this->load->model('resolutionCenters');
@@ -1711,12 +1708,12 @@ class Administration extends CI_Controller {
 	
 	}
 	
-=======
+
 
 	public function restricted() {
 		$this->header('Please Signin');
 		$this->load->view("v_restricted");
 		$this->footer();
 	}
->>>>>>> 75d2927bebb2f258ca38e6942d642981affa75bf
+
 }
