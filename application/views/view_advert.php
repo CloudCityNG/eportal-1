@@ -398,9 +398,10 @@ a:hover
 		
 		<br />
 		<br />
-		<p><?php echo $body;?></p>
+		<p><?php echo 'ID : '.$ad_id;?></p>
+		<p><?php echo 'Details : '.$body;?></p>
 		<br /><div class="pull-left">
-    		<p><b>Price Rs./= <?php echo $price; ?></b>
+    		<p><b>Price Rs.<?php echo $price; ?> /= </b>
     		
     		</p>
     		
