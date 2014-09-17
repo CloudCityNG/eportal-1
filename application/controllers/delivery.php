@@ -148,7 +148,7 @@ class Delivery extends CI_Controller {
 		}
 		echo $output;
 	}
-
+	}
 	}
 	
 	function header($tile){
@@ -167,5 +167,5 @@ class Delivery extends CI_Controller {
 	function footer(){
 		$this->load->view('footer');
 	}	
-}
+
 }
