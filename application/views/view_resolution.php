@@ -114,6 +114,9 @@ foreach ($usernames as $row)
                     	<a href="#" data-toggle="collapse" id="toggle1" data-target="#resolution" class="collapse" style="padding:10px 15px;"><i class="fa fa-fw fa-exclamation-triangle"></i> Resolution Center<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="resolution" class="collapse">
                         	<li>
+                        <a href="<?php echo base_url().'resolutionCenter/complain'?>" style="padding:10px 15px;"><i class="fa fa-fw fa-warning"></i>Complain info</a>
+                        	</li>
+                        	<li>
                         <a href="<?php echo base_url().'resolutionCenter/tickets'?>" style="padding:10px 15px;"><i class="fa fa-fw fa-certificate"></i>Ticket info</a>
                         	</li>
                         	<li>
@@ -149,10 +152,10 @@ foreach ($usernames as $row)
 				echo '<div class="container">
 	<div class="col-md-7">
 		<div class="alert alert-success">
-			<b>You have successfully Issued  a Ticket </b>
+			<b>You have successfully Issued  a Complain </b>
 			against '.$accusing.' .	
 			<br />
-			Your ticket id is '.$id.'.
+			Your Complain id is '.$id.'.
 			
 		</div>
 	</div>

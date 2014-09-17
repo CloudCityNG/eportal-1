@@ -37,7 +37,16 @@
 		{
 			
 		}
-		public function issueTicket($accused)
+		public function complain()
+		{
+			$this->header('Complains');
+			$this->load->model('resolutionCenters');
+			$data['notifications']=$this->resolutionCenters->getComplains($this->session->userdata('username'));
+			
+			$this->load->view('view_complain',$data);
+			$this->footer();
+		}
+		public function issueComplain($accused)
 		{
 			 $this->header('Ticket info');
 			
@@ -46,7 +55,7 @@
 			$data['ticket']=$this->resolutionCenters->getTickets($this->session->userdata('username'));
 			$data['accused']=$this->resolutionCenters->getAccusedTickets($this->session->userdata('username'));
 			$id=uniqid();
-			$this->resolutionCenters->issueTicket($id,$this->session->userdata('username'),$accused,$this->input->post('description'));
+			$this->resolutionCenters->issueComplain($id,$this->session->userdata('username'),$accused,$this->input->post('description'));
 			$data['success']=TRUE;
 			$data['accusing']=$accused;
 			$data['id']=$id;

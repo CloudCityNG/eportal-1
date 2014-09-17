@@ -25,7 +25,7 @@
 			  			}
 						else if(isset($status_reject) &&$status_reject==TRUE){
 			  				echo '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> 
-			  				Ticket is rejected.
+			  				Complain is rejected.
 			  				</div>'; 
 			  			}?> 
 <style>
@@ -116,7 +116,10 @@ z-index: 1;
             <?php }else if(isset($message)){?>
             	<script>
   $(document).ready(function() { 
-
+					$('#myTab a').click(function (e) {
+ 					 e.preventDefault()
+ 					 $(this).tab('show')
+					})
                 
 
 					$('#send').click(function(){
@@ -276,13 +279,61 @@ z-index: 1;
             	
             <?php }else {?>
 	<div class="col-md-10 col-md-offset-1">
-	<div class="panel panel-default">
-	<div class="panel-heading">
-	    		<center><h3 class="panel-title"><strong>Ticket List</strong></h3></center>
-	  </div>
+		<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+  <li class="active"><a href="#complain" role="tab" data-toggle="tab">Complaints</a></li>
+  <li><a href="#opened" role="tab" data-toggle="tab">Opened Tickets</a></li>
+  <li><a href="#resolved" role="tab" data-toggle="tab">Resolved Tickets</a></li>
+  <li><a href="#rejected" role="tab" data-toggle="tab">Rejected Complains</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="complain">	<div class="panel panel-default">
+
 	    
 	    <div class="panel-body"> 
-	    	<?php if(isset($all))foreach($all as $row){?>
+	    	<?php if(isset($complain))foreach($complain as $row){?>
+<div class="col-md-10 col-md-offset-1  img-thumbnail" style="margin-bottom: 12px;">
+			<div class="col-sm-4 pull-left btn btn-warning" style="margin-bottom: 10px"><a href="<?php echo base_url()?>profile/<?php echo $row->accused;?>">
+				Accused User : <?php echo $row->accused;?></a>
+				</div>
+				<div class="col-sm-4 pull-right btn btn-info"><a href="<?php echo base_url()?>profile/<?php echo $row->accuser;?>">
+				Accused by : <?php echo $row->accuser;?></a>
+				</div>
+				
+			<div class="col-md-10 table-bordered div-hover"style="margin-bottom: 10px">
+				<u><strong>Description :</strong></u>
+				<p>
+					<?php echo $row->issue;?>
+					</p>
+					
+			</div>
+			
+			<div class="pull-right">
+				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
+			<?php if(($row->status!='reject')&&($row->status!='resolved')){?>
+			<a href="<?php echo base_url()?>administration/resolution_status/reject/<?php echo $row->id;?>" class="btn btn-danger"><b> Reject </b></a>
+			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-primary"><b> Issue Ticket </b></a>
+			<?php }?>
+			</div>
+			<div class="pull-left">
+				Complain id : <?php echo $row->id;?>
+				<br>
+				Status : <?php echo $row->status;?>	
+				<br>
+				<div class="text-muted"><?php echo $row->date;?></div>			
+			</div>
+			
+			
+	</div>
+	<?php }?>
+</div>
+</div></div>
+  <div class="tab-pane" id="opened">
+  	<div class="panel panel-default">
+	    <div class="panel-body"> 
+	    	<?php if(isset($opened))foreach($opened as $row){?>
 <div class="col-md-10 col-md-offset-1  img-thumbnail" style="margin-bottom: 12px;">
 			<div class="col-sm-4 pull-left btn btn-warning" style="margin-bottom: 10px"><a href="<?php echo base_url()?>profile/<?php echo $row->accused;?>">
 				Accused User : <?php echo $row->accused;?></a>
@@ -302,6 +353,90 @@ z-index: 1;
 			<div class="pull-right">
 				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
 			<?php if(($row->status!='reject')&&($row->status!='resolved')){?>
+			
+			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-success"><b> Resolved </b></a>
+			<?php }?>
+			</div>
+			<div class="pull-left">
+				Ticket id : <?php echo $row->id;?>
+				<br>				
+				Status : <?php echo $row->status;?>	
+				<br>
+				<div class="text-muted"><?php echo $row->date;?></div>			
+			</div>
+			
+			
+	</div>
+	<?php }?>
+</div>
+</div>
+</div>
+  <div class="tab-pane" id="resolved">
+  	<div class="panel panel-default">
+	    <div class="panel-body"> 
+	    	<?php if(isset($resolved))foreach($resolved as $row){?>
+<div class="col-md-10 col-md-offset-1  img-thumbnail" style="margin-bottom: 12px;">
+			<div class="col-sm-4 pull-left btn btn-warning" style="margin-bottom: 10px"><a href="<?php echo base_url()?>profile/<?php echo $row->accused;?>">
+				Accused User : <?php echo $row->accused;?></a>
+				</div>
+				<div class="col-sm-4 pull-right btn btn-info"><a href="<?php echo base_url()?>profile/<?php echo $row->accuser;?>">
+				Accused by : <?php echo $row->accuser;?></a>
+				</div>
+				
+			<div class="col-md-10 table-bordered div-hover"style="margin-bottom: 10px"><a href="<?php echo base_url();?>administration/resolution_messaging/<?php echo $row->id;?>">
+				<u><strong>Description :</strong></u>
+				<p>
+					<?php echo $row->issue;?>
+					</p>
+					</a>
+			</div>
+			
+			<div class="pull-right">
+				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
+			<?php if(($row->status!='rejected')&&($row->status!='resolved')){?>
+			<a href="<?php echo base_url()?>administration/resolution_status/reject/<?php echo $row->id;?>" class="btn btn-danger"><b> Reject </b></a>
+			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-success"><b> Resolved </b></a>
+			<?php }?>
+			</div>
+			<div class="pull-left">
+				Ticket id : <?php echo $row->id;?>
+				<br>
+				Status : <?php echo $row->status;?>	
+				<br>
+				<div class="text-muted"><?php echo $row->date;?></div>			
+			</div>
+			
+			
+	</div>
+	<?php }?>
+</div>
+</div>
+
+
+</div>
+  <div class="tab-pane" id="rejected">
+  	<div class="panel panel-default">
+	    <div class="panel-body"> 
+	    	<?php if(isset($rejected))foreach($rejected as $row){?>
+<div class="col-md-10 col-md-offset-1  img-thumbnail" style="margin-bottom: 12px;">
+			<div class="col-sm-4 pull-left btn btn-warning" style="margin-bottom: 10px"><a href="<?php echo base_url()?>profile/<?php echo $row->accused;?>">
+				Accused User : <?php echo $row->accused;?></a>
+				</div>
+				<div class="col-sm-4 pull-right btn btn-info"><a href="<?php echo base_url()?>profile/<?php echo $row->accuser;?>">
+				Accused by : <?php echo $row->accuser;?></a>
+				</div>
+				
+			<div class="col-md-10 table-bordered div-hover"style="margin-bottom: 10px"><a href="<?php echo base_url();?>administration/resolution_messaging/<?php echo $row->id;?>">
+				<u><strong>Description :</strong></u>
+				<p>
+					<?php echo $row->issue;?>
+					</p>
+					</a>
+			</div>
+			
+			<div class="pull-right">
+				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
+			<?php if(($row->status!='rejected')&&($row->status!='resolved')){?>
 			<a href="<?php echo base_url()?>administration/resolution_status/reject/<?php echo $row->id;?>" class="btn btn-danger"><b> Reject </b></a>
 			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-success"><b> Resolved </b></a>
 			<?php }?>
@@ -317,6 +452,12 @@ z-index: 1;
 	<?php }?>
 </div>
 </div>
+  	
+  	
+  	
+  </div>
+</div>
+
 </div>
 <?php }?>
 

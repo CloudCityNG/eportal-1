@@ -202,6 +202,9 @@ foreach ($query->result() as $row)
                     	<a href="#" data-toggle="collapse" id="toggle1" data-target="#resolution" class="collapse" style="padding:10px 15px;"><i class="fa fa-fw fa-exclamation-triangle"></i> Resolution Center<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="resolution" class="collapse">
                         	<li>
+                        <a href="<?php echo base_url().'resolutionCenter/complain'?>" style="padding:10px 15px;"><i class="fa fa-fw fa-warning"></i>Complain info</a>
+                        	</li>
+                        	<li>
                         <a href="<?php echo base_url().'resolutionCenter/tickets'?>" style="padding:10px 15px;"><i class="fa fa-fw fa-certificate"></i>Ticket info</a>
                         	</li>
                         	<li>
@@ -290,7 +293,7 @@ force_download($name, $data);
 			<div class="modal-content">
 				<?php
 						$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
-						echo form_open('resolutionCenter/issueTicket/'.$from,$formattributes);
+						echo form_open('resolutionCenter/issueComplain/'.$from,$formattributes);
 					?>
 				<div class="modal-header">
 					<a herf="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
@@ -310,7 +313,7 @@ force_download($name, $data);
 				</div>
 				<div class="modal-footer">
 					<?php
-	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'issue_ticket','value'=>'Issue Ticket');
+	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'issue_ticket','value'=>'Issue Complain');
 						echo form_submit($reportattributes);
 	      			?>
 				</div>

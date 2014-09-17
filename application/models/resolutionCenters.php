@@ -1,6 +1,11 @@
 <?php
    class ResolutionCenters extends CI_Model{
    	
+	public function issueComplain($id,$accuser,$accused,$issue)
+	{
+		$this->db->insert('complain',array('id'=>$id,'accuser'=>$accuser,'accused'=>$accused,'issue'=>$issue));
+		
+	}
 	public function issueTicket($id,$accuser,$accused,$issue)
 	{
 		$this->db->insert('ticket',array('id'=>$id,'accuser'=>$accuser,'accused'=>$accused,'issue'=>$issue));
@@ -19,10 +24,26 @@
 	{
 		return $this->db->get('ticket')->result();
 	}
+	public function getAllOpenedTickets()
+	{
+		return $this->db->where('status','opened')->get('ticket')->result();
+	}
+	public function getAllResolvedTickets()
+	{
+		return $this->db->where('status','resolved')->get('ticket')->result();
+	}
+	public function getAllComplains()
+	{
+		return $this->db->where('status','unread')->get('complain')->result();
+	}
+	public function getAllRejectedComplains()
+	{
+		return $this->db->where('status','rejected')->get('complain')->result();
+	}
 	
 	public function request_reject($id)
 	{
-		$this->db->where('id',$id)->update('ticket',array('status'=>'reject'));
+		$this->db->where('id',$id)->update('complain',array('status'=>'rejected'));
 		return TRUE;
 	}
 		public function request_resolved($id)
@@ -41,6 +62,10 @@
 	public function setMessage($id,$from,$content)
 	{
 		$this->db->insert('ticket_messages',array('ticketid'=>$id,'from'=>$from,'content'=>$content));
+	}
+	public function getComplains($accuser)
+	{
+		return $this->db->where('accuser',$accuser)->get('complain')->result();
 	}
 	
    }

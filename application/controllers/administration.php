@@ -1617,7 +1617,10 @@ class Administration extends CI_Controller {
 	public function resolution()
 	{
 		$this->load->model('resolutionCenters');
-		$data['all']=$this->resolutionCenters->getAllTickets();
+		$data['complain']=$this->resolutionCenters->getAllComplains();
+		$data['rejected']=$this->resolutionCenters->getAllRejectedComplains();
+		$data['opened']=$this->resolutionCenters->getAllOpenedTickets();
+		$data['resolved']=$this->resolutionCenters->getAllResolvedTickets();
 		$this->header('Resolution Center');
 			$this->load->view('view_admin_resolution',$data);
 			$this->footer();
@@ -1644,7 +1647,11 @@ class Administration extends CI_Controller {
 				}
 			}
 		$this->load->model('resolutionCenters');
-		$data['all']=$this->resolutionCenters->getAllTickets();
+		$data['complain']=$this->resolutionCenters->getAllComplains();
+		$data['rejected']=$this->resolutionCenters->getAllRejectedComplains();
+		$data['opened']=$this->resolutionCenters->getAllOpenedTickets();
+		$data['resolved']=$this->resolutionCenters->getAllResolvedTickets();
+		
 		$this->header('Resolution Center');
 			$this->load->view('view_admin_resolution',$data);
 			$this->footer();	
@@ -1695,14 +1702,21 @@ class Administration extends CI_Controller {
 	public function getMessages(){
 				$this->load->model('resolutionCenters');
 			$conversation=$this->resolutionCenters->getMessages($this->input->post('id'));
-			
-			
+			$ticket=$this->resolutionCenters->getTicket($this->input->post('id'));
+			foreach($ticket as $info){
+				$accuser=$info->accuser;
+				$accused=$info->accused;
+			}
 			foreach($conversation as $message){
-				if($message->from!=$this->input->post('from')){
+				if($message->from==$this->input->post('from')){
+					echo '<div class="comment_right"><p><a href="'.base_url().'profile/'.$message->from.'">'.$message->from.'</a><p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
+				}
+				else if($message->from==$accuser||$message->from==$accused)
+				{
 					echo '<div class="comment_left"><p><a href="'.base_url().'profile/'.$message->from.'">'.$message->from.'</a><p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
 				}
 				else{
-					echo '<div class="comment_right"><p><a href="'.base_url().'profile/'.$message->from.'">'.$message->from.'</a><p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
+					echo '<div class="comment_left"><p style="color:#0066FF;">Admin<p>'.$message->content.'<p class="text-muted">sent on '.$message->date.'</p></div>';
 				}
 			}
 	

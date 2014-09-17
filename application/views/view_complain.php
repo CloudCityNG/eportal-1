@@ -49,10 +49,10 @@
     
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -136,7 +136,7 @@ foreach ($usernames as $row)
 </style>
             <div class="container-fluid">
 	<div class="row">
-	<h3 class='center-block' align="center">Messages</h3>
+	<h3 class='center-block' align="center">Complains</h3>
 	</div>
 	
 	
@@ -146,11 +146,13 @@ foreach ($usernames as $row)
    <?php if(isset($notifications))foreach($notifications as $notification){?>
       
         	<div class="col-md-8 table-bordered div-hover" id="<?php echo $notification->id; ?>" style="padding: 10px; margin-bottom:15px ">
-				<a href="<?php echo base_url().'messaging/Conversation/'.$notification->from;?>">
-					<?php echo '<strong>'.$notification->from.'</strong>'.$notification->Content;?>
-				<div class="col-md-4 pull-right">
+				<a href="<?php echo base_url().'messaging/Conversation/'.$notification->accused;?>">
+					<?php echo '<strong>Accused&nbsp;&nbsp;:&nbsp;&nbsp;'.$notification->accused.'</strong><p>'.$notification->issue;?>
+				</p></a>
+				<p class="col-md-4 pull-left">Status&nbsp;&nbsp;:&nbsp;&nbsp;<?php echo $notification->status;?></p>
+				<div class="col-md-4 pull-right text-muted">
 					<?php echo $notification->date;?>
-				</div></a>
+				</div>
         	</div>
        		
        <?php } ?>
