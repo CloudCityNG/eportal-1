@@ -32,11 +32,12 @@ class Signin extends CI_Controller {
 			foreach ($dataset2 as $info){
 				$data['name'] = $info->name;	
 			}
-			
-			if($company_details = $this->m_signin->get_delivery_details($data['username'])){
-				foreach ($company_details as $info){
-					$data['company_id'] = $info->id;
-					$data['company_name'] = $info->company_name;
+			if($data['usertype'] == 'b'){
+				if($company_details = $this->m_signin->get_delivery_details($data['username'])){
+					foreach ($company_details as $info){
+						$data['company_id'] = $info->id;
+						$data['company_name'] = $info->company_name;
+					}
 				}
 			}
 			

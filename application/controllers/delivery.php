@@ -67,10 +67,10 @@ class Delivery extends CI_Controller {
 	
 	public function make_request(){
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('itemID','','required|trim|xss_clean|alpha_numeric|callback_check_item_id');
+		$this->form_validation->set_rules('item ID','','required|trim|xss_clean|alpha_numeric|callback_check_item_id');
 		$this->form_validation->set_rules('location','','required|trim|xss_clean|callback_by_email');
-		$this->form_validation->set_rules('companyID','','required|trim|xss_clean|callback_check_company_id');
-		$this->form_validation->set_rules('datepicker','','required|trim|xss_clean');
+		$this->form_validation->set_rules('company ID','','required|trim|xss_clean|callback_check_company_id');
+		$this->form_validation->set_rules('delivery date','','required|trim|xss_clean');
 		
 		if($this->form_validation->run()){
 			$company_id=$this->input->post('companyID');
@@ -150,7 +150,7 @@ class Delivery extends CI_Controller {
 	}
 
 	}
-	
+	}	
 	function header($tile){
 		$data['title']=$tile;
 		if($this->session->userdata('username')){
@@ -167,5 +167,4 @@ class Delivery extends CI_Controller {
 	function footer(){
 		$this->load->view('footer');
 	}	
-}
 }
