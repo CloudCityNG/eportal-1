@@ -33,7 +33,12 @@
   </head>
 <body class="palette-wet-asphalt" >
 
-<div id="wrapper">
+<?php if($this->session->userdata('company_id')){?>
+	<div id="wrapper">
+<?php }else{ ?>
+	<div id="">
+<?php } ?> 
+	
 	<nav class="navbar navbar-inverse navbar-embossed navbar-fixed-top" role="navigation" style="padding-right: 30px;">
 		<a class="navbar-brand" href="<?php echo base_url().'company/'?>" style="margin-left: 30px">
 			ePortal - Delivery service
@@ -51,23 +56,29 @@
 		    </ul>
 		    </li>
 	    </ul>
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-		    <ul class="nav navbar-nav side-nav">
-		        <li>
-		            &nbsp;
-		        </li>
-		        <li>
-                	<a href="<?php echo base_url()?>deliveries/pending">Pending</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url()?>deliveries/accepted">Accepted</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url()?>deliveries/completed">Completed</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url()?>deliveries/out_of_date">Out of date</a>
-                </li>
-		    </ul>
-		</div>     
+	    <?php 
+	    	if($this->session->userdata('company_id')){
+	    ?>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+			    <ul class="nav navbar-nav side-nav">
+			        <li>
+			            &nbsp;
+			        </li>
+			        <li>
+	                	<a href="<?php echo base_url()?>deliveries/pending">Pending</a>
+	                </li>
+	                <li>
+	                    <a href="<?php echo base_url()?>deliveries/accepted">Accepted</a>
+	                </li>
+	                <li>
+	                    <a href="<?php echo base_url()?>deliveries/completed">Completed</a>
+	                </li>
+	                <li>
+	                    <a href="<?php echo base_url()?>deliveries/out_of_date">Out of date</a>
+	                </li>
+			    </ul>
+			</div>
+		<?php 
+			}
+		?>    
 	</nav>
