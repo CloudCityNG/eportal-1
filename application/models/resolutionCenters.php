@@ -6,9 +6,9 @@
 		$this->db->insert('complain',array('id'=>$id,'accuser'=>$accuser,'accused'=>$accused,'issue'=>$issue));
 		
 	}
-	public function issueTicket($id,$accuser,$accused,$issue)
+	public function issueTicket($complainId,$accuser,$accused,$issue)
 	{
-		$this->db->insert('ticket',array('id'=>$id,'accuser'=>$accuser,'accused'=>$accused,'issue'=>$issue));
+		$this->db->insert('ticket',array('id'=>uniqid(),'accuser'=>$accuser,'accused'=>$accused,'issue'=>$issue,'complainId'=>$complainId));
 		
 	}
 	
@@ -54,6 +54,10 @@
 	public function getTicket($id)
 	{
 		return $this->db->where('id',$id)->get('ticket')->result();
+	}
+	public function getComplain($id)
+	{
+		return $this->db->where('id',$id)->get('complain')->result();
 	}
 	public function getMessages($id)
 	{

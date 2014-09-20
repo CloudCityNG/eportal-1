@@ -296,7 +296,7 @@ force_download($name, $data);
 						echo form_open('resolutionCenter/issueComplain/'.$from,$formattributes);
 					?>
 				<div class="modal-header">
-					<a herf="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
+					<a href="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
 					<h4 class="text-center">Whats the problem that you need to report?</h4>
 				</div>
 				<div class="modal-body" style="min-height: 80px;">

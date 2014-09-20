@@ -20,6 +20,7 @@
 		$data['accused']=$row->accused;
 		$data['accuser']=$row->accuser;
 		$data['issue']=$row->issue;
+		$data['status']=$row->status;
 		
 		}
 			$data['messaging']=TRUE;

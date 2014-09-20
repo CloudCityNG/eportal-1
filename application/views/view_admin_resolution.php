@@ -15,6 +15,29 @@
           <ul class="nav nav-sidebar ">
           </ul>
 </div>
+<script>
+	$(document).ready(function() {
+				
+					$('.issue').click(function(){
+						$('#complainId').val($(this).attr('id'));
+					$.ajax({
+						url:"<?php echo base_url();?>administration/set_issue_header",    
+                    data: {id: $(this).attr('id')},
+                    type: "POST",
+                    success: function(data){
+                        
+                        $("#header").html(data);
+                        
+                    },
+                    error: function(data){
+                        alert('Ajax Error');
+                       
+                    }	
+					
+				});
+				});
+				});
+</script>
 <div class="col-lg-10 col-md-offset-2">
 <h3 class="text-center">Resolution Center</h3>
 	   			  <?php
@@ -168,6 +191,9 @@ z-index: 1;
 					
 					
 				} , 1000 );
+				
+	
+					
 					
                     
                    /* });*/
@@ -251,6 +277,7 @@ z-index: 1;
 			}?>
 		</div>
 	</div>
+	<?php if($status!='resolved'){?>
 		<div class="row col-md-offset-2 col-md-6">
 	<form>
 	<?php echo '<script type="text/javascript" src="'.base_url().'js/ckeditor/ckeditor.js"></script>' ;?>
@@ -271,7 +298,7 @@ z-index: 1;
 			     
 	</form>
 	</div>
-
+<?php }?>
 				
             </div>
             
@@ -311,10 +338,10 @@ z-index: 1;
 			</div>
 			
 			<div class="pull-right">
-				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
+				<a href="<?php echo base_url()?>administration/resolution_complain/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
 			<?php if(($row->status!='reject')&&($row->status!='resolved')){?>
 			<a href="<?php echo base_url()?>administration/resolution_status/reject/<?php echo $row->id;?>" class="btn btn-danger"><b> Reject </b></a>
-			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-primary"><b> Issue Ticket </b></a>
+			<a data-toggle="modal" href="#myModal"  class="btn btn-primary issue" id="<?php echo $row->id;?>"><b> Issue Ticket </b></a>
 			<?php }?>
 			</div>
 			<div class="pull-left">
@@ -329,6 +356,44 @@ z-index: 1;
 	</div>
 	<?php }?>
 </div>
+<div class="modal" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<?php
+						$formattributes = array('role' => 'form');
+						echo form_open('administration/issueTicket',$formattributes);
+					?>
+				<input type="hidden" name="complainId" id="complainId"/>
+				
+				<div class="modal-header">
+					<a href="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
+					<h4 class="text-center" id="header"></h4>
+				</div>
+				<div class="modal-body" style="min-height: 80px;">
+				<h4>Description</h4>
+					<div class="col-md-offset-1">
+					
+					
+					<?php
+			      			
+			      		$rt5 = array('id'=>'reportTypeOtherText','class' => 'form-horizontal', 'role' => 'form','name'=> 'description','rows'=> '5','cols'=> '10','style'=> 'width:100%');
+						echo form_textarea($rt5);
+					?>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<?php
+	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'issue_ticket','value'=>'Issue Ticket','id'=>'issueTicket');
+						echo form_submit($reportattributes);
+	      			?>
+				</div>
+				
+				<?php
+					echo form_close();
+				?>
+				</div>
+			</div>
+		</div>
 </div></div>
   <div class="tab-pane" id="opened">
   	<div class="panel panel-default">
@@ -426,16 +491,16 @@ z-index: 1;
 				Accused by : <?php echo $row->accuser;?></a>
 				</div>
 				
-			<div class="col-md-10 table-bordered div-hover"style="margin-bottom: 10px"><a href="<?php echo base_url();?>administration/resolution_messaging/<?php echo $row->id;?>">
+			<div class="col-md-10 table-bordered div-hover"style="margin-bottom: 10px">
 				<u><strong>Description :</strong></u>
 				<p>
 					<?php echo $row->issue;?>
 					</p>
-					</a>
+					
 			</div>
 			
 			<div class="pull-right">
-				<a href="<?php echo base_url()?>administration/resolution_history/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
+				<a href="<?php echo base_url()?>administration/resolution_complain/<?php echo $row->id;?>" class="btn btn-default"><b> View Messages </b></a>
 			<?php if(($row->status!='rejected')&&($row->status!='resolved')){?>
 			<a href="<?php echo base_url()?>administration/resolution_status/reject/<?php echo $row->id;?>" class="btn btn-danger"><b> Reject </b></a>
 			<a href="<?php echo base_url()?>administration/resolution_status/resolved/<?php echo $row->id;?>" class="btn btn-success"><b> Resolved </b></a>

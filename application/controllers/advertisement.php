@@ -1062,7 +1062,7 @@ class Advertisement extends CI_Controller {
 			$data['p_add_ln_1'] = $answer1['add_ln_1'];
 			$data['p_add_ln_2'] = $answer1['add_ln_2'];
 			$data['p_add_ln_3'] = $answer1['add_ln_3'];
-			
+			$data['address']=$answer1['address'];
 			
 			$this->db->where('id',$answer1['categoryid']);
 			$result=$this->db->get('category');
@@ -1100,6 +1100,8 @@ class Advertisement extends CI_Controller {
 				$data['province']=null;
 			}
 
+			
+			
 			$this->db->where('id',$answer1['districtid']);
 			$result=$this->db->get('district');
 
@@ -1126,9 +1128,10 @@ class Advertisement extends CI_Controller {
     		
     		<div class="col-md-7">';
       			
-      			echo '<p>'.$answer1['add_ln_1'].'</p>';
-				echo '<p>'.$answer1['add_ln_2'].'</p>';
-				echo '<p>'.$answer1['add_ln_3'].'</p>';
+      			//echo '<p>'.$answer1['add_ln_1'].'</p>';
+				//echo '<p>'.$answer1['add_ln_2'].'</p>';
+				//echo '<p>'.$answer1['add_ln_3'].'</p>';
+				echo '<p>'.$answer1['address'].'</p>';
 				if(isset($data['province'])||$data['province']!=null)
 				{
 					echo '<p>'.$data['province'];

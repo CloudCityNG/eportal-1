@@ -1675,6 +1675,35 @@ class Administration extends CI_Controller {
 			$this->load->view('view_admin_resolution',$data);
 			$this->footer();	
 	}
+	public function resolution_complain($id)
+	{
+		$this->load->model('resolutionCenters');
+		$this->load->model('messages');
+		$data['all']=$this->resolutionCenters->getAllTickets();
+		$data['history']=true;
+		$ticket=$this->resolutionCenters->getComplain($id);
+		foreach($ticket as $row){
+		$data['accused']=$row->accused;
+		$data['accuser']=$row->accuser;
+		}
+		$data['conversation']=$this->messages->getConversation($data['accused'],$data['accuser']);
+		$this->header('Resolution Center');
+			$this->load->view('view_admin_resolution',$data);
+			$this->footer();	
+	}
+	public function issueTicket()
+	{
+		$this->load->model('resolutionCenters');
+		$complain=$this->resolutionCenters->getComplain($this->input->post('complainId'));
+		foreach($complain as $result)
+		{
+			
+			$this->resolutionCenters->issueTicket($result->id,$result->accuser,$result->accused,$this->input->post('description'));
+			$this->db->where('id',$result->id)->update('complain',array('status'=>'read'));
+		}		
+	redirect(base_url().'administration/resolution'); 
+			 
+	}
 	public function resolution_messaging($id)
 	{
 		$this->load->model('resolutionCenters');
@@ -1687,6 +1716,7 @@ class Administration extends CI_Controller {
 		$data['accused']=$row->accused;
 		$data['accuser']=$row->accuser;
 		$data['issue']=$row->issue;
+		$data['status']=$row->status;
 		
 		}
 		$data['messages']=$this->messages->getMessages($id);
@@ -1694,6 +1724,16 @@ class Administration extends CI_Controller {
 		$this->load->view('view_admin_resolution',$data);
 		$this->footer();	
 	} 
+	public function set_issue_header()
+	{
+		$this->load->model('resolutionCenters');
+		$complain=$this->resolutionCenters->getComplain($this->input->post('id'));
+		foreach($complain as $result)
+		{
+			echo 'The Ticket will be Issued Against '.$result->accused.' Complained by <br/>'.$result->accuser
+			.'  for  complaint id : '.$result->id;
+		}
+	}
 	public function set_Message()
 	{
 		$this->load->model('resolutionCenters');

@@ -22,6 +22,23 @@
 			
 			return array_unique($contacts);
 		}
+		public function getBusinessContacts($user)
+		{
+			$sql="SELECT * FROM messages m where m.to='".$user."' or m.from='".$user."'";
+			$answer=$this->db->query($sql)->result();
+			$contacts=array();
+			foreach($answer as $row){
+				$contacts[]=$row->to;
+				$contacts[]=$row->from;
+			}
+			$sql="SELECT * FROM messages m where m.to='".$user."' or m.from='".$user."'";
+			$answer=$this->db->query($sql)->result();		
+			foreach($answer as $row){
+				$contacts[]=$row->to;
+				$contacts[]=$row->from;
+			}	
+			return array_unique($contacts);
+		}
 		public function getMessageCount($user)
 		{
 			

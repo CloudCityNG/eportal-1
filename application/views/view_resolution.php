@@ -328,6 +328,7 @@ z-index: 1;
 		
 		</div>
 	</div>
+	<?php if($status!='resolved'){?>
 		<div class="row col-md-offset-2 col-md-6">
 	<form>
 	<?php echo '<script type="text/javascript" src="'.base_url().'js/ckeditor/ckeditor.js"></script>' ;?>
@@ -348,6 +349,7 @@ z-index: 1;
 			     
 	</form>
 	</div>
+	<?php }?>
 
 				
             </div>

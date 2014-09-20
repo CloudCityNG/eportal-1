@@ -558,10 +558,9 @@ class Advertisements extends CI_Model{
 				$answer2= $result->row_array();
 				$answer2['duration']=$answer2['duration']*7;
 				$this->db->where('id',$answer2['adId']);
-				$result=$this->db->get('advertisement');
-				$answer3= $result->row_array();
+
 				$this->db->where('id',$answer2['adId']);
-				$this->db->update('advertisement',array('duration'=>date('Y-m-d H:i:s',strtotime('+ '.$answer2['duration'].' day' ,strtotime($answer3['duration']))),'expired'=>0));
+				$this->db->update('advertisement',array('duration'=>date('Y-m-d H:i:s',strtotime('+ '.$answer2['duration'].' day' ,time())),'expired'=>0));
 				$this->db->where('id',$id);
 				$this->db->delete('extend');
 				return true;
