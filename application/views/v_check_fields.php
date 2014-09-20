@@ -8,7 +8,8 @@
 			<li class="sub-link dashLink"><a href="<?php echo base_url().'administration/acceptFeatured/view/all'?>"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Featured Requests</a></li>
 			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Management</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Reports</a></li>
-			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Design Configuration</a></li>
+			<li class="sub-link dashLink"><a href="<?php echo base_url().'permissions'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Manage Permissions</a></li>          
+        	<li class="sub-link dashLink"><a href="<?php echo base_url().'rules/approvebyrating'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Whitelist Blacklist Handling</a></li>          
           </ul>
 </div>
 <div class="container col-md-offset-2">
@@ -39,7 +40,7 @@
 			<div class="col-sm-7">
 				<div class="row">';
 					
-				   				 echo '<a href="'.base_url().'rules/editAd/'.$info['id'].'" class="text-primary"><u><b>'.$info['title'].'</b></u></a>'; 
+				   				 echo '<a href="'.base_url().'rules/viewAd/'.$info['id'].'" class="text-primary"><u><b>'.$info['title'].'</b></u></a>'; 
 
 					
 				echo '</div>';
