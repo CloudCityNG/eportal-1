@@ -1,9 +1,10 @@
 <div id="page-wrapper" style="background-color: #FFFFFF;min-height: 400px;">
 	<div class="col-md-12">
 		<div class="h3 text-center">
-			Pending deliveries
-			<br />
-			<small> viewing <?php echo $viewing['type'] ?></small>			
+			Pending deliveries		
+		</div>
+		<div class="h5 text-center">
+			viewing <?php echo $viewing['type'] ?>		
 		</div>
 		<hr />
 		
@@ -14,10 +15,11 @@
 				echo '</div>';
 			}
 		?>
-		
-		<?php foreach ($pending_requests as $value) {?>
+		<?php
+			if(isset($pending_requests) && $pending_requests!=null){
+		 foreach ($pending_requests as $value) {?>
 			<!--print_r($pending_requests);-->
-			<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50">
+			<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 25px;">
 				<br />
 				<b>
 					Request ID : <?php echo $value['dp_id'];?>
@@ -51,9 +53,12 @@
 				<br />
 				<br />
 			</div>
-			
-		<?php } ?>
+			<?php }
+		}else{ ?>
+			<div class="col-md-12 palette-clouds" style="border: 1px solid #BDC3C7;color: #2C3E50; margin-bottom: 20px">
+				There are no new delivery requests.
+			</div>
+		<?php }?>
 	</div>
 	.
-
 </div>
