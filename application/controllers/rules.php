@@ -7,7 +7,6 @@ class Rules extends CI_Controller {
 		$this->header('Accept Advertisements');
 		$this->load->view("v_administration_rules_main");
 		$this->footer();
-		
 	}
 	
 	public function new_ads()
@@ -17,7 +16,7 @@ class Rules extends CI_Controller {
             $body = $this->input->post('body');
             $add  = $this->input->post('address');
             $tel  = $this->input->post ('tel');
-			
+			$img  = $this->input->post ('img');
 		
 		$this->load->model('m_rules');
         $this->m_rules->addCheck($title, $body, $add, $tel, $img);
@@ -252,6 +251,97 @@ class Rules extends CI_Controller {
 		$this->load->view('v_view_fields',$data);
 		$this->footer();		
 	}
+
+	public function viewAd($adid)//view for displaying ads
+		{
+			$this->load->model('m_rules');
+			$this->load->model('advertisements');
+			$answer1;
+			if(!isset($adid)&&($this->m_rules->getAdvertisement($adid)==null))
+			{
+				
+				
+				redirect('/rules/new_ads');
+			
+			}
+			$imagedata=$this->m_rules->get_images($adid);
+				$images=array();
+				foreach ($imagedata as $img) 
+				{	
+					$images[]=array('url'=>$img['Image'],'name'=>$img['id']);
+				}
+			$data['adid']=$adid;
+			$data['images']=$images;
+			$answer1=$this->m_rules->getAdvertisement($adid);
+			if($answer1['approved']==0)
+			{
+				if($this->session->userdata('username')!=$answer1['username'])
+				{
+					redirect('/rules/new_ads');
+				}
+			}
+			$data['Title']=$answer1['title'];
+			$data['body']=$answer1['body'];
+			$data['price']=$answer1['price'];
+			$data['email']=$answer1['email'];
+			$data['name']=$answer1['name'];
+			$data['address']=$answer1['address'];
+			$data['telephone']=$answer1['telephone'];
+			$data['featured']=$answer1['featured'];
+			$data['username']=$answer1['username'];
+			$data['countryid']=$answer1['countryid'];
+			$data['provinceid']=$answer1['provinceid'];
+			$data['districtid']=$answer1['districtid'];	
+			$data['categoryid']=$answer1['categoryid'];
+			$data['subcategoryid']=$answer1['subcategoryid'];
+			$data['ad_id']=$answer1['ad_id'];
+			
+			$this->db->where('id',$answer1['categoryid']);
+			$result=$this->db->get('category');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['category']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['subcategoryid']);
+			$result=$this->db->get('subcategory');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['subcategory']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['countryid']);
+			$result=$this->db->get('country');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['country']=$answer['name'];
+			}
+			
+			$this->db->where('id',$answer1['provinceid']);
+			$result=$this->db->get('province');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['province']=$answer['name'];
+			}
+
+			$this->db->where('id',$answer1['districtid']);
+			$result=$this->db->get('district');
+
+			if($result->num_rows()>0){
+				$answer= $result->row_array();
+		 		$data['district']=$answer['name'];
+			}
+
+
+			$this->header('View Ad');
+			$this->load->view('v_administration_view_approvingad',$data);
+			$this->footer();
+			
+		}
 	
 	private function send_subscription_mail($a){
 		$this->load->model('m_rules');
@@ -293,15 +383,32 @@ class Rules extends CI_Controller {
 	public function accept_ad($a){
 		$this->load->model('m_rules');
 		if($this->m_rules->check_if_new($a)){
-			$table = "new_advertisements";
+			$table = "new_advertisement";
 			//accept from new table
+			$username = $this->m_rules->get_username($a,$table);
+			foreach($username as $key){
+				$usr = $key->username;
+			}
+			
 		}
 		else{
-			$table = "edit_advertisements";
+			$table = 'edit_advertisement';
 			//accept from edit table
+			$username = $this->m_rules->get_username($a,$table);
+			foreach($username as $key){
+				$usr = $key->username;
+			}
 		}
 		$this->send_subscription_mail($a);
         $this->m_rules->accept_ad($a,$table);
+		
+		$rate = $this->m_rules->get_whiterate($usr);
+				foreach($rate as $hana){
+					$whiterate=$hana->whiterate;
+					$whiterate++;
+					$this->m_rules->set_whiterate_of_user($usr,$whiterate);
+				}
+	//	$this->m_rules->increase_whiterate($a);
 		//$status_accept  = TRUE;
 		$this->new_ads();
 	}
@@ -310,14 +417,29 @@ class Rules extends CI_Controller {
 		
 		$this->load->model('m_rules');
 		if($this->m_rules->check_if_new($a)){
-			$table = "new_advertisements";
+			$table = "new_advertisement";
 					//reject from new table
+			$username = $this->m_rules->get_username($a,$table);
+			foreach($username as $key){
+			$usr = $key->username;
+			}
 		}
 		else{
-			$table = "edit_advertisements";
+			$table = "edit_advertisement";
 			//reject from edit table
+			$username = $this->m_rules->get_username($a,$table);
+			foreach($username as $key){
+			$usr = $key->username;
+			}
 		}
 		$this->m_rules->deny_ad($a,$table);
+		
+		$rate = $this->m_rules->get_blackrate($usr);
+				foreach($rate as $hana){
+					$blackrate=$hana->blackrate;
+					$blackrate++;
+					$this->m_rules->set_blackrate_of_user($usr,$blackrate);
+				}
 		
 		$this->new_ads();
 /*		
@@ -404,10 +526,30 @@ class Rules extends CI_Controller {
 	
 	public function approvebyrating(){
 		if($this->session->userdata('is_logged_in')){
-		$this->load->model("m_rules");
-		$result['value']=$this->m_rules->get_boundary();
+			
+			$this->load->model("m_rules");
+			
+		
+			
+		if($this->input->post('Save_whiterate')){	
+			$this->m_rules->set_white_boundary($this->input->post('white'));
+		}
+
+		if($this->input->post('Save_blackrate')){	
+			$this->m_rules->set_black_boundary($this->input->post('black'));
+		}
+		
+		$test1=$this->m_rules->get_white_boundary();
+		foreach($test1 as $hana){
+			$result1['whitevalue']=$hana->value;
+		}
+		
+		$test2=$this->m_rules->get_black_boundary();
+		foreach($test2 as $han){
+			$result1['blackvalue']=$han->value;
+		}
 		$this->header('Automatic Approval');
-		$this->load->view('v_administration_autoapp',$result);
+		$this->load->view('v_administration_autoapp',$result1);
 		$this->footer();
 		}
 		else {
@@ -418,6 +560,30 @@ class Rules extends CI_Controller {
 	public function whitelist(){
 		if($this->session->userdata('is_logged_in')){
 			$this->load->model('m_rules');
+			
+			if($this->input->post('Submit'))
+			{				
+				foreach($this->m_rules->get_whitelist_count()as $row)
+				{
+					$num=$row->count;
+				}				
+					$arr=array();
+					$j=0;
+					for($i=1;$i<=$num;$i++){
+						$a=0;
+						
+						$j++;
+						$str='chk'.$j;
+						if(isset($_POST[$str]))
+						{
+			//				echo $_POST[$str];
+										$a=1;
+						}
+						$user = $this->input->post('usr'.$j);			
+						$arr[]=array('1'=>$a,'2'=>$user);
+					}
+					$this->m_rules->remove_from_whitelist($arr);									
+			}
 			$data['users']=$this->m_rules->get_whitelist_users();
 			$this->header('White List');
 			$this->load->view("v_administration_auto_whitelist",$data);
@@ -431,6 +597,30 @@ class Rules extends CI_Controller {
 	public function blacklist(){
 		if($this->session->userdata('is_logged_in')){
 			$this->load->model('m_rules');
+			
+			if($this->input->post('Submit'))
+			{
+				foreach($this->m_rules->get_blacklist_count()as $row)
+				{
+					$num=$row->count;
+				}
+					$arr=array();
+					$j=0;
+					for($i=1;$i<=$num;$i++){
+						$a=0;
+						
+						$j++;
+						$str='chk'.$j;
+						if(isset($_POST[$str]))
+						{
+			//				echo $_POST[$str];
+										$a=1;
+						}
+						$user = $this->input->post('usr'.$j);
+						$arr[]=array('1'=>$a,'2'=>$user);
+					}
+					$this->m_rules->remove_from_blacklist($arr);						
+			}
 			$data['users']=$this->m_rules->get_blacklist_users();
 			$this->header('Black List');
 			$this->load->view("v_administration_auto_blacklist",$data);

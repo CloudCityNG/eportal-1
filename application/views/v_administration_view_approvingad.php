@@ -33,54 +33,20 @@ a:hover
 			cursor: pointer; cursor: hand;
 			text-decoration: underline;
 		}
-/*
-.clearfix:after {
-    visibility:hidden;
-    display:block;
-    font-size:0;
-    content: ".";
-    clear:both;
-    height:0;
-    line-height:
-    }
-.clearfix {
-     display: inline-block;
-     }
-* html .clearfix {
-       height: 1%;
-  }*/
+
  
 
 </style>
-<script>
-  $(document).ready(function() { 
 
-                
-                /*$("#toggle").click(function(){
-                   
-                     /*dropdown post */
-                  $('#toggle').click(function(){
-                   $.ajax({
-                    url:"<?php echo base_url(); ?>advertisement/getContactDetails",    
-                    data: {adid: $('#adid').val()},
-                    type: "POST",
-                    success: function(data){
-                        $("#contact").html(data);
-                    },
-                    error: function(data){
-                        alert('Ajax Error');
-                       
-                    }}).done(function(){
-                    
-                    $('#contact').toggle('slow');
-                    });
-					});
-                    
-                   /* });*/
-});
-</script>
 <input id="adid"type="hidden" name="adid" value="<?php echo $adid?>" />
 <div class="container">
+		<?php
+		//$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
+		//echo form_open('advertisement/createAd',$formattributes);
+		$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
+		echo form_open_multipart('rules/editAd/'.$ad_id,$formattributes);
+	?>
+	
 	<script type="text/javascript">
 		function back()
 		{
@@ -231,17 +197,7 @@ a:hover
         });
     </script>
     
-    <script>
-	function DelCom(id) {
-    var url="<?php echo base_url();?>";
-    	if (confirm("Delete this comment?") == true) {
-    		var adid = "<?php echo $this->uri->segment(3);?>";
-        	window.location = url+"ad_control/del_comment/"+id+"/"+adid;
-    	} else {
-        	return false;
-    	}
-	}
-	</script>
+ 
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
     <!-- Bullet Navigator Skin End -->
@@ -392,15 +348,8 @@ a:hover
 		<p><b>ID : </b><?php echo $ad_id;?></p>
 		<p><b>Description : </b><?php echo $body;?></p>
 		<br /><div class="pull-left">
-    		<p><b><span class="glyphicon glyphicon-shopping-cart"></span> Price Rs./= <?php echo $price; ?></b></p>
+    		<p><b><span class="glyphicon glyphicon-shopping-cart"></span> Price Rs. <?php echo $price; ?>/=</b></p>
     		 <?php 
-    		if($telemarketer==0)
-    		{
-    			echo '<p><b><span class="glyphicon glyphicon-exclamation-sign"></span> ';
-    			echo 'I dont want to be contacted by telemarketers.</b></p>';
-    		}
-    		 ?>
-    		     		 <?php 
     		if($featured!=0)
     		{
     			echo '<p><b><span class="glyphicon glyphicon-star-empty"></span> ';
@@ -429,179 +378,30 @@ a:hover
     		 			<?php }?>
     		 	<?php }?>
     		 	</p>
-    		 <?php }?>
-    		
+    		 <?php }?>    		
     		 </div>
-    		 <!--<div class="pull-left"><a href="<?php echo base_url();?>site/search02/category/1">cat01</a></div>-->
- 
-    	</div>	 
-    	  <div class="pull-right">
-			<?php	echo form_open('advertisement/submit_rate/'.$this->uri->segment(3));
-					
-					if($this->session->userdata('username'))
-					{$radio_level = "";}
-					else {$radio_level = "disabled";}
-					
-					for($i = 1;$i <= 5;$i++)
-			    	{
-			        if ($i == round($avg_rate))
-			        {
-			       	
-			       echo'<input name="star" type="radio" class="star" checked="checked" '.$radio_level.' value='.$i.' "/>';
-				   
-			        }
-			        else
-			        {
-			         echo'<input name="star" type="radio" class="star" '.$radio_level.' value='.$i.' "/>';
-			        }
-			    } //end of for
-			    echo '</br>';
-			    echo '<div class=""><b>Total Rating: '.$total_rate.'</b>'; echo'</div>' ?>
-			    <?php echo form_hidden('is_rated', $is_rated);; ?>
-			   <?php if($this->session->userdata('username')) {?>
-			    
-			    <?php if($is_rated==1) {
-			    	echo '<div class=""> Your Rating: '.$rate.' </div>';
-			    }?>
-			    <div><?php echo form_submit(array('class' => 'btn btn-sm btn-primary','name'=>'rate','value'=>'Rate this Ad')); ?></div> <?php } else { ?>
-			    	
-			    <div><?php
-			      				$signin = array('class' => 'btn btn-sm btn-primary','name'=>'signin','value'=>'Sign in to rate','formaction'=>base_url().'signin');
-								echo form_submit($signin);
-			      			?></div>
-			     <?php } ?>
-			     
-			     <?php echo form_close(); ?> 			
-		</div> 
-    	</div>
-    	
- 	 </div>
-  			<div class="col-md-5 pull-right">	
-	    		<div class="panel panel-default">
-	    			<div id="toggle" class=" text-left breadcrumb btn btn-lg btn-block btn-default" style="padding-left:20px; margin-left: 0px;margin-top: 0px;margin:0px;">
-				Seller information
-	    		</div>
-	    		<div id="contact" style="display: none">
-	    	
-	    		</div>
+    		 <!--<div class="pull-left"><a href="<?php echo base_url();?>site/search02/category/1">cat01</a></div>--> 
+    		 		<div class="col-sm-offset-6 col-sm-6 pull-right">
+      			
+      			<?php
+      				$acceptbtnattributes = array('class' => 'btn btn-primary','name'=>'advertisment_accept','value'=>'Accept');
+					echo form_submit($acceptbtnattributes);
+      			?>
+      			&nbsp;
+      			<?php
+      				$denybtnattributes = array('class' => 'btn btn-danger','name'=>'advertisment_deny','value'=>'Deny');
+					echo form_submit($denybtnattributes);
+      			?>
     		</div>
-    </div>
-<div class="col-md-7 img-thumbnail breadcrumb-white pull-left">
-					<div>
-			
-                    <?php foreach ($comments as $comment): ?>
-                    	
-                    <div class="bubble-list">
-      					<div class="bubble clearfix">
-                        <div class="col-xs-2">
-                            <img src="<?php echo base_url().'images/prifilepictures/'.$comment->image;?>" alt="" class="img-responsive img-circle" width="75px" height="75px">
-                        </div>
-                        <div class="bubble-content">
-        				<div class="point"></div>
-        				<div><a href="<?php echo base_url().'profile/'.$comment->username;?>"><b><?php echo $comment->fullname; ?></b></a></div>
-						<p><?php echo $comment->comment; ?></p>
-						<div class="col-md-4 col-md-4"><font color="#C0C0C0"> <?php echo $comment->cDATE ?> </font></div>
-						<div class="col-md-4 col-lg-offset-4 pull-right"><font color="RED"> <a title="delete" onclick="DelCom(<?php echo $comment->cmid;?>)">x</a></font></div>
-       					</div>
-       					<div class="clearfix"></div>
-       					</div>
-       						</div>
-                     
-                     <?php endforeach; ?>
-                     
-        </div>
-	<div>
-						<div>
-							<?php if($this->session->userdata('username'))
-							{
-								echo form_open("ad_control/add_comment/".$this->uri->segment(3));
-								//echo '<div><span class="glyphicon glyphicon-comment"></span>';
-								//echo form_label('Comment:','comment');
-								$commentInput=array('value'=>'','id'=>'comment','name'=>'comment','style'=>"width: 400px;height: 40px;margin-bottom: 5px;margin-top: 10px;padding: 5px",'placeholder'=>'Comment here');
-								echo form_input($commentInput);
-								echo '<br>';
-								$commentBtn=array('value'=>'Post Comment','id'=>'comment','name'=>'action','class'=>'btn btn-warning col-md-offset-5');
-								echo form_submit($commentBtn);
-								
-								echo form_close();
-							} 
-							else 
-							{
-								echo '<a class="btn btn-default btn-block btn-lg" href="'.base_url().'signin"> Signin to comment</a>';
-								echo '<br / >';								
-								echo '<a class="btn btn-warning btn-block btn-lg" href="'.base_url().'registration"> You don\'t have an account ? </a>';
-							}?>
-						</div>
-				</div>
+    	</div>	 	
+    	</div>  
+    	
+
+	
+ 	 </div>  		
+ 	 
+ 	 	
 </div>
 </div>
 
-
-	<div class="modal" id="myModal" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4><strong>Report user : </strong> <?php echo $Title ;?><a herf="#" class="btn pull-right pull-up" data-dismiss="modal"> X </a></h4>
-				</div>
-				<div class="modal-body">
-					<h4>Select the type of report</h4>
-					<div class="col-md-offset-1">
-					<?php
-						$formattributes = array('class' => 'form-horizontal', 'role' => 'form');
-						echo form_open('site/reportads/'.$adid.'/'.$this->session->userdata('username'),$formattributes);
-					?>
-					<label for="reportType1" class="control-label">
-					<?php
-						$rt1 = array('id'=>'reportType1','name'=>'rt','value'=>'type1');
-	      				echo form_radio($rt1);
-					?>&nbsp;This is a fake advertisemesnt</label>
-					<br />
-					<label for="reportType2" class="control-label">
-					<?php
-						$rt2 = array('id'=>'reportType2','name'=>'rt','value'=>'type2');
-	      				echo form_radio($rt2);
-					?>&nbsp;This is an inappropriate advertisement
-					</label>
-					<br />
-					<label for="reportType3" class="control-label">
-					<?php
-						$rt3 = array('id'=>'reportType3','name'=>'rt','value'=>'type3');
-	      				echo form_radio($rt3);
-					?>&nbsp;This contains inappropriate images
-					</label>
-					<br />
-					<label for="reportType4" class="control-label">
-					<?php
-						$rt4 = array('id'=>'reportType4','name'=>'rt','value'=>'type4');
-	      				echo form_radio($rt4);
-					?>&nbsp;This contains inappropriate commnents
-					</label>
-					<br />
-					<label for="reportType5" class="control-label">
-					<?php
-						$rt5 = array('id'=>'reportType5','name'=>'rt','value'=>'type5');
-	      				echo form_radio($rt5);
-					?>&nbsp;Other&nbsp;
-					</label>
-					<br /><br />
-					<label for="reportTypeOtherText" class="control-label"> Discribe your situation more : </label>
-					<?php
-			      			
-			      		$rt5 = array('id'=>'reportTypeOtherText','class' => 'form-horizontal', 'role' => 'form','name'=> 'reportOtherDescription','rows'=> '5','cols'=> '10','style'=> 'width:100%');
-						echo form_textarea($rt5);
-					?>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<?php
-	      				$reportattributes = array('class' => 'btn btn-primary','name'=>'report_submit','value'=>'Submit Report');
-						echo form_submit($reportattributes);
-	      			?>
-				</div>
-				
-				<?php
-					echo form_close();
-				?>
-			</div>
-		</div>
-	</div>
+	

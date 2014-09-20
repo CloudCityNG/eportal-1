@@ -9,6 +9,9 @@
 			<li class="dashLink "><a href="<?php echo base_url().'administration/user_management'?>"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Management</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Reports</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Design Configuration</a></li>
+       			<li class="sub-link dashLink"><a href="<?php echo base_url().'permissions'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Manage Permissions</a></li>          
+        	<li class="sub-link dashLink"><a href="<?php echo base_url().'rules/approvebyrating'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Whitelist Blacklist Handling</a></li>          
+ 
           </ul>
 </div>
 
@@ -146,7 +149,7 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Title &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-					$fnameattributes = array('class' => 'form-control','name'=>'title');
+					$fnameattributes = array('class' => 'form-control','name'=>'title','disabled'=>'disabled');
 					if(isset($state)){
       				echo form_input($fnameattributes,$this->input->post('title'));
 					}
@@ -164,7 +167,7 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Body &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-					$fnameattributes = array('class' => 'form-control','name'=>'body');
+					$fnameattributes = array('class' => 'form-control','name'=>'body','disabled'=>'disabled');
 					if(isset($state))
 					{
 						echo form_textarea($fnameattributes,$this->input->post('body'));
@@ -186,7 +189,7 @@
 					//$fnameattributes = array('class' => 'form-control','name'=>'category');
 					
 					
-      				echo form_dropdown('category',$category,$cat,'id="category"');
+      				echo form_dropdown('category',$category,$cat,'id="category" disabled');
 					
 					if(form_error('category')!=null)
 						echo '<div class="alert alert-danger">'.form_error('catgory').'</div>';
@@ -199,7 +202,7 @@
     		<div class="col-sm-7">
       			<?php
 					//$fnameattributes = array('class' => 'form-control','name'=>'subcategory');
-      				echo form_dropdown('subcategory',$subcategory,$subcat,'id="subcategory"');
+      				echo form_dropdown('subcategory',$subcategory,$subcat,'id="subcategory" disabled');
 					if(form_error('subcategory')!=null)
 						echo '<div class="alert alert-danger">'.form_error('subcatgory').'</div>';
       			?>
@@ -211,7 +214,7 @@
     		<div class="col-sm-7">
       			<?php
 					//$fnameattributes = array('class' => 'form-control','name'=>'country');
-      				echo form_dropdown('country',$country,$cou,'id="country"');
+      				echo form_dropdown('country',$country,$cou,'id="country" disabled');
 					if(form_error('country')!=null)
 						echo '<div class="alert alert-danger">'.form_error('country').'</div>';
       			?>
@@ -224,7 +227,7 @@
       			<?php
 				//	$fnameattributes = array('class' => 'form-control','name'=>'province');
 					
-      				echo form_dropdown('province',$province,$pro,'id="province"');
+      				echo form_dropdown('province',$province,$pro,'id="province" disabled');
 					if(form_error('province')!=null)
 						echo '<div class="alert alert-danger">'.form_error('province').'</div>';
       			?>
@@ -236,7 +239,7 @@
     		<div class="col-sm-7">
       			<?php
 					//$fnameattributes = array('class' => 'form-control','name'=>'district');
-      				echo form_dropdown('district',$district,$dis,'id="district"');
+      				echo form_dropdown('district',$district,$dis,'id="district" disabled');
 					if(form_error('district')!=null)
 						echo '<div class="alert alert-danger">'.form_error('district').'</div>';
       			?>
@@ -248,7 +251,7 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Address &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-      				$emailattributes = array('class' => 'form-control','name'=>'address');
+      				$emailattributes = array('class' => 'form-control','name'=>'address','disabled'=>'disabled');
 					if(isset($state))
 					{
 						echo form_input($emailattributes,$this->input->post('address'));
@@ -267,7 +270,7 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Telephone &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-      				$emailattributes = array('class' => 'form-control','name'=>'telephone');
+      				$emailattributes = array('class' => 'form-control','name'=>'telephone','disabled'=>'disabled');
 					if(isset($state))
 					{
 						echo form_input($emailattributes,$this->input->post('telephone'));
@@ -287,7 +290,7 @@
     		<label for="inputEmail3" class="col-sm-3 control-label">Price Rs. &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
-      				$emailattributes = array('class' => 'form-control','name'=>'price');
+      				$emailattributes = array('class' => 'form-control','name'=>'price','disabled'=>'disabled');
 					if(isset($state))
 					{
 						echo form_input($emailattributes,$this->input->post('price'));

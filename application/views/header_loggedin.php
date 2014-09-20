@@ -144,26 +144,16 @@ $('.dropdown-toggle').dropdown();
 						  	</a>
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
-						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
-						    	<li><a id="noti" href="<?php echo base_url()."messaging"; ?>">Messages</a></li>
-							<li ><a id="cart" href="<?php echo base_url().'cart/my_cart'; ?>">My Cart</a></li>
 								<li class="divider"></li>
-								<?php	if($this->session->userdata('company_name') && $this->session->userdata('usertype')== 'b'){?>
-											<li>
-												<a target="_blank" href="<?php echo base_url().'company'?>">
-													<?php echo $this->session->userdata('company_name'); ?>
-												</a>
-											</li>
-											<li class="divider"></li>
-								<?php 	}
-										if($this->session->userdata('usertype')== 'b' && !$this->session->userdata('company_name')){?>
-											<li>
-												<a target="_blank" href="<?php echo base_url().'company/create'?>">
-													Create a delivery company
-												</a>
-											</li>
-											<li class="divider"></li>
-								<?php 	}?>
+								<?php
+									if($this->session->userdata('company_name')){?>
+										<li>
+											<a target="_blank" href="<?php echo base_url().'company/'.$this->session->userdata('company_id') ?>">
+												<?php echo $this->session->userdata('company_name'); ?>
+											</a>
+										</li>
+										<li class="divider"></li>
+								<?php }?>
 						    	<li><a id="noti" href="<?php echo base_url()."notification"; ?>">Notifications</a></li>
 						    	<li><a id="noti" href="<?php echo base_url()."delivery"; ?>">Request delivery</a></li>
 						    	<li class="divider"></li>

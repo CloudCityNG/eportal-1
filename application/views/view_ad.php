@@ -148,9 +148,7 @@
 </div>';
 			}
 			?>
-		<div class="panel panel-default " <?php if($success){echo 'style="display:none ;"';}?>>
-
-			
+		<div class="panel panel-default " <?php if($success){echo 'style="display:none ;"';}?>>		
 	
     			<?php
 		//$formattributes = array('class' => 'form-horizontal', 'role' => 'form');

@@ -103,13 +103,14 @@ public function getAdvertisement($adid)
 
 public function getAdvertisement($adid)
 	{
-		$this->db->where('id',$adid);
+/*		$this->db->where('id',$adid);
 		$result=$this->db->get('new_advertisement');
 		$answer;
 		if($result->num_rows()>0)
 			{
 				//$answer2['Image']=null;
 				$answer= $result->row_array();
+ * /
 				/*$this->load->model("users");
 				$dataset1 = $this->users->get_main_details($answer['username']);
 			
@@ -123,13 +124,59 @@ public function getAdvertisement($adid)
 			foreach ($dataset2 as $info){
 				$answer['name'] = $info->name;	
 			}*/	
+/*			}
+			else
+			{
+				$answer=null;
+			}
+		
+		return $answer;			*/
+		
+		$this->load->model('m_rules');
+		if($this->m_rules->check_if_new($adid)){
+			$this->db->where('id',$adid);
+		//$this->db->where('approved',1);
+		$result=$this->db->get('new_advertisement');
+		}
+		else{
+			$this->db->where('id',$adid);
+		//$this->db->where('approved',1);
+		$result=$this->db->get('edit_advertisement');
+		}
+				
+		
+		$answer;
+		if($result->num_rows()>0)
+			{
+				//$answer2['Image']=null;
+				$answer= $result->row_array();
+				$this->load->model("users");
+				$dataset1 = $this->users->get_main_details($answer['username']);
+				$answer['ad_id'] = $adid;
+			foreach ($dataset1 as $info) { 
+				$answer['usertype'] = $info->usertype;
+				$answer['email'] = $info->email;
+				$answer['telemarketer']=$info->telemarketer;
+				$answer['countryid']=$info->countryid;
+				$answer['provinceid']=$info->provinceid;	
+				$answer['districtid']=$info->districtid;
+				$answer['add_ln_1']=$info->add_ln_1;		
+				$answer['add_ln_2']=$info->add_ln_2;
+				$answer['add_ln_3']=$info->add_ln_3;
+				$answer['telephone']=$info->contact_number;
+			}
+			$this->load->model('m_signin');
+			$dataset2 = $this->m_signin->get_user_dataset_type_2($answer['usertype'],$answer['username']);
+			foreach ($dataset2 as $info){
+				$answer['name'] = $info->name;	
+			}
 			}
 			else
 			{
 				$answer=null;
 			}
 		
-		return $answer;
+		return $answer;		
 	}
 		public function get_edit_images($ad_id)
 	{
@@ -437,6 +484,15 @@ public function getAdvertisement($adid)
 							
 		$result = $this->db->query($query);
 		return $result->result();
+	}
+	
+	public function get_username($a,$table){
+		
+		$sql='SELECT username FROM \''.$table.'\' where id=\''.$a.'\' ';
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
+		
 	}
 	
 	}	
