@@ -7,6 +7,7 @@ class Rules extends CI_Controller {
 		$this->header('Accept Advertisements');
 		$this->load->view("v_administration_rules_main");
 		$this->footer();
+		
 	}
 	
 	public function new_ads()
@@ -16,7 +17,7 @@ class Rules extends CI_Controller {
             $body = $this->input->post('body');
             $add  = $this->input->post('address');
             $tel  = $this->input->post ('tel');
-			$img  = $this->input->post ('img');
+			
 		
 		$this->load->model('m_rules');
         $this->m_rules->addCheck($title, $body, $add, $tel, $img);
