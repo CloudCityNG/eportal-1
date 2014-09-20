@@ -8,13 +8,13 @@
 					echo '<img style="margin-bottom:10px;border:1px solid #ddd" width="250px" class="" src="'.base_url().'images/delivery_profile_pictures/default.jpg" >';
 				}
 
-				/*if($company['basic_details']['id']!=$this->session->userdata('company_id')){
+				if($company['basic_details']['id']!=$this->session->userdata('company_id')){
 					echo '<a class="btn btn-block btn-embossed btn-danger">Report this user</a>';
 					echo '<a class="btn btn-block btn-embossed btn-info">Make delivery request</a>';
 				}else{
 					echo '<a class="btn btn-block btn-embossed btn-danger">Report this user</a>';
 					echo '<a class="btn btn-block btn-embossed btn-info">Make delivery request</a>';
-				}*/
+				}
 			?>
 		</div>
 		<div class="col-md-8" style="margin-left: 300px; margin-top: 30px; background-color: #FFFFFF; -webkit-border-radius: 5px;border:1px solid #ddd;padding:5px 35px 20px 35px; ">

@@ -33,16 +33,7 @@
 			  <div class="panel-body">
 			    <div class=" col-md-offset-1">
 			    	<?php if($p_own==false){?>
-			    	<div>
-			   		<a data-toggle="modal" href="#myModal" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Report&nbsp;</a>
-					<?php if($this->session->userdata('username')){?>
-					<a href="<?php echo base_url().'messaging/Conversation/'.$p_username;?>" class="btn btn-default pull-right"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Message&nbsp;</a>
-	
-					<?php }else{?>
-			    	<a data-toggle="modal" href="#myModal1" class="btn btn-default pull-right"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Message&nbsp;</a>
-			    	<?php }?>
-			    	<br/>
-			    	</div>
+			    	<a data-toggle="modal" href="#myModal" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;Report&nbsp;</a><br/>
 			    	<?php }?>
 			    	<?php if($p_own==true){?>
 			    	<a href="<?php echo base_url().'profile/update'?>" class="btn btn-default pull-right"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit&nbsp;</a><br/>
@@ -98,7 +89,7 @@
 		</div>
 	</div>
 	
-	<div class="modal " id="myModal" role="dialog">
+	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -166,28 +157,4 @@
 			</div>
 		</div>
 	</div>
-	<?php if(!$this->session->userdata('username')){?>
-<div class="modal fade" id="myModal1" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: #660066">
-					<a herf="#" class="btn btn-sm text-white pull-right pull-up" data-dismiss="modal"> X </a>
-					<h4 class="text-white text-center">Please login to Send Message</h4>
-				</div>
-				<div class="modal-footer">
-					<div class="col-md-6">
-						<div class="col-md-12">
-							<a class="btn btn-block btn-default" href="<?php echo base_url().'signin';?>">Login</a>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-12">
-							<a class="btn btn-block btn-default" href="<?php echo base_url().'registration';?>">Signup</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php } ?>
 </div>

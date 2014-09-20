@@ -10,7 +10,8 @@
 			<li class="dashLink"><a href="<?php echo base_url().'report'?>"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Generate Reports</a></li>
 			<li class="dashLink"><a href="<?php echo base_url().'administration/design_configuration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;&nbsp;Design Configuration</a></li>
        		<li class="sub-link dashLink"><a href="<?php echo base_url().'permissions'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Manage Permissions</a></li>  
-          
+         	<li class="sub-link dashLink"><a href="<?php echo base_url().'rules/approvebyrating'?>"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Whitelist Blacklist Handling</a></li>          
+         
           </ul>
 </div>
 <div class="col-md-10 col-md-offset-2 ">
@@ -28,14 +29,15 @@
           <th>User Type</th>
           <th>Description</th>
           <th>Registered On</th>
-          <th>Remove from list</th>
+          <th>No. of Approved Ads</th>
+          <th>Remove from Whitelist</th>
           
           
         </tr>
       </thead>
       
       <tbody>
-      	<?php foreach($users as $details){?>
+      	<?php $i=1; foreach($users as $details){?>
         <tr>
         <td style="max-width: 210px;"><?php echo $details->username;?></td>
         <td style="max-width: 210px;">
@@ -53,19 +55,24 @@
         <td style="max-width: 210px;"><?php echo $details->description;?></td>
         
         <td style="max-width: 210px;">	<?php echo $details->registered_datenadtime    	?></td>
+         <td style="max-width: 210px;"><?php echo $details->whiterate;?></td> 
           
-        <td> <?php	echo '<input name="checkbox" value="val1" id="checkremove" type="checkbox">';   ?> 
+        <td> <?php	echo '<input name="chk'.$i.'" value="'.$i.'" id="checkremove" type="checkbox">';   ?> 
 			  </td>  
           
         </tr>
-        <?php } ?>
+        
+        <div class="form-group">
+      			<input type="hidden" name="usr<?php echo $i;?>" value="<?php echo $details->username?>"/>
+  		</div>
+        <?php $i++; } ?>
       </tbody>
     </table>
 	</table>
 	
 	<div class="col-sm-offset-8 col-sm-5" style="margin-top: 30px;" >
       			<?php
-      				$generatebtnattributes = array('class' => 'btn btn-primary','name'=>'Submit','value'=>'Save');
+      				$generatebtnattributes = array('class' => 'btn btn-primary','name'=>'Submit','value'=>'Remove');
 					echo form_submit($generatebtnattributes);
 					echo form_close();
       			?>
