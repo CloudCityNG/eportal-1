@@ -90,8 +90,9 @@
 								$result=$this->db->get('district');
 								if($result->num_rows()>0){
 									$answer= $result->row_array();
+									echo '<strong>District</strong> => '.$answer['name'] ;
 								}
-								echo '<strong>District</strong> => '.$answer['name'] ;
+								
 								}?>
 							</p>
 							<p><?php if(isset($info->contact_number)){

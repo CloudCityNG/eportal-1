@@ -102,7 +102,7 @@
                   
                    $.ajax({
                     url:"<?php echo base_url(); ?>advertisement/getDistricts",    
-                    data: {couid:$("#country").val(),proid: $(this).val()},
+                    data: {couid:'<?php echo $cou;?>',proid: $(this).val()},
                     type: "POST",
                     success: function(data){
                         $("#district").html(data);
@@ -275,28 +275,51 @@
   		<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Address &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
+    			    		<div class="col-sm-7">
       			<?php
-      			echo '<p>'.$p_add_ln_1.'</p>';
-				echo '<p>'.$p_add_ln_2.'</p>';
-				echo '<p>'.$p_add_ln_3.'</p>';
-				if(isset($province)||$province!=null)
-				{
-					echo '<p>'.$province;
-					if(isset($district)||$district!=null)
-					{
-						echo ','.$district;
-						
-					}
-					echo '</p>';
-				}
-				echo $country;
+      				$emailattributes = array('class' => 'form-control','name'=>'address','value'=>$p_add_ln_1.$p_add_ln_2.$p_add_ln_3);
+      				echo form_textarea($emailattributes,$this->input->post('address'));
+					if(form_error('address')!=null)
+						echo '<div class="alert alert-danger">'.form_error('address').'</div>';
+      			?>
+      			<?php
+      			
+
       				/*$emailattributes = array('class' => 'form-control','name'=>'address');
       				echo form_input($emailattributes,$this->input->post('address'));
 					if(form_error('address')!=null)
 						echo '<div class="alert alert-danger">'.form_error('address').'</div>';*/
       			?>
     		</div>
+      			
+    		</div>
   		</div>
+  		<br />
+  		    		<label for="inputEmail3" class="col-sm-3 control-label">Province &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+				//	$fnameattributes = array('class' => 'form-control','name'=>'province');
+					
+      				echo form_dropdown('province',$province1,$pro,'id="province"');
+					if(form_error('province')!=null)
+						echo '<div class="alert alert-danger">'.form_error('province').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		<br />
+  			<div class="form-group">
+    		<label for="inputEmail3" class="col-sm-3 control-label">District &nbsp;&nbsp;</label>
+    		<div class="col-sm-7">
+      			<?php
+					//$fnameattributes = array('class' => 'form-control','name'=>'district');
+      				echo form_dropdown('district',$district1,$dis,'id="district"');
+					if(form_error('district')!=null)
+						echo '<div class="alert alert-danger">'.form_error('district').'</div>';
+      			?>
+    		</div>
+  		</div>
+  		
+  		
   		<br />
   		 <div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Telephone &nbsp;&nbsp;</label>
@@ -374,7 +397,7 @@
 
   		
 		</div>
-	</div>
+	
 	
 	
 	<div id="upload" class="panel-body" <?php if((!isset($state))){echo 'style="display:none ;"';}else if($state=='data'){echo 'style="display:none ;"';}?>> 

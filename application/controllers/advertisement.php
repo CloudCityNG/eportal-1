@@ -15,10 +15,34 @@ class Advertisement extends CI_Controller {
 		$this->load->helper('form');
 		$this->form_validation->set_rules('title','Title','required|trim|xss_clean');//setting rules for title
 		$this->form_validation->set_rules('body','Body','required|trim|xss_clean');//setting rules for body
-		//$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
+		$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
 		$this->form_validation->set_rules('price','Price','required|trim|xss_clean|numeric');//setting rules for price
-		//$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
+		$this->form_validation->set_rules('district','District','required|trim|xss_clean');//setting rules district
+		$this->form_validation->set_rules('province','Province','required|trim|xss_clean');//setting rules for province
+		$savedcountry;
+		$savedprovince;
+		$saveddistrict;
 		
+		$this->load->model('users');
+      	$dataset = $this->users->get_main_details($this->session->userdata('username'));
+		//$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
+		foreach ($dataset as $info){
+			$data['p_email'] = $info->email;
+			$data['p_usertype'] = $info->usertype;
+			$data['p_prfilepicture'] = $info->profilepicture;
+			$data['p_telemarketer'] = $info->telemarketer;
+			$data['p_description'] = $info->description;
+			$data['p_add_ln_1'] = $info->add_ln_1;
+			$data['p_add_ln_2'] = $info->add_ln_2;
+			$data['p_add_ln_3'] = $info->add_ln_3;
+			$data['telephone']=$info->contact_number;
+			//$data['cou']=$info->countryid;
+			//$data['pro']=$info->provinceid;
+			//$data['dis']=$info->districtid;
+			$savedcountry=$info->countryid;
+			$savedprovince=$info->provinceid;
+			$saveddistrict=$info->districtid;
+		}
 	
 		$data['title']='Create Advertisement';
 		$data['success']=false;
@@ -48,21 +72,21 @@ class Advertisement extends CI_Controller {
 		{
 			$data['subcat']=0;
 		}
-		if($this->input->post('country')){
-		
-			$data['cou']=$this->input->post('country');
-		}
-		else
-		{
-			$data['cou']=0;
-		}
+		$data['cou']=$this->advertisements->getCountryConfigCountryid(base_url());
 		if($this->input->post('province')){
 		
 			$data['pro']=$this->input->post('province');
 		}
 		else
 		{
-			$data['pro']=0;
+			if(isset($savedprovince))
+			{
+				$data['pro']=$savedprovince;
+			}
+			else
+			{
+				$data['pro']=0;
+			}
 		}
 		if($this->input->post('district')){
 		
@@ -70,7 +94,14 @@ class Advertisement extends CI_Controller {
 		}
 		else
 		{
-			$data['dis']=0;
+			if(isset($saveddistrict))
+			{
+				$data['dis']=$savedprovince;
+			}
+			else
+			{
+				$data['dis']=0;
+			}
 		}
 		if($this->input->post('duration')){
 		
@@ -110,22 +141,8 @@ class Advertisement extends CI_Controller {
 			
 			}*/
 		}
-		$this->load->model('users');
-      			$dataset = $this->users->get_main_details($this->session->userdata('username'));
-		foreach ($dataset as $info){
-			$data['p_email'] = $info->email;
-			$data['p_usertype'] = $info->usertype;
-			$data['p_prfilepicture'] = $info->profilepicture;
-			$data['p_telemarketer'] = $info->telemarketer;
-			$data['p_description'] = $info->description;
-			$data['p_add_ln_1'] = $info->add_ln_1;
-			$data['p_add_ln_2'] = $info->add_ln_2;
-			$data['p_add_ln_3'] = $info->add_ln_3;
-			$data['telephone']=$info->contact_number;
-			$data['cou']=$info->countryid;
-			$data['pro']=$info->provinceid;
-			$data['dis']=$info->districtid;
-		}
+		
+		
 			if($this->input->post('Finish_submit'))
 			{
 				$data['state']='upload';
@@ -230,22 +247,7 @@ class Advertisement extends CI_Controller {
 		}
 		$data['subcategory']=$send;//loading subcategories in the dropdown list
 		$send=null;
-		$this->load->model('users');
-      			$dataset = $this->users->get_main_details($this->session->userdata('username'));
-		foreach ($dataset as $info){
-			$data['p_email'] = $info->email;
-			$data['p_usertype'] = $info->usertype;
-			$data['p_prfilepicture'] = $info->profilepicture;
-			$data['p_telemarketer'] = $info->telemarketer;
-			$data['p_description'] = $info->description;
-			$data['p_add_ln_1'] = $info->add_ln_1;
-			$data['p_add_ln_2'] = $info->add_ln_2;
-			$data['p_add_ln_3'] = $info->add_ln_3;
-			$data['telephone']=$info->contact_number;
-			$data['cou']=$info->countryid;
-			$data['pro']=$info->provinceid;
-			$data['dis']=$info->districtid;
-		}		
+		
 		$answer=$this->advertisements->getCountry();
 		$send['0']='--Select--';
 		foreach ($answer as $key ) {
@@ -266,8 +268,13 @@ class Advertisement extends CI_Controller {
 			break;
 			}
 			}
+
+			foreach($answer as $key){
+					$send[$key->id]=$key->name;
+			}
+		$data['province1']=$send;	
 		}
-		
+		$send=null;
 		$data['district']=null;
 		$send['0']='--Select--';
 		if($data['cou']>0&&$data['pro']>0){
@@ -278,6 +285,10 @@ class Advertisement extends CI_Controller {
 			break;
 			}
 			}
+			foreach($answer as $key){
+				$send[$key->id]=$key->name;	
+			}
+			$data['district1']=$send;
 		}
 		
 		
@@ -761,7 +772,7 @@ class Advertisement extends CI_Controller {
 		$this->load->helper('form');
 		$this->form_validation->set_rules('title','Title','required|trim|xss_clean');//setting rules for title
 		$this->form_validation->set_rules('body','Body','required|trim|xss_clean');//setting rules for body
-		//$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
+		$this->form_validation->set_rules('address','Address','required|trim|xss_clean');//setting rules for address
 		$this->form_validation->set_rules('price','Price','required|trim|xss_clean|numeric');//setting rules for price
 		//$this->form_validation->set_rules('telephone','Telephone','required|trim|xss_clean|numeric|min_length[7]|max_length[14]');//setting rules for price
 		
@@ -790,7 +801,7 @@ class Advertisement extends CI_Controller {
 		{
 			$data['subcat']=$answer1['subcategoryid'];
 		}
-		/*if($this->input->post('country')){
+		if($this->input->post('country')){
 		
 			$data['cou']=$this->input->post('country');
 		}
@@ -813,7 +824,7 @@ class Advertisement extends CI_Controller {
 		else
 		{
 			$data['dis']=$answer1['districtid'];
-		}*/
+		}
 
 
 		if($this->input->post('advertisment_submit'))
@@ -865,10 +876,11 @@ class Advertisement extends CI_Controller {
 				$this->input->post('category'),
 				$this->input->post('subcategory'),
 				//$this->input->post('country'),
-				//$this->input->post('district'),
-				//$this->input->post('province'),
+				$this->input->post('district'),
+				$this->input->post('province'),
+				$this->input->post('address'),
 				$this->input->post('price')
-				//$this->input->post('address'),
+				
 				//$this->input->post('telephone'),
 				//$this->session->userdata('email'),
 				//$this->session->userdata('username')
@@ -978,7 +990,7 @@ class Advertisement extends CI_Controller {
 			$send[$key->id]=$key->name;
 			
 		}
-		/*$data['country']=$send;
+		$data['country']=$send;
 		$send=null;
 		
 		$send['0']='--Select--';
@@ -1001,7 +1013,7 @@ class Advertisement extends CI_Controller {
 		}
 		}
 		$data['district']=$send;//loading the district in the dropdown list
-		$send=null;	*/
+		$send=null;	
 		$data['title']='Edit Ad';
 		$this->header('Edit Ad');
 		$this->load->view('view_edit_ad',$data);
@@ -1059,9 +1071,9 @@ class Advertisement extends CI_Controller {
 			$data['countryid']=$answer1['countryid'];
 			$data['provinceid']=$answer1['provinceid'];
 			$data['districtid']=$answer1['districtid'];	
-			$data['p_add_ln_1'] = $answer1['add_ln_1'];
-			$data['p_add_ln_2'] = $answer1['add_ln_2'];
-			$data['p_add_ln_3'] = $answer1['add_ln_3'];
+			//$data['p_add_ln_1'] = $answer1['add_ln_1'];
+			//$data['p_add_ln_2'] = $answer1['add_ln_2'];
+			//$data['p_add_ln_3'] = $answer1['add_ln_3'];
 			$data['address']=$answer1['address'];
 			
 			$this->db->where('id',$answer1['categoryid']);

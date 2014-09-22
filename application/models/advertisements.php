@@ -156,7 +156,7 @@ class Advertisements extends CI_Model{
 			'districtid'=>$district,
 			'provinceid'=>$province,
 			'price'=>$price,
-			//'address'=>$address,
+			'address'=>$address,
 			//'telephone'=>$telephone,
 			//'email'=>$email,
 			'username'=>$username,
@@ -169,7 +169,7 @@ class Advertisements extends CI_Model{
 			
 			
 	}
-	public function updateAdvertisement($id,$title,$body,$cat,$subcat,$price)
+	public function updateAdvertisement($id,$title,$body,$cat,$subcat,$district,$province,$address,$price)
 	{
 		$data=array(
 			'id'=>$id,
@@ -178,10 +178,10 @@ class Advertisements extends CI_Model{
 			'categoryid'=>$cat,
 			'subcategoryid'=>$subcat,
 			//'countryid'=>$country,
-			//'districtid'=>$district,
-			//'provinceid'=>$province,
-			'price'=>$price
-			//'address'=>$address,
+			'districtid'=>$district,
+			'provinceid'=>$province,
+			'price'=>$price,
+			'address'=>$address,
 			//'telephone'=>$telephone,
 			//'email'=>$email,
 			//'username'=>$username
@@ -447,9 +447,9 @@ class Advertisements extends CI_Model{
 				$answer['usertype'] = $info->usertype;
 				$answer['email'] = $info->email;
 				$answer['telemarketer']=$info->telemarketer;
-				$answer['countryid']=$info->countryid;
-				$answer['provinceid']=$info->provinceid;	
-				$answer['districtid']=$info->districtid;
+				//$answer['countryid']=$info->countryid;
+				//$answer['provinceid']=$info->provinceid;	
+				//$answer['districtid']=$info->districtid;
 				$answer['add_ln_1']=$info->add_ln_1;		
 				$answer['add_ln_2']=$info->add_ln_2;
 				$answer['add_ln_3']=$info->add_ln_3;

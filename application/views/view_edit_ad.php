@@ -202,7 +202,7 @@
 						echo '<div class="alert alert-danger">'.form_error('country').'</div>';
       			?>
     		</div>
-  		</div>
+  		</div>-->
   		<br />
   			<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Province &nbsp;&nbsp;</label>
@@ -249,7 +249,7 @@
     		</div>
   		</div>
   		<br />
-  		 <div class="form-group">
+  		 <!--<div class="form-group">
     		<label for="inputEmail3" class="col-sm-3 control-label">Telephone &nbsp;&nbsp;</label>
     		<div class="col-sm-7">
       			<?php
