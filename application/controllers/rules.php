@@ -354,6 +354,8 @@ class Rules extends CI_Controller {
 		}
 		
 		$result = $this->m_rules->get_cid_sid_subscription($a,$table);
+		
+		if($result->num_rows > 0){
 		foreach($result as $record){
 			$cid=$record->categoryid;
 			$sid=$record->subcategoryid;
@@ -384,6 +386,7 @@ class Rules extends CI_Controller {
 		foreach($result as $record){
 			$this->email->to($record->email);
 			$this->email->send();
+		}
 		}
 	}
 	
