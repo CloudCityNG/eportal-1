@@ -255,9 +255,9 @@ public function getAdvertisement($adid)
 		$this->db->update('edit_advertisement',$data);
 	}
 	/*************************************************************/
-	public function get_cid_sid_subscription($a){
+	public function get_cid_sid_subscription($a,$table){
 		$sql='SELECT categoryid, subcategoryid, username
-				From new_advertisement 
+				From '.$table.'
 				WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql);
 			return $result->result();
@@ -278,8 +278,7 @@ public function getAdvertisement($adid)
 	/*************************************************************/
 	
 	public function accept_ad($a,$table){
-		if($table == "new_advertisements"){
-			
+				
 			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
 					From new_advertisement 
 					WHERE id=\''.$a.'\'';
@@ -298,9 +297,12 @@ public function getAdvertisement($adid)
 			$data=array('approved'=>1);
 			$this->db->where('id',$a);
 			$this->db->update('advertisement',$data);
-		}
-		else{
-			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, username, price, approved 
+		
+	}
+
+	public function accept_edit($a,$table){
+		
+			$sql1='SELECT title,body,categoryid, subcategoryid, countryid, districtid, provinceid, username, price, approved 
 					From edit_advertisement 
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
@@ -308,20 +310,19 @@ public function getAdvertisement($adid)
 			
 	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
 	//		$temp = $result->result();
-			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->where('id',$a);
+			$this->db->update('advertisement',$temp[0]);	
 			$this->db->where('id',$a);
 			$this->db->delete('edit_advertisement');
 			
 			$data=array('approved'=>1);
 			$this->db->where('id',$a);
 			$this->db->update('advertisement',$data);
-		}
+
 	}
-	
+
 	public function deny_ad($a,$table){
-		if($table == "new_advertisements"){
-			
-			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
+		/*	$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, featured, createdate, duration, expired, username, price, approved 
 					From new_advertisement 
 					WHERE id=\''.$a.'\'';
 			$result=$this->db->query($sql1);
@@ -331,29 +332,16 @@ public function getAdvertisement($adid)
 		//	$temp = $result->result();
 			$this->db->insert('advertisement',$temp[0]);	
 			$this->db->where('id',$a);
-			$this->db->delete('new_advertisement');
+			$this->db->delete('new_advertisement'); */
 			
 			$data=array('approved'=>0);
 			$this->db->where('id',$a);
-			$this->db->update('advertisement',$data);
-		}
-		else{
-			$sql1='SELECT id,title,body,categoryid, subcategoryid, countryid, districtid, provinceid, username, price, approved 
-					From edit_advertisement 
-					WHERE id=\''.$a.'\'';
-			$result=$this->db->query($sql1);
-			$temp= $result->result();
-			
-	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
-	//		$temp = $result->result();
-			$this->db->insert('advertisement',$temp[0]);	
+			$this->db->update('new_advertisement',$data);
+			}
+	
+	public function deny_edit($a,$table){
 			$this->db->where('id',$a);
 			$this->db->delete('edit_advertisement');
-			
-			$data=array('approved'=>0);
-			$this->db->where('id',$a);
-			$this->db->update('advertisement',$data);
-		}
 	}
 	
 	public function check_if_new($a){
@@ -362,6 +350,9 @@ public function getAdvertisement($adid)
 		
 		if($result->num_rows() > 0){
 			return TRUE;
+		}
+		else{
+			return FALSE;
 		}
 	}
 	
@@ -460,13 +451,32 @@ public function getAdvertisement($adid)
 	}
 	}
 	
-	public function get_boundary(){
+	
+		
+	public function get_white_boundary(){
 		$id = '1';	
 		$sql='SELECT value FROM boundary where id=\''.$id.'\'';
 		$result=$this->db->query($sql);
 		$answer= $result->result();
 		return $answer;
 	}
+	
+	public function get_black_boundary(){
+		$id = '2';	
+		$sql='SELECT value FROM boundary where id=\''.$id.'\'';
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
+	}
+	
+	public function set_white_boundary($white){
+		$this->db->where('id',1)->update('boundary',array('value'=>$white));
+	}
+	
+	public function set_black_boundary($black){
+		$this->db->where('id',2)->update('boundary',array('value'=>$black));
+	}
+	
 	
 	public function get_whitelist_users(){
 		$query = "SELECT u.username, u.usertype, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
@@ -486,13 +496,118 @@ public function getAdvertisement($adid)
 		return $result->result();
 	}
 	
-	public function get_username($a,$table){
+	public function remove_from_whitelist($arr){
+		foreach($arr as $row){
+			if($row[1]==1){
+				$this->db->where('username',$row[2])->update('user_details',array('white'=>0));
+			}		
+		}	
+	}
+	
+	public function remove_from_blacklist($arr){
 		
-		$sql='SELECT username FROM \''.$table.'\' where id=\''.$a.'\' ';
+		foreach($arr as $row){
+			if($row[1]==1){		
+			$this->db->where('username',$row[2])->update('user_details',array('black'=>0));
+			}	
+		}
+	}
+	
+	public function get_whitelist_count(){
+		$query = "SELECT COUNT(*) as count
+					FROM users u, user_details d
+					WHERE u.username=d.username and white=1";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_blacklist_count	(){
+		$query = "SELECT COUNT(*) as count
+					FROM users u, user_details d
+					WHERE u.username=d.username and white=0";
+							
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	
+	public function get_whiterate($username){	
+		$sql='SELECT whiterate FROM user_details where username=\''.$username.'\'';
 		$result=$this->db->query($sql);
 		$answer= $result->result();
 		return $answer;
+	}
+	
+	public function set_whiterate_of_user($username,$whiterate){
+		$data=array(
+			'whiterate'=>$whiterate);
+		$this->db->where('username',$username);
+		$this->db->update('user_details',$data);
+	}
+	
+	public function get_blackrate($username){	
+		$sql='SELECT blackrate FROM user_details where username=\''.$username.'\'';
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
+	}
+	
+	public function set_blackrate_of_user($username,$rate){
+		$data=array(
+			'blackrate'=>$rate);
+		$this->db->where('username',$username);
+		$this->db->update('user_details',$data);
+	}
+	
+
+	
+	public function is_whitelisted($username){
+		/*
+		$query3 = 'SELECT value FROM boundary WHERE id=1';						
+		$result3 = $this->db->query($query3);
+		$boundary = $result3->result();*/
 		
+		$bound = $this->get_white_boundary();
+		
+		foreach ($bound as $key){
+		$query1 = 'SELECT * FROM user_details WHERE username=\''.$username.'\' AND whiterate>=\''.$key->value.'\'';
+		$result1 = $this->db->query($query1);}
+		
+		$query2 = 'SELECT * FROM user_details WHERE username=\''.$username.'\' AND white=1';
+		$result2 = $this->db->query($query2);
+		
+		if($result1->num_rows() == 1 || $result2->num_rows() == 1){return true;}
+		else{return false;}
+	}
+	
+	public function is_blacklisted($username){
+		
+		/*
+		$query3 = 'SELECT value FROM boundary WHERE id=2';						
+		$result3 = $this->db->query($query3);
+		$boundary = $result3->result();*/
+		
+		$bound = $this->get_black_boundary();
+		
+		print_r($bound);
+		
+		foreach ($bound as $key){
+		$query1 = 'SELECT * FROM user_details WHERE username=\''.$username.'\' AND blackrate>=\''.$key->value.'\'';
+		$result1 = $this->db->query($query1);}
+		
+		
+		$query2 = 'SELECT * FROM user_details WHERE username=\''.$username.'\' AND black=1';
+		$result2 = $this->db->query($query2);
+		
+		if($result1->num_rows() == 1 || $result2->num_rows() == 1){return true;}
+		else{return false;}
+	}
+	
+	public function get_username($a,$table){
+		$sql='SELECT `username` FROM '.$table.' WHERE `id`=\''.$a.'\'';
+		$result=$this->db->query($sql);
+		$answer= $result->result();
+		return $answer;
 	}
 	
 	}	

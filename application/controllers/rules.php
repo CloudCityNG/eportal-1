@@ -345,7 +345,15 @@ class Rules extends CI_Controller {
 	
 	private function send_subscription_mail($a){
 		$this->load->model('m_rules');
-		$result = $this->m_rules->get_cid_sid_subscription($a);
+		
+		if($this->m_rules->check_if_new($a)){
+			$table = 'new_advertisement';
+		}
+		else{
+			$table = 'edit_advertisement';
+		}
+		
+		$result = $this->m_rules->get_cid_sid_subscription($a,$table);
 		foreach($result as $record){
 			$cid=$record->categoryid;
 			$sid=$record->subcategoryid;
@@ -399,8 +407,18 @@ class Rules extends CI_Controller {
 				$usr = $key->username;
 			}
 		}
+		try{
 		$this->send_subscription_mail($a);
-        $this->m_rules->accept_ad($a,$table);
+		}
+		catch(exception $e){
+			
+		}
+		if($this->m_rules->check_if_new($a)){
+			$this->m_rules->accept_ad($a,$table);
+		}
+        else{
+        	$this->m_rules->accept_edit($a,$table);
+        }
 		
 		$rate = $this->m_rules->get_whiterate($usr);
 				foreach($rate as $hana){
@@ -432,7 +450,12 @@ class Rules extends CI_Controller {
 			$usr = $key->username;
 			}
 		}
-		$this->m_rules->deny_ad($a,$table);
+			if($this->m_rules->check_if_new($a)){
+			$this->m_rules->deny_ad($a,$table);
+		}
+        else{
+        	$this->m_rules->deny_edit($a,$table);
+        }
 		
 		$rate = $this->m_rules->get_blackrate($usr);
 				foreach($rate as $hana){
@@ -442,19 +465,7 @@ class Rules extends CI_Controller {
 				}
 		
 		$this->new_ads();
-/*		
-		$this->header('Send Denial Email');
-		$this->load->view('v_ad_deny',$a);
-		$this->footer();
-		
-		if($this->input->post('back'))
-			{
-				redirect('/rules/back1');
-				//$data['state']='data';
-	
-			}
- * 
- */
+
 	}
 	
 	//new
