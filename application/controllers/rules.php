@@ -354,14 +354,15 @@ class Rules extends CI_Controller {
 		}
 		
 		$result = $this->m_rules->get_cid_sid_subscription($a,$table);
+		$count=0;
 		
-		if($result->num_rows > 0){
 		foreach($result as $record){
 			$cid=$record->categoryid;
 			$sid=$record->subcategoryid;
 			$un=$record->username;
+			$count++;
 		}
-		
+		if($count>0){
 		$result = $this->m_rules->get_email_subscription($cid,$sid,$un);
 		$config = Array(
 				'protocol' => 'smtp',

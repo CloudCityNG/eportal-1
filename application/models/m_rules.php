@@ -131,7 +131,7 @@ public function getAdvertisement($adid)
 			}
 		
 		return $answer;			*/
-		
+		$username;
 		$this->load->model('m_rules');
 		if($this->m_rules->check_if_new($adid)){
 			$this->db->where('id',$adid);
@@ -142,6 +142,11 @@ public function getAdvertisement($adid)
 			$this->db->where('id',$adid);
 		//$this->db->where('approved',1);
 		$result=$this->db->get('edit_advertisement');
+						$this->db->where('id',$adid);
+				$result1=$this->db->get('advertisement')->result();
+				foreach($result1 as $row){
+					$username=$row->username;
+				}
 		}
 				
 		
@@ -150,6 +155,9 @@ public function getAdvertisement($adid)
 			{
 				//$answer2['Image']=null;
 				$answer= $result->row_array();
+				if((isset($username))&&(!is_null($username))){
+					$answer['username']=$username;
+				}
 				$this->load->model("users");
 				$dataset1 = $this->users->get_main_details($answer['username']);
 				$answer['ad_id'] = $adid;
@@ -310,8 +318,18 @@ public function getAdvertisement($adid)
 			
 	//		$result=$this->db->get_where('edit_advertisement', array('id'=>$a));
 	//		$temp = $result->result();
+
+			$temp1=(array)$temp[0];
+			 foreach ($temp1 as $key => $value) {
+        if (is_null($value)) {
+        unset($temp1[$key]);
+        }
+    }
+			//array_filter($temp1);
+			print_r($temp1);
+			
 			$this->db->where('id',$a);
-			$this->db->update('advertisement',$temp[0]);	
+			$this->db->update('advertisement',$temp1);	
 			$this->db->where('id',$a);
 			$this->db->delete('edit_advertisement');
 			
