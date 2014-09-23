@@ -29,9 +29,11 @@ class M_report extends CI_Model {
 }
 	
 	public function get_current_month_all_ad(){
+		
+		
 		$query = "SELECT a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
 					FROM advertisement a, category c
-					WHERE (expired=0 AND approved=1 AND a.categoryid=c.id) OR (expired=0 AND approved=1 AND a.categoryid=0)";
+					WHERE ((a.expired=0 AND a.approved=1 AND a.categoryid=c.id) OR (a.expired=0 AND a.approved=1 AND a.categoryid=0)) AND datediff(CURRENT_TIMESTAMP,a.createdate)<=30";
 							
 		$result = $this->db->query($query);
 		return $result->result();
@@ -41,7 +43,7 @@ class M_report extends CI_Model {
 	public function get_current_month_reported_ad(){
 		$query = "SELECT a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
 					FROM advertisement a, category c, reported_ads r
-					WHERE a.id=r.reported_adid AND ((expired=0 AND approved=1 AND a.categoryid=c.id) OR (expired=0 AND approved=1 AND a.categoryid=0))";
+					WHERE a.id=r.reported_adid AND ((a.expired=0 AND a.approved=1 AND a.categoryid=c.id) OR (expired=0 AND approved=1 AND a.categoryid=0)) AND datediff(CURRENT_TIMESTAMP,a.createdate)<=30";
 							
 		$result = $this->db->query($query);
 		return $result->result();
@@ -50,7 +52,7 @@ class M_report extends CI_Model {
 	public function get_current_month_highest_ad(){
 		$query = "SELECT r.rate, a.title, a.body, c.name, a.subcategoryid,	a.districtid,	a.provinceid,	a.featured, a.createdate, a.duration, a.username, a.price 
 					FROM advertisement a, category c, rating r
-					WHERE (a.id=r.adid AND expired=0 AND approved=1 AND a.categoryid=c.id) OR (a.id=r.adid AND expired=0 AND approved=1 AND a.categoryid=0)
+					WHERE ((a.id=r.adid AND a.expired=0 AND a.approved=1 AND a.categoryid=c.id) OR (a.id=r.adid AND a.expired=0 AND a.approved=1 AND a.categoryid=0)) AND datediff(CURRENT_TIMESTAMP,a.createdate)<=30
 					ORDER BY r.rate DESC";
 							
 		$result = $this->db->query($query);

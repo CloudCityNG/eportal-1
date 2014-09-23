@@ -8,25 +8,47 @@ class M_permissions extends CI_Model{
 		$result = $this->db->query($query);
 		return $result->result();
 	}
-
 	
 	public function insert_permissions($arr){
-		
-		$query1 = "SELECT * FROM permission";
-		
-		for ($i=0; $i <= 4 ; $i++) { 
-		//	$user_specific_table = array(
-			//				'normal'=>$arr[i][0],
-				//			'business'=>$arr[i][0],
-					//		'admin'=>$arr[i][0],
-						//	'unregistered'=>$arr[i][0]);
-						
-			$pid = $i+1;
-			$query = 'INSERT INTO permissions (normal, business, admin, unregistered) VALUES (\''.$arr[i][0].'\', \''.$arr[i][1].'\', \''.$arr[i][2].'\', \''.$arr[i][3].'\')
-			WHERE pid=\''.$pid.'\'';
-	
+		$i=1;
+		foreach($arr as $row){		
+			$this->db->where('pid',$i)->update('permission',array('normal'=>$row[1],'business'=>$row[2],'admin'=>$row[3],'unregistered'=>$row[4]));
+			$i++;
 		}
+
 		
 	}
-
+	
+	public function check_if_super($username){
+		$query = "SELECT * FROM user_details WHERE super = 1 AND username = '$username'";
+		$result = $this->db->query($query);
+		
+		if($result->num_rows() == 1){return true;}
+		else{return false;}
+	}
+	
+	public function check_if_admin($username){
+		$type = 'a';
+		$query = 'SELECT * FROM users WHERE usertype = \''.$type.'\' AND username = \''.$username.'\'';
+		$result = $this->db->query($query);
+		
+		if($result->num_rows() >= 0){return true;}
+		else{return false;}
+	}
+	
+	public function can_view_this($pid,$type){
+		
+		if($type = 'a'){
+		$query = $this->db->query('select admin from permission where pid = \''.$pid.'\'');
+		foreach ($query->result() as $row)
+   				{
+   					if($row->admin == 1){
+   						return TRUE;
+   					}
+					else{
+						return false;
+					}
+   				}
+		}
+	}
 }

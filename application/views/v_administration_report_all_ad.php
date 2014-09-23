@@ -93,13 +93,21 @@
           				echo("Yes");
 					}else{
 						echo("No");
-					}          	
+					}     
+					
+					$country=$this->advertisements->getconfigcountry(base_url());
+			$price;
+			foreach($country as $key)
+			{
+				$price=$key->currencysy;
+			}     	
           	?>
+          	
           </td>
           <td style="max-width: 210px;"><?php echo $details->createdate;?></td>
           <td style="max-width: 210px;"><?php echo $details->duration;?></td>
           <td style="max-width: 210px;"><?php echo $details->username;?></td>
-          <td style="max-width: 240px;"><?php echo $details->price;?></td>
+          <td style="max-width: 240px;"><?php echo $price.' '.$details->price;?>/=</td>
           
         </tr>
         <?php } ?>

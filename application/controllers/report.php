@@ -86,6 +86,7 @@ class Report extends CI_Controller {
 	
 	public function generate_all_ad(){
 		$this->load->model('m_report');
+		$this->load->model('advertisements');
 		$data['ads']=$this->m_report->get_current_month_all_ad();
 		$this->header('All Advertisements');
 		$this->load->view("v_administration_report_all_ad",$data);
