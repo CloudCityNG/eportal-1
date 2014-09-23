@@ -354,8 +354,10 @@ class Rules extends CI_Controller {
 		}
 		
 		$result = $this->m_rules->get_cid_sid_subscription($a,$table);
+
 		
 		$count=0;
+
 		foreach($result as $record){
 			$cid=$record->categoryid;
 			$sid=$record->subcategoryid;
