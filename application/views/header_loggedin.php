@@ -144,6 +144,7 @@ $('.dropdown-toggle').dropdown();
 						  	</a>
 							<ul class="dropdown-menu" role="menu">
 						    	<li><a href="<?php echo base_url()."advertisement/adList"; ?>">My advertisements</a></li>
+						    	<li><a href="<?php echo base_url()."history/view_history"; ?>">My History</a></li>
 								<li class="divider"></li>
 								<?php
 									if($this->session->userdata('company_name')){?>

@@ -139,6 +139,9 @@
 				//echo '</div>';
 				echo '<div class="row" style="height:20px"><p>Sold on :'.$sad->bDATE.'</p></div>';
 				echo '<div class="row" style="height:20px"><p>Buyer :<a href="'.base_url().'profile/'.$sad->buyer.'">'.$sad->buyer.'</a></p></div>';
+				?>
+					<a class="btn btn-sm btn-primary pull-right" href="<?php echo base_url().'delivery/delivery_companies/'.$sad->adid; ?>">Make delivery request</a>
+				<?php
 				//echo '<div class="row" style="height:20px"><p>Location :'.$bad->location.'</p></div>';
 				
 				

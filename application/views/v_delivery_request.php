@@ -145,10 +145,14 @@
 				<input name="companyID" type="hidden" id="company-id" />
 				<br />
 				<label for="item-id">Item id</label>
-				<input name="itemID" id="item-id" type="text" class="form-control" />
+				<?php if($item['details']){?>
+					<input name="itemID" id="item-id" type="text" class="form-control" value="<?php echo $item['ad_id'];?>"/>
+				<?php }else{?>
+					<input name="itemID" id="item-id" type="text" class="form-control" />
+				<?php }?>
 				<br />
 				<label for="datepicker">Delivery date</label>
-				<input id="datepicker" type="text" name="datepicker" class="form-control" />
+				<input id="datepicker" type="text" name="deliveryDate" class="form-control" />
 				<br />
 				<label for="delivery-location">Delivery location</label>
 				<!--<input name="location" id="delivery-location" type="" class="form-control"  style="height: 200px"/>-->	

@@ -32,9 +32,8 @@
 				echo '</div>';
 				echo form_close();
 			?>
-			<a class="pull-left" href='<?php echo base_url()."signin/reset_password" ?>'>Forgot your password ?</a>
-			<br>
-			<a class="pull-left" href='<?php echo base_url()."registration" ?>'>Need to create an account ?</a>
+			<!--<a class="pull-left" href='<?php echo base_url()."signin/reset_password" ?>'>Forgot your password ?</a>-->
+			<a class="pull-right" href='<?php echo base_url()."registration" ?>'>Need to create an account ?</a>
 		</div>
 	</div>
 </div>

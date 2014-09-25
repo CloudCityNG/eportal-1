@@ -4,12 +4,12 @@
 class Delivery extends CI_Controller {
 
 	public function index(){
-		$this->view_delivery_companies();
+		$this->view_delivery_companies(null);
 	}
 	
 	/*******************************Start private functions**************************************************/
 	
-	private function view_delivery_companies(){
+	public function delivery_companies($ad_id=null){
 		$this->header('Delivery');
 		$this->load->model('advertisements');
 		$this->load->model('m_company');
@@ -21,6 +21,13 @@ class Delivery extends CI_Controller {
 		foreach ($answer as $key ) {$send[$key->id]=$key->name;}
 		$data['province']=$send;
 		$data['district']=array('0'=>'-Select-');
+		
+		$data['item']['details']=false;	
+		
+		if($ad_id!=null){
+			$data['item']['ad_id']=$ad_id;
+			$data['item']['details']=true;		
+		}
 		
 		$comapanies=$this->m_company->comapany_details();
 		foreach ($comapanies as $key=>$value){
@@ -35,7 +42,7 @@ class Delivery extends CI_Controller {
 	}
 	
 
-	private function get_province_district(){
+	public function get_province_district(){
 		if($this->session->userdata('username')){
 			$this->load->model('advertisements');
 		if($this->input->post('country')){
@@ -67,26 +74,26 @@ class Delivery extends CI_Controller {
 	
 	public function make_request(){
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('item ID','','required|trim|xss_clean|alpha_numeric|callback_check_item_id');
+		$this->form_validation->set_rules('itemID','','required|trim|xss_clean|alpha_numeric|callback_check_item_id');
 		$this->form_validation->set_rules('location','','required|trim|xss_clean|callback_by_email');
-		$this->form_validation->set_rules('company ID','','required|trim|xss_clean|callback_check_company_id');
-		$this->form_validation->set_rules('delivery date','','required|trim|xss_clean');
+		$this->form_validation->set_rules('companyID','','required|trim|xss_clean|callback_check_company_id');
+		$this->form_validation->set_rules('deliveryDate','','required|trim|xss_clean');
 		
 		if($this->form_validation->run()){
 			$company_id=$this->input->post('companyID');
 			$item_id=$this->input->post('itemID');
 			$delivery_location=$this->input->post('location');
-			$delivery_date=$this->input->post('datepicker');
+			$delivery_date=$this->input->post('deliveryDate');
 			
 			$this->load->model('m_delivery');
 			
 			if($this->m_delivery->add_delivery_request($company_id,$item_id,$delivery_location,$delivery_date)){
-				$this->view_delivery_companies();
+				$this->delivery_companies(null);
 			}else{
 				show_error('error while processing your request');
 			}
 		}else{
-			$this->view_delivery_companies();
+			$this->delivery_companies(null);
 
 		}
 	}
