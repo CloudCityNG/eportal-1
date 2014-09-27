@@ -508,7 +508,7 @@ public function getAdvertisement($adid)
 	public function get_blacklist_users(){
 		$query = "SELECT u.username, u.usertype, d.description ,u.registered_datenadtime, d.provinceid, d.districtid
 					FROM users u, user_details d
-					WHERE u.username=d.username and white=0";
+					WHERE u.username=d.username and black=1";
 							
 		$result = $this->db->query($query);
 		return $result->result();

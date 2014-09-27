@@ -1,9 +1,7 @@
 <link href="<?php echo base_url();?>css/dashboard.css" rel="stylesheet">
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+ <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
   <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
      <script type="text/javascript">
 $(function(){
@@ -12,8 +10,7 @@ $(function(){
     });
 });
 </script> 
-</head>
-</html>
+
 
 <div class="col-sm-3 col-md-2 sidebar navbar-default">
            <div class="h5 text-center dashboard"><a href="<?php echo base_url().'administration'?>"><span class="glyphicon glyphicon-link"></span>&nbsp;Dashboard</a></div>

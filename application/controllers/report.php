@@ -177,7 +177,7 @@ class Report extends CI_Controller {
 	}
 
 	public function generate_ad_report(){
-		
+		$this->load->model('advertisements');
 		if($this->input->post('category')){
 		
 			$data['cat']=$this->input->post('category');
